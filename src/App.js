@@ -5,6 +5,6 @@ import Layout from './components/Layout';
 
 export default () => (
   <Layout>
-    <Route path='/fetchdata/:startDateIndex?' component={FetchData} />
+        <Route path='/fetchdata' component={FetchData} />
   </Layout>
 );

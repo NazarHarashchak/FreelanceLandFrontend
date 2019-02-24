@@ -7,14 +7,11 @@ import { actionCreators } from '../store/actions';
 class FetchData extends Component {
     componentWillMount() {
         // This method runs when the component is first added to the page
-        const startDateIndex = parseInt(this.props.match.params.startDateIndex, 10) || 0;
-        this.props.requestWeatherForecasts(startDateIndex);
+        const someData = this.props.match.params;
+        this.props.requestWeatherForecasts(someData);
     }
 
     componentWillReceiveProps(nextProps) {
-        // This method runs when incoming props (e.g., route params) change
-        const startDateIndex = parseInt(nextProps.match.params.startDateIndex, 10) || 0;
-        this.props.requestWeatherForecasts(startDateIndex);
     }
 
     render() {
@@ -23,7 +20,6 @@ class FetchData extends Component {
                 <h1>Weather forecast</h1>
                 <p>This component demonstrates fetching data from the server and working with URL parameters.</p>
                 {renderForecastsTable(this.props)}
-                {renderPagination(this.props)}
             </div>
         );
     }
@@ -38,17 +34,6 @@ function renderForecastsTable(props) {
             )}
         </ul>
     );
-}
-
-function renderPagination(props) {
-    const prevStartDateIndex = (props.startDateIndex || 0) - 5;
-    const nextStartDateIndex = (props.startDateIndex || 0) + 5;
-
-    return <p className='clearfix text-center'>
-        <Link className='btn btn-default pull-left' to={`/fetchdata/${prevStartDateIndex}`}>Previous</Link>
-        <Link className='btn btn-default pull-right' to={`/fetchdata/${nextStartDateIndex}`}>Next</Link>
-        {props.isLoading ? <span>Loading...</span> : []}
-    </p>;
 }
 
 export default connect(

@@ -1,13 +1,15 @@
-
-import './index.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'font-awesome/css/font-awesome.min.css';
+import { createBrowserHistory } from 'history';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
-import { createBrowserHistory } from 'history';
-import configureStore from './store/configureStore';
 import App from './App';
+import './index.css';
 import registerServiceWorker from './registerServiceWorker';
+import configureStore from './store/configureStore';
 
 // Create browser history to use in the Redux store
 const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
