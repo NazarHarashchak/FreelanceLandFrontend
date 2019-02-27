@@ -6,6 +6,6 @@
     "\\src\\components",
     "\\src\\store"
   ],
-  "SelectedNode": "\\src\\components\\NavMenu.js",
+  "SelectedNode": "\\src\\store\\actions.js",
   "PreviewInSolutionExplorer": false
 }
