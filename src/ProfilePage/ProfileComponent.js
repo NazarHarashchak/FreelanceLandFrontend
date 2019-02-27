@@ -9,25 +9,28 @@ import PersonalInfo from './PersonalInfo'
 class ProfileComponent extends Component {
   render() {
     return (
-    <div class="personal_form">
-      <div class="container-fluid">
-        <div class="row">
+    <div className="personal_form">
+      <div className="container-fluid">
+        <div className="row">
 
-          <div class="col-md-4 photo ">
+          <div className="col-md-4 photo ">
               <ProfilePhoto />
           </div>
 
-          <div class="col-md-8 personal-info">
+          <div className="col-md-2">
+          </div>
+
+          <div className="col-md-6 personal-info">
               <PersonalInfo/>        
           </div>
 
         </div>
 
-        <div class="active-tasks">
+        <div className="active-tasks">
             <ActiveTasks/>
         </div>
 
-        <div class="history">
+        <div className="history">
           <History/>
         </div>
      </div> 
