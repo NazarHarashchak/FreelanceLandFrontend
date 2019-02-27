@@ -8,7 +8,6 @@ export const actionCreators = {
         const url = `https://localhost:44331/api/values`;
         const response = await fetch(url);
         const forecasts = await response.json();
-
         dispatch({ type: receiveWeatherForecastsType, forecasts });
     }
 };

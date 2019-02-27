@@ -29,6 +29,11 @@ export default props => (
                         <Glyphicon glyph='th-list' /> Freelancers & Customers
                     </NavItem>
                 </LinkContainer>
+                <LinkContainer to={'ProfilePage'}>
+                    <NavItem>
+                        <Glyphicon glyph='th-list' /> My Page
+                    </NavItem>
+                </LinkContainer>
             </Nav>
             <Nav pullRight>
                 <LinkContainer to={''}>

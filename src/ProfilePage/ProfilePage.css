@@ -1,0 +1,40 @@
+.photo-user {
+    height: 300px;
+}
+.border-none{
+    border: none;
+    background-color: white;
+    padding: 10px;
+    font-style: normal;
+    color: black;
+    font-weight: 300;
+    font-size: large;
+    width: 300px;
+}
+
+
+.text-value {
+    background-color: white;
+    padding: 10px;
+    font-style: normal;
+    color: black;
+    font-weight: 300;
+    font-size: large;
+    width: 300px;
+}
+
+.text-lable {
+    font-weight: 200;
+    color: gray;
+    font-style: italic;
+}
+.personal-info{
+    margin: 0 0 0 0px;
+}
+.name-value {
+    font-weight: bold;
+    font-size: 30px;
+    background-color: white;
+    padding: 0 20px 0 0;
+    border: none;
+}
