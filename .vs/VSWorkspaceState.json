@@ -4,8 +4,9 @@
     "\\public",
     "\\src",
     "\\src\\components",
+    "\\src\\img",
     "\\src\\store"
   ],
-  "SelectedNode": "\\src\\components\\NavMenu.js",
+  "SelectedNode": "\\src\\components\\Carousel.js",
   "PreviewInSolutionExplorer": false
 }

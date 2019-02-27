@@ -2,9 +2,11 @@
 import { Route } from 'react-router';
 import FetchData from './components/FetchData';
 import Layout from './components/Layout';
+import MainPage from './components/MainPage';
 
 export default () => (
   <Layout>
         <Route path='/fetchdata' component={FetchData} />
+        <Route path='/mainPage' component={MainPage} />
   </Layout>
 );
