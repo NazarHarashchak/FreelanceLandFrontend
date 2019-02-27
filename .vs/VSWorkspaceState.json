@@ -4,8 +4,9 @@
     "\\public",
     "\\src",
     "\\src\\components",
+    "\\src\\LoginPage",
     "\\src\\store"
   ],
-  "SelectedNode": "\\src\\components\\NavMenu.js",
+  "SelectedNode": "\\src\\store\\reducers.js",
   "PreviewInSolutionExplorer": false
 }
