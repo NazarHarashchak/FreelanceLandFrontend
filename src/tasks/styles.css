@@ -1,0 +1,155 @@
+.l-project-title {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.main-content {
+    padding-top:40px;
+}
+
+body {
+    font-family: "Arial", sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 22px;
+    background-color: #ffffff;
+    color: #333333;
+    padding-top: 40px;
+}
+
+p {
+    font-size: 14px;
+}
+
+.l-projectList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: underline;
+    color: #428bca;
+    outline: none !important;
+}
+
+.l-item-features li {
+    position: relative;
+    display: inline-block;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding-right: 15px;
+    color: #555555;
+    white-space: nowrap;
+}
+
+.l-search-button {
+    background: none;
+    border: 0;
+    color: #c7d9df;
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+}
+
+.pagination-num .form-control {
+    width: 50px;
+    display: inline-block;
+    text-align: center;
+}
+.form-control {
+    border: 1px solid #c7d9df;
+}
+
+.pagination-num label {
+    display: inline-block;
+    color: #777777;
+}
+label {
+    font-weight: normal;
+}
+
+.flex-price-tag .l-price {
+    margin-top: 0;
+    margin-right: 5px;
+}
+
+.l-price {
+    background: #68af55;
+    color: #ffffff;
+    padding: 5px 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    display: inline-block;
+    margin-top: 3px;
+    font-size: 14px;
+}
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.l-price_na {
+    background: #eeeeee;
+    color: #777777;
+    border: 1px solid #eeeeee;
+    padding: 5px 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    display: inline-block;
+    margin-top: 3px;
+    font-size: 14px;
+}
+
+.j-order {
+    display: block;
+    margin-bottom: 50px;
+    word-break: break-word;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.scrolltop { 
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    z-index: 998;
+}
+
+.c-fixedAlerts {
+    position: fixed;
+    top: 20px;
+    left: 10%;
+    width: 80%;
+    z-index: 1060;
+}
+
+.c-scrolltop a:hover span {
+    background-color: #68af55;
+}
+
+.c-scrolltop span {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 30px;
+    color: #fff;
+    display: block;
+    margin-bottom: 7px;
+    background: #ddd;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    transition: .5s;
+}
+
+
