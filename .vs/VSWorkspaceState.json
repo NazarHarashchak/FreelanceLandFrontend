@@ -1,12 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\public",
     "\\src",
     "\\src\\components",
+    "\\src\\components\\mainPages",
     "\\src\\img",
     "\\src\\store"
   ],
-  "SelectedNode": "\\src\\components\\Carousel.js",
+  "SelectedNode": "\\src\\components\\mainPages\\TopUsers.js",
   "PreviewInSolutionExplorer": false
 }

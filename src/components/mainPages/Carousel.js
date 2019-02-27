@@ -31,8 +31,8 @@ class ControlledCarousel extends React.Component {
             >
             <Carousel.Item>
             <img
-        className="d-block w-100"
-        src="holder.js/800x400?text=First slide&bg=373940"
+                        className="d-block w-100 img-fluid"
+        src={require('../../img/headerImg.jpeg')}
         alt="First slide"
             />
             <Carousel.Caption>
@@ -42,8 +42,8 @@ class ControlledCarousel extends React.Component {
             </Carousel.Item>
             <Carousel.Item>
             <img
-        className="d-block w-100"
-        src="holder.js/800x400?text=Second slide&bg=282c34"
+                        className="d-block w-100 img-fluid"
+        src={require('../../img/pexels-photo-1549701.jpeg')}
         alt="Third slide"
             />
 
@@ -54,8 +54,8 @@ class ControlledCarousel extends React.Component {
             </Carousel.Item>
             <Carousel.Item>
             <img
-        className="d-block w-100"
-        src="holder.js/800x400?text=Third slide&bg=20232a"
+                        className="d-block w-100 img-fluid"
+        src={require('../../img/blogging-business-coding-34578.jpg')}
         alt="Third slide"
             />
 
