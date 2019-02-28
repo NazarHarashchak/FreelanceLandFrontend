@@ -19,7 +19,7 @@ export default props => (
                         <Glyphicon glyph='home' /> Home
                     </NavItem>
                 </LinkContainer>
-                <LinkContainer to={''}>
+                <LinkContainer to={'/tasks'}>
                     <NavItem>
                         <Glyphicon glyph='tasks' /> Tasks
                     </NavItem>
@@ -27,6 +27,11 @@ export default props => (
                 <LinkContainer to={''}>
                     <NavItem>
                         <Glyphicon glyph='th-list' /> Freelancers & Customers
+                    </NavItem>
+                </LinkContainer>
+                <LinkContainer to={'ProfilePage'}>
+                    <NavItem>
+                        <Glyphicon glyph='th-list' /> My Page
                     </NavItem>
                 </LinkContainer>
             </Nav>
