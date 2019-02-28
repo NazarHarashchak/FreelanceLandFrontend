@@ -7,6 +7,6 @@
     "\\src\\LoginPage",
     "\\src\\store"
   ],
-  "SelectedNode": "\\src\\store\\reducers.js",
+  "SelectedNode": "\\src\\LoginPage\\history.js",
   "PreviewInSolutionExplorer": false
 }

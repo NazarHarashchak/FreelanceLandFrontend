@@ -7,12 +7,12 @@ div.greeting {
     margin: 5% 15% 0 15%;
 }
 
-    div.signIn, div.createAccount {
-        padding: 0 1% 0 1%;
-        float: left;
-        color: #4CAF50;
-        width: 65%;
-    }
+div.signIn, div.createAccount {
+    padding: 0 1% 0 1%;
+    float: left;
+    color: #4CAF50;
+    width: 65%;
+}
 
 div.swaper {
     padding: 0 1% 0 1%;

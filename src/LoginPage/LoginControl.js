@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import './LoginControl.css';
+import SignInForm from './SignInForm.js';
+import SignUpForm from './SignUpForm.js';
+
 class LoginControl extends Component {
     constructor(props) {
         super(props);
         this.handleLoginClick = this.handleLoginClick.bind(this);
-        this.handleLogoutClick = this.handleLogoutClick.bind(this);
+        this.handleRegistrationClick = this.handleRegistrationClick.bind(this);
         this.state = { isLoggedIn: true };
     }
 
@@ -12,7 +15,7 @@ class LoginControl extends Component {
         this.setState({ isLoggedIn: true });
     }
 
-    handleLogoutClick() {
+    handleRegistrationClick() {
         this.setState({ isLoggedIn: false });
     }
 
@@ -21,7 +24,7 @@ class LoginControl extends Component {
         let button;
 
         if (isLoggedIn) {
-            button = <LogoutButton onClick={this.handleLogoutClick} />;
+            button = <RegistrationButton onClick={this.handleRegistrationClick} />;
         } else {
             button = <LoginButton onClick={this.handleLoginClick} />;
         }
@@ -45,11 +48,7 @@ class LoginControl extends Component {
 function UserGreeting(props) {
     return ( <div class="signIn">
         <h1>Sign in to Freelance-land</h1>
-        <label for="username"><b>Username</b></label>
-        <input type="text" placeholder="Enter username" name="username" />
-        <label for="password"><b>Password</b></label>
-        <input type="text" placeholder="Enter password" name="password" />
-        <button type="submit" class="signin">SIGN IN</button>
+        <SignInForm />
         <input type="checkbox" name="remember" />
         <label for="remember">Remember me</label>
         <span class="password"><a class="forgotPass" href="#">Forgot your password?</a></span>
@@ -59,13 +58,7 @@ function UserGreeting(props) {
 function GuestGreeting(props) {
     return (<div class="createAccount">
         <h1>Create Account</h1>
-        <label for="uname"><b>Username</b></label>
-        <input type="text" placeholder="Enter username" name="uname" />
-        <label for="password"><b>Password</b></label>
-        <input type="text" placeholder="Enter password" name="password" />
-        <label for="confirmPassword"><b>Confirm password</b></label>
-        <input type="text" placeholder="Confirm password" name="confirmPassword" />
-        <button type="submit" class="signup">SIGN UP</button>
+        <SignUpForm />
     </div>);
 }
 
@@ -88,7 +81,7 @@ function LoginButton(props) {
     );
 }
 
-function LogoutButton(props) {
+function RegistrationButton(props) {
     return (
         <div class="swaper">
             <h1>Hello, Friend!</h1>
