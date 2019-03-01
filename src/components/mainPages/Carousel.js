@@ -31,21 +31,19 @@ class ControlledCarousel extends React.Component {
             >
             <Carousel.Item>
             <img
-                        className="d-block w-100 img-fluid"
-        src={require('../../img/headerImg.jpeg')}
-        alt="First slide"
-            />
+                className="d-block w-100 img-fluid"
+                        src={require('../../img/Carousel/CarouselImg1.jpg')}
+                alt="First slide"/>
             <Carousel.Caption>
             <h3>First slide label</h3>
             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
             </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
-            <img
-                        className="d-block w-100 img-fluid"
-        src={require('../../img/pexels-photo-1549701.jpeg')}
-        alt="Third slide"
-            />
+                <img
+                    className="d-block w-100 img-fluid"
+                        src={require('../../img/Carousel/CarouselImg2.jpeg')}
+                    alt="Third slide"/>
 
             <Carousel.Caption>
             <h3>Second slide label</h3>
@@ -54,19 +52,33 @@ class ControlledCarousel extends React.Component {
             </Carousel.Item>
             <Carousel.Item>
             <img
-                        className="d-block w-100 img-fluid"
-        src={require('../../img/blogging-business-coding-34578.jpg')}
-        alt="Third slide"
-            />
+                className="d-block w-100 img-fluid"
+                        src={require('../../img/Carousel/CarouselImg3.jpeg')}
+                alt="Third slide"/>
 
             <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p>
-            </Carousel.Caption>
+                <h3>Third slide label</h3>
+                <p>
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+                </p>
+                </Carousel.Caption>
+                </Carousel.Item>
+
+            <Carousel.Item>
+                <img
+                    className="d-block w-100 img-fluid"
+                        src={require('../../img/Carousel/CarouselImg4.jpeg')}
+                    alt="Third slide" />
+
+                <Carousel.Caption>
+                <h3>Third slide label</h3>
+                <p>
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+                </p>
+                </Carousel.Caption>
             </Carousel.Item>
             </Carousel>
+
     );
 }
 }

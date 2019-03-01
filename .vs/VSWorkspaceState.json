@@ -1,12 +1,13 @@
 {
   "ExpandedNodes": [
     "",
+    "\\assets",
+    "\\public",
     "\\src",
     "\\src\\components",
     "\\src\\components\\mainPages",
     "\\src\\img",
-    "\\src\\store"
+    "\\src\\img\\HowItWork"
   ],
-  "SelectedNode": "\\src\\components\\mainPages\\TopUsers.js",
   "PreviewInSolutionExplorer": false
 }

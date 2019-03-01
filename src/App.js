@@ -7,6 +7,6 @@ import MainPage from './components/mainPages/MainPage';
 export default () => (
   <Layout>
         <Route path='/fetchdata' component={FetchData} />
-        <Route path='/mainPage' component={MainPage} />
+        <Route path='/' component={MainPage} />
   </Layout>
 );
