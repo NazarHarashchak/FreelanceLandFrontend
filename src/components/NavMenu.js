@@ -19,7 +19,7 @@ export default props => (
                         <Glyphicon glyph='home' /> Home
                     </NavItem>
                 </LinkContainer>
-                <LinkContainer to={''}>
+                <LinkContainer to={'/TaskInf'}>
                     <NavItem>
                         <Glyphicon glyph='tasks' /> Tasks
                     </NavItem>

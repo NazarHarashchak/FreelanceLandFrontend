@@ -5,7 +5,8 @@ import * as myReducers from './reducers';
 
 export default function configureStore(history, initialState) {
   const reducers = {
-    weatherForecasts: myReducers.reducer
+    weatherForecasts: myReducers.reducer,
+    taskForecasts: myReducers.reducer
   };
 
   const middleware = [
