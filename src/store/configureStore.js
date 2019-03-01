@@ -8,12 +8,9 @@ import * as profileReducer from '../ProfilePage/reducers';
 export default function configureStore(history, initialState) {
   const reducers = {
     weatherForecasts: myReducers.reducer,
-<<<<<<< HEAD
     tasksReducers: tasksReducers.reducer,
-    profilePage: profileReducer.reducer
-=======
+    profilePage: profileReducer.reducer,
     taskForecasts: myReducers.reducer
->>>>>>> NazarH
   };
 
   const middleware = [

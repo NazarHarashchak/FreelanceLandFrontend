@@ -7,12 +7,9 @@ class FetchData extends Component {
     componentWillMount() {
         // This method runs when the component is first added to the page
         this.props.requestWeatherForecasts();
-<<<<<<< HEAD
     }
 
     componentWillReceiveProps(nextProps) {
-=======
->>>>>>> NazarH
     }
 
     render() {

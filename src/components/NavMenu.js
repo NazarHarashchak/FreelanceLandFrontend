@@ -19,11 +19,7 @@ export default props => (
                         <Glyphicon glyph='home' /> Home
                     </NavItem>
                 </LinkContainer>
-<<<<<<< HEAD
                 <LinkContainer to={'/tasks'}>
-=======
-                <LinkContainer to={'/TaskInf'}>
->>>>>>> NazarH
                     <NavItem>
                         <Glyphicon glyph='tasks' /> Tasks
                     </NavItem>
@@ -33,11 +29,6 @@ export default props => (
                         <Glyphicon glyph='th-list' /> Freelancers & Customers
                     </NavItem>
                 </LinkContainer>
-                <LinkContainer to={'ProfilePage'}>
-                    <NavItem>
-                        <Glyphicon glyph='th-list' /> My Page
-                    </NavItem>
-                </LinkContainer>
             </Nav>
             <Nav pullRight>
                 <LinkContainer to={''}>
@@ -45,7 +36,7 @@ export default props => (
                         <Glyphicon glyph='user' /> Sign Up
                     </NavItem>
                 </LinkContainer>
-                <LinkContainer to={'/loginPage'}>
+                <LinkContainer to={'/fetchdata'}>
                     <NavItem>
                         <Glyphicon glyph='log-in' /> Login
                     </NavItem>
