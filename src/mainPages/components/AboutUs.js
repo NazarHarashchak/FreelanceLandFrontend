@@ -1,6 +1,6 @@
 import React from 'react';
 import { } from 'react-bootstrap';
-import './HowItWork.css';
+import '../HowItWork.css';
 
 class AboutUs extends React.Component {
     render() {

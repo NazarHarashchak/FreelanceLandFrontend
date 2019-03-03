@@ -5,7 +5,7 @@ import Gallery from './TopUsers';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { } from 'react-bootstrap';
-import './mainPage.css';
+import '../mainPage.css';
 
 class MainPage extends Component {
     render() {
