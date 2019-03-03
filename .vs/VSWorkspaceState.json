@@ -1,6 +1,7 @@
 {
   "ExpandedNodes": [
     "",
+<<<<<<< HEAD
     "\\assets",
     "\\public",
     "\\src",
@@ -9,5 +10,14 @@
     "\\src\\img",
     "\\src\\img\\HowItWork"
   ],
+=======
+    "\\src",
+    "\\src\\components",
+    "\\src\\store",
+    "\\src\\TaskInfo",
+    "\\src\\TaskInfo\\components"
+  ],
+  "SelectedNode": "\\src\\store\\actions.js",
+>>>>>>> master
   "PreviewInSolutionExplorer": false
 }

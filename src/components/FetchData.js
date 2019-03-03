@@ -6,8 +6,7 @@ import { actionCreators } from '../store/actions';
 class FetchData extends Component {
     componentWillMount() {
         // This method runs when the component is first added to the page
-        const someData = this.props.match.params;
-        this.props.requestWeatherForecasts(someData);
+        this.props.requestWeatherForecasts();
     }
 
     componentWillReceiveProps(nextProps) {

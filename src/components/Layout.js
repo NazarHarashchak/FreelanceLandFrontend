@@ -1,5 +1,5 @@
 import React from 'react';
-import Footer from './Footer';  
+import Footer from './Footer';
 import './main.css';
 import { Col, Grid, Row } from 'react-bootstrap';
 import NavMenu from './NavMenu';
@@ -25,7 +25,7 @@ export default props => (
                 <div id="push50"></div>
             </Col>
             <Col>
-                <Footer />
+               <Footer />
             </Col>
         </Row>
   </Grid>
