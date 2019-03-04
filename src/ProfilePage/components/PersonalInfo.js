@@ -117,17 +117,9 @@ async componentDidMount() {
                         value={values.email} />
                  </Form.Group>
 
-                    <Form.Group widths='equal'>
-                      <Form.Input fluid label='Login' 
-                        placeholder='Login' 
-                        type="text"
-                        name="login"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.login } />
-                    </Form.Group>
-                    <Button type='submit' className="button-centring">Edit</Button>
-                    
+                    {/*
+               <Button type='submit' className="button-centring">Edit</Button>
+                    */}
                   </Form>
         </Segment>
       )}
