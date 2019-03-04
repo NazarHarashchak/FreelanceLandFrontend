@@ -38,7 +38,7 @@ class TaskDescription extends React.Component {
               </ol>
           <form asp-action="" className="task-description">
             <div id="adding-date">
-              <label>Added: {this.props.forecasts.date}</label>
+              <label>Added: {this.props.forecasts.dateAdded}</label>
             </div>
             <div id="task-price">{this.props.forecasts.price}$</div>
             <div id="task-desk">

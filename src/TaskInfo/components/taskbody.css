@@ -122,4 +122,6 @@
   .third-status{
     background-color: gray;
   }
-  
+  #user-photo{
+    padding: 10px;
+  }
