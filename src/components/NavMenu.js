@@ -24,7 +24,7 @@ export default props => (
                         <Glyphicon glyph='tasks' /> Tasks
                     </NavItem>
                 </LinkContainer>
-                <LinkContainer to={''}>
+                <LinkContainer to={'/Users'}>
                     <NavItem>
                         <Glyphicon glyph='th-list' /> Freelancers & Customers
                     </NavItem>
