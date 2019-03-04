@@ -28,10 +28,13 @@ class SignUpForm extends Component {
     }
 
     registrationSubmit(event) {
-        if (this.state.password == this.state.confirmedPass)
-            alert('You registered successful!');
-        else
-            alert('Passwords have to coincides!');
+        if (this.state.password === this.state.confirmedPass) {
+            //this.props.requestRegister();
+            console.log("You registered successful!");
+        }
+        else {
+            console.log("Passwords have to coincides!");
+        }
         event.preventDefault();
     }
 
