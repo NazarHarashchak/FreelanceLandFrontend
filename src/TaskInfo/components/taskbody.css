@@ -2,7 +2,6 @@
     width: 75%;
   }
   .status-list li > div {
-    color: #999;
     padding-left: 25px;
   }
   .status-list {
@@ -11,7 +10,7 @@
   }
   .status-list li {
     font-size: 15px;
-    background-color: aqua;
+    color: white;
     display: inline-block;
     height: 30px;
     line-height: 30px;
@@ -115,5 +114,14 @@
   }
   .comments {
     width: 75%;
+  }
+  .first-status{
+    background-color: orange;
+  }
+  .second-status{
+    background-color: green;
+  }
+  .third-status{
+    background-color: gray;
   }
   

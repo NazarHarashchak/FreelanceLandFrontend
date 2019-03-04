@@ -5,11 +5,8 @@ import Tasks from './tasks/components/Tasks';
 import Layout from './components/Layout';
 import MainPage from './mainPages/components/MainPage';
 import LoginControl from './LoginPage/LoginControl';
-<<<<<<< HEAD
 import Task from './TaskInfo/components/TaskInf'
-=======
 import ProfileComponent from './ProfilePage/components/ProfileComponent';
->>>>>>> 19884c910014e28d54176b69f70489829fa18ecc
 
 export default () => (
   <Layout>

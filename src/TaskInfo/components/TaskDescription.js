@@ -12,7 +12,7 @@ class TaskDescription extends React.Component {
     // This method runs when the component is first added to the page
        this.props.requestTaskForecasts(this.props.name);
     }
-
+ 
   render() {
     return (
       <div>
@@ -23,20 +23,19 @@ class TaskDescription extends React.Component {
             </span>
           </h1>
           <ol className="status-list">
-            <li className="Done">
-              <div>Published</div>
-            </li>
-            <li>
-              
-              <div> > Waiting for an excecutor</div>
-            </li>
-            <li>
-              <div> > In progres</div>
-            </li>
-            <li>
-              <div />
-            </li>
-          </ol>
+                <li className="first-status">
+                  <div>Published</div>
+                </li>
+                <li className="third-status">
+                  <div> > Waiting for an excecutor</div>
+                </li>
+                <li className="third-status">
+                  <div> > In progres</div>
+                </li>
+                <li>
+                  <div />
+                </li>
+              </ol>
           <form asp-action="" className="task-description">
             <div id="adding-date">
               <label>Added: {this.props.forecasts.date}</label>

@@ -1,5 +1,4 @@
 import React from "react";
-import Comment from "./Comment";
 
 import "./taskbody.css";
 
@@ -13,4 +12,4 @@ class Comments extends React.Component {
   }
 }
 
-export default Comments;
+export default Comment;
