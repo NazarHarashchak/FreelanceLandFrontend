@@ -5,7 +5,7 @@ const receiveRegistration = 'RECEIVE_REGISTRATION';
 
 export const actionCreators = {
     requestLogin: (username, pass) => async (dispatch) => {
-        dispatch({ type: requestSignIn });
+        dispatch({ type: requestSignIn});
 
         const url = 'https://localhost:44331/api/login';
         const response = await fetch(url, {

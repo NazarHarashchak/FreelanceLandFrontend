@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators } from '../LoginPage/loginStore/actions';
+import { Redirect } from 'react-router'
 
 class SignInForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             login: '',
-            password: ''
+            password: '',
+            allowRedirect: false
         };
 
         this.loginChange = this.loginChange.bind(this);
@@ -25,12 +27,26 @@ class SignInForm extends Component {
     }
 
     authenticationSubmit(event) {
-        alert('Welcome, ' + this.state.login + '!');
-        console.log(this.props.user);
         event.preventDefault();
+        const username = this.state.login;
+        const pass = this.state.password;
+        if (!username)
+            alert('Username is required!');
+        if (!pass)
+            alert('Password is required!');
+        if (username && pass)
+            this.setState({ allowRedirect: true });
+        //if (username && pass) {
+        //    this.props.actionCreators.requestLogin(username, pass);
+        //}
+        console.log(this.props.user);
     }
 
     render() {
+        if (this.state.allowRedirect === true) {
+            return <Redirect to='/tasks'/>
+        }
+
         return (
             <form class="signInForm" onSubmit={this.authenticationSubmit}>
                 <label for="username">
@@ -43,9 +59,9 @@ class SignInForm extends Component {
                 </label>
                 <input type="password" placeholder="Enter password" name="password"
                     value={this.state.password} onChange={this.passwordChange} />
-                <button type="submit" class="signin" onClick={this.props.requestLogin}>
+                <button type="submit" class="signin">
                     SIGN IN
-                </button>
+                </button>                    
             </form>
         );
     }

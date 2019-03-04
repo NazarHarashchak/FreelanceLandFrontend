@@ -36,11 +36,6 @@ export default props => (
                 </LinkContainer>
             </Nav>
             <Nav pullRight>
-                <LinkContainer to={''}>
-                    <NavItem>
-                        <Glyphicon glyph='user' /> Sign Up
-                    </NavItem>
-                </LinkContainer>
                 <LinkContainer to={'/loginPage'}>
                     <NavItem>
                         <Glyphicon glyph='log-in' /> Login
