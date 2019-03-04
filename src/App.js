@@ -3,7 +3,7 @@ import { Route } from 'react-router';
 import FetchData from './components/FetchData';
 import Tasks from './tasks/components/Tasks';
 import Layout from './components/Layout';
-import ProfileComponent from './ProfilePage/ProfileComponent'
+import ProfileComponent from './ProfilePage/components/ProfileComponent'
 import LoginControl from './LoginPage/LoginControl';
 
 export default () => (
