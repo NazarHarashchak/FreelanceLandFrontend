@@ -5,6 +5,7 @@ import Tasks from './tasks/components/Tasks';
 import Layout from './components/Layout';
 import ProfileComponent from './ProfilePage/ProfileComponent'
 import LoginControl from './LoginPage/LoginControl';
+import Task from './TaskInfo/components/TaskInf'
 
 export default () => (
   <Layout>
@@ -12,5 +13,6 @@ export default () => (
         <Route path='/tasks' component={Tasks} />
         <Route path='/ProfilePage'component={ProfileComponent}/>
         <Route path='/loginPage' component={LoginControl} />
+        <Route path='/taskInf/:id' component={Task}/>
   </Layout>
 );

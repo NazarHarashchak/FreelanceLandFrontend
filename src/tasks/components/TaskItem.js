@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 class TaskItem extends React.Component {
     render() {
       return (
 				<li className="j-order">
 					<header className="l-project-title">
-						<a href="https://freelance.ua/orders/135416-nachitat-knigu.html">{this.props.item.title}</a>
+						<Link to={`/TaskInf/${this.props.item.id}`}>{this.props.item.title}</Link>
 					</header>
 
 					<div className="l-project-head flex-price-tag">
