@@ -115,7 +115,7 @@ async componentDidMount() {
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.email} />
-                    </Form.Group>
+                 </Form.Group>
 
                     <Form.Group widths='equal'>
                       <Form.Input fluid label='Login' 
