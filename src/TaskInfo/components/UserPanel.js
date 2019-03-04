@@ -3,7 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { actionUserCreators } from '../userAction';
-
+import {Image } from 'semantic-ui-react'
+import {icon} from './MyPhoto.jpg';
 import "./taskbody.css";
 
 class UserPanel extends React.Component {
@@ -16,11 +17,11 @@ class UserPanel extends React.Component {
     return (
       <div className="right-panel">
         <form>
-          <div id="top-row">Замовник</div>
+          <div id="top-row">Customer</div>
           <table id="user-table">
             <tr id="bottom-row">
               <td>
-                <img src="" alt="фото користувача" width="30px" heigth="40px" />
+                <Image src={icon} alt="фото користувача" ></Image>
               </td>
               <td>
                 <Link to="/ProfilePage">{this.props.users.name}</Link>

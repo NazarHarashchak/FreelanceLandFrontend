@@ -84,7 +84,6 @@
     position: absolute;
     right: 20px;
     width: 23%;
-    height: 100px;
     top: 160px;
     border-width: 2px;
     border-style: outset;
@@ -108,12 +107,11 @@
     padding: 15px;
   }
   #bottom-row {
-    height: 50px;
+    height: 80px;
     vertical-align: middle;
-    text-align: center;
   }
-  .comments {
-    width: 75%;
+  #bottom-row tr{
+    text-align: center;
   }
   .first-status{
     background-color: orange;

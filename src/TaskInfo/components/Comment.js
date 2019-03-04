@@ -1,12 +1,16 @@
 import React from "react";
 
-import "./taskbody.css";
+import "./comments.css";
 
-class Comments extends React.Component {
+class Comment extends React.Component {
   render() {
     return (
-      <div className="comments">
-        <form />
+      <div>
+        <form>
+                <p>{this.props.date}</p>
+                <p>{this.props.description}</p>
+                <p>{this.props.user}</p>
+        </form>
       </div>
     );
   }
