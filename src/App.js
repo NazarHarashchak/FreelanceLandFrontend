@@ -5,6 +5,7 @@ import Tasks from './tasks/components/Tasks';
 import Layout from './components/Layout';
 import MainPage from './mainPages/components/MainPage';
 import LoginControl from './LoginPage/LoginControl';
+import ProfileComponent from './ProfilePage/components/ProfileComponent';
 
 export default () => (
   <Layout>
