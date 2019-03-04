@@ -5,6 +5,7 @@ import { createBrowserHistory } from 'history';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import "semantic-ui-css/semantic.min.css";
 import { ConnectedRouter } from 'react-router-redux';
 import App from './App';
 import './index.css';
