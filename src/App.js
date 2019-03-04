@@ -14,7 +14,7 @@ export default () => (
         <Route path='/fetchdata' component={FetchData} />
         <Route path='/main' component={MainPage} />
         <Route path='/tasks' component={Tasks} />
-        <Route path='/ProfilePage'component={ProfileComponent}/>
+        <Route path='/ProfilePage/:id'component={ProfileComponent}/>
         <Route path='/loginPage' component={LoginControl} />
         <Route path='/taskInf/:id' component={Task}/>
         <Route path='/Users' component={Users} />

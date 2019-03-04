@@ -7,7 +7,7 @@ class UserItem extends Component{
         return(
             <div class="media">
             <li className="j-order" >
-               <a href = '#' >
+            <a href = {`/ProfilePage/${this.props.item.id}`} >
                  <ul className="l-item-features">
                  <div class="media-left">
                  <UserImage/>
