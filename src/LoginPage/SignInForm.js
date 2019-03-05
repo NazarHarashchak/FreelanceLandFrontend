@@ -27,18 +27,13 @@ class SignInForm extends Component {
     }
 
     authenticationSubmit(event) {
-        event.preventDefault();
-        const username = this.state.login;
-        const pass = this.state.password;
-        if (!username)
+        event.preventDefault();      
+        if (!this.state.login)
             alert('Username is required!');
-        if (!pass)
+        if (!this.state.password)
             alert('Password is required!');
-        if (username && pass)
+        if (this.state.login && this.state.password)
             this.setState({ allowRedirect: true });
-        //if (username && pass) {
-        //    this.props.actionCreators.requestLogin(username, pass);
-        //}
         console.log(this.props.user);
     }
 
@@ -46,6 +41,8 @@ class SignInForm extends Component {
         if (this.state.allowRedirect === true) {
             return <Redirect to='/tasks'/>
         }
+        const username = this.state.login;
+        const pass = this.state.password; 
 
         return (
             <form class="signInForm" onSubmit={this.authenticationSubmit}>
@@ -59,7 +56,7 @@ class SignInForm extends Component {
                 </label>
                 <input type="password" placeholder="Enter password" name="password"
                     value={this.state.password} onChange={this.passwordChange} />
-                <button type="submit" class="signin">
+                <button type="submit" class="signin" onClick={() => this.props.requestLogin}>
                     SIGN IN
                 </button>                    
             </form>
