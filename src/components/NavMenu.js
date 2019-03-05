@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Glyphicon, Nav, Navbar, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
@@ -31,12 +31,7 @@ export default props => (
                 </LinkContainer>
             </Nav>
             <Nav pullRight>
-                <LinkContainer to={''}>
-                    <NavItem>
-                        <Glyphicon glyph='user' /> Sign Up
-                    </NavItem>
-                </LinkContainer>
-                <LinkContainer to={'/fetchdata'}>
+                <LinkContainer to={'/loginPage'}>
                     <NavItem>
                         <Glyphicon glyph='log-in' /> Login
                     </NavItem>
