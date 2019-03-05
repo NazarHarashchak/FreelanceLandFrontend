@@ -14,6 +14,10 @@
 # production
 /build
 
+/.vs
+slnx.sqlite
+.sqlite
+
 # misc
 .DS_Store
 .env.local

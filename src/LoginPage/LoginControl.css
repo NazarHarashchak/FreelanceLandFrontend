@@ -1,0 +1,65 @@
+﻿.signIn, .createAccount, .swaper {
+    height: 440px;
+}
+
+div.greeting {
+    width: 70%;
+    margin: 5% 15% 0 15%;
+}
+
+div.signIn, div.createAccount {
+    padding: 0 1% 0 1%;
+    float: left;
+    color: #4CAF50;
+    width: 65%;
+}
+
+div.swaper {
+    padding: 0 1% 0 1%;
+    float: left;
+    color: white;
+    background-color: #4CAF50;
+    width: 35%
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 12px 100px 0 rgba(0,0,0,0.19);
+    border-radius: 12px;
+}
+
+.sign {
+    border: 1px solid #fff;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+span.password {
+    float: right;
+    padding-top: 16px;
+}
+
+a.forgotPass {
+    color: #4CAF50;
+}
+
+h1, p {
+    text-align: center;
+}
