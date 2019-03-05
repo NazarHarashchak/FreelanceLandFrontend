@@ -7,9 +7,9 @@ class Comment extends React.Component {
     return (
       <div>
         <form>
-                <p>{this.props.date}</p>
-                <p>{this.props.description}</p>
-                <p>{this.props.user}</p>
+                <p><label id="date">{this.props.item.date}</label>
+                <label id="user-name">{this.props.item.userName}</label></p>
+                <p><label id="content">{this.props.item.content}</label></p>
         </form>
       </div>
     );

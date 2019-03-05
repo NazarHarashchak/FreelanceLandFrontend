@@ -11,7 +11,7 @@ class Task extends React.Component {
                 <div>
                         <UserPanel id={this.props.match.params.id} />
                         <TaskDescription name={this.props.match.params.id}/>
-                        <Comments />
+                        <Comments taskId={this.props.match.params.id}/>
                 </div>
             </div>
         );
