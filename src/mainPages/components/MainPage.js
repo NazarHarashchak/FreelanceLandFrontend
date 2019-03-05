@@ -1,6 +1,6 @@
 import React from 'react';
 import ControlledCarousel from './Carousel';
-import AboutUs from './AboutUs';
+import HowItWork from './HowItWork';
 import Gallery from './TopUsers';
 import { Component } from 'react';
 import { connect } from 'react-redux';
@@ -13,8 +13,8 @@ class MainPage extends Component {
             <div class="container">
                 <div className="MainPage">
                     <ControlledCarousel />
+                    <HowItWork />
                     <Gallery />
-                    <AboutUs />
                 </div>
             </div>
             );
