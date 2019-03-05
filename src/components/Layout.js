@@ -19,6 +19,7 @@ export default props => (
                 {props.children}
             </Col>
         </Row>
+        
         <Row>
             <Col>
                 <div id="push50"></div>

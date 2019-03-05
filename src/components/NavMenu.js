@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Glyphicon, Nav, Navbar, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
@@ -8,7 +8,7 @@ export default props => (
     <Navbar inverse fixedTop fluid collapseOnSelect>
         <Navbar.Header>
             <Navbar.Brand>
-                <Link to={'/'}>FreelanceLand</Link>
+                <Link to={'/main'}>FreelanceLand</Link>
             </Navbar.Brand>
             <Navbar.Toggle />
         </Navbar.Header>
@@ -24,14 +24,9 @@ export default props => (
                         <Glyphicon glyph='tasks' /> Tasks
                     </NavItem>
                 </LinkContainer>
-                <LinkContainer to={''}>
+                <LinkContainer to={'/Users'}>
                     <NavItem>
                         <Glyphicon glyph='th-list' /> Freelancers & Customers
-                    </NavItem>
-                </LinkContainer>
-                <LinkContainer to={'ProfilePage'}>
-                    <NavItem>
-                        <Glyphicon glyph='th-list' /> My Page
                     </NavItem>
                 </LinkContainer>
             </Nav>

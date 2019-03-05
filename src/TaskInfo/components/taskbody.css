@@ -1,0 +1,127 @@
+.col-md-4 {
+    width: 75%;
+  }
+  .status-list li > div {
+    padding-left: 25px;
+  }
+  .status-list {
+    margin: 0;
+    padding: 0;
+  }
+  .status-list li {
+    font-size: 15px;
+    color: white;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    text-align: center;
+  }
+  .status-list li:last-child {
+    background-color: #fff;
+    width: 16px !important;
+  }
+  ol {
+    position: relative;
+    display: block;
+    list-style-type: decimal;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+  }
+  h1 {
+    position: relative;
+  }
+  #task-desk {
+    position: relative;
+    right: 120px;
+    text-align: left;
+    clear: both;
+  }
+  .task-description {
+    position: relative;
+    top: 10px;
+    padding: 20px;
+    border-width: 2px;
+    border-style: outset;
+    background-color: #fbfbfc;
+  }
+  #adding-date {
+    float: left;
+    font-style: italic;
+    color: lime;
+  }
+  #deadline {
+    position: relative;
+    float: left;
+    font-style: italic;
+    color: red;
+  }
+  #task-price {
+    position: relative;
+    float: right;
+    background-color: rgb(106, 255, 7);
+    height: 40px;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 12px;
+  }
+  #get-button {
+    position: relative;
+    left: 200px;
+    width: 120px;
+    height: 50px;
+    font-size: 20px;
+    color: white;
+    background-color: rgb(9, 10, 14);
+  }
+  .right-panel {
+    position: absolute;
+    right: 20px;
+    width: 23%;
+    top: 160px;
+    border-width: 2px;
+    border-style: outset;
+  }
+  #top-row {
+    height: 50px;
+    width: 100%;
+    background: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0, #e5e5e9),
+      color-stop(1, #fbfbfc)
+    );
+    box-sizing: border-box;
+    font-family: PT Sans, Helvetica Neue, Arial, sans-serif;
+    text-shadow: 1px 1px 0 #fff;
+    color: #707083;
+    font-size: 20px;
+    text-align: center;
+    padding: 15px;
+  }
+  #bottom-row {
+    height: 80px;
+    vertical-align: middle;
+  }
+  #bottom-row tr{
+    text-align: center;
+  }
+  .first-status{
+    background-color: orange;
+  }
+  .second-status{
+    background-color: green;
+  }
+  .third-status{
+    background-color: gray;
+  }
+  #user-photo{
+    padding: 10px;
+  }
