@@ -7,6 +7,7 @@ import * as profileReducer from '../ProfilePage/reducers';
 import * as loginReducer from '../LoginPage/loginStore/reducers';
 import * as taskCustomerReducer from '../TaskInfo/userReducer';
 import * as usersReducers from '../Users/reducers';
+import * as commentsReducers from '../TaskInfo/commentReducer'
 
 export default function configureStore(history, initialState) {
   const reducers = {
@@ -16,7 +17,8 @@ export default function configureStore(history, initialState) {
     loginReducer: loginReducer.reducer,
     taskProfilePage: myReducers.reducer,
     customerOfTask: taskCustomerReducer.reducer,
-    usersReducers: usersReducers.reducer
+    usersReducers: usersReducers.reducer,
+    commentsTask: commentsReducers.reducer
   };
 
   const middleware = [

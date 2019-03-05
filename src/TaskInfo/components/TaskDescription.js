@@ -12,7 +12,6 @@ class TaskDescription extends React.Component {
     // This method runs when the component is first added to the page
        this.props.requestTaskForecasts(this.props.name);
     }
- 
   render() {
     return (
       <div>

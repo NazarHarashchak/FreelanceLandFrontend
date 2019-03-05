@@ -8,6 +8,7 @@ import "./taskbody.css";
 class UserPanel extends React.Component {
   componentWillMount() {
     // This method runs when the component is first added to the page
+   
        this.props.requestUser(this.props.id);
     }
 

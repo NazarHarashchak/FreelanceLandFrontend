@@ -1,5 +1,6 @@
 .col-md-4 {
     width: 75%;
+    position: static;
   }
   .status-list li > div {
     padding-left: 25px;
@@ -35,7 +36,7 @@
     padding-inline-start: 40px;
   }
   h1 {
-    position: relative;
+    position: static;
   }
   #task-desk {
     position: relative;
@@ -50,6 +51,7 @@
     border-width: 2px;
     border-style: outset;
     background-color: #fbfbfc;
+    text-align: center;
   }
   #adding-date {
     float: left;
@@ -73,7 +75,8 @@
   }
   #get-button {
     position: relative;
-    left: 200px;
+    right: 65px;
+    top: 10px;
     width: 120px;
     height: 50px;
     font-size: 20px;
@@ -84,7 +87,7 @@
     position: absolute;
     right: 20px;
     width: 23%;
-    top: 160px;
+    top: 192px;
     border-width: 2px;
     border-style: outset;
   }
