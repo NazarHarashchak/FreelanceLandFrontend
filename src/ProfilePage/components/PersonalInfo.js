@@ -13,10 +13,9 @@ class PersonalInfo extends Component {
 }
 
 async componentDidMount() {  
-  await this.props.requestProfilePage();
+  await this.props.requestProfilePage(this.props.id);
   this.setState({user:this.props.User, isLoaded : false });
 }
-
   render() {
     if(!this.state.isLoaded){
     const { email, name, sur_Name, birth_Date, phone_Number, login } = this.props.User;
@@ -34,9 +33,8 @@ async componentDidMount() {
         login: login
        }}
       onSubmit={(values) => {
-        fetch('https://localhost:44331/api/Users/8', {
+        fetch('https://localhost:44331/api/Users/'+this.props.id, {
           method: 'PUT',
-          mode: 'cors',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -54,7 +52,7 @@ async componentDidMount() {
         .then(res=>{
           const parse = res.json();
           alert("updated");
-          console.log(parse);
+          console.log(values);
         })
         .catch(err=>{
           console.log(err);
@@ -120,6 +118,7 @@ async componentDidMount() {
                     {/*
                <Button type='submit' className="button-centring">Edit</Button>
                     */}
+
                   </Form>
         </Segment>
       )}
