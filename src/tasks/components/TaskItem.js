@@ -12,8 +12,8 @@ class TaskItem extends React.Component {
 						<span className="l-price">{this.props.item.price}</span>
 					</div>
 
-					<article>
-						<p>{this.props.item.description}</p>
+              <article>
+                  <p>{this.props.item.deadline}</p>
 					</article>
 
 					<ul className="l-item-features">

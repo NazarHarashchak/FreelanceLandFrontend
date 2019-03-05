@@ -1,23 +1,13 @@
 {
   "ExpandedNodes": [
     "",
-<<<<<<< HEAD
-    "\\assets",
     "\\public",
     "\\src",
-    "\\src\\components",
-    "\\src\\components\\mainPages",
-    "\\src\\img",
-    "\\src\\img\\HowItWork"
+    "\\src\\mainPages",
+    "\\src\\mainPages\\components",
+    "\\src\\tasks",
+    "\\src\\tasks\\components"
   ],
-=======
-    "\\src",
-    "\\src\\components",
-    "\\src\\store",
-    "\\src\\TaskInfo",
-    "\\src\\TaskInfo\\components"
-  ],
-  "SelectedNode": "\\src\\store\\actions.js",
->>>>>>> master
+  "SelectedNode": "\\src\\mainPages\\components\\TopUsers.js",
   "PreviewInSolutionExplorer": false
 }
