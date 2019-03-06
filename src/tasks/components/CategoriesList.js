@@ -1,12 +1,42 @@
 import React from "react";
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { requestCategoriesList, changeCheckedStatus } from '../actions';
 
 class CategoriesList extends React.Component {
-    render() {
-      return (
-              <div class="card card-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                </div>
-      );
-    }
+
+  componentWillMount() {
+    this.props.requestCategoriesList();
   }
-export default CategoriesList;
+
+  render() {
+    return (
+      <div>
+        {this.props.filter.categories.map(category => (
+          <label>
+            <input
+              type="checkbox"
+              name={category.type}
+              onChange={(e) => this.props.changeCheckedStatus(e.target.name)}
+              checked={category.isChecked}
+            />
+            {category.type}
+          </label>
+        ))}
+      </div>
+    );
+  }
+}
+
+function matchDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      changeCheckedStatus, requestCategoriesList
+    },
+    dispatch);
+}
+
+export default connect(
+  state => state.tasksReducers,
+  matchDispatchToProps
+)(CategoriesList);

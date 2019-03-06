@@ -1,0 +1,35 @@
+.comments-panel{
+  width: 72.8%;
+}
+.comments {
+  width: 100%;
+  position: relative;
+  top:20px;
+  left:15px;
+  border-style:outset;
+  box-sizing: border-box;
+  border-width:2px;
+  clear: both;
+  background-color: #fbfbfc;
+}
+li {
+  list-style-type: none;
+}
+#clean-filter a{
+  text-decoration: underline;
+}
+#add-comment{
+  width:100%;
+  margin-top:10px;
+  padding: 15px;
+  text-align: center;
+}
+#date{
+  float:left;
+}
+#user-name{
+  float: right;
+}
+#content{
+  clear:both;
+}
