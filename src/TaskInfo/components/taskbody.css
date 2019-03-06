@@ -1,8 +1,8 @@
 .col-md-4 {
     width: 75%;
+    position: static;
   }
   .status-list li > div {
-    color: #999;
     padding-left: 25px;
   }
   .status-list {
@@ -11,7 +11,7 @@
   }
   .status-list li {
     font-size: 15px;
-    background-color: aqua;
+    color: white;
     display: inline-block;
     height: 30px;
     line-height: 30px;
@@ -36,12 +36,11 @@
     padding-inline-start: 40px;
   }
   h1 {
-    position: relative;
-    left: 250px;
+    position: static;
   }
   #task-desk {
     position: relative;
-    top: 0px;
+    right: 120px;
     text-align: left;
     clear: both;
   }
@@ -52,6 +51,7 @@
     border-width: 2px;
     border-style: outset;
     background-color: #fbfbfc;
+    text-align: center;
   }
   #adding-date {
     float: left;
@@ -75,24 +75,19 @@
   }
   #get-button {
     position: relative;
-    left: 200px;
+    right: 65px;
+    top: 10px;
     width: 120px;
     height: 50px;
     font-size: 20px;
-    background: -webkit-gradient(
-      linear,
-      left bottom,
-      left top,
-      color-stop(0, #4ff4fa),
-      color-stop(1, #fafafa)
-    );
+    color: white;
+    background-color: rgb(9, 10, 14);
   }
   .right-panel {
     position: absolute;
     right: 20px;
     width: 23%;
-    height: 100px;
-    top: 160px;
+    top: 192px;
     border-width: 2px;
     border-style: outset;
   }
@@ -115,14 +110,21 @@
     padding: 15px;
   }
   #bottom-row {
-    height: 50px;
+    height: 80px;
     vertical-align: middle;
+  }
+  #bottom-row tr{
     text-align: center;
   }
-  #user-table {
-    cellpadding: 10px;
+  .first-status{
+    background-color: orange;
   }
-  .comments {
-    width: 75%;
+  .second-status{
+    background-color: green;
   }
-  
+  .third-status{
+    background-color: gray;
+  }
+  #user-photo{
+    padding: 10px;
+  }

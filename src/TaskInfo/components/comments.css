@@ -1,0 +1,33 @@
+  .comments-panel{
+    padding:20px;
+    width: 74%;
+  }
+  .comments {
+    width: 72.8%;
+    position: relative;
+    top:20px;
+    left:15px;
+    border-style:outset;
+    box-sizing: border-box;
+    border-width:2px;
+    clear: both;
+    background-color: #fbfbfc;
+  }
+  li {
+    list-style-type: none;
+  }
+  #add-comment{
+    width:75%;
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+  }
+  #date{
+    float:left;
+  }
+  #user-name{
+    float: right;
+  }
+  #content{
+    clear:both;
+  }
