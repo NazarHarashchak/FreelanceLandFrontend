@@ -11,8 +11,7 @@ class LoginPage extends Component {
         this.state = {
             login: '',
             password: '',
-            swaper: false,
-            allowRedirect: false
+            swaper: false
         };
 
         this.loginChange = this.loginChange.bind(this);
@@ -35,24 +34,22 @@ class LoginPage extends Component {
 
     authenticationSubmit(event) {
         event.preventDefault();
-        //if (!this.state.login)
-        //    alert('Username is required!');
-        //if (!this.state.password)
-        //    alert('Password is required!');
+        if (!this.state.login)
+            alert('Username is required!');
+        if (!this.state.password)
+            alert('Password is required!');
         if (this.state.login && this.state.password) {
             this.props.requestLogin(this.state.login, this.state.password);
-            this.setState({ allowRedirect: true });
         }
     }
 
     render() {
-        const { login, pass } = this.props.user;
-
+        
         if (this.state.swaper === true) {
             return <Redirect to='/registrationPage' />
-        } 
-        if (this.state.allowRedirect === true) {
-            console.log(this.props.user);
+        }
+        if (this.props.user.login === this.state.login) {
+            return (<Redirect to='/tasks' />);
         } 
 
         return (
