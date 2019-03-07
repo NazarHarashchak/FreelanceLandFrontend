@@ -69,7 +69,9 @@ class RegistrationPage extends Component {
             return <Redirect to='/loginPage' />
         }
         if (this.props.user.login === this.state.login) {
-            return (<Redirect to='/ProfilePage/:4' />);
+            const id = this.props.user.id;
+            const link = '/ProfilePage/' + id;
+            return (<Redirect to={link}/>);
         }
 
         return (

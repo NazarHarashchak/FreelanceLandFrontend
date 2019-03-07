@@ -40,6 +40,9 @@ class LoginPage extends Component {
             alert('Password is required!');
         if (this.state.login && this.state.password) {
             this.props.requestLogin(this.state.login, this.state.password);
+            if (this.props.user.login !== this.state.login) {
+                alert('There isn\'t such user!');
+            }
         }
     }
 
@@ -50,7 +53,8 @@ class LoginPage extends Component {
         }
         if (this.props.user.login === this.state.login) {
             return (<Redirect to='/tasks' />);
-        } 
+        }
+        
 
         return (
             <div class="signInForm">

@@ -7,8 +7,8 @@
     "\\src\\LoginPage",
     "\\src\\ProfilePage",
     "\\src\\RegistrationPage",
+    "\\src\\store",
     "\\src\\tasks"
   ],
-  "SelectedNode": "\\src\\components\\NavMenu.js",
   "PreviewInSolutionExplorer": false
 }
