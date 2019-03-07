@@ -3,11 +3,12 @@
     "",
     "\\public",
     "\\src",
-    "\\src\\mainPages",
-    "\\src\\mainPages\\components",
-    "\\src\\tasks",
-    "\\src\\tasks\\components"
+    "\\src\\components",
+    "\\src\\LoginPage",
+    "\\src\\ProfilePage",
+    "\\src\\RegistrationPage",
+    "\\src\\tasks"
   ],
-  "SelectedNode": "\\src\\mainPages\\components\\TopUsers.js",
+  "SelectedNode": "\\src\\components\\NavMenu.js",
   "PreviewInSolutionExplorer": false
 }
