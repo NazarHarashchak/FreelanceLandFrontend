@@ -44,13 +44,13 @@ class LoginPage extends Component {
     }
 
     render() {
-        
+
         if (this.state.swaper === true) {
             return <Redirect to='/registrationPage' />
         }
         if (this.props.user.login === this.state.login) {
             return (<Redirect to='/tasks' />);
-        } 
+        }
 
         return (
             <div class="signInForm">
@@ -79,8 +79,8 @@ class LoginPage extends Component {
                 </div>
                 <div class="swaper">
                     <h1>Hello, Friend!</h1>
-                    <p>Enter your personal details</p>
-                    <p>and start journey with us</p>
+                    <h3 className="text-detais">Enter your personal details</h3>
+                    <h3 className="text-detais">and start journey with us</h3>
                     <button type="submit" class="sign" onClick={this.swap}>
                         SIGN UP
                     </button>
