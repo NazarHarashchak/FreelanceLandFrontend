@@ -1,6 +1,6 @@
 const requestRegistration = 'REQUEST_REGISTRATION';
 const receiveRegistration = 'RECEIVE_REGISTRATION';
-const initialState = { registrResponse: [], isLoading: false, };
+const initialState = { user: [], isLoading: false, };
 
 export const reducer = (state, action) => {
     state = state || initialState;
@@ -15,7 +15,7 @@ export const reducer = (state, action) => {
     if (action.type === receiveRegistration) {
         return {
             ...state,
-            registrResponse: action.registrResponse,
+            user: action.user,
             isLoading: false
         };
     }

@@ -12,8 +12,7 @@ class RegistrationPage extends Component {
             login: '',
             password: '',
             confirmedPass: '',
-            swaper: false,
-            allowRedirect: false
+            swaper: false
         };
 
         this.emailChange = this.emailChange.bind(this);
@@ -53,12 +52,13 @@ class RegistrationPage extends Component {
             alert('Password is required!');
         if (!this.state.confirmedPass)
             alert('Confirmed password is required!');
-        if (this.state.login && this.state.password && this.state.confirmedPass) {
+        if (this.state.login && this.state.password &&
+            this.state.confirmedPass && this.state.email) {
             if (this.state.password !== this.state.confirmedPass) {
                 alert("Passwords have to coincides!");
             }
             else {
-                this.props.requestRegister(this.state.login, this.state.password);
+                this.props.requestRegister(this.state.email, this.state.login, this.state.password);
             }
         }        
         event.preventDefault();
@@ -68,8 +68,10 @@ class RegistrationPage extends Component {
         if (this.state.swaper === true) {
             return <Redirect to='/loginPage' />
         }
-        if (this.state.allowRedirect === true) {
-            //here will be page for registration
+        if (this.props.user.login === this.state.login) {
+            const id = this.props.user.id;
+            const link = '/ProfilePage/' + id;
+            return (<Redirect to={link}/>);
         }
 
         return (
