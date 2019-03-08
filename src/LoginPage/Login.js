@@ -27,6 +27,7 @@ class LoginPage extends Component {
 
     loginChange(event) {
         this.setState({ login: event.target.value });
+        console.log(this.state.login);
     }
 
     passwordChange(event) {
