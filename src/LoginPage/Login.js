@@ -20,6 +20,8 @@ class LoginPage extends Component {
         this.swap = this.swap.bind(this);
     }
 
+
+
     swap() {
         this.setState({ swaper: true });
     }
@@ -33,16 +35,40 @@ class LoginPage extends Component {
         this.setState({ password: event.target.value });
     }
 
+    addLogoutButton() {
+        document.getElementById('loginButton').style.visibility = 'hidden';
+        document.getElementById('RegistrationButton').style.visibility = 'hidden';
+        var li = document.createElement("LI");
+        var profile = document.createElement("BUTTON"); 
+        profile.id = "logoutButton";
+        profile.innerHTML = 'Log Out';
+        profile.onclick = function() {
+            document.getElementById('loginButton').style.visibility = 'visible';
+            document.getElementById('RegistrationButton').style.visibility = 'visible';
+            sessionStorage.removeItem('tokenKey');
+            profile.parentElement.removeChild(profile);
+        };
+        li.appendChild(profile); 
+        document.getElementById('LoginNavigation').appendChild(li);
+    }
+
     authenticationSubmit(event) {
         event.preventDefault();
         if (!this.state.login)
             alert('Username is required!');
         if (!this.state.password)
             alert('Password is required!');
+
         if (this.state.login && this.state.password) {
             this.props.requestLogin(this.state.login, this.state.password);
-            if (this.props.user.login !== this.state.login) {
-                alert('There isn\'t such user!');
+            
+            if (this.props.user.username !== this.state.login) {
+                console.log('There isn\'t such user!');
+            }
+            else
+            {
+                this.addLogoutButton();
+                console.log("Success!");
             }
         }
     }
@@ -58,8 +84,8 @@ class LoginPage extends Component {
         
 
         return (
-            <div class="signInForm">
-                <div class="signIn">
+            <div className="signInForm">
+                <div className="signIn">
                     <h1>Sign in to Freelance-land</h1>
                     <label for="username">
                         <b>Username</b>
@@ -71,18 +97,18 @@ class LoginPage extends Component {
                     </label>
                     <input type="password" placeholder="Enter password" name="password"
                         value={this.state.password} onChange={this.passwordChange} />
-                    <button type="submit" class="signin" onClick={this.authenticationSubmit}>
+                    <button type="submit" className="signin" onClick={this.authenticationSubmit}>
                         SIGN IN
                     </button>
                     <input type="checkbox" name="remember" />
                     <label for="remember">Remember me</label>
-                    <span class="password">
-                        <a class="forgotPass" href="#">
+                    <span className="password">
+                        <a className="forgotPass" href="#">
                             Forgot your password?
                             </a>
                     </span>
                 </div>
-                <div class="swaper">
+                <div className="swaper">
                     <h1>Hello, Friend!</h1>
                     <p>Enter your personal details</p>
                     <p>and start journey with us</p>
