@@ -38,18 +38,21 @@ class LoginPage extends Component {
     addLogoutButton() {
         document.getElementById('loginButton').style.visibility = 'hidden';
         document.getElementById('RegistrationButton').style.visibility = 'hidden';
-        var li = document.createElement("LI");
-        var profile = document.createElement("BUTTON"); 
-        profile.id = "logoutButton";
-        profile.innerHTML = 'Log Out';
-        profile.onclick = function() {
-            document.getElementById('loginButton').style.visibility = 'visible';
-            document.getElementById('RegistrationButton').style.visibility = 'visible';
-            sessionStorage.removeItem('tokenKey');
-            profile.parentElement.removeChild(profile);
-        };
-        li.appendChild(profile); 
-        document.getElementById('LoginNavigation').appendChild(li);
+        if(!document.getElementById('logoutButton'))
+        {
+            var li1 = document.createElement("LI");
+            var profile = document.createElement("BUTTON"); 
+            profile.id = "logoutButton";
+            profile.innerHTML = 'Log Out';
+            profile.onclick = function() {
+                document.getElementById('loginButton').style.visibility = 'visible';
+                document.getElementById('RegistrationButton').style.visibility = 'visible';
+                sessionStorage.removeItem('tokenKey');
+                profile.parentElement.removeChild(profile);
+            };
+            li1.appendChild(profile); 
+            document.getElementById('LoginNavigation').appendChild(li1);
+        }
     }
 
     authenticationSubmit(event) {
@@ -59,17 +62,19 @@ class LoginPage extends Component {
         if (!this.state.password)
             alert('Password is required!');
 
+        
+
         if (this.state.login && this.state.password) {
             this.props.requestLogin(this.state.login, this.state.password);
-            
-            if (this.props.user.username !== this.state.login) {
-                console.log('There isn\'t such user!');
-            }
-            else
-            {
-                this.addLogoutButton();
-                console.log("Success!");
-            }
+        }
+
+        if (this.props.user.username !== this.state.login) {
+            console.log('There isn\'t such user!');
+        }
+        else
+        {
+            this.addLogoutButton();
+            console.log("Success!");
         }
     }
 
