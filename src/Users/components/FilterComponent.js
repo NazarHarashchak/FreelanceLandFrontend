@@ -7,7 +7,6 @@ class FilterComponent extends React.Component{
 render(){
     return(
             <div сlass = "comp" >
-                <span><SeachBar/></span> 
                <span><CheckBox/></span> 
              
             </div>

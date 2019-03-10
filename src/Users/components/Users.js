@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators } from '../action';
 import './styles.css';
+import SeachBar from './SeachBar';
 
 class Users extends Component {
     componentWillMount() {
@@ -19,6 +20,7 @@ class Users extends Component {
             <div className="container">
                
                 <div className="main-content container">
+                    <SeachBar/>
                     <div className="row">
                         <div className="col-md-9" id="j-orders-search-list">
                         {console.log(this.props.users)}
