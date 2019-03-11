@@ -47,9 +47,11 @@ class LoginPage extends Component {
                 document.getElementById('RegistrationButton').style.visibility = 'visible';
                 sessionStorage.removeItem('tokenKey');
                 profile.parentElement.removeChild(profile);
+                document.location.replace('/loginPage');
             };
             li1.appendChild(profile); 
             document.getElementById('LoginNavigation').appendChild(li1);
+            return (<Redirect to='/loginPage' />);
         }
     }
 
@@ -69,11 +71,6 @@ class LoginPage extends Component {
         if (this.props.user.username !== this.state.login) {
             console.log('There isn\'t such user!');
         }
-        else
-        {
-            this.addLogoutButton();
-            console.log("Success!");
-        }
     }
 
     render() {
@@ -81,7 +78,9 @@ class LoginPage extends Component {
         if (this.state.swaper === true) {
             return <Redirect to='/registrationPage' />
         }
-        if (this.props.user.login === this.state.login) {
+        if (this.props.user.access_token === sessionStorage.getItem('tokenKey')) {
+            this.addLogoutButton();
+            console.log("Success!");
             return (<Redirect to='/tasks' />);
         }
         
