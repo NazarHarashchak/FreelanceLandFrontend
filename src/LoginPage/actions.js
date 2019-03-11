@@ -2,14 +2,14 @@ import ApiService from '../services/apiService';
 
 const requestSignIn = 'REQUEST_SIGN_IN';
 const receiveSignIn = 'RECEIVE_SIGN_IN';
-let apiService = new ApiService();
 
+let apiService = new ApiService();
 
 export const actionCreators = {
     requestLogin: (username, pass) => async (dispatch) => {
         dispatch({ type: requestSignIn});
 
-        const url = '/account/token';
+        const url = '/account/login';
         const response = await apiService.post(url ,
             JSON.stringify({
                 Login: username,
@@ -18,7 +18,7 @@ export const actionCreators = {
         
         const user = await response;
         sessionStorage.setItem('tokenKey', user.access_token);
-        console.log("From storage: " + sessionStorage.tokenKey +'\r\n' + "Id: " + user.id + "Username: " + user.username);
+        console.log("From storage: " + sessionStorage.tokenKey +'\r\n' + "Username: " + user.login);
         dispatch({ type: receiveSignIn, user });
         
     }

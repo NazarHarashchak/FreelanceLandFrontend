@@ -20,8 +20,6 @@ class LoginPage extends Component {
         this.swap = this.swap.bind(this);
     }
 
-
-
     swap() {
         this.setState({ swaper: true });
     }
