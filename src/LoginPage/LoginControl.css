@@ -11,7 +11,7 @@ div.signIn{
     margin: 0 auto;
     padding: 8% 1% 0 1%;
     float: left;
-    color: #4CAF50;
+    color: rgb(6, 107, 63);
     width: 65%;
 }
 
@@ -19,7 +19,7 @@ div.signIn{
     
     padding: 0% 1% 0 1%;
     float: left;
-    color: #4CAF50;
+    color: rgb(6, 107, 63);
     width: 65%;
 }
 
@@ -27,7 +27,7 @@ div.swaper {
     padding: 12% 1% 0 1%;
     float: left;
     color: white;
-    background-color: #4CAF50;
+    background: linear-gradient(45deg, rgb(197, 232, 206), rgb(7, 82, 50));
     width: 35%
 }
 
@@ -46,7 +46,7 @@ input[type=text], input[type=password] {
 }
 
 button {
-    background-color: #4CAF50;
+    background-color: rgb(7, 82, 50);
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
