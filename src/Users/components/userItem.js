@@ -21,7 +21,7 @@ class UserItem extends Component{
                  {this.props.item.phone_Number}
             </p>
             <div className="description">
-                <p>description</p>
+            {this.props.item.description}
             </div>
             </div>
       
@@ -30,7 +30,7 @@ class UserItem extends Component{
             </a>
            
         </li> 
-        <hr></hr>
+        
           </div>
 );
 }
