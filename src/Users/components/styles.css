@@ -196,3 +196,20 @@ a{
     color: green;
     font-size: 22px;
 }
+.check-box
+{
+    background: #e8e8e8;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+}
+.category-text{
+    margin-left: 10%;
+    padding-bottom: 2%;
+}
+.category-text-style{
+    font-weight:200; 
+}
+.check-title{
+    margin-left: 10%;
+    padding-top: 7%;
+}

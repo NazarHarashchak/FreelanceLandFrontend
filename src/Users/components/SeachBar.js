@@ -11,8 +11,7 @@ class SearchBar extends React.Component {
         <span class="fa fa-search form-control-feedback"></span>
         <input type="text" 
           class="form-control" 
-          placeholder="Search" 
-          onChange={(e) => this.props.searchTasksList(e.target.value)} 
+          placeholder="Search"  
         />
       </div>
     );

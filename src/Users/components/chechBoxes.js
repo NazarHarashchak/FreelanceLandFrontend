@@ -1,18 +1,38 @@
 import React from 'react';
 import '../../css/users.css'
+import { requestUserRoles } from '../action';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-class CheckBox extends React.Component{
-    render(){
-        return(
+
+import FilterComponent from './FilterComponent';
+class CheckBox extends React.Component {
+    componentWillMount() {
+        // This method runs when the component is first added to the page
+        requestUserRoles(this.props.roles);
+    }
+
+    render() {
+        return (
             <form className="check-box">
-                <div className="check-container">
-                    <tr/>
-                    <label className="freelacle-customer"><input type="checkbox" name="vehicle2" value="Frelancers"/> Frelancers </label>
-                    <tr/>
-                    <label className="freelacle-customer"> <input type="checkbox" name="vehicle3" value="Customers"/>  Customers </label>
-               </div>
-            </form> 
+            <h3 className="check-title">Category</h3>
+                {this.props.roles.map(item => (
+                    <div className="category-text">
+                        <label className="category-text-style">
+                            <input
+                                type="checkbox"
+                                name={item.type}
+                                checked={item.isChecked}
+                            />
+                            {item.type}
+                        </label>
+                    </div>
+                ))}
+            </form>
         )
     }
 }
-export default CheckBox;
+export default connect(
+    state => state.userRoles,
+    dispatch => bindActionCreators(requestUserRoles, dispatch)
+)(CheckBox);

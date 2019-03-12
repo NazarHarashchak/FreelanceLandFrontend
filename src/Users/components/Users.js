@@ -4,13 +4,13 @@ import UsersList from "./UsersList";
 import FilterComponent from './FilterComponent'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { actionCreators } from '../action';
+import {requestUsersList} from '../action';
 import './styles.css';
 import SeachBar from './SeachBar';
 
 class Users extends Component {
     componentWillMount() {
-        this.props.requestUsersList();
+        this.props.requestUsersList;
     }
 
     componentWillReceiveProps(nextProps) {
@@ -23,7 +23,6 @@ class Users extends Component {
                     <SeachBar/>
                     <div className="row">
                         <div className="col-md-9" id="j-orders-search-list">
-                        {console.log(this.props.users)}
                             <UsersList usersList={this.props.users} isLoading={this.props.isLoading}/>
                         </div>
                         <div className="col-md-3" >
@@ -40,5 +39,5 @@ class Users extends Component {
 
 export default connect(
     state => state.usersReducers,
-    dispatch => bindActionCreators(actionCreators, dispatch)
+    dispatch => bindActionCreators(requestUsersList, dispatch)
 )(Users);
