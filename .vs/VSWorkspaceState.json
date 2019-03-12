@@ -7,8 +7,10 @@
     "\\src\\LoginPage",
     "\\src\\ProfilePage",
     "\\src\\RegistrationPage",
+    "\\src\\services",
     "\\src\\store",
     "\\src\\tasks"
   ],
+  "SelectedNode": "\\src\\RegistrationPage\\actions.js",
   "PreviewInSolutionExplorer": false
 }
