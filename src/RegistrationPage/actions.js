@@ -17,10 +17,10 @@ export const actionCreators = {
                 Password: pass
             }));
 
-        const user = await response.json();
-        sessionStorage.setItem('tokenKey', user.access_token);
+        const user = await response;
+      
         console.log("From storage: " + sessionStorage.tokenKey + '\r\n' + "Username: " + user.login);
-        dispatch({ type: receiveRegistration, user });
+        dispatch({ type: receiveRegistration });
     }
 };
 

@@ -15,7 +15,6 @@ export const reducer = (state, action) => {
     if (action.type === receiveRegistration) {
         return {
             ...state,
-            user: action.user,
             isLoading: false
         };
     }
