@@ -18,8 +18,6 @@ export const actionCreators = {
             }));
 
         const user = await response.json();
-        sessionStorage.setItem('tokenKey', user.access_token);
-        console.log("From storage: " + sessionStorage.tokenKey + '\r\n' + "Username: " + user.login);
         dispatch({ type: receiveRegistration, user });
     }
 };

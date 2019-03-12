@@ -68,11 +68,11 @@ class RegistrationPage extends Component {
         if (this.state.swaper === true) {
             return <Redirect to='/loginPage' />
         }
-        if (this.props.user.login === this.state.login) {
-            const id = this.props.user.id;
-            const link = '/ProfilePage/' + id;
-            return (<Redirect to={link}/>);
-        }
+        if (this.props.user.login === this.state.login)
+            alert("You successfully registered!")
+        if (this.props.user.login === null)
+            alert("Bad attemp!");
+
 
         return (
             <div class="signUpForm">
