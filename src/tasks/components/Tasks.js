@@ -19,8 +19,9 @@ class Tasks extends Component {
     render() {
         return (
             <div className="container">
-                <SearchBar />
+             
                 <div className="main-content container">
+                    <SearchBar />
                     <div className="row">
                         <div className="col-md-9" id="j-orders-search-list">
                             <TaskItemList />

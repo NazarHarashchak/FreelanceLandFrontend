@@ -120,19 +120,20 @@ class LoginPage extends Component {
     }
 
     render() {
-        
+
         if (this.state.swaper === true) {
             return <Redirect to='/registrationPage' />
         }
-        if (this.props.user.access_token === sessionStorage.getItem("tokenKey")) {
-            
-            this.addLogoutButton();
-            console.log("Success!");
-            const id = this.props.user.id;
-            const link = '/ProfilePage/' + id;
-            return (<Redirect to={link}/>);
+        if (this.props.user !== null) {
+            if (this.props.user.access_token === sessionStorage.getItem("tokenKey")) {
+
+                this.addLogoutButton();
+                console.log("Success!");
+                const id = this.props.user.id;
+                const link = '/ProfilePage/' + id;
+                return (<Redirect to={link} />);
+            }
         }
-        
 
         return (
             <div className="signInForm">
@@ -170,8 +171,8 @@ class LoginPage extends Component {
                 </div>
                 <div className="swaper">
                     <h1>Hello, Friend!</h1>
-                    <p>Enter your personal details</p>
-                    <p>and start journey with us</p>
+                    <h3 className="text-detais">Enter your personal details</h3>
+                    <h3 className="text-detais">and start journey with us</h3>
                     <button type="submit" class="sign" onClick={this.swap}>
                         SIGN UP
                     </button>
