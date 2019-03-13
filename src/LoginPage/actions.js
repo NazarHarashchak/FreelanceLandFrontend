@@ -18,6 +18,8 @@ export const actionCreators = {
         
         const user = await response;
         sessionStorage.setItem('tokenKey', user.access_token);
+        sessionStorage.setItem('id', user.id);
+        sessionStorage.setItem('login', user.login);
         console.log("From storage: " + sessionStorage.tokenKey +'\r\n' + "Username: " + user.login);
         dispatch({ type: receiveSignIn, user });
         
