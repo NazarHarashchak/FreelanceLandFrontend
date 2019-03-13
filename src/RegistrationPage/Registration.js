@@ -5,22 +5,41 @@ import { actionCreators } from '../RegistrationPage/actions';
 import { Redirect } from 'react-router'
 import SweetAlert from 'sweetalert2-react';
 
+const initialState = {
+    email: '',
+    emailValid: false,
+    emailColor: '',
+    emailError: '',
+    login: '',
+    loginValid: false,
+    loginColor: '',
+    loginError: '',
+    password: '',
+    passwordValid: '',
+    passwordColor: '',
+    passwordError: '',
+    confirmedPass: '',
+    confirmedPassValid: '',
+    confirmPasswordColor: '',
+    confPassError: ''
+}
+
 class RegistrationPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
             email: '',
-            emailValid: false,
             emailColor: '',
+            emailError: '',
             login: '',
-            loginValid: false,
             loginColor: '',
+            loginError: '',
             password: '',
-            passwordValid: '',
             passwordColor: '',
+            passwordError: '',
             confirmedPass: '',
-            confirmedPassValid: '',
             confirmPasswordColor: '',
+            confPassError: '',
             swaper: false,
             showPop: false
         };
@@ -33,20 +52,104 @@ class RegistrationPage extends Component {
         this.swap = this.swap.bind(this);
     }
 
-    validateEmail(email){
-        return email.length > 0;
+    validateEmail(Email){
+        let email = Email;
+        let emailError = '';
+        let emailReg = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i;
+        if(!(email.length > 0))
+        {
+            emailError = "Email can not be blank!";
+        }
+        else if(!emailReg.test(email))
+        {
+            emailError = "Email is not valid!";
+        }
+        this.setState({emailError: emailError});
+        if(emailError)
+        {
+            this.setState({emailColor: "red"});
+            return false;
+        }
+        this.setState({emailColor: "green"});
+        return true;
     }
 
-    validateLogin(login){
-        return login.length > 0;
+    validateLogin(Login){
+        let login = Login;
+        let loginError = '';
+        if(!(login.length > 0))
+        {
+            loginError = "Username can not be blank!";
+        }
+        else if(login.length < 6)
+        {
+            loginError = "Username must contain at least 6 characters!";
+        }
+        this.setState({loginError: loginError});
+        if(loginError)
+        {
+            this.setState({loginColor: "red"});
+            return false;
+        }
+        this.setState({loginColor: "green"});
+        return true;
     }
 
-    validatePassword(pass){
-        return pass.length > 0;
+    validatePassword(Pass){
+        let pass = Pass;
+        let passwordError = '';
+        var passReg = /\d/g;
+        if(!(pass.length > 0))
+        {
+            passwordError = "Password can not be blank!";
+        }
+        else if(pass.length < 6)
+        {
+            passwordError = "Password must contain at least 6 characters and one digit!";
+        }
+        else if(!passReg.test(pass))
+        {
+            passwordError = "Password must contain at least one digit!";
+        }
+        this.setState({passwordError: passwordError});
+        if(passwordError)
+        {
+            this.setState({passwordColor: "red"});
+            return false;
+        }
+        this.setState({passwordColor: "green"});
+        return true;
     }
 
-    validateConfirmPassword(confPass){
-        return confPass.length > 0;
+    validateConfirmPassword(ConfPass, Pass){
+        let confPass = ConfPass;
+        let confPassError = '';
+        if(!(confPass.length > 0))
+        {
+            confPassError = "Confirmed password can not be blank!";
+        } else if(confPass != Pass)
+        {
+            confPassError = "Passwords must match!";
+        }
+        this.setState({confPassError: confPassError});
+        if(confPassError)
+        {
+            this.setState({confirmPasswordColor: "red"});
+            return false;
+        }
+        this.setState({confirmPasswordColor: "green"});
+        return true;
+    }
+
+    validationForm(){
+        const validLogin = this.validateLogin(this.state.login);
+        const validEmail = this.validateEmail(this.state.email);
+        const validPass = this.validatePassword(this.state.password);
+        const validConfirmPassword = this.validateConfirmPassword(this.state.confirmedPass, this.state.password);
+        if(validLogin && validEmail && validPass && validConfirmPassword)
+            return true;
+        else
+            return false;
     }
 
     swap() {
@@ -55,41 +158,32 @@ class RegistrationPage extends Component {
 
     emailChange(event) {
         var val = event.target.value;
-        var valid = this.validateEmail(val);
-        var emailColor = valid ? "green" : "red";
-        this.setState({ email: event.target.value, emailValid: valid, emailColor: emailColor });
+        this.setState({ email: event.target.value});
     }
 
     loginChange(event) {
         var val = event.target.value;
-        var valid = this.validateLogin(val);
-        var loginColor = valid ? "green" : "red";
-        this.setState({ login: val, loginValid: valid , loginColor: loginColor});
+        this.setState({ login: val});
     }
 
     passwordChange(event) {
         var val = event.target.value;
-        var valid = this.validateLogin(val);
-        var passwordColor = valid ? "green" : "red";
-        this.setState({ password: val, passwordValid: valid, passwordColor: passwordColor});
+        this.setState({ password: val});
     }
 
     confirmedPassChange(event) {
         var val = event.target.value;
-        var valid = this.validateConfirmPassword(val);
-        var confirmPasswordColor = valid ? "green" : "red";
-        this.setState({ confirmedPass: val, confirmedPassValid: valid, confirmPasswordColor: confirmPasswordColor });
+        this.setState({ confirmedPass: val});
     }
 
     registrationSubmit(event) {
-       if(this.state.loginValid && this.state.emailValid && this.state.passwordValid && this.state.confirmedPassValid)
+      
+       const validation = this.validationForm();
+       if(validation)
        {
             this.props.requestRegister(this.state.email, this.state.login, this.state.password)
                 .then(this.state.showPop = true);
-            this.state.email = "";
-            this.state.login = "";
-            this.state.password = "";
-            this.state.confirmedPass = "";
+            this.setState(initialState);
         }
         else 
         {
@@ -116,21 +210,25 @@ class RegistrationPage extends Component {
                     <label for="email">
                         <b>Email</b>
                     </label>
+                    {this.state.emailError ? (<div style = {{ fontSize: 14, color: "red"}}>{this.state.emailError}</div>) : null}
                     <input type="text" placeholder="Enter email" name="email"
                         value={this.state.email} onChange={this.emailChange} style={{borderColor: this.state.emailColor}}/>
                     <label for="uname">
                         <b>Username</b>
                     </label>
+                    {this.state.loginError ? (<div style = {{ fontSize: 14, color: "red"}}>{this.state.loginError}</div>) : null}
                     <input type="text" placeholder="Enter username" name="uname"
                         value={this.state.login} onChange={this.loginChange} style={{borderColor: this.state.loginColor}}/>
                     <label for="password">
                         <b>Password</b>
                     </label>
+                    {this.state.passwordError ? (<div style = {{ fontSize: 14, color: "red"}}>{this.state.passwordError}</div>) : null}
                     <input type="password" placeholder="Enter password" name="password"
                         value={this.state.password} onChange={this.passwordChange} style={{borderColor: this.state.passwordColor}}/>
                     <label for="confirmPassword">
                         <b>Confirm password</b>
                     </label>
+                    {this.state.confPassError ? (<div style = {{ fontSize: 14, color: "red"}}>{this.state.confPassError}</div>) : null}
                     <input type="password" placeholder="Confirm password" name="confirmPassword"
                         value={this.state.confirmedPass} onChange={this.confirmedPassChange} style={{borderColor: this.state.confirmPasswordColor}}/>
                     <button type="submit" class="signup" onClick={this.registrationSubmit}>

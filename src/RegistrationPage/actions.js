@@ -19,7 +19,7 @@ export const actionCreators = {
 
         const user = await response;
       
-        console.log("From storage: " + sessionStorage.tokenKey + '\r\n' + "Username: " + user.login);
+        console.log("Username: " + user.login);
         dispatch({ type: receiveRegistration });
     }
 };
