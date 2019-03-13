@@ -159,21 +159,25 @@ class RegistrationPage extends Component {
 
     emailChange(event) {
         var val = event.target.value;
+        this.validateEmail(val);
         this.setState({ email: event.target.value});
     }
 
     loginChange(event) {
         var val = event.target.value;
+        this.validateLogin(val);
         this.setState({ login: val});
     }
 
     passwordChange(event) {
         var val = event.target.value;
+        this.validatePassword(val);
         this.setState({ password: val});
     }
 
     confirmedPassChange(event) {
         var val = event.target.value;
+        this.validateConfirmPassword(val);
         this.setState({ confirmedPass: val});
     }
 

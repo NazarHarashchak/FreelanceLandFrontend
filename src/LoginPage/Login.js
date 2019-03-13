@@ -76,10 +76,12 @@ class LoginPage extends Component {
     }
 
     loginChange(event) {
+        this.validateLogin(event.target.value);
         this.setState({ login: event.target.value });
     }
 
     passwordChange(event) {
+        this.validatePassword(event.target.value);
         this.setState({ password: event.target.value });
     }
 
