@@ -30,14 +30,14 @@ export default props => (
                     </NavItem>
                 </LinkContainer>
             </Nav>
-            <Nav pullRight>
+            <Nav pullRight id = "LoginNavigation">
                 <LinkContainer to={'/registrationPage'}>
-                    <NavItem>
+                    <NavItem id = "RegistrationButton">
                         <Glyphicon glyph='log-in' /> Registration
                     </NavItem>
                 </LinkContainer>
                 <LinkContainer to={'/loginPage'}>
-                    <NavItem>
+                    <NavItem id = "loginButton">
                         <Glyphicon glyph='log-in' /> Login
                     </NavItem>
                 </LinkContainer>
