@@ -4,6 +4,7 @@ import { routerReducer, routerMiddleware } from 'react-router-redux';
 import * as myReducers from './reducers';
 import * as tasksReducers from '../tasks/reducers';
 import * as profileReducer from '../ProfilePage/reducers';
+import * as userReducer from '../Users/reducers';
 import * as taskCustomerReducer from '../TaskInfo/userReducer';
 import * as usersReducers from '../Users/reducers';
 import * as commentsReducers from '../TaskInfo/commentReducer';
@@ -15,6 +16,7 @@ export default function configureStore(history, initialState) {
     weatherForecasts: myReducers.reducer,
     tasksReducers: tasksReducers.reducer,
     profilePage: profileReducer.reducer,
+    userRoles: userReducer.reducer,
     loginReducer: loginReducer.reducer,
     registrationReducer: registrationReducer.reducer,
     taskProfilePage: myReducers.reducer,

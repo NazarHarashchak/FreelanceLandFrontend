@@ -237,8 +237,8 @@ class RegistrationPage extends Component {
                 </div>
                 <div class="swaper">
                     <h1>Welcome Back!</h1>
-                    <p>To keep connected with us please</p>
-                    <p>login with your personal info</p>
+                    <h3 className="text-detais">To keep connected with us please</h3>
+                    <h3 className="text-detais">login with your personal info</h3>
                     <button type="submit" class="sign" onClick={this.swap}>
                         SIGN IN
                     </button>
