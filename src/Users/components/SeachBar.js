@@ -1,4 +1,7 @@
 import React from 'react';
+import { searchUsersList } from '../action';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 
 const { API_KEY } = process.env
@@ -11,10 +14,19 @@ class SearchBar extends React.Component {
         <span class="fa fa-search form-control-feedback"></span>
         <input type="text" 
           class="form-control" 
-          placeholder="Search"  
+          placeholder="Search" 
+          onChange={(e) => this.props.searchUsersList(e.target.value)} 
+          
         />
       </div>
     );
   }
 }
-export default SearchBar;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ searchUsersList: searchUsersList }, dispatch);
+}
+
+export default connect(
+  state => state.usersReducers,
+  mapDispatchToProps
+)(SearchBar);

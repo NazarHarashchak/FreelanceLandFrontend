@@ -1,19 +1,8 @@
-.l-project-title {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
-    font-size: 18px;
-}
-
-.main-content {
-    padding-top:40px;
-}
-
 body {
     font-family: "Arial", sans-serif;
     font-weight: normal;
     font-size: 14px;
-    line-height: 22px;
-    background-color: #ffffff;
+    background-color: #ffffffec;
     color: #333333;
     padding-top: 40px;
 }
@@ -32,21 +21,11 @@ p {
 
 .l-item-features li {
     position: relative;
-    display: inline-block;
     margin-top: 3px;
     margin-bottom: 3px;
     padding-right: 15px;
-    color: #555555;
-    white-space: nowrap;
-}
 
-.l-search-button {
-    background: none;
-    border: 0;
-    color: #c7d9df;
-    font-size: 20px;
-    width: 36px;
-    height: 36px;
+  
 }
 
 .pagination-num .form-control {
@@ -66,21 +45,6 @@ label {
     font-weight: normal;
 }
 
-.flex-price-tag .l-price {
-    margin-top: 0;
-    margin-right: 5px;
-}
-
-.l-price {
-    background: #68af55;
-    color: #ffffff;
-    padding: 5px 10px;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    display: inline-block;
-    margin-top: 3px;
-    font-size: 14px;
-}
 
 .container {
     margin-right: auto;
@@ -89,34 +53,18 @@ label {
     padding-right: 15px;
 }
 
-.l-price_na {
-    background: #eeeeee;
-    color: #777777;
-    border: 1px solid #eeeeee;
-    padding: 5px 10px;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    display: inline-block;
-    margin-top: 3px;
-    font-size: 14px;
-}
 
 .j-order {
-    display: block;
-    margin-bottom: 50px;
-    word-break: break-word;
+    border-style:outset;
+    padding-left:15px;
+    padding-top:15px;
 }
 li {
     display: list-item;
     text-align: -webkit-match-parent;
 }
 
-.scrolltop { 
-    position: fixed;
-    bottom: 100px;
-    right: 30px;
-    z-index: 998;
-}
+
 
 .c-fixedAlerts {
     position: fixed;
@@ -129,7 +77,10 @@ li {
 .c-scrolltop a:hover span {
     background-color: #68af55;
 }
-
+.media {
+    margin-top: 0px;
+    padding-top: 20px;
+}
 .c-scrolltop span {
     width: 50px;
     height: 50px;
@@ -152,33 +103,11 @@ li {
 }
 
   
-  /* Style the links inside the navigation bar */
-  .topnav a {
-    float: left;
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-  }
-.topnav input[type=text] {
-      border: 1px solid #ccc;
-}
 
 .media-object{
-width: 70px;
-height: 90px;
+    width: 70px;
+    height: 90px;
 }
-
-
-.name{
-	color: green;
-	font-family: 'Times New Roman', Times, serif;
-	font-size: 22px;
-
-}
-
 .info{
 	color: black;
 	font-family: 'Times New Roman', Times, serif;
@@ -193,23 +122,6 @@ a{
     text-decoration: wavy;
 }
 .media-heading{
-    color: green;
+    color: rgb(15, 133, 15);
     font-size: 22px;
-}
-.check-box
-{
-    background: #e8e8e8;
-    border: 1px solid #e3e3e3;
-    border-radius: 4px;
-}
-.category-text{
-    margin-left: 10%;
-    padding-bottom: 2%;
-}
-.category-text-style{
-    font-weight:200; 
-}
-.check-title{
-    margin-left: 10%;
-    padding-top: 7%;
 }

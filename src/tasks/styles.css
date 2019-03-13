@@ -9,7 +9,11 @@
     color: #555555;
     white-space: nowrap;
 }
-
+header.l-project-title > :link{
+    text-decoration-color: rgb(15, 133, 15);
+   color: #68af55;
+    font-size: 22px;
+}
 .container {
     padding:0
 }
@@ -21,7 +25,9 @@ p, #filter label {
 {
     color: #323232;
 }
-
+.well{
+    background: linear-gradient(45deg, rgb(7, 82, 50),rgb(197, 232, 206));
+}
 .l-projectList {
     list-style: none;
     padding: 0;
@@ -38,7 +44,7 @@ p, #filter label {
     z-index: 998;
 }
 .l-price {
-    background: #68af55;
+    background: #27551a;
     color: #ffffff;
     padding: 5px 10px;
     font-family: 'Open Sans', sans-serif;
@@ -62,7 +68,7 @@ a {
 }
 
 .well h5 {
-    color:#323232;
+    color:#fff;
     font-weight: 650;
 }
 .form-group button {
@@ -72,7 +78,7 @@ a {
 
 .pagination-num label {
     display: inline-block;
-    color: #323232;
+    color: red;
 }
 
 label {
@@ -94,8 +100,8 @@ label {
 }
 
 .pagination > .active > span {
-    border-color: #323232;
-    background-color: #323232;
+    border-color: rgb(6, 107, 63);
+    background-color: rgb(6, 107, 63);
     color: #ffffff
 }
 
@@ -103,7 +109,7 @@ label {
     padding-left:15px;
 }
 .pagination > li >a {
-    color:#323232
+    color:rgb(6, 107, 63)
 }
 
 .form-control {
@@ -111,15 +117,15 @@ label {
 }
 
 a:hover {
-    color:#323232;
+    color:rgb(6, 107, 63);
     opacity:0.7
 }
 
 .j-order {
     border-style:outset;
     padding-left:15px;
-    margin-bottom:15px;
     padding-top:15px;
+    margin-bottom: 20px;
 }
 .pagination-num {
     margin-top:20px;
@@ -138,4 +144,15 @@ body {
 .scroll-top-col
 {
     color: #323232;
+}
+#toggleCatBtn {
+    background-color: rgb(7, 82, 50);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 12px 100px 0 rgba(0,0,0,0.19);
+    border-radius: 12px;
 }

@@ -2,6 +2,9 @@ const requestUsersListType = 'REQUEST_USERS_LIST';
 const receiveUsersListType = 'RECEIVE_USERS_LIST';
 const requestUserRolesList = 'RECEIVE_USERS_ROLES';
 const setFoundUserRole = 'SET_FOUND_TASKS_LIST';
+const searchUserListType = 'SEARCH_TASKS_LIST';
+const setFoundTasksListType = 'SET_FOUND_TASKS_LIST';
+
 
 export const requestUsersList = () => async (dispatch) => {
     dispatch({ type: requestUsersListType });
@@ -25,3 +28,12 @@ export const requestUserRoles = () => async(dispatch) => {
 export const SetFoundRolesList = (roles) => {
     return ({ type: setFoundUserRole, roles });
 }
+       
+
+export const searchUsersList = (searchText) => {
+    return ({ type: searchUserListType, searchText });
+}   
+
+export const setFoundTasksList = (foundTasksList) => {
+    return ({ type: setFoundTasksListType, foundTasksList });
+} 
