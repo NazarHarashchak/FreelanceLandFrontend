@@ -11,6 +11,10 @@
     "\\src\\store",
     "\\src\\tasks"
   ],
+<<<<<<< HEAD
   "SelectedNode": "\\src\\index.js",
+=======
+  "SelectedNode": "\\src\\RegistrationPage\\actions.js",
+>>>>>>> d5c943f6ffb511df1981f4e80668817a6474da07
   "PreviewInSolutionExplorer": false
 }

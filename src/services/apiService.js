@@ -16,9 +16,7 @@ export default class ApiService {
                 body: body 
             }
         )
-        var r = await response;
-        console.log(r);
-        return await r.json();
+        return await response.json();
     }
 
     async get (path)
