@@ -1,8 +1,8 @@
 ﻿.signIn, .createAccount, .swaper {
-    height: 440px;
+    height: 500px;
 }
 
-div.greeting {
+div.signInForm, div.signUpForm {
     width: 70%;
     margin: 5% 15% 0 15%;
 }

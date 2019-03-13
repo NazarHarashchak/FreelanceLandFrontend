@@ -3,11 +3,14 @@
     "",
     "\\public",
     "\\src",
-    "\\src\\mainPages",
-    "\\src\\mainPages\\components",
-    "\\src\\tasks",
-    "\\src\\tasks\\components"
+    "\\src\\components",
+    "\\src\\LoginPage",
+    "\\src\\ProfilePage",
+    "\\src\\RegistrationPage",
+    "\\src\\services",
+    "\\src\\store",
+    "\\src\\tasks"
   ],
-  "SelectedNode": "\\src\\mainPages\\components\\TopUsers.js",
+  "SelectedNode": "\\src\\RegistrationPage\\actions.js",
   "PreviewInSolutionExplorer": false
 }
