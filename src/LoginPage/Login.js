@@ -4,8 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators } from '../LoginPage/actions';
 import { Redirect } from 'react-router'
-import { Field, reduxForm} from 'redux-form';
-
+import SweetAlert from 'sweetalert2-react';
 
 
 class LoginPage extends Component {
@@ -18,7 +17,8 @@ class LoginPage extends Component {
             password: '',
             passwordError: '',
             passwordColor: '',
-            swaper: false
+            swaper: false,
+            errorPop: false
         };
 
         this.loginChange = this.loginChange.bind(this);
@@ -77,7 +77,6 @@ class LoginPage extends Component {
 
     loginChange(event) {
         this.setState({ login: event.target.value });
-        console.log(this.state.login);
     }
 
     passwordChange(event) {
@@ -110,14 +109,10 @@ class LoginPage extends Component {
         event.preventDefault();
         const validation = this.validationForm();
         if (validation) {
-            this.props.requestLogin(this.state.login, this.state.password);
-        }
-        else 
-        {
-            console.log("Validation error!");
-        }
-        if (this.props.user.username !== this.state.login) {
-            console.log('There isn\'t such user!');
+            this.props.requestLogin(this.state.login, this.state.password)
+            .then(() => {
+                if(this.props.user === null) { this.setState({errorPop: true})}
+            });
         }
         
     }
@@ -140,7 +135,12 @@ class LoginPage extends Component {
         return (
             <div className="signInForm">
             
-            
+            <SweetAlert
+                show={this.state.errorPop}
+                title="Fail!"
+                text="User with this login doesn`t exist!"
+                onConfirm={() => this.setState({ errorPop: false })}
+            />
                 <div className="signIn">
                     <h1>Sign in to Freelance-land</h1>
                     <label for="username">

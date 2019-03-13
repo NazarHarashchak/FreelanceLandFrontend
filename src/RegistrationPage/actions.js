@@ -18,9 +18,8 @@ export const actionCreators = {
             }));
 
         const user = await response;
-      
-        console.log("Username: " + user.login);
-        dispatch({ type: receiveRegistration });
+
+        dispatch({ type: receiveRegistration , user});
     }
 };
 

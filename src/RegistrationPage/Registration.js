@@ -41,7 +41,8 @@ class RegistrationPage extends Component {
             confirmPasswordColor: '',
             confPassError: '',
             swaper: false,
-            showPop: false
+            showPop: false,
+            errorPop: false
         };
 
         this.emailChange = this.emailChange.bind(this);
@@ -182,13 +183,13 @@ class RegistrationPage extends Component {
        if(validation)
        {
             this.props.requestRegister(this.state.email, this.state.login, this.state.password)
-                .then(this.state.showPop = true);
+                .then(() => {
+                    if(this.props.user != null) { this.setState({showPop: true})}
+                    else 
+                    {this.setState({errorPop: true})}
+                });
             this.setState(initialState);
-        }
-        else 
-        {
-            console.log("Validation error!");
-        }       
+        }      
         event.preventDefault();
     }
 
@@ -204,6 +205,12 @@ class RegistrationPage extends Component {
                 title="Cool!"
                 text="Your Registration was successfull, now you should sign in!"
                 onConfirm={() => this.setState({ showPop: false })}
+            />
+            <SweetAlert
+                show={this.state.errorPop}
+                title="Fail!"
+                text="User with the same login already exists!"
+                onConfirm={() => this.setState({ errorPop: false })}
             />
                 <div class="createAccount" >
                     <h1>Create Account</h1>
