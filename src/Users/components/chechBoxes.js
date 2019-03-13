@@ -1,15 +1,12 @@
 import React from 'react';
 import '../../css/users.css'
-import { requestUserRoles } from '../action';
+import { requestUserRoles, changeCheckedStatus} from '../action';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
-
-import FilterComponent from './FilterComponent';
 class CheckBox extends React.Component {
     componentWillMount() {
         // This method runs when the component is first added to the page
-        requestUserRoles(this.props.roles);
+        this.props.requestUserRoles();
     }
 
     render() {
@@ -22,6 +19,7 @@ class CheckBox extends React.Component {
                             <input
                                 type="checkbox"
                                 name={item.type}
+                                onChange={(e) => this.props.changeCheckedStatus(e.target.name)}
                                 checked={item.isChecked}
                             />
                             {item.type}
@@ -32,7 +30,15 @@ class CheckBox extends React.Component {
         )
     }
 }
+
+function matchDispatchToProps(dispatch) {
+    return bindActionCreators(
+      {
+        changeCheckedStatus,requestUserRoles
+      },
+      dispatch);
+  }
 export default connect(
     state => state.userRoles,
-    dispatch => bindActionCreators(requestUserRoles, dispatch)
+    matchDispatchToProps
 )(CheckBox);

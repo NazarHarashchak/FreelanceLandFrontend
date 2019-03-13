@@ -3,17 +3,17 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators } from '../action';
-import { setFoundTasksList } from '../action';
+import { setFoundRolesList } from '../action';
 
 class UsersList extends React.Component {
   componentWillMount() {
-    this.props.setFoundTasksList(this.props.foundTaskList)
+    this.props.setFoundRolesList(this.props.foundRolesList)
   }
   render() {
     return (
         <div className="list">
         
-            {this.props.foundTaskList.map(item => (          
+            {this.props.foundRolesList.map(item => (          
                 <UserItem
                 key={item.id}
                 item={item}
@@ -24,21 +24,21 @@ class UsersList extends React.Component {
   }
 }
 function searchList(users, filterText) {
-  var foundTaskList = users.filter(item => {
+  var foundRolesList = users.filter(item => {
     return (
       item.name.toLowerCase().search(filterText.toLowerCase()) !== -1
     );
   });
-  return foundTaskList;
+  return foundRolesList;
 }
 
 const mapStateToProps = state => ({
-  foundTaskList: searchList(state.usersReducers.filteredTaskList, state.usersReducers.searchText)
+  foundRolesList: searchList(state.usersReducers.filteredRolesList, state.usersReducers.searchText)
 })
 
 export default connect(
   mapStateToProps,
-  dispatch => bindActionCreators({ setFoundTasksList: setFoundTasksList }, dispatch)
+  dispatch => bindActionCreators({ setFoundRolesList: setFoundRolesList }, dispatch)
 )(UsersList);
 
 
