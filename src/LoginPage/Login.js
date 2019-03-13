@@ -122,14 +122,17 @@ class LoginPage extends Component {
         if (this.state.swaper === true) {
             return <Redirect to='/registrationPage' />
         }
-        if (this.props.user.access_token === sessionStorage.getItem("tokenKey")) {
-            
-            this.addLogoutButton();
-            console.log("Success!");
-            const id = this.props.user.id;
-            const link = '/ProfilePage/' + id;
-            return (<Redirect to={link}/>);
+        if (this.props.user !== null) {
+            if (this.props.user.access_token === sessionStorage.getItem("tokenKey")) {
+
+                this.addLogoutButton();
+                console.log("Success!");
+                const id = this.props.user.id;
+                const link = '/ProfilePage/' + id;
+                return (<Redirect to={link} />);
+            }
         }
+        
         
 
         return (
