@@ -1,3 +1,5 @@
+import ApiService from '../services/apiService';
+
 const requestUsersListType = 'REQUEST_USERS_LIST';
 const receiveUsersListType = 'RECEIVE_USERS_LIST';
 const requestUserRolesList = 'RECEIVE_USERS_ROLES';
@@ -9,8 +11,15 @@ const changeRoleStatusType = 'CHANGE_CHECKED_ROLE_TYPE';
 const changeRolesOpenedStatusType = 'CHANGE_ROLES_OPENED_STATUS_TYPE';
 
 
-export const requestUsersList = () => async (dispatch) => {
-    dispatch({ type: requestUsersListType });
+let apiService = new ApiService();
+
+export const actionCreators = {
+    requestUsersList: () => async (dispatch) => {
+        dispatch({ type: requestUsersListType });
+        
+        const url = `/api/users`;
+        const users = await apiService.get(url);
+
 
     const url = `https://localhost:44331/api/users`;
     const response = await fetch(url);

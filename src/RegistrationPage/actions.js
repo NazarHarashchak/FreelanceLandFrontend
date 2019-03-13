@@ -1,27 +1,26 @@
+import ApiService from '../services/apiService';
+
 const requestRegistration = 'REQUEST_REGISTRATION';
 const receiveRegistration = 'RECEIVE_REGISTRATION';
+
+let apiService = new ApiService();
 
 export const actionCreators = {
     requestRegister: (email, username, pass) => async (dispatch) => {
         dispatch({ type: requestRegistration });
 
-        const url = 'https://localhost:44331/api/registration';
-        const response = await fetch(url, {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
+        const url = '/account/register';
+        const response = await apiService.post(url,
+            JSON.stringify({
                 Email: email,
                 Login: username,
                 Password: pass
-            })
-        });
-        const user = await response.json();
+            }));
 
-        dispatch({ type: receiveRegistration, user });
+        const user = await response;
+      
+        console.log("Username: " + user.login);
+        dispatch({ type: receiveRegistration });
     }
 };
 
