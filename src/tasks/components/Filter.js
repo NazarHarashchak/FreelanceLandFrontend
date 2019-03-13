@@ -4,7 +4,7 @@ import { Button, Collapse } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { changeCategOpenedStatus, changeFromPrice, changeToPrice, cleanFilter } from '../actions';
-
+import '../styles.css';
 const ENTER_KEY = 13;
 
 class Filter extends React.Component {
@@ -99,7 +99,7 @@ class Filter extends React.Component {
             </div>
           </div>
           <div className="form-group">
-            <a href="" onClick={e => (e.preventDefault(), this.props.cleanFilter())}>clean </a>
+            <a href="" className="clear-button" onClick={e => (e.preventDefault(), this.props.cleanFilter())}>clean </a>
           </div>
         </form>
       </div>

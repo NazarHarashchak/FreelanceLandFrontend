@@ -22,7 +22,6 @@ class TaskItem extends React.Component {
 				<article>
 					<p>{this.props.item.description}</p>
 				</article>
->>>>>>> master
 
 				<ul className="l-item-features">
 
