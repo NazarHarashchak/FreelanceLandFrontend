@@ -5,8 +5,9 @@ import FilterComponent from './FilterComponent'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {requestUsersList} from '../action';
-import './styles.css';
+import './stylles.css';
 import SeachBar from './SeachBar';
+import ScrollTop from './ScrollTop'
 
 class Users extends Component {
     componentWillMount() {
@@ -32,6 +33,7 @@ class Users extends Component {
                     <Pagination/>
                         
                     </div>
+                    <ScrollTop/>
             </div >
         );
     }
