@@ -115,9 +115,6 @@ async componentDidMount() {
                         value={values.email} />
                  </Form.Group>
 
-                  
-               {/*<Button type='submit' className="button-centring">Edit</Button>
-                 */} 
                   </Form>
         </Segment>
       )}

@@ -1,35 +1,32 @@
 import React from 'react';
+import { searchUsersList } from '../action';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 
 const { API_KEY } = process.env
 const API_URL = 'http://api.musicgraph.com/api/v2/artist/suggest'
 
-class SeachBar extends React.Component{
-  state = {
-    filter: '',
+class SearchBar extends React.Component {
+  render() {
+    return (
+      <div class="form-group has-search">
+        <span class="fa fa-search form-control-feedback"></span>
+        <input type="text" 
+          class="form-control" 
+          placeholder="Search" 
+          onChange={(e) => this.props.searchUsersList(e.target.value)} 
+          
+        />
+      </div>
+    );
   }
- 
-  dataSearch = (e) => {
-    this.setState({
-      filter: e.target.value
-    });
-  }
-render(){
-    return(
-      <div class="container">
-      <div class="col-md-3">
-        <form class="navbar-form" role="search">
-          <div class="input-group add-on">
-       
-            <input class="form-control" placeholder="Search"  onChange={this.dataSearch} name="srch-term" id="srch-term" type="text" />
-            <div class="input-group-btn">
-              <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-            </div>
-          </div>
-        </form>
-        </div>
-        </div>
-    )
 }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ searchUsersList: searchUsersList }, dispatch);
 }
-export default SeachBar;
+
+export default connect(
+  state => state.usersReducers,
+  mapDispatchToProps
+)(SearchBar);
