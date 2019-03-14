@@ -100,6 +100,7 @@ class RegistrationPage extends Component {
         let pass = Pass;
         let passwordError = '';
         var passReg = /\d/g;
+        this.validateConfirmPassword(this.state.confirmedPass, pass)
         if(!(pass.length > 0))
         {
             passwordError = "Password can not be blank!";
@@ -177,7 +178,7 @@ class RegistrationPage extends Component {
 
     confirmedPassChange(event) {
         var val = event.target.value;
-        this.validateConfirmPassword(val);
+        this.validateConfirmPassword(val, this.state.password);
         this.setState({ confirmedPass: val});
     }
 

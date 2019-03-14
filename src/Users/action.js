@@ -13,20 +13,17 @@ const changeRolesOpenedStatusType = 'CHANGE_ROLES_OPENED_STATUS_TYPE';
 
 let apiService = new ApiService();
 
-export const actionCreators = {
-    requestUsersList: () => async (dispatch) => {
+export const
+    requestUsersList = () => async (dispatch) => {
         dispatch({ type: requestUsersListType });
         
         const url = `/api/users`;
         const users = await apiService.get(url);
 
 
-    const url = `https://localhost:44331/api/users`;
-    const response = await fetch(url);
-    const users = await  response.json();
 
     dispatch({ type: receiveUsersListType, users });
-}
+    }
 
 export const requestUserRoles = () => async(dispatch) => {
     const url = `https://localhost:44331/api/UserRole`;
