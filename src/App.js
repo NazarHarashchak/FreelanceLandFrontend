@@ -9,7 +9,6 @@ import RegistrationPage from './RegistrationPage/Registration';
 import Task from './TaskInfo/components/TaskInf'
 import ProfileComponent from './ProfilePage/components/ProfileComponent';
 import Users from './Users/components/Users';
-
 export default () => (
   <Layout>
         <Route path='/main' component={MainPage} />
