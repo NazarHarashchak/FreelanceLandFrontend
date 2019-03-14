@@ -1,48 +1,10 @@
+.task-body{
+  position:relative;
+  padding-right:50px;
+}
 .col-md-4 {
     width: 75%;
     position: static;
-  }
-  .status-list li > div {
-    padding-left: 25px;
-  }
-  .status-list {
-    margin: 0;
-    padding: 0;
-  }
-  .status-list li {
-    font-size: 15px;
-    color: white;
-    display: inline-block;
-    height: 30px;
-    line-height: 30px;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    text-align: center;
-  }
-  .status-list li:last-child {
-    background-color: #fff;
-    width: 16px !important;
-  }
-  ol {
-    position: relative;
-    display: block;
-    list-style-type: decimal;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
-  }
-  h1 {
-    position: static;
-  }
-  #task-desk {
-    position: relative;
-    right: 120px;
-    text-align: left;
-    clear: both;
   }
   .task-description {
     position: relative;
@@ -53,16 +15,12 @@
     background-color: #fbfbfc;
     text-align: center;
   }
-  #adding-date {
-    float: left;
-    font-style: italic;
-    color: lime;
-  }
-  #deadline {
+  #task-desk {
     position: relative;
-    float: left;
-    font-style: italic;
-    color: red;
+    bottom: 50px;
+    width: 70%;
+    text-align: left;
+    clear: both;
   }
   #task-price {
     position: relative;
@@ -73,25 +31,20 @@
     box-sizing: border-box;
     padding: 12px;
   }
-  #get-button {
-    position: relative;
-    right: 65px;
-    top: 10px;
-    width: 120px;
-    height: 50px;
-    font-size: 20px;
-    color: white;
-    background-color: rgb(9, 10, 14);
-  }
   .right-panel {
-    position: absolute;
-    right: 20px;
-    width: 23%;
-    top: 192px;
+    clear: both;
+    position: relative;
+    top:45px;
+    float: right;
+    width: 22%;
+  }
+  .user-panel{
+    width: 100%;
+    margin-top:20px;
     border-width: 2px;
     border-style: outset;
   }
-  #top-row {
+  .top-row {
     height: 50px;
     width: 100%;
     background: -webkit-gradient(
@@ -127,4 +80,7 @@
   }
   #user-photo{
     padding: 10px;
+  }
+  #user-link{
+    margin-left: 20px;
   }

@@ -1,5 +1,6 @@
 import React from "react";
 import Comment from "./Comment";
+import AddComment from "./AddComment";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {actionCommentsCreators} from "../commentAction"
@@ -13,25 +14,19 @@ class Comments extends React.Component {
   render() {
     return (
       <div className="comments-panel">
-      <div className="comments">
-        <ul width="100%">
-            <div id="comentar">
+        <div id="comments-title">Comments</div>
+        <AddComment userId='1' taskId={this.props.taskId}/>
+        <div className="comments">
+          <ul width="100%">
               <li>
-            {this.props.comments.map(item => (          
-                <Comment
-                key={item.id}
-                item={item}
-                />
-            ))}
+                    {this.props.comments.map(item => (          
+                      <Comment
+                      key={item.id}
+                      item={item}
+                      />
+                    ))}
               </li>
-            </div>
-        </ul>
-      </div>
-      <div id="add-comment">
-        <form>
-              <input type="text" width ="100%"/>
-              <input type="submit" />
-        </form>
+          </ul>
         </div>
       </div>
     );
