@@ -9,7 +9,9 @@ class HowItWork extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-lg-12 text-center">
-                        <h2 className="section-heading text-uppercase">How it works</h2>
+                        <br/>
+                            <h2 className="section-heading text-uppercase">How it works</h2>
+                        <br/>
                     </div>
                 </div>
                 <div className="row text-center">

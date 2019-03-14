@@ -35,7 +35,9 @@ class Gallery extends React.Component {
         const { items, responsive, currentIndex } = this.state;
         return (
             <div className="justify-content-betweend-flex justify-content-between">
-                <h2 className="text-center">Browse our highest-rated mobile engineers & designers</h2>
+                <br/>
+                    <h2 className="text-center">Browse our highest-rated mobile engineers & designers</h2>
+                <br/>
                 <div className="p-2">
                     <button onClick={() => this.slidePrev()}>Prev Freelancers</button>
                 </div>

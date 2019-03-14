@@ -1,12 +1,12 @@
 const requestUsersListType = 'REQUEST_USERS_LIST';
 const receiveUsersListType = 'RECEIVE_USERS_LIST';
 const requestUserRolesList='RECEIVE_USERS_ROLES';
-const searchTaskListType = 'SEARCH_TASKS_LIST';
-const initialState = { users: [],filteredTaskList: [],searchText:"",isLoading: false, roles: [] };
+const searchUserListType = 'SEARCH_TASKS_LIST';
+const initialState = { users: [],filteredUserList: [],searchText:"",isLoading: false, roles: [] };
 
 export const reducer = (state, action) => {
     state = state || initialState;
-    if (action.type=== searchTaskListType)
+    if (action.type=== searchUserListType)
             return {
                 ...state,
                 searchText:action.searchText
@@ -22,7 +22,7 @@ export const reducer = (state, action) => {
             return{
                 ...state,
                 users:action.users,
-                filteredTaskList: action.users,
+                filteredUserList: action.users,
 
                 isLoading: false
             };

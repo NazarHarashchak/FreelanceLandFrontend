@@ -1,12 +1,12 @@
 import React ,{ Component } from 'react';
 import  logo from './MyPhoto.jpg';
 
-class UserImage extends Component {
+ class UserImage extends Component {
   render() {
    return (
      <div className="container-fluid">
      
-        <img class="media-object" src={logo}  alt='Loading...'></img>
+        <img  className="media-object" src={logo}  alt='Loading...'></img>
        
       </div>
 

@@ -3,20 +3,20 @@ import UserImage from './userImage';
 import { Item } from 'semantic-ui-react';
 
 
-class UserItem extends Component {
+ class UserItem extends Component {
     render() {
         return (
             <Item.Group link>
-            <div class="media">
+            <div  className="media">
                 <li className="j-order" >
                     <a href={`/ProfilePage/${this.props.item.id}`} >
                         <ul className="l-item-features">
-                            <div class="media-left">
+                            <div  className="media-left">
                                 <UserImage />
                             </div>
 
-                            <div class="media-body">
-                                <div class="media-heading">
+                            <div  className="media-body">
+                                <div  className="media-heading">
                                     {this.props.item.name}
                                 </div>
                                 <p className="info">
