@@ -15,8 +15,10 @@ header.l-project-title > :link{
     font-size: 22px;
 }
 .container {
-    padding:0
+    padding:0;
+ 
 }
+
 p, #filter label {
     font-size: 14px;
 }
@@ -122,10 +124,17 @@ a:hover {
 }
 
 .j-order {
-    border-style:outset;
+    
+    border-radius: 10px; 
     padding-left:15px;
     padding-top:15px;
-    margin-bottom: 20px;
+    
+}
+.j-order:hover {
+    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+    border-radius: 10px; 
+    padding-left:15px;
+    cursor: pointer;
 }
 .pagination-num {
     margin-top:20px;
@@ -143,7 +152,7 @@ body {
 
 .scroll-top-col
 {
-    color: #323232;
+    color: rgb(7, 82, 50);
 }
 #toggleCatBtn {
     background-color: rgb(7, 82, 50);
@@ -156,3 +165,4 @@ body {
     box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 12px 100px 0 rgba(0,0,0,0.19);
     border-radius: 12px;
 }
+

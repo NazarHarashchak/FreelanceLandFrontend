@@ -16,46 +16,49 @@ let apiService = new ApiService();
 export const actionCreators = {
     requestUsersList: () => async (dispatch) => {
         dispatch({ type: requestUsersListType });
-        
+
         const url = `/api/users`;
         const users = await apiService.get(url);
+        console.log(users);
+        const response = await fetch(url);
 
-
-    const url = `https://localhost:44331/api/users`;
-    const response = await fetch(url);
-    const users = await  response.json();
-
-    dispatch({ type: receiveUsersListType, users });
+        dispatch({ type: receiveUsersListType, users });
+    }
 }
+export const requestUsersList = () => async (dispatch) => { dispatch({ type: requestUsersListType });
+const url = `https://localhost:44331/api/users`;
+const response = await fetch(url);
+const users = await  response.json();
+dispatch({ type: receiveUsersListType, users });}
 
-export const requestUserRoles = () => async(dispatch) => {
-    const url = `https://localhost:44331/api/UserRole`;
-    const response = await fetch(url);
-    const roles = await response.json();
-    
-    console.log(roles);
-    dispatch({ type: requestUserRolesList, roles });
-}
+export const requestUserRoles = () => async (dispatch) => {
+        const url = `https://localhost:44331/api/UserRole`;
+        const response = await fetch(url);
+        const roles = await response.json();
+
+        console.log(roles);
+        dispatch({ type: requestUserRolesList, roles });
+    }
 
 export const SetFoundRolesList = (roles) => {
-    return ({ type: setFoundRolesListType, roles });
-}
+        return ({ type: setFoundRolesListType, roles });
+    }
 
 export const changeRolesOpenedStatus = () => async (dispatch) => {
-    dispatch({ type: changeRolesOpenedStatusType });
-}
+        dispatch({ type: changeRolesOpenedStatusType });
+    }
 
 export const changeCheckedStatus = (name) => {
-    return ({ type: changeRoleStatusType, name });
-}  
+        return ({ type: changeRoleStatusType, name });
+    }  
 export const setFoundRolesList = (foundRolesList) => {
-    return ({ type: setFoundRolesListType, foundRolesList });
-} 
+        return ({ type: setFoundRolesListType, foundRolesList });
+    } 
 
 export const searchUsersList = (searchText) => {
-    return ({ type: searchUserListType, searchText });
-}   
+        return ({ type: searchUserListType, searchText });
+    }   
 
 export const setFoundTasksList = (foundTasksList) => {
-    return ({ type: setFoundTasksListType, foundTasksList });
-} 
+        return ({ type: setFoundTasksListType, foundTasksList });
+    }
