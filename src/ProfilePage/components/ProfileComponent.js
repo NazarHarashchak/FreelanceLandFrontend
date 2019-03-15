@@ -17,7 +17,7 @@ class ProfileComponent extends Component {
 
         <Grid.Row centered>
           <Grid.Column width={10}>
-            <PersonalInfo id={this.props.match.params.id}/>
+            <PersonalInfo />
           </Grid.Column>
         </Grid.Row>
   

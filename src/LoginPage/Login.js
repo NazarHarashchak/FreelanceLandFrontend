@@ -97,7 +97,7 @@ class LoginPage extends Component {
             profile.onclick = function() {
                 document.getElementById('loginButton').style.visibility = 'visible';
                 document.getElementById('RegistrationButton').style.visibility = 'visible';
-                sessionStorage.removeItem('tokenKey');
+                localStorage.removeItem('tokenKey');
                 profile.parentElement.removeChild(profile);
                 document.location.replace('loginPage');
             };
@@ -125,12 +125,12 @@ class LoginPage extends Component {
             return <Redirect to='/registrationPage' />
         }
         if (this.props.user !== null) {
-            if (this.props.user.access_token === sessionStorage.getItem("tokenKey")) {
+            if (this.props.user.access_token === localStorage.getItem("tokenKey")) {
 
                 this.addLogoutButton();
                 console.log("Success!");
                 const id = this.props.user.id;
-                const link = '/ProfilePage/' + id;
+                const link = '/home/';
                 return (<Redirect to={link} />);
             }
         }

@@ -1,9 +1,8 @@
-import ApiService from '../services/apiService';
+import apiService from '../services/apiService';
 
 const requestRegistration = 'REQUEST_REGISTRATION';
 const receiveRegistration = 'RECEIVE_REGISTRATION';
 
-let apiService = new ApiService();
 
 export const actionCreators = {
     requestRegister: (email, username, pass) => async (dispatch) => {

@@ -24,7 +24,7 @@ export default function configureStore(history, initialState) {
     customerOfTask: taskCustomerReducer.reducer,
     usersReducers: usersReducers.reducer,
     commentsTask: commentsReducers.reducer,
-    addComment: addCommentReducers.reducer
+    addComment: addCommentReducers.reducer,
       commentsTask: commentsReducers.reducer
   };
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import './ProfilePage.css';
-import { Button, Form , Segment} from 'semantic-ui-react'
+import { Form , Segment} from 'semantic-ui-react'
 import { actionCreators } from '../actions';
 import {Formik} from 'formik';
 

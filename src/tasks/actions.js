@@ -1,3 +1,4 @@
+import apiService from '../services/apiService';
 const requestTasksListType = 'REQUEST_TASKS_LIST';
 const receiveTasksListType = 'RECEIVE_TASKS_LIST';
 const searchTaskListType = 'SEARCH_TASKS_LIST';
@@ -9,16 +10,18 @@ const changeToPriceType = 'CHANGE_TO_PRICE';
 const cleanFilterType = 'CLEAN_FILTER';
 const setFoundTasksListType = 'SET_FOUND_TASKS_LIST';
 const setPriceToValidateType = 'SET_PRICE_TO_VALIDATE';
-
 export const requestTasksList = () => async (dispatch) => {
     dispatch({ type: requestTasksListType });
 
-    const url = `https://localhost:44331/api/tasks/6`;
-    const response = await fetch(url);
-    const tasks = await response.json();
+    const url = `/api/tasks/`+localStorage.getItem('id');
+    console.log(url);
+    const response = await apiService.get(url);
+    const tasks = await response;
 
     dispatch({ type: receiveTasksListType, tasks });
 }
+
+
 
 export const changeCategOpenedStatus = () => async (dispatch) => {
     dispatch({ type: changeCategOpenedStatusType });
@@ -26,9 +29,9 @@ export const changeCategOpenedStatus = () => async (dispatch) => {
 
 export const requestCategoriesList = () => async (dispatch) => {
 
-    const url = `https://localhost:44331/api/taskcategories`;
-    const response = await fetch(url);
-    const categories = await response.json();
+    const url = `/api/taskcategories`;
+    const response = await apiService.get(url);
+    const categories = await response
 
     dispatch({ type: requestCategoriesListType, categories });
 }
