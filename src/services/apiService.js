@@ -1,9 +1,8 @@
 export default class ApiService {
-   
-    
+
+
     url = 'https://localhost:44331';
-    async post (path, body) 
-    {
+    async post(path, body) {
         const response = await fetch(this.url + path,
             {
                 method: 'POST',
@@ -11,16 +10,15 @@ export default class ApiService {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + sessionStorage.tokenKey
+                    'Authorization': 'Bearer ' + localStorage.tokenKey
                 },
-                body: body 
+                body: body
             }
         )
         return await response.json();
     }
 
-    async get (path)
-    {
+    async get(path) {
         const response = await fetch(this.url + path,
             {
                 method: 'GET',
@@ -28,7 +26,7 @@ export default class ApiService {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + sessionStorage.tokenKey
+                    'Authorization': 'Bearer ' + localStorage.tokenKey
                 }
             }
         )
