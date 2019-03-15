@@ -42,7 +42,7 @@ export default props => (
                     <Nav pullRight id="LogoutNavigation">
                         <LinkContainer to={'/loginPage'}>
                             <NavItem id="logoutButton">
-                                <Glyphicon glyph='log-in' onClick={onClickLogout} /> Logout
+                                <button onClick={onClickLogout}> Logout </button>
                     </NavItem>
                         </LinkContainer>
                     </Nav>
