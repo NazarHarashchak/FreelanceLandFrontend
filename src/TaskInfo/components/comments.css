@@ -1,33 +1,75 @@
-  .comments-panel{
-    padding:20px;
-    width: 74%;
-  }
-  .comments {
-    width: 72.8%;
-    position: relative;
-    top:20px;
-    left:15px;
-    border-style:outset;
-    box-sizing: border-box;
-    border-width:2px;
-    clear: both;
-    background-color: #fbfbfc;
-  }
-  li {
-    list-style-type: none;
-  }
-  #add-comment{
-    width:75%;
-    margin-top: 20px;
-    padding: 10px;
-    text-align: center;
-  }
-  #date{
-    float:left;
-  }
-  #user-name{
-    float: right;
-  }
-  #content{
-    clear:both;
-  }
+    .comments-panel{
+      width: 72.8%;
+      position: relative;
+      bottom: 250px; 
+      left: 15px;
+      border-style: outset;
+      border-width: 2px;
+      clear: both;
+    }
+    .comentar{
+      width: 95%;
+      margin-top: 5px;
+      border-style:outset;
+      border-width:2px;
+      background-color: #fbfbfc;
+    }
+    li {
+      list-style-type: none;
+    }
+    #comments-title{
+      width: 100%;
+      height:40px;
+      padding:9px;
+      text-align: center;
+      box-sizing: border-box;
+      background: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0, #e5e5e9),
+      color-stop(1, #fbfbfc)
+    );
+    color: #707083;
+    text-shadow: 1px 1px 0 #fff;
+    }
+    #add-comment{
+      width:100%;
+      position: relative;
+      margin-top: 10px;
+      vertical-align: middle;
+      text-align: center;
+      clear: both;
+    }
+    #comment-user-photo{
+      padding: 10px;
+      width:60px;
+    }
+    .date{
+      padding-left: 10px;
+      font-size: 12px;
+    }
+    #commen-date{
+      font-size: 12px;
+    }
+    #user-name{
+      padding-left: 10px;
+      position: relative;
+      top:5.5px;
+      cursor: pointer;
+    }
+    #content{
+      margin:15px;
+    }
+    #text-content{
+      width: 80%;
+      height: 40px;
+      margin-left: 5px;
+    }
+    #user-photo{
+     width:80px;
+    }
+    #submit{
+      margin: 5px;
+      height: 40px;
+    }

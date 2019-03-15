@@ -8,6 +8,7 @@ import * as userReducer from '../Users/reducers';
 import * as taskCustomerReducer from '../TaskInfo/userReducer';
 import * as usersReducers from '../Users/reducers';
 import * as commentsReducers from '../TaskInfo/commentReducer';
+import * as addCommentReducers from '../TaskInfo/addCommentReducer';
 import * as loginReducer from '../LoginPage/reducers';
 import * as registrationReducer from '../RegistrationPage/reducers';
 
@@ -22,7 +23,9 @@ export default function configureStore(history, initialState) {
     taskProfilePage: myReducers.reducer,
     customerOfTask: taskCustomerReducer.reducer,
     usersReducers: usersReducers.reducer,
-      commentsTask: commentsReducers.reducer
+    commentsTask: commentsReducers.reducer,
+    addComment: addCommentReducers.reducer,
+    commentsTask: commentsReducers.reducer
   };
 
   const middleware = [

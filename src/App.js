@@ -17,6 +17,6 @@ export default () => (
         <Route path='/loginPage' component={LoginPage} />
         <Route path='/registrationPage' component={RegistrationPage} />
         <Route path='/taskInf/:id' component={Task}/>
-        <Route path='/Users' component={Users} />
+        <Route path='/Users' component={Users} /> 
   </Layout>
 );

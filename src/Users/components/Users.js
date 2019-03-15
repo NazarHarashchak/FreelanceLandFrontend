@@ -10,7 +10,7 @@ import SeachBar from './SeachBar';
 
 class Users extends Component {
     componentWillMount() {
-        this.props.requestUsersList;
+        //this.props.requestUsersList;
     }
 
     componentWillReceiveProps(nextProps) {

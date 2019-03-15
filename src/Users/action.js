@@ -10,14 +10,13 @@ const setFoundRolesListType = 'SET_FOUND_ROLES_LIST_TYPE';
 const changeRoleStatusType = 'CHANGE_CHECKED_ROLE_TYPE';
 const changeRolesOpenedStatusType = 'CHANGE_ROLES_OPENED_STATUS_TYPE';
 
-
-export const requestUsersList= () => async (dispatch) => {
+export const
+    requestUsersList = () => async (dispatch) => {
         dispatch({ type: requestUsersListType });
 
         const url = `https://localhost:44331/api/users`;
         const response = await fetch(url);
         const users = await response.json();
-
         dispatch({ type: receiveUsersListType, users });
     }
 
@@ -25,7 +24,6 @@ export const requestUserRoles = () => async (dispatch) => {
         const url = `https://localhost:44331/api/UserRole`;
         const response = await fetch(url);
         const roles = await response.json();
-
         console.log(roles);
         dispatch({ type: requestUserRolesList, roles });
     }
