@@ -35,6 +35,7 @@ p {
 }
 .form-control {
     border: 1px solid #c7d9df;
+    
 }
 
 .pagination-num label {
@@ -53,17 +54,32 @@ label {
     padding-right: 15px;
 }
 
-
 .j-order {
-    border-style:outset;
+   height: 140px;
     padding-left:15px;
     padding-top:15px;
+   
 }
 li {
-    display: list-item;
+    display: -moz-grid-line;
     text-align: -webkit-match-parent;
 }
+.ui.items {
+    margin: 0em 0;
+  
+}
+.ui.link.items{
+    border-style: outset;
+    border-radius: 10px;
+    height: 140px;
+}
+.ui.link.items:hover{
+    
+    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+    border-radius: 10px;
+   
 
+}
 
 
 .c-fixedAlerts {
@@ -79,6 +95,8 @@ li {
 }
 .media {
     margin-top: 0px;
+    height: 140px;
+   
 }
 .c-scrolltop span {
     width: 50px;
@@ -117,8 +135,8 @@ li {
 	font-family: 'Times New Roman', Times, serif;
 	font-size: 16px;
 }
-a{
-    text-decoration: wavy;
+a:link{
+    text-decoration: none;
 }
 .media-heading{
     color: rgb(15, 133, 15);

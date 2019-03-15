@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import UserImage from './userImage';
+import { Item } from 'semantic-ui-react';
 
 
 class UserItem extends Component {
     render() {
         return (
+            <Item.Group link>
             <div class="media">
                 <li className="j-order" >
                     <a href={`/ProfilePage/${this.props.item.id}`} >
@@ -32,6 +34,7 @@ class UserItem extends Component {
                 </li>
 
             </div>
+            </Item.Group>
         );
     }
 }

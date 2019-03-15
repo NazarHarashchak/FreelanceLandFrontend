@@ -13,7 +13,7 @@ const setPriceToValidateType = 'SET_PRICE_TO_VALIDATE';
 export const requestTasksList = () => async (dispatch) => {
     dispatch({ type: requestTasksListType });
 
-    const url = `https://localhost:44331/api/tasks`;
+    const url = `https://localhost:44331/api/tasks/6`;
     const response = await fetch(url);
     const tasks = await response.json();
 
