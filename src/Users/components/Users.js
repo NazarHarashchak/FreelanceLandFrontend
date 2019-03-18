@@ -7,10 +7,11 @@ import { connect } from 'react-redux';
 import {actionCreators} from '../action';
 import './styles.css';
 import SeachBar from './SeachBar';
+import ScrollTop from './ScrollTop'
 
 class Users extends Component {
     componentWillMount() {
-        this.props.requestUsersList;
+        //this.props.requestUsersList;
     }
 
     componentWillReceiveProps(nextProps) {
@@ -32,6 +33,7 @@ class Users extends Component {
                     <Pagination/>
                         
                     </div>
+                    <ScrollTop/>
             </div >
         );
     }

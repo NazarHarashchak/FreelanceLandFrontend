@@ -33,4 +33,38 @@ export default class ApiService {
         )
         return await response.json();
     }
+
+    async put (path, body)
+    {
+        const response = await fetch(this.url + path,
+            {
+                method: 'PUT',
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + sessionStorage.tokenKey
+                },
+                body: body 
+            }
+        )
+        return await response.json();
+    }
+
+    async delete (path, body)
+    {
+        const response = await fetch(this.url + path,
+            {
+                method: 'DELETE',
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + sessionStorage.tokenKey
+                },
+                body: body 
+            }
+        )
+        return await response.json();
+    }
 }

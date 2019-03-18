@@ -1,10 +1,13 @@
 import React from "react";
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Item } from 'semantic-ui-react';
 
 class TaskItem extends React.Component {
 	render() {
 		return (
+			<Item.Group link>
+			<div className="media">
 			<li className="j-order">
 				<header className="l-project-title">
 					<Link to={`/TaskInf/${this.props.item.id}`}>{this.props.item.title}</Link>
@@ -43,6 +46,8 @@ class TaskItem extends React.Component {
 					</li>
 				</ul>
 			</li>
+			</div>
+			</Item.Group>
 		);
 	}
 }

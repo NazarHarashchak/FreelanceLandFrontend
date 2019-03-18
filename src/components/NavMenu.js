@@ -4,6 +4,13 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
 
+function onClickLogout() {
+    localStorage.removeItem('tokenKey');
+    localStorage.removeItem('id');
+    localStorage.removeItem('login');
+    document.location.replace('loginPage');
+}
+
 export default props => (
     <Navbar inverse fixedTop fluid collapseOnSelect>
         <Navbar.Header>
@@ -14,7 +21,7 @@ export default props => (
         </Navbar.Header>
         <Navbar.Collapse>
             <Nav>
-                <LinkContainer to={''} exact>
+                <LinkContainer to={'/home'} exact>
                     <NavItem>
                         <Glyphicon glyph='home' /> Home
                     </NavItem>
@@ -30,19 +37,33 @@ export default props => (
                     </NavItem>
                 </LinkContainer>
             </Nav>
-            <Nav pullRight id = "LoginNavigation">
-                <LinkContainer to={'/registrationPage'}>
-                    <NavItem id = "RegistrationButton">
-                        <Glyphicon glyph='log-in' /> Registration
+            {localStorage.getItem('tokenKey') ?
+                (
+                    <Nav pullRight id="LogoutNavigation">
+                        <LinkContainer to={'/loginPage'}>
+                            <NavItem id="logoutButton">
+
+                                <button onClick={onClickLogout}> Logout </button>
+
                     </NavItem>
-                </LinkContainer>
-                <LinkContainer to={'/loginPage'}>
-                    <NavItem id = "loginButton">
-                        <Glyphicon glyph='log-in' /> Login
+                        </LinkContainer>
+                    </Nav>
+                ) :
+                (<Nav pullRight id="LoginNavigation">
+                    <LinkContainer to={'/registrationPage'}>
+                        <NavItem id="RegistrationButton">
+                            <Glyphicon glyph='log-in' /> Registration
                     </NavItem>
-                </LinkContainer>
-            </Nav>
+                    </LinkContainer>
+                    <LinkContainer to={'/loginPage'}>
+                        <NavItem id="loginButton">
+                            <Glyphicon glyph='log-in' /> Login
+                    </NavItem>
+                    </LinkContainer>
+                </Nav>)}
+
+
         </Navbar.Collapse>
     </Navbar>
-    
+
 );

@@ -27,45 +27,41 @@ class LoginPage extends Component {
         this.swap = this.swap.bind(this);
     }
 
-    validateLogin(Login){
+    validateLogin(Login) {
         let login = Login;
         let loginError = '';
-        if(!(login.length > 0))
-        {
+        if (!(login.length > 0)) {
             loginError = "Username can not be blank!";
         }
-       
-        this.setState({loginError: loginError});
-        if(loginError)
-        {
-            this.setState({loginColor: "red"});
+
+        this.setState({ loginError: loginError });
+        if (loginError) {
+            this.setState({ loginColor: "red" });
             return false;
         }
-        this.setState({loginColor: "green"});
+        this.setState({ loginColor: "green" });
         return true;
     }
 
-    validatePassword(Pass){
+    validatePassword(Pass) {
         let pass = Pass;
         let passwordError = '';
-        if(!(pass.length > 0))
-        {
+        if (!(pass.length > 0)) {
             passwordError = "Password can not be blank!";
         }
-        this.setState({passwordError: passwordError});
-        if(passwordError)
-        {
-            this.setState({passwordColor: "red"});
+        this.setState({ passwordError: passwordError });
+        if (passwordError) {
+            this.setState({ passwordColor: "red" });
             return false;
         }
-        this.setState({passwordColor: "green"});
+        this.setState({ passwordColor: "green" });
         return true;
     }
 
-    validationForm(){
+    validationForm() {
         const validLogin = this.validateLogin(this.state.login);
         const validPass = this.validatePassword(this.state.password);
-        if(validLogin && validPass)
+        if (validLogin && validPass)
             return true;
         else
             return false;
@@ -85,38 +81,16 @@ class LoginPage extends Component {
         this.setState({ password: event.target.value });
     }
 
-    addLogoutButton() {
-        document.getElementById('loginButton').style.visibility = 'hidden';
-        document.getElementById('RegistrationButton').style.visibility = 'hidden';
-        if(!document.getElementById('logoutButton'))
-        {
-            var li1 = document.createElement("LI");
-            var profile = document.createElement("BUTTON"); 
-            profile.id = "logoutButton";
-            profile.innerHTML = 'Log Out';
-            profile.onclick = function() {
-                document.getElementById('loginButton').style.visibility = 'visible';
-                document.getElementById('RegistrationButton').style.visibility = 'visible';
-                sessionStorage.removeItem('tokenKey');
-                profile.parentElement.removeChild(profile);
-                document.location.replace('loginPage');
-            };
-            li1.appendChild(profile); 
-            document.getElementById('LoginNavigation').appendChild(li1);
-            return (<Redirect to='/loginPage' />);
-        }
-    }
-
     authenticationSubmit(event) {
         event.preventDefault();
         const validation = this.validationForm();
         if (validation) {
             this.props.requestLogin(this.state.login, this.state.password)
-            .then(() => {
-                if(this.props.user === null) { this.setState({errorPop: true})}
-            });
+                .then(() => {
+                    if (this.props.user === null) { this.setState({ errorPop: true }) }
+                });
         }
-        
+
     }
 
     render() {
@@ -125,9 +99,7 @@ class LoginPage extends Component {
             return <Redirect to='/registrationPage' />
         }
         if (this.props.user !== null) {
-            if (this.props.user.access_token === sessionStorage.getItem("tokenKey")) {
-
-                this.addLogoutButton();
+            if (this.props.user.access_token === localStorage.getItem("tokenKey")) {
                 console.log("Success!");
                 const id = this.props.user.id;
                 const link = '/ProfilePage/' + id;
@@ -137,19 +109,29 @@ class LoginPage extends Component {
 
         return (
             <div className="signInForm">
+<<<<<<< HEAD
         
+=======
+
+                <SweetAlert
+                    show={this.state.errorPop}
+                    title="Fail!"
+                    text="User with this login doesn`t exist!"
+                    onConfirm={() => this.setState({ errorPop: false })}
+                />
+>>>>>>> 6e0423e20afe46608c6808f7988e978e84fa23cd
                 <div className="signIn">
                     <h1>Sign in to Freelance-land</h1>
                     <label for="username">
                         <b>Username</b>
                     </label>
-                    {this.state.loginError ? (<div style = {{ fontSize: 14, color: "red"}}>{this.state.loginError}</div>) : null}
+                    {this.state.loginError ? (<div style={{ fontSize: 14, color: "red" }}>{this.state.loginError}</div>) : null}
                     <input type="text" placeholder="Enter username" name="username"
                         value={this.state.login} onChange={this.loginChange} />
                     <label for="password">
                         <b>Password</b>
                     </label>
-                    {this.state.passwordError ? (<div style = {{ fontSize: 14, color: "red"}}>{this.state.passwordError}</div>) : null}
+                    {this.state.passwordError ? (<div style={{ fontSize: 14, color: "red" }}>{this.state.passwordError}</div>) : null}
                     <input type="password" placeholder="Enter password" name="password"
                         value={this.state.password} onChange={this.passwordChange} />
                     <button type="submit" className="signin" onClick={this.authenticationSubmit}>
