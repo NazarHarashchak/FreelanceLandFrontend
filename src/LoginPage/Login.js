@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators } from '../LoginPage/actions';
 import { Redirect } from 'react-router'
-import SweetAlert from 'sweetalert2-react';
+/*import SweetAlert from 'sweetalert2-react';*/
 
 
 class LoginPage extends Component {
@@ -137,13 +137,7 @@ class LoginPage extends Component {
 
         return (
             <div className="signInForm">
-            
-            <SweetAlert
-                show={this.state.errorPop}
-                title="Fail!"
-                text="User with this login doesn`t exist!"
-                onConfirm={() => this.setState({ errorPop: false })}
-            />
+        
                 <div className="signIn">
                     <h1>Sign in to Freelance-land</h1>
                     <label for="username">

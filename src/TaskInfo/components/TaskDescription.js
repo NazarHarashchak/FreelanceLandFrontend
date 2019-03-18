@@ -1,6 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { Link } from 'react-router-dom';
+import Comments from './Comments';
 
 import "./taskbody.css";
 
@@ -8,7 +8,7 @@ class TaskDescription extends React.Component {
  
   render() {
     return (
-        <div className="col-md-4">
+        <div className="col-md-9">
           <h1>
             <span id="task-title">
               <Link to="/tasks">Back to list</Link> > {this.props.myTask.title}
@@ -25,6 +25,8 @@ class TaskDescription extends React.Component {
                 </p>
               </div>
             </form>
+            {console.log(this.props.id)}
+            <Comments taskId={this.props.id}/>
         </div>
     );
   }

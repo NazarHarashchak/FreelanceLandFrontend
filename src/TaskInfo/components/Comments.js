@@ -3,7 +3,7 @@ import Comment from "./Comment";
 import AddComment from "./AddComment";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {actionCommentsCreators} from "../commentAction"
+import {actionCommentsCreators} from "../taskActions"
 
 import "./comments.css";
 
@@ -19,6 +19,7 @@ class Comments extends React.Component {
         <div className="comments">
           <ul width="100%">
               <li>
+                {console.log(this.props.taskId)}
                     {this.props.comments.map(item => (          
                       <Comment
                       key={item.id}

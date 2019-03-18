@@ -21,11 +21,12 @@ export const actionCreators = {
         const users = await apiService.get(url);
 
 
-    const url = `https://localhost:44331/api/users`;
+    /*const url = `https://localhost:44331/api/users`;
     const response = await fetch(url);
-    const users = await  response.json();
+    const users = await  response.json();*/
 
-    dispatch({ type: receiveUsersListType, users });
+    dispatch({ type: receiveUsersListType, users }); 
+    }
 }
 
 export const requestUserRoles = () => async(dispatch) => {

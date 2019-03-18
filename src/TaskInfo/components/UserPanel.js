@@ -2,18 +2,13 @@ import React from "react";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { actionUserCreators } from '../userAction';
 import "./taskbody.css";
 
 class UserPanel extends React.Component {
-  componentWillMount() {
-    // This method runs when the component is first added to the page
-       this.props.requestUser(this.props.id);
-    }
 
   render() {
     return (
-      <div className="right-panel">
+      <div className="col-md-3">
           <div className="user-panel">
             <div className="top-row">Customer
             </div>
@@ -25,9 +20,9 @@ class UserPanel extends React.Component {
                   </div>
                   </td>
                   <td>
-                    <span id="user-link"> <Link to={`/ProfilePage/${this.props.users.id}`}>
-                    <i className="fa fa-address-book"></i>{this.props.users.name 
-                      + ' ' +  this.props.users.sur_Name}
+                    <span id="user-link"> <Link to={`/ProfilePage/${this.props.customerId}`}>
+                    <i className="fa fa-address-book"></i>{this.props.name 
+                      + ' ' +  this.props.secName}
                     </Link></span>
                   </td>
                 </tr>
@@ -36,16 +31,16 @@ class UserPanel extends React.Component {
             <div className="user-panel">
               <div className="top-row">Date added</div>
                <i className="fa fa-calendar-plus-o"></i>
-                <label>{this.props.myTask.dateAdded}</label>
+                <label>{this.props.dateAdded}</label>
             </div>
             <div className="user-panel">
               <div className="top-row">Project deadline</div>
               <i className="fa fa-clock-o" ></i>
-              <label>{this.props.myTask.deadline}</label>
+              <label>{this.props.deadline}</label>
             </div>
             <div className="user-panel">
               <div className="top-row">
-                Same project
+                Simular project
               </div>
               <div>
                 
@@ -56,7 +51,4 @@ class UserPanel extends React.Component {
   }
 }
 
-export default connect(
-  state => state.customerOfTask,
-  dispatch => bindActionCreators(actionUserCreators, dispatch)
-)(UserPanel);
+export default UserPanel;

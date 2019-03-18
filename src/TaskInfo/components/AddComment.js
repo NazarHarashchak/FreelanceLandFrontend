@@ -1,7 +1,7 @@
 import React from "react";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {actionCommentsCreators} from "../addCommentAction"
+import {actionCommentsPostCreators} from "../taskActions"
 import { Redirect } from 'react-router'
 
 import "./comments.css";
@@ -74,5 +74,5 @@ class AddComment extends React.Component {
 
 export default connect(
     state => state.addComment,
-    dispatch => bindActionCreators(actionCommentsCreators, dispatch)
+    dispatch => bindActionCreators(actionCommentsPostCreators, dispatch)
 )(AddComment);

@@ -1,8 +1,7 @@
     .comments-panel{
-      width: 72.8%;
+      width: 100%;
       position: relative;
-      bottom: 250px; 
-      left: 15px;
+      margin-top: 30px;
       border-style: outset;
       border-width: 2px;
       clear: both;
