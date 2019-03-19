@@ -11,7 +11,7 @@ import ScrollTop from './ScrollTop'
 
 class Users extends Component {
     componentWillMount() {
-        this.props.requestUsersList;
+        //this.props.requestUsersList;
     }
 
     componentWillReceiveProps(nextProps) {

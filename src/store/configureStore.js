@@ -25,7 +25,7 @@ export default function configureStore(history, initialState) {
     usersReducers: usersReducers.reducer,
     commentsTask: commentsReducers.reducer,
     addComment: addCommentReducers.reducer,
-      commentsTask: commentsReducers.reducer
+    commentsTask: commentsReducers.reducer
   };
 
   const middleware = [

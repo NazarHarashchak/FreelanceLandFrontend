@@ -12,14 +12,15 @@ class PersonalInfo extends Component {
     this.state = {isLoaded: true };
 }
 
-async componentDidMount() {  
+async componentWillMount() {  
   await this.props.requestProfilePage(this.props.id);
+  console.log(this.props.id);
   this.setState({user:this.props.User, isLoaded : false });
 }
   render() {
     if(!this.state.isLoaded){
     const { email, name, sur_Name, birth_Date, phone_Number, login } = this.props.User;
-    const birthDate = birth_Date.toString().slice(0,birth_Date.indexOf('T'));
+    const birthDate = birth_Date;
     return (
       <div>
         
@@ -33,7 +34,7 @@ async componentDidMount() {
         login: login
        }}
       onSubmit={(values) => {
-        fetch('https://localhost:44331/api/Users/'+this.props.id, {
+        fetch('https://localhost:44332/api/Users/'+this.props.id, {
           method: 'PUT',
           headers: {
             'Accept': 'application/json',
@@ -114,7 +115,9 @@ async componentDidMount() {
                         onBlur={handleBlur}
                         value={values.email} />
                  </Form.Group>
-
+                    {localStorage.getItem('id')=== this.props.id ?
+                    <button type='submit'>click</button>
+                    :<div></div>}
                   </Form>
         </Segment>
       )}

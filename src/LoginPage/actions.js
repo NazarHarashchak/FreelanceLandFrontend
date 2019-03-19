@@ -1,4 +1,4 @@
-import apiService from '../services/apiService';
+import apiService from '../apiService';
 
 const requestSignIn = 'REQUEST_SIGN_IN';
 const receiveSignIn = 'RECEIVE_SIGN_IN';

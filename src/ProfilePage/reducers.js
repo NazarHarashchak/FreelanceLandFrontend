@@ -1,19 +1,19 @@
-const requestProfilePage = 'REQUEST_PROFILE_PAGE';
-const receiveProfilePage = 'RECEIVE_PROFILE_PAGE';
+const requestProfilePageType = 'REQUEST_PROFILE_PAGE_TYPE';
+const receiveProfilePageType = 'RECEIVE_PROFILE_PAGE_TYPE';
 
 const initialState = { User: [], isLoading: false };
 
 export const reducer = (state, action) => {
     state = state || initialState;
 
-    if (action.type === requestProfilePage) {
+    if (action.type === requestProfilePageType) {
         return {
             ...state,
             isLoading: true
         };
     }
 
-    if (action.type === receiveProfilePage) {
+    if (action.type === receiveProfilePageType) {
         return {
             ...state,
             User: action.User,

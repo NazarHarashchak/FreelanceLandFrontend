@@ -9,7 +9,7 @@ class UserItem extends Component {
             <Item.Group link>
             <div class="media">
                 <li className="j-order" >
-                    <a href={`/ProfilePage/${this.props.item.id}`} >
+                    <a href={`/ProfilePage/${this.props.item.id}`}>
                         <ul className="l-item-features">
                             <div class="media-left">
                                 <UserImage />

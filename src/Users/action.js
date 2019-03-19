@@ -1,4 +1,4 @@
-import apiService from '../services/apiService';
+import apiService from '../apiService';
 
 const requestUsersListType = 'REQUEST_USERS_LIST';
 const receiveUsersListType = 'RECEIVE_USERS_LIST';
@@ -10,16 +10,13 @@ const setFoundRolesListType = 'SET_FOUND_ROLES_LIST_TYPE';
 const changeRoleStatusType = 'CHANGE_CHECKED_ROLE_TYPE';
 const changeRolesOpenedStatusType = 'CHANGE_ROLES_OPENED_STATUS_TYPE';
 
-
-
-    export const requestUsersList = () => async (dispatch) => {
+export const
+    requestUsersList = () => async (dispatch) => {
         dispatch({ type: requestUsersListType });
 
         const url = `/api/users`;
-        const users = await apiService.get(url);
-        console.log(users);
-        const response = await fetch(url);
-
+        const response = await apiService.get(url);
+        const users = await response;
         dispatch({ type: receiveUsersListType, users });
     }
 
@@ -27,6 +24,7 @@ export const requestUserRoles = () => async (dispatch) => {
         const url = `/api/UserRole`;
         const response = await apiService.get(url);
         const roles = await response;
+        console.log(roles);
         dispatch({ type: requestUserRolesList, roles });
     }
 
