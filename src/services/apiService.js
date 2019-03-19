@@ -1,8 +1,8 @@
-const url = 'https://localhost:44332';
+import { API_ROOT, ROOT } from './api-config';
 
-    const  post = async (path, body) =>
-    {
-        const response = await fetch(url + path,
+export const requests = {
+    doPost: async function (path, body) {
+        const response = await fetch(ROOT + path,
             {
                 method: 'POST',
                 mode: 'cors',
@@ -14,12 +14,11 @@ const url = 'https://localhost:44332';
                 body: body
             }
         )
-        return await response.json();
-    }
+        return response.json();
+    },
 
-    const get = async (path) =>
-    {
-        const response = await fetch(url + path,
+    doGet: async function (path) {
+        const response = await fetch(API_ROOT + path,
             {
                 method: 'GET',
                 mode: 'cors',
@@ -30,6 +29,36 @@ const url = 'https://localhost:44332';
                 }
             }
         )
-        return await response.json();
-    }
-    export default {get, post}
+        return response.json();
+    },
+
+    doPut: async function (path, body) {
+        const response = await fetch(API_ROOT + path,
+            {
+                method: 'PUT',
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.tokenKey
+                },
+                body: body
+            }
+        )
+        return response.json();
+    },
+
+    doDelete: async function (path) {
+        const response = await fetch(API_ROOT + path,
+            {
+                method: 'DELETE',
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.tokenKey
+                }
+            }
+        )
+        return response.json();
+    }}

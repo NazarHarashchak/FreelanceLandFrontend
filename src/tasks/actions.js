@@ -1,4 +1,6 @@
-import apiService from '../apiService';
+import { requests } from '../services/apiService';
+import { request } from 'http';
+
 const requestTasksListType = 'REQUEST_TASKS_LIST';
 const receiveTasksListType = 'RECEIVE_TASKS_LIST';
 const searchTaskListType = 'SEARCH_TASKS_LIST';
@@ -16,9 +18,7 @@ const receiveTasksListForUserType = 'RECEIVE-TASKS-LIST-FOR-USER-TYPE'
 export const requestTasksList = () => async (dispatch) => {
     dispatch({ type: requestTasksListType });
 
-    const url = `/api/tasks`;
-    const response = await apiService.get(url);
-    const tasks = await response;
+    const tasks = await requests.doGet('/tasks');
 
     dispatch({ type: receiveTasksListType, tasks });
 }
@@ -27,7 +27,7 @@ export const requestTasksListForUser = () => async (dispatch) =>{
     dispatch({ type: requestTasksListForUserType });
 
     const url=`/api/tasks/`+localStorage.getItem('id');
-    const response = await apiService.get(url);
+    const response = await requests.doGet(url);
     const tasks= await response;
 
     dispatch({ type: receiveTasksListForUserType, tasks});
@@ -38,11 +38,8 @@ export const changeCategOpenedStatus = () => async (dispatch) => {
 
 export const requestCategoriesList = () => async (dispatch) => {
 
-    const url = `/api/TaskCategories`;
-    const response = await apiService.get(url);
-    const categories = await response;
-    console.log(categories);
-
+    const categories = await requests.doGet('/taskcategories');
+    
     dispatch({ type: requestCategoriesListType, categories });
 }
 

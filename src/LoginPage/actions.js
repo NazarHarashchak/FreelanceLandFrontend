@@ -1,15 +1,14 @@
-import apiService from '../apiService';
+import { requests } from '../services/apiService';
 
 const requestSignIn = 'REQUEST_SIGN_IN';
 const receiveSignIn = 'RECEIVE_SIGN_IN';
-
 
 export const actionCreators = {
     requestLogin: (username, pass) => async (dispatch) => {
         dispatch({ type: requestSignIn});
 
         const url = '/account/login';
-        const response = await apiService.post(url ,
+        const response = await requests.doPost(url ,
             JSON.stringify({
                 Login: username,
                 Password: pass
