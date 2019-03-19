@@ -1,12 +1,14 @@
+import ApiService from '../services/apiService';
+
 const requestProfilePage = 'REQUEST_PROFILE_PAGE';
 const receiveProfilePage = 'RECEIVE_PROFILE_PAGE';
+
+let apiService = new ApiService();
 
 export const actionCreators = {
     requestProfilePage: (id) => async (dispatch) => {
         dispatch({ type: requestProfilePage });
-        const url = 'https://localhost:44331/api/users/'+id;
-        const response = await fetch(url);
-        const User = await response.json();
+        const User = await apiService.get('/users/'+id);
 
         dispatch({ type: receiveProfilePage, User });
     }

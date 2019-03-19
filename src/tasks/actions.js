@@ -1,3 +1,5 @@
+import ApiService from '../services/apiService';
+
 const requestTasksListType = 'REQUEST_TASKS_LIST';
 const receiveTasksListType = 'RECEIVE_TASKS_LIST';
 const searchTaskListType = 'SEARCH_TASKS_LIST';
@@ -10,12 +12,12 @@ const cleanFilterType = 'CLEAN_FILTER';
 const setFoundTasksListType = 'SET_FOUND_TASKS_LIST';
 const setPriceToValidateType = 'SET_PRICE_TO_VALIDATE';
 
+let apiService = new ApiService();
+
 export const requestTasksList = () => async (dispatch) => {
     dispatch({ type: requestTasksListType });
 
-    const url = `https://localhost:44331/api/tasks`;
-    const response = await fetch(url);
-    const tasks = await response.json();
+    const tasks = await apiService.get('/tasks');
 
     dispatch({ type: receiveTasksListType, tasks });
 }
@@ -26,10 +28,8 @@ export const changeCategOpenedStatus = () => async (dispatch) => {
 
 export const requestCategoriesList = () => async (dispatch) => {
 
-    const url = `https://localhost:44331/api/taskcategories`;
-    const response = await fetch(url);
-    const categories = await response.json();
-
+    const categories = await apiService.get('/taskcategories');
+    
     dispatch({ type: requestCategoriesListType, categories });
 }
 

@@ -1,9 +1,9 @@
+import {API_ROOT} from './api-config';
+
 export default class ApiService {
 
-
-    url = 'https://localhost:44331';
     async post(path, body) {
-        const response = await fetch(this.url + path,
+        const response = await fetch(API_ROOT + path,
             {
                 method: 'POST',
                 mode: 'cors',
@@ -19,9 +19,40 @@ export default class ApiService {
     }
 
     async get(path) {
-        const response = await fetch(this.url + path,
+        const response = await fetch(API_ROOT + path,
             {
                 method: 'GET',
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.tokenKey
+                }
+            }
+        )
+        return await response.json();
+    }
+
+    async put(path,body) {
+        const response = await fetch(API_ROOT + path,
+            {
+                method: 'PUT',
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.tokenKey
+                },
+                body: body
+            }
+        )
+        return await response.json();
+    }
+
+    async delete(path) {
+        const response = await fetch(API_ROOT + path,
+            {
+                method: 'DELETE',
                 mode: 'cors',
                 headers: {
                     'Accept': 'application/json',

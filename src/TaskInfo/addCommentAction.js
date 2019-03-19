@@ -1,4 +1,4 @@
-import ApiService from '../apiService';
+import ApiService from '../services/apiService';
 
 const requestSendComment = 'REQUEST_SEND';
 const receiveSendComment = 'RECEIVE_SEND';
@@ -9,7 +9,7 @@ export const actionCommentsCreators = {
     sendComment: (my_content, my_userId, my_taskId) => async (dispatch) => {
         dispatch({ type: requestSendComment });
 
-        const url = `/api/comments`;
+        const url = `/comments`;
         const response = await apiService.post(url ,
             JSON.stringify({
                 content: my_content,
