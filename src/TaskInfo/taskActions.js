@@ -1,26 +1,22 @@
-import ApiService from '../apiService';
+import { requests } from '../services/apiService';
 
 const requestTaskForecastsType = 'REQUEST_WEATHER_FORECASTS';
 const receiveTaskForecastsType = 'RECEIVE_WEATHER_FORECASTS';
 const requestDeleteTask = 'REQUEST_DELETE_TASK';
 const receiveDeleteTask = 'RECEIVE_DELETE_TASK';
 
-let apiService = new ApiService();
-
 export const actionCreators = {
     requestTaskForecasts: (myId) => async (dispatch) => {
         dispatch({ type: requestTaskForecastsType });
-        const url = `https://localhost:44332/api/taskinfo/` + myId;
-        const response = await fetch(url);
-        const forecasts = await response.json();
+        const forecasts = await requests.doGet('/taskinfo/' + myId);
 
         dispatch({ type: receiveTaskForecastsType, forecasts });
     },
 
     requestDelete: (Id) => async (dispatch) => {
         dispatch({ type: requestDeleteTask });
-        const path = '/api/taskinfo/DeleteTask';
-        const response = await apiService.post(path,
+        const path = '/taskinfo/DeleteTask';
+        const response = await requests.doPost(path,
             JSON.stringify({
                 id: Id
             }));

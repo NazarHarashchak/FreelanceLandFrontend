@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+import { requests } from '../services/apiService';
+
+>>>>>>> 2b4abb322550edc62ef6c6b79cec943b74cecb43
 const requestUsersListType = 'REQUEST_USERS_LIST';
 const receiveUsersListType = 'RECEIVE_USERS_LIST';
 const requestUserRolesList = 'RECEIVE_USERS_ROLES';
@@ -12,17 +17,14 @@ export const
     requestUsersList = () => async (dispatch) => {
         dispatch({ type: requestUsersListType });
 
-        const url = `https://localhost:44332/api/users`;
-        const response = await fetch(url);
-        const users = await response.json();
+        const users = await  requests.doGet('/users');
+
         dispatch({ type: receiveUsersListType, users });
     }
 
 export const requestUserRoles = () => async (dispatch) => {
-        const url = `https://localhost:44332/api/UserRole`;
-        const response = await fetch(url);
-        const roles = await response.json();
-        console.log(roles);
+        const roles = await requests.doGet('/UserRole');
+        
         dispatch({ type: requestUserRolesList, roles });
     }
 
