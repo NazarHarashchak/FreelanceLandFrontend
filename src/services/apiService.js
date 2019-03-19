@@ -1,9 +1,9 @@
-import {API_ROOT} from './api-config';
+import {API_ROOT, ROOT} from './api-config';
 
 export default class ApiService {
 
     async post(path, body) {
-        const response = await fetch(API_ROOT + path,
+        const response = await fetch(ROOT + path,
             {
                 method: 'POST',
                 mode: 'cors',
