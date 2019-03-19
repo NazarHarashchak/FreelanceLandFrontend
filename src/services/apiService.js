@@ -1,8 +1,7 @@
-import {API_ROOT, ROOT} from './api-config';
+import { API_ROOT, ROOT } from './api-config';
 
-export default class ApiService {
-
-    async post(path, body) {
+export const requests = {
+    doPost: async function (path, body) {
         const response = await fetch(ROOT + path,
             {
                 method: 'POST',
@@ -15,10 +14,10 @@ export default class ApiService {
                 body: body
             }
         )
-        return await response.json();
-    }
+        return response.json();
+    },
 
-    async get(path) {
+    doGet: async function (path) {
         const response = await fetch(API_ROOT + path,
             {
                 method: 'GET',
@@ -30,10 +29,10 @@ export default class ApiService {
                 }
             }
         )
-        return await response.json();
-    }
+        return response.json();
+    },
 
-    async put(path,body) {
+    doPut: async function (path, body) {
         const response = await fetch(API_ROOT + path,
             {
                 method: 'PUT',
@@ -46,10 +45,10 @@ export default class ApiService {
                 body: body
             }
         )
-        return await response.json();
-    }
+        return response.json();
+    },
 
-    async delete(path) {
+    doDelete: async function (path) {
         const response = await fetch(API_ROOT + path,
             {
                 method: 'DELETE',
@@ -61,6 +60,6 @@ export default class ApiService {
                 }
             }
         )
-        return await response.json();
+        return response.json();
     }
 }
