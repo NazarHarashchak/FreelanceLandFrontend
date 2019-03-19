@@ -107,50 +107,60 @@ class LoginPage extends Component {
             }
         }
 
-        return (
-            <div className="signInForm">
+        if (!localStorage.getItem('tokenKey')) {
+            return (
+                <div className="signInForm">
 
-                <SweetAlert
-                    show={this.state.errorPop}
-                    title="Fail!"
-                    text="User with this login doesn`t exist!"
-                    onConfirm={() => this.setState({ errorPop: false })}
-                />
-                <div className="signIn">
-                    <h1>Sign in to Freelance-land</h1>
-                    <label for="username">
-                        <b>Username</b>
-                    </label>
-                    {this.state.loginError ? (<div style={{ fontSize: 14, color: "red" }}>{this.state.loginError}</div>) : null}
-                    <input type="text" placeholder="Enter username" name="username"
-                        value={this.state.login} onChange={this.loginChange} />
-                    <label for="password">
-                        <b>Password</b>
-                    </label>
-                    {this.state.passwordError ? (<div style={{ fontSize: 14, color: "red" }}>{this.state.passwordError}</div>) : null}
-                    <input type="password" placeholder="Enter password" name="password"
-                        value={this.state.password} onChange={this.passwordChange} />
-                    <button type="submit" className="signin" onClick={this.authenticationSubmit}>
-                        SIGN IN
+                    <SweetAlert
+                        show={this.state.errorPop}
+                        title="Fail!"
+                        text="User with this login doesn`t exist!"
+                        onConfirm={() => this.setState({ errorPop: false })}
+                    />
+                    <div className="signIn">
+                        <h1>Sign in to Freelance-land</h1>
+                        <label for="username">
+                            <b>Username</b>
+                        </label>
+                        {this.state.loginError ? (<div style={{ fontSize: 14, color: "red" }}>{this.state.loginError}</div>) : null}
+                        <input type="text" placeholder="Enter username" name="username"
+                            value={this.state.login} onChange={this.loginChange} />
+                        <label for="password">
+                            <b>Password</b>
+                        </label>
+                        {this.state.passwordError ? (<div style={{ fontSize: 14, color: "red" }}>{this.state.passwordError}</div>) : null}
+                        <input type="password" placeholder="Enter password" name="password"
+                            value={this.state.password} onChange={this.passwordChange} />
+                        <button type="submit" className="signin" onClick={this.authenticationSubmit}>
+                            SIGN IN
                     </button>
-                    <input type="checkbox" name="remember" />
-                    <label for="remember">Remember me</label>
-                    <span className="password">
-                        <a className="forgotPass" href="#">
-                            Forgot your password?
+                        <input type="checkbox" name="remember" />
+                        <label for="remember">Remember me</label>
+                        <span className="password">
+                            <a className="forgotPass" href="#">
+                                Forgot your password?
                             </a>
-                    </span>
-                </div>
-                <div className="swaper">
-                    <h1>Hello, Friend!</h1>
-                    <h3 className="text-detais">Enter your personal details</h3>
-                    <h3 className="text-detais">and start journey with us</h3>
-                    <button type="submit" class="sign" onClick={this.swap}>
-                        SIGN UP
+                        </span>
+                    </div>
+                    <div className="swaper">
+                        <h1>Hello, Friend!</h1>
+                        <h3 className="text-detais">Enter your personal details</h3>
+                        <h3 className="text-detais">and start journey with us</h3>
+                        <button type="submit" class="sign" onClick={this.swap}>
+                            SIGN UP
                     </button>
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }
+        else {
+            return (
+                <div className="signInForm">
+                    <h2>
+                        You already authenticated!
+                    </h2>
+                </div>);
+        }
     }
 }
 

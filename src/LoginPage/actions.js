@@ -1,4 +1,4 @@
-import ApiService from '../services/apiService';
+import ApiService from '../apiService';
 
 const requestSignIn = 'REQUEST_SIGN_IN';
 const receiveSignIn = 'RECEIVE_SIGN_IN';
@@ -21,7 +21,8 @@ export const actionCreators = {
             localStorage.setItem('tokenKey', user.access_token);
             localStorage.setItem('id', user.id);
             localStorage.setItem('login', user.login);
-            console.log("From storage: " + sessionStorage.tokenKey +'\r\n' + "Username: " + user.login);
+            localStorage.setItem('role', user.role);
+            console.log("From storage: " + localStorage.tokenKey + '\r\n' + "Username: " + user.login + '\r\n' + "Role: " + user.role);
         }
         dispatch({ type: receiveSignIn, user });
         
