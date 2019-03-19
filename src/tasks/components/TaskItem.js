@@ -23,7 +23,7 @@ class TaskItem extends React.Component {
 					</article>
 
 				<article>
-					<p>{this.props.item.description}</p>
+					<p id="task-description">{this.props.item.description}</p>
 				</article>
 
 				<ul className="l-item-features">

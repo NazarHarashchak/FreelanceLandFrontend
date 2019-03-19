@@ -18,8 +18,7 @@ class Tasks extends Component {
 
     render() {
         return (
-            <div className="container">
-             
+            <div className="container" id="tasks-container">          
                 <div className="main-content container">
                     <SearchBar />
                     <div className="row">
