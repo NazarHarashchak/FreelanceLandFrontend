@@ -5,14 +5,27 @@ import ActiveTasks from './ActiveTasks';
 import History from './History';
 import PersonalInfo from './PersonalInfo';
 import { Grid} from 'semantic-ui-react'
+import { addImage } from '../actions';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { actionCreators } from '../actions';
 
+import  logo from './MyPhoto.jpg';
+import AddImage from './AddImage';
+import ProfilePage from './ProfilePhoto';
 class ProfileComponent extends Component {
-  
+
   render() {
     return (
       <Grid>
         <Grid.Row centered>
-          <ProfilePhoto/>
+        
+        </Grid.Row>
+        <Grid.Row centered> 
+          <ProfilePage id={this.props.match.params.id}/>
+        </Grid.Row>
+        <Grid.Row centered>
+          <AddImage id={this.props.match.params.id}/>
         </Grid.Row>
 
         <Grid.Row centered>
@@ -37,4 +50,7 @@ class ProfileComponent extends Component {
   }
 }
 
-export default ProfileComponent;
+export default connect(
+  state => state.profilePage,
+  dispatch => bindActionCreators(actionCreators, dispatch)
+)(ProfileComponent);
