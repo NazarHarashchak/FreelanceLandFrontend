@@ -33,7 +33,7 @@ class TaskItem extends React.Component {
 					</li>
 
 					<li>
-						<a href="">
+						<a href={`/TaskInf/${this.props.item.id}/#comments`}>
 							<i className="fa fa-comments-o c-link-icon"></i>
 							<span>{this.props.item.commentsCount} offers</span>
 						</a>
