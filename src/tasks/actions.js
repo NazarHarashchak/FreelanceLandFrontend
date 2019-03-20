@@ -26,10 +26,9 @@ export const requestTasksList = () => async (dispatch) => {
 export const requestTasksListForUser = () => async (dispatch) =>{
     dispatch({ type: requestTasksListForUserType });
 
-    const url=`/api/tasks/`+localStorage.getItem('id');
-    const response = await requests.doGet(url);
-    const tasks= await response;
-
+    const url=`/tasks/`+localStorage.getItem('id');
+    console.log(url);
+    const tasks = await requests.doGet(url);
     dispatch({ type: receiveTasksListForUserType, tasks});
 }
 export const changeCategOpenedStatus = () => async (dispatch) => {

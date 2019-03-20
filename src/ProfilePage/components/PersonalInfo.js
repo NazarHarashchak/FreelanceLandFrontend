@@ -2,18 +2,19 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import './ProfilePage.css';
-import { Form , Segment} from 'semantic-ui-react'
+import { Form , Segment, Button} from 'semantic-ui-react'
 import { actionCreators } from '../actions';
 import {Formik} from 'formik';
 
 class PersonalInfo extends Component {
   constructor(props) {
     super(props);
-    this.state = {isLoaded: true };
+    this.state = {isLoaded: true, rea: false };
 }
 
 async componentWillMount() {  
   await this.props.requestProfilePage(this.props.id);
+  if(this.props.id!==localStorage.getItem('id')){this.state.rea=!this.state.rea} 
   console.log(this.props.id);
   this.setState({user:this.props.User, isLoaded : false });
 }
@@ -67,20 +68,25 @@ async componentWillMount() {
         handleSubmit,
           }) => (
               <Segment inverted>
-                <Form inverted onSubmit={handleSubmit}>
+              
+                <Form inverted onSubmit={handleSubmit} >
                   <Form.Group widths='equal'>
                     <Form.Input 
+                      className="first-name"
                       fluid label='First name' 
                       placeholder='First name' 
                       type="text"
+                      readOnly={this.state.rea}
                       name="firstName"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value={values.firstName} />
+                      value={values.firstName}
+                       />
                     <Form.Input fluid label='Last name' 
                         placeholder='Last name' 
                         type="text"
                         name="lastName"
+                        readOnly={this.state.rea}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.lastName} />
@@ -90,6 +96,7 @@ async componentWillMount() {
                       <Form.Input fluid label='Birth date' 
                         placeholder='Birth date' 
                         type="date"
+                        readOnly={this.state.rea}
                         name="bitrhDate"
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -99,6 +106,7 @@ async componentWillMount() {
                     <Form.Group widths='equal'>
                       <Form.Input fluid label='Phone' 
                         placeholder='Phone' 
+                        readOnly={this.state.rea}
                         type="tel"
                         name="phone"
                         onChange={handleChange}
@@ -112,11 +120,13 @@ async componentWillMount() {
                         type="email"
                         name="email"
                         onChange={handleChange}
+                        readOnly={this.state.rea}
                         onBlur={handleBlur}
                         value={values.email} />
                  </Form.Group>
+                 
                     {localStorage.getItem('id')=== this.props.id ?
-                    <button type='submit'>click</button>
+                    <Button className = "submit-button" type='submit'>Update</Button>
                     :<div></div>}
                   </Form>
         </Segment>
