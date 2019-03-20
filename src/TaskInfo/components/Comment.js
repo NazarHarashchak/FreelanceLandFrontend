@@ -4,6 +4,24 @@ import { Link } from 'react-router-dom';
 import "./comments.css";
 
 class Comment extends React.Component {
+  addExcecutorButton() {
+    const UserId = localStorage.getItem("id");
+    if (UserId === null)
+    {
+        return(<div></div>);
+    }
+    else {
+       return(
+       <div id="choose_excecutor">
+         <input type="button" value="Choose"  />
+       </div>);
+      }
+  }
+
+  saveExcecutor() {
+    
+  }
+
   render() {
     return (
       <div className="comentar">
@@ -24,9 +42,10 @@ class Comment extends React.Component {
                   <Link to={`/ProfilePage/${this.props.item.userId}`}>
                     <label id="user-name">{this.props.item.userName}</label>
                   </Link>
-              </td>
+                </td>
               </tr>
           </table>
+          {this.addExcecutorButton()}
                 <div id="content">
                   <label >{this.props.item.content}</label>
                 </div>

@@ -54,7 +54,7 @@
     #user-name{
       padding-left: 10px;
       position: relative;
-      top:5.5px;
+      top:3.5px;
       cursor: pointer;
     }
     #content{
@@ -71,4 +71,16 @@
     #submit{
       margin: 5px;
       height: 40px;
+    }
+    #comment-eror{
+      padding-top:5px;
+      height: 30px;
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+    }
+    #choose_excecutor{
+      width: 100px;
+      padding-right: 20px;
+      float: right;
     }

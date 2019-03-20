@@ -5,13 +5,13 @@ import FilterComponent from './FilterComponent'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {actionCreators} from '../action';
-import './styles.css';
+import './stylles.css';
 import SeachBar from './SeachBar';
 import ScrollTop from './ScrollTop'
 
 class Users extends Component {
     componentWillMount() {
-        //this.props.requestUsersList;
+        this.props.requestUsersList;
     }
 
     componentWillReceiveProps(nextProps) {
