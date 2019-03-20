@@ -13,12 +13,12 @@ export const actionCommentsCreators = {
         dispatch({ type: receiveCommentsListType, comments });
     },
 
-    requestDelete: (Id) => async (dispatch) => {
+    requestDelete: (id) => async (dispatch) => {
         dispatch({ type: requestDeleteComment });
-        const path = '/taskinfo/DeleteTask';
+        const path = '/api/comments/DeleteComment';
         const response = await requests.doPost(path,
             JSON.stringify({
-                id: Id
+                Id: id
             }));
 
         const deleteCommentResponse = await response.json();

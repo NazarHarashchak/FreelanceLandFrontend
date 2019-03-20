@@ -9,7 +9,7 @@ export const requests = {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + localStorage.tokenKey
+                    'Authorization': 'Bearer ' + sessionStorage.tokenKey
                 },
                 body: body
             }
@@ -25,7 +25,7 @@ export const requests = {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + localStorage.tokenKey
+                    'Authorization': 'Bearer ' + sessionStorage.tokenKey
                 }
             }
         )
@@ -40,7 +40,7 @@ export const requests = {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + localStorage.tokenKey
+                    'Authorization': 'Bearer ' + sessionStorage.tokenKey
                 },
                 body: body
             }
@@ -56,7 +56,7 @@ export const requests = {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + localStorage.tokenKey
+                    'Authorization': 'Bearer ' + sessionStorage.tokenKey
                 }
             }
         )

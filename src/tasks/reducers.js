@@ -9,8 +9,10 @@ const changeToPriceType = 'CHANGE_TO_PRICE';
 const cleanFilterType = 'CLEAN_FILTER';
 const setFoundTasksListType = 'SET_FOUND_TASKS_LIST';
 const setPriceToValidateType = 'SET_PRICE_TO_VALIDATE';
+const requestDeleteTask = 'REQUEST_DELETE_TASK';
+const receiveDeleteTask = 'RECEIVE_DELETE_TASK';
 
-const initialState = { tasks: [], priceToValidate:"",filteredTaskList: [], foundTasksList:[],filter: {categories:[], priceFrom:'', priceTo:''}, searchText:"", isLoading: false, isCategOpened:false };
+const initialState = { tasks: [], priceToValidate: "",deleteTaskResponse: [], filteredTaskList: [], foundTasksList:[],filter: {categories:[], priceFrom:'', priceTo:''}, searchText:"", isLoading: false, isCategOpened:false };
 
 export const reducer = (state, action) => {
     state = state || initialState;
@@ -27,6 +29,19 @@ export const reducer = (state, action) => {
                 tasks: action.tasks,
                 filteredTaskList: action.tasks,
                 foundTasksList: action.tasks,
+                isLoading: false
+            };
+
+        case requestDeleteTask:
+            return {
+                ...state,
+                isLoading: true
+            };
+
+        case receiveDeleteTask:
+            return {
+                ...state,
+                deleteTaskResponse: action.deleteTaskResponse,
                 isLoading: false
             };
 

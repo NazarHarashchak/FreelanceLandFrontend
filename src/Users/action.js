@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
 import { requests } from '../services/apiService';
 
->>>>>>> 2b4abb322550edc62ef6c6b79cec943b74cecb43
 const requestUsersListType = 'REQUEST_USERS_LIST';
 const receiveUsersListType = 'RECEIVE_USERS_LIST';
 const requestUserRolesList = 'RECEIVE_USERS_ROLES';

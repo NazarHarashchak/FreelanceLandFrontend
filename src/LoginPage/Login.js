@@ -99,7 +99,7 @@ class LoginPage extends Component {
             return <Redirect to='/registrationPage' />
         }
         if (this.props.user !== null) {
-            if (this.props.user.access_token === localStorage.getItem("tokenKey")) {
+            if (this.props.user.access_token === sessionStorage.getItem("tokenKey")) {
                 console.log("Success!");
                 const id = this.props.user.id;
                 const link = '/ProfilePage/' + id;
@@ -107,7 +107,7 @@ class LoginPage extends Component {
             }
         }
 
-        if (!localStorage.getItem('tokenKey')) {
+        if (!sessionStorage.getItem('tokenKey')) {
             return (
                 <div className="signInForm">
 

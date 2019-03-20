@@ -11,6 +11,8 @@ const changeToPriceType = 'CHANGE_TO_PRICE';
 const cleanFilterType = 'CLEAN_FILTER';
 const setFoundTasksListType = 'SET_FOUND_TASKS_LIST';
 const setPriceToValidateType = 'SET_PRICE_TO_VALIDATE';
+const requestDeleteTask = 'REQUEST_DELETE_TASK';
+const receiveDeleteTask = 'RECEIVE_DELETE_TASK';
 
 export const requestTasksList = () => async (dispatch) => {
     dispatch({ type: requestTasksListType });
@@ -18,6 +20,17 @@ export const requestTasksList = () => async (dispatch) => {
     const tasks = await requests.doGet('/tasks');
 
     dispatch({ type: receiveTasksListType, tasks });
+}
+
+export const requestDelete = (Id) => async (dispatch) => {
+    dispatch({ type: requestDeleteTask });
+
+    const deleteTaskResponse = await requests.doPost('/api/tasks/DeleteTask',
+        JSON.stringify({
+            id: Id
+        }));
+
+    dispatch({ type: receiveDeleteTask, deleteTaskResponse })
 }
 
 export const changeCategOpenedStatus = () => async (dispatch) => {

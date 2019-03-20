@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import { Icon } from 'semantic-ui-react';
 
 import "./comments.css";
 
@@ -10,24 +11,18 @@ class Comment extends React.Component {
     }
 
     deleteSubmit() {
-        console.log("Started");
-        this.props.requestDelete(this.props.item.Id)
-            .then(() => {
-                if (this.props.deleteTaskResponse === null) { console.log("Bad attemp!"); }
-                else {
-                    console.log("Deleted");
-                }
-            });
+        this.props.requestDelete(this.props.item.id);
+        document.location.replace('taskInf/'+ this.props.taskId);
     }
 
 
   render() {
     return (
         <div className="comentar">
-            {localStorage.getItem('role') === "Moderator" ? 
+            {sessionStorage.getItem('role') === "Moderator" ? 
                 (
                     <button id="delete" onClick={this.deleteSubmit}>
-                        Delete comment
+                        <Icon name='trash alternate'></Icon>
                     </button>)
                     :
                     (null)}
