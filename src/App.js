@@ -10,6 +10,7 @@ import Task from './TaskInfo/components/TaskInf'
 import ProfileComponent from './ProfilePage/components/ProfileComponent';
 import Users from './Users/components/Users';
 import MyPage from './MyPage/components/MyPage';
+import AddTaskPage from './addTaskPage/addTask';
 export default () => (
   <Layout>
         <Route path='/main' component={MainPage} />
@@ -20,5 +21,6 @@ export default () => (
         <Route path='/registrationPage' component={RegistrationPage} />
         <Route path='/taskInf/:id' component={Task}/>
         <Route path='/Users' component={Users} /> 
+        <Route path='/AddTask' component={AddTaskPage} />
   </Layout>
 );

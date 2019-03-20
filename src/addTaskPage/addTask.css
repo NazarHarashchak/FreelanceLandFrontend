@@ -1,0 +1,42 @@
+.add-task-body{
+}
+.col-md-8{
+    position: relative;
+    padding: 20px;
+    border-width: 2px;
+    border-style: outset;
+    background-color: #fbfbfc;
+}
+.text-element{
+    position:relative;
+    width: 87%;
+    float: right;
+    bottom: 50px;
+}
+.label-element{
+    width:15%;
+    position: relative;
+    clear:both;
+}
+#task-description{
+    height: 200px;
+    width: 100%;
+    padding: 20px;
+    flex-direction: column;
+    line-height: 20px;
+    flex-direction: column;
+    resize: auto;
+    cursor: text;
+    display: inline-block;
+    text-align: start;
+}
+#task-category{
+    position:relative;
+    width: 87%;
+    float: right;
+    bottom: 30px;
+}
+#save-button{
+    text-align: center;
+    clear: both;
+}
