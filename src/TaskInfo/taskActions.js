@@ -1,4 +1,4 @@
-import ApiService from '../services/apiService';
+import { requests } from '../services/apiService';
 
 const requestTaskForecastsType = 'REQUEST_WEATHER_FORECASTS';
 const receiveTaskForecastsType = 'RECEIVE_WEATHER_FORECASTS';
@@ -9,14 +9,12 @@ const receiveSendComment = 'RECEIVE_SEND';
 const requestExcecutor = 'REQUEST_EXCECUTOR';
 const receiveExcecutor = 'RECEIVE_EXCECUTOR';
 
-let apiService = new ApiService();
-
 export const addExcecutor = {
     addAnExcecutor: (id, myTaskId) => async (dispatch) => {
         dispatch({type: requestExcecutor});
 
         const url = `/api/taskinfo/addexcecutor`;
-        const response = await apiService.post(url ,
+        const response = await requests.doPost(url ,
             JSON.stringify({
                 excecutorId: id,
                 taskId: myTaskId
@@ -28,9 +26,7 @@ export const addExcecutor = {
 export const actionCreators = {
     requestTaskForecasts: (myId) => async (dispatch) => {
         dispatch({ type: requestTaskForecastsType });
-        
-        const url = `/api/taskinfo/` + myId;
-        const forecasts = await apiService.get(url);
+        const forecasts = await requests.doGet('/taskinfo/' + myId);
 
         dispatch({ type: receiveTaskForecastsType, forecasts });
     }
@@ -40,7 +36,7 @@ export const actionCommentsCreators = {
     requestComments: (myId) => async (dispatch) => {
         dispatch({ type: requestCommentsListType });
         const url = `/api/comments/` + myId;
-        const comments = await apiService.get(url);
+        const comments = await requests.doGet(url);
 
         dispatch({ type: receiveCommentsListType, comments });
     }
@@ -51,7 +47,7 @@ export const actionCommentsPostCreators = {
         dispatch({ type: requestSendComment });
 
         const url = `/api/comments`;
-        const response = await apiService.post(url ,
+        const response = await requests.doPost(url ,
             JSON.stringify({
                 content: my_content,
                 userId: my_userId,
