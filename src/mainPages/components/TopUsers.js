@@ -3,9 +3,12 @@ import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
 import 'bootstrap/dist/css/bootstrap-theme.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { requestTop } from '../actions';
 
 class Gallery extends React.Component {
-
+    
     galleryItem = (item, i) => (<div key={`key-${i}`} className="yours-custom-class">
         <h2></h2>
         <h2>Name:</h2>
@@ -57,4 +60,8 @@ class Gallery extends React.Component {
     }
 }
 
-export default Gallery;
+
+export default connect(
+    state => state.topUsers,
+    dispatch => bindActionCreators(requestTop, dispatch)
+)(Gallery);
