@@ -15,11 +15,11 @@ export const actionCreators = {
         }));
         
         const user = await response;
-        if (user !== null) {
+        if(user !== null){
             localStorage.setItem('tokenKey', user.access_token);
             localStorage.setItem('id', user.id);
             localStorage.setItem('login', user.login);
-            console.log("From storage: " + sessionStorage.tokenKey +'\r\n' + "Username: " + user.login);
+            console.log("From storage: " + localStorage.tokenKey +'\r\n' + "Username: " + user.login);
         }
         dispatch({ type: receiveSignIn, user });
         

@@ -61,5 +61,4 @@ export const requests = {
             }
         )
         return response.json();
-    }
-}
+    }}
