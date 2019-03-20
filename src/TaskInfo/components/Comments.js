@@ -12,6 +12,7 @@ class Comments extends React.Component {
   componentWillMount(){
     this.props.requestComments(this.props.taskId);
   }
+
   addNewComment() {
     const myUserId = localStorage.getItem("id");
     if (myUserId === null){
@@ -31,11 +32,12 @@ class Comments extends React.Component {
         <div className="comments">
           <ul width="100%">
               <li>
-                {console.log(this.props.taskId)}
+                {console.log(this.props.comments)}
                     {this.props.comments.map(item => (          
                       <Comment
                       key={item.id}
                       item={item}
+                      customerId = {this.props.customerId}
                       />
                     ))}
               </li>

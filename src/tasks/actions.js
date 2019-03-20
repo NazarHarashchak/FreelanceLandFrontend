@@ -15,13 +15,7 @@ const setPriceToValidateType = 'SET_PRICE_TO_VALIDATE';
 export const requestTasksList = () => async (dispatch) => {
     dispatch({ type: requestTasksListType });
 
-<<<<<<< HEAD
-    const url = `https://localhost:44332/api/tasks`;
-    const response = await fetch(url);
-    const tasks = await response.json();
-=======
     const tasks = await requests.doGet('/tasks');
->>>>>>> 2b4abb322550edc62ef6c6b79cec943b74cecb43
 
     dispatch({ type: receiveTasksListType, tasks });
 }
@@ -32,15 +26,8 @@ export const changeCategOpenedStatus = () => async (dispatch) => {
 
 export const requestCategoriesList = () => async (dispatch) => {
 
-<<<<<<< HEAD
-    const url = `https://localhost:44332/api/taskcategories`;
-    const response = await fetch(url);
-    const categories = await response.json();
-
-=======
     const categories = await requests.doGet('/taskcategories');
     
->>>>>>> 2b4abb322550edc62ef6c6b79cec943b74cecb43
     dispatch({ type: requestCategoriesListType, categories });
 }
 

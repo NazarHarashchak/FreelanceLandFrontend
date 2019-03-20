@@ -16,7 +16,8 @@ class Task extends React.Component {
         return (
             <div className="container-fluid">
                         <TaskDescription myTask={this.props.forecasts} url={this.props.match.url} 
-                        id={this.props.match.params.id}/>
+                                            id={this.props.match.params.id}
+                                            customerId={this.props.forecasts.customerId}/>
                         <UserPanel id={this.props.match.params.id} name={this.props.forecasts.customerName}
                                     secName={this.props.forecasts.customerSecondName}
                                     customerId={this.props.forecasts.customerId}

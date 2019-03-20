@@ -35,7 +35,8 @@ export const actionCreators = {
 export const actionCommentsCreators = {
     requestComments: (myId) => async (dispatch) => {
         dispatch({ type: requestCommentsListType });
-        const url = `/api/comments/` + myId;
+
+        const url = `/comments/` + myId;
         const comments = await requests.doGet(url);
 
         dispatch({ type: receiveCommentsListType, comments });
@@ -53,7 +54,9 @@ export const actionCommentsPostCreators = {
                 userId: my_userId,
                 taskId: my_taskId
         }));
+
         const comment = await response;
+
         dispatch ({ type: receiveSendComment, comment });
     }
 }

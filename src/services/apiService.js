@@ -1,15 +1,8 @@
 import { API_ROOT, ROOT } from './api-config';
 
-<<<<<<< HEAD
-
-    url = 'https://localhost:44332';
-    async post(path, body) {
-        const response = await fetch(this.url + path,
-=======
 export const requests = {
     doPost: async function (path, body) {
         const response = await fetch(ROOT + path,
->>>>>>> 2b4abb322550edc62ef6c6b79cec943b74cecb43
             {
                 method: 'POST',
                 mode: 'cors',

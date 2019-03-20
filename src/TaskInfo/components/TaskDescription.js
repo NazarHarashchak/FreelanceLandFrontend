@@ -26,7 +26,7 @@ class TaskDescription extends React.Component {
               </div>
             </form>
             {console.log(this.props.id)}
-            <Comments taskId={this.props.id}/>
+            <Comments taskId={this.props.id} customerId={this.props.customerId}/>
         </div>
     );
   }

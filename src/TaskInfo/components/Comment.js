@@ -5,16 +5,19 @@ import "./comments.css";
 
 class Comment extends React.Component {
   addExcecutorButton() {
-    const UserId = localStorage.getItem("id");
-    if (UserId === null)
+    const userId = localStorage.getItem("id");
+    const customerId = this.props.customerId;
+    if (userId == customerId)
     {
-        return(<div></div>);
+        return(
+          <div id="choose_excecutor">
+            <input type="button" value="Choose"  onClick={this.saveExcecutor()}/>
+          </div>
+        );
     }
     else {
        return(
-       <div id="choose_excecutor">
-         <input type="button" value="Choose"  />
-       </div>);
+        <div></div>);
       }
   }
 
