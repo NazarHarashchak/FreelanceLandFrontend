@@ -6,6 +6,7 @@
     margin-top: 3px;
     margin-bottom: 3px;
     padding-right: 15px;
+    padding-top:5px;
     color: #555555;
     white-space: nowrap;
 }
@@ -17,7 +18,7 @@
 
 header.l-project-title > :link{
     text-decoration-color: rgb(15, 133, 15);
-   color: #68af55;
+    color: #68af55;
     font-size: 22px;
 }
 .container {
@@ -150,9 +151,13 @@ a:hover {
     padding-top:15px;
 }
 
-.j-order {
+#tasks-container .j-order {
     border-radius: 10px; 
-    border-style:outset;
+    height:auto;
+}
+
+#tasks-container .ui.link.items{
+    height:auto;
 }
 .j-order:hover {
     box-shadow: 0 0 11px rgba(33,33,33,.2); 
