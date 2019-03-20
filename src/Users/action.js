@@ -14,14 +14,14 @@ export const
     requestUsersList = () => async (dispatch) => {
         dispatch({ type: requestUsersListType });
 
-        const url = `https://localhost:44331/api/users`;
+        const url = `https://localhost:44332/api/users`;
         const response = await fetch(url);
         const users = await response.json();
         dispatch({ type: receiveUsersListType, users });
     }
 
 export const requestUserRoles = () => async (dispatch) => {
-        const url = `https://localhost:44331/api/UserRole`;
+        const url = `https://localhost:44332/api/UserRole`;
         const response = await fetch(url);
         const roles = await response.json();
         console.log(roles);

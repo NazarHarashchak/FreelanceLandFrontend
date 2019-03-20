@@ -13,7 +13,7 @@ const setPriceToValidateType = 'SET_PRICE_TO_VALIDATE';
 export const requestTasksList = () => async (dispatch) => {
     dispatch({ type: requestTasksListType });
 
-    const url = `https://localhost:44331/api/tasks`;
+    const url = `https://localhost:44332/api/tasks`;
     const response = await fetch(url);
     const tasks = await response.json();
 
@@ -26,7 +26,7 @@ export const changeCategOpenedStatus = () => async (dispatch) => {
 
 export const requestCategoriesList = () => async (dispatch) => {
 
-    const url = `https://localhost:44331/api/taskcategories`;
+    const url = `https://localhost:44332/api/taskcategories`;
     const response = await fetch(url);
     const categories = await response.json();
 

@@ -10,7 +10,7 @@ let apiService = new ApiService();
 export const actionCreators = {
     requestProfilePage: (id) => async (dispatch) => {
         dispatch({ type: requestProfilePage });
-        const url = 'https://localhost:44331/api/users/'+id;
+        const url = 'https://localhost:44332/api/users/'+id;
         const response = await fetch(url);
         const User = await response.json();
 
@@ -18,7 +18,7 @@ export const actionCreators = {
     }
 }
 export const addImage = async (image)  => {
-    await fetch('https://localhost:44331/api/users/CreateImage',
+    await fetch('https://localhost:44332/api/users/CreateImage',
         { 
             headers: {
                 'Accept': 'application/json',
@@ -31,7 +31,7 @@ export const addImage = async (image)  => {
 
 export const actionCreators1 = {
     getImage: (id) => async (dispatch) => {
-    const url = 'https://localhost:44331/api/users/GetImage/'+id;
+    const url = 'https://localhost:44332/api/users/GetImage/'+id;
     const response = await fetch(url,
     { 
         method: 'GET',

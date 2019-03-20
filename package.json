@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@aspnet/signalr": "^1.1.2",
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/fontawesome-free-regular": "^5.0.13",
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
@@ -27,6 +28,7 @@
     "react-images-upload": "^1.2.6",
     "react-native": "^0.59.0",
     "react-native-alert-async": "^1.0.3",
+    "react-notifications-component": "^1.0.1",
     "react-redux": "^5.1.1",
     "react-responsive-navbar": "^1.0.11",
     "react-router-bootstrap": "^0.24.4",
