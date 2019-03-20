@@ -11,8 +11,10 @@ const setFoundTasksListType = 'SET_FOUND_TASKS_LIST';
 const setPriceToValidateType = 'SET_PRICE_TO_VALIDATE';
 const requestDeleteTask = 'REQUEST_DELETE_TASK';
 const receiveDeleteTask = 'RECEIVE_DELETE_TASK';
+const requestTasksListForUserType = 'REQUEST-TASKS-LIST-FOR-USER-TYPE';
+const receiveTasksListForUserType = 'RECEIVE-TASKS-LIST-FOR-USER-TYPE'
 
-const initialState = { tasks: [], priceToValidate: "",deleteTaskResponse: [], filteredTaskList: [], foundTasksList:[],filter: {categories:[], priceFrom:'', priceTo:''}, searchText:"", isLoading: false, isCategOpened:false };
+const initialState = { tasks: [], priceToValidate:"", deleteTaskResponse: [], filteredTaskList: [], foundTasksList:[],filter: {categories:[], priceFrom:'', priceTo:''}, searchText:"", isLoading: false, isCategOpened:false };
 
 export const reducer = (state, action) => {
     state = state || initialState;
@@ -22,6 +24,21 @@ export const reducer = (state, action) => {
                 ...state,
                 isLoading: true
             };
+
+        case requestTasksListForUserType:
+            return{
+                ...state,
+                isLoading: true
+            };
+
+        case receiveTasksListForUserType:
+            return{
+                ...state,
+                tasks: action.tasks,
+                filteredTaskList: action.tasks,
+                foundTasksList: action.tasks,
+                isLoading: false
+            }
 
         case receiveTasksListType:
             return {

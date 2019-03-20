@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { requestTasksList } from '../actions';
-import TaskItemList from './TaskItemList';
-import SearchBar from './SearchBar';
-import ScrollTop from './ScrollTop';
-import Filter from './Filter';
-import Pagination from './Pagination';
-import '../styles.css';
+import { requestTasksListForUser } from '../../tasks/actions';
+import TaskItemList from '../../tasks/components/TaskItemList';
+import SearchBar from '../../tasks/components/SearchBar';
+import ScrollTop from '../../tasks/components/ScrollTop';
+import Filter from '../../tasks/components/Filter';
+import Pagination from '../../tasks/components/Pagination';
+import '../../tasks/styles.css';
 
 
 class Tasks extends Component {
     componentWillMount() {
-        requestTasksList();
+        requestTasksListForUser();
     }
 
     render() {
@@ -39,5 +39,5 @@ class Tasks extends Component {
 
 export default connect(
     state => state.tasksReducers,
-    dispatch => bindActionCreators(requestTasksList, dispatch)
+    dispatch => bindActionCreators(requestTasksListForUser, dispatch)
 )(Tasks);

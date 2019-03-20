@@ -22,11 +22,7 @@ export default props => (
         </Navbar.Header>
         <Navbar.Collapse>
             <Nav>
-                <LinkContainer to={'/home'} exact>
-                    <NavItem>
-                        <Glyphicon glyph='home' /> Home
-                    </NavItem>
-                </LinkContainer>
+                
                 <LinkContainer to={'/tasks/#'}>
                     <NavItem>
                         <Glyphicon glyph='tasks' /> Tasks
@@ -41,10 +37,15 @@ export default props => (
             {sessionStorage.getItem('tokenKey') ?
                 (
                     <Nav pullRight id="LogoutNavigation">
+                        <LinkContainer to={'/home'} exact>
+                    <NavItem>
+                        <Glyphicon glyph='home' /> {localStorage.getItem('login')}
+                    </NavItem>
+                </LinkContainer>
                         <LinkContainer to={'/loginPage'}>
                             <NavItem id="logoutButton">
 
-                                <button onClick={onClickLogout}> Logout </button>
+                                <button className="logout-button" onClick={onClickLogout}> Logout </button>
 
                     </NavItem>
                         </LinkContainer>
