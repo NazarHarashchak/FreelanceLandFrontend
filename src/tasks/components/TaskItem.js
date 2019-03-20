@@ -7,7 +7,6 @@ class TaskItem extends React.Component {
 	render() {
 		return (
 			<Item.Group link>
-			<div className="media">
 			<li className="j-order">
 				<header className="l-project-title">
 					<Link to={`/TaskInf/${this.props.item.id}`}>{this.props.item.title}</Link>
@@ -16,11 +15,6 @@ class TaskItem extends React.Component {
 				<div className="l-project-head flex-price-tag">
 					<span className="l-price">{this.props.item.price} $</span>
 				</div>
-
-
-              <article>
-                  <p>{this.props.item.deadline}</p>
-					</article>
 
 				<article>
 					<p id="task-description">{this.props.item.description}</p>
@@ -46,7 +40,6 @@ class TaskItem extends React.Component {
 					</li>
 				</ul>
 			</li>
-			</div>
 			</Item.Group>
 		);
 	}
