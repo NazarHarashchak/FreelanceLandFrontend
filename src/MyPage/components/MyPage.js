@@ -1,32 +1,20 @@
 import React, { Component } from 'react';
-
-import Tabs from './Tabs';
-import MainPage from '../../mainPages/components/MainPage';
-import Login from '../../LoginPage/Login';
-import Tasks from '../../tasks/components/Tasks';
-import ProfileComponent from '../../ProfilePage/components/ProfileComponent';
+import apiService from '../../services/apiService';
+import { Tab } from 'semantic-ui-react'
+import Tasks from './ActiveTasks';
+import Login from '../../LoginPage/Login'
 import PersonalInfo from '../../ProfilePage/components/PersonalInfo';
-require('./styles.css');
-class MyPage extends Component {
-  
-    render() {
-      return (
-        <div>
-        <h1>My Page</h1>
-        <Tabs>
-          <div label="Anctive tasks">
-            <Tasks></Tasks>
-          </div>
-          <div label="History">
-            <ProfileComponent id="6"></ProfileComponent>
-          </div>
-          <div label="My information">
-            Nothing to see here, this tab is <em>extinct</em>!
-          </div>
-        </Tabs>
-      </div>
-      );
-    }
-  }
+import ProfileComponent from './ProfilePage';
+const panes = [
+  { menuItem: 'Active tasks', render: () => <Tab.Pane attached={false}></Tab.Pane> },
+  { menuItem: 'History', render: () => <Tab.Pane attached={false}><Tasks></Tasks></Tab.Pane> },
+  { menuItem: 'My information', render: () => <Tab.Pane attached={false}><ProfileComponent id={localStorage.getItem('id')}></ProfileComponent></Tab.Pane> },
+]
+
+const MyPage = () => <Tab menu={{ pointing: true }} panes={panes} />
+
   
   export default MyPage;
+
+
+  localStorage.getItem('id');
