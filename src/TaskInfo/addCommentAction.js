@@ -7,7 +7,7 @@ export const actionCommentsCreators = {
     sendComment: (my_content, my_userId, my_taskId) => async (dispatch) => {
         dispatch({ type: requestSendComment });
 
-        const url = `/comments`;
+        const url = `/api/comments`;
         const response = await requests.doPost(url ,
             JSON.stringify({
                 content: my_content,

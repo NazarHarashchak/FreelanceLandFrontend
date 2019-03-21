@@ -21,8 +21,10 @@ class Comments extends React.Component {
               <li>
                     {this.props.comments.map(item => (          
                       <Comment
-                      key={item.id}
-                      item={item}
+                                key={item.id}
+                                item={item}
+                                requestDelete={this.props.requestDelete}
+                                taskId={this.props.taskId}
                       />
                     ))}
               </li>
