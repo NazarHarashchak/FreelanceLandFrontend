@@ -1,49 +1,53 @@
-const requestProfilePage = 'REQUEST_PROFILE_PAGE';
-const receiveProfilePage = 'RECEIVE_PROFILE_PAGE';
 const requestImage = 'REQUEST_IMAGE';
 const receiveImage = 'RECEIVE_IMAGE';
 const refreshImage = 'REFRESH_IMAGE';
 
-const initialState = { User: [], isLoading: false };
+const requestProfilePageType = 'REQUEST_PROFILE_PAGE_TYPE';
+const receiveProfilePageType = 'RECEIVE_PROFILE_PAGE_TYPE';
+const changeEditStatusType ='CHANGE_EDIT_STATUS_TYPE';
+const initialState = { User: [], isLoading: false, isEditOpen: 'readonly' };
 
 export const reducer = (state, action) => {
     state = state || initialState;
+    switch(action.type){
+        case requestProfilePageType:
+            return {
+                ...state,
+                isLoading: true
+            };
+        
+        case receiveProfilePageType:
+            return {
+                ...state,
+                User: action.User,
+                isLoading: false
+            };
+        
+        case changeEditStatusType:
+            return {
+                ...state,
+                isEditOpen: !state.isEditOpen
+            };
 
-    if (action.type === requestProfilePage) {
+        case requestImage:
         return {
             ...state,
             isLoading: true
         };
-    }
 
-    if (action.type === receiveProfilePage) {
-        return {
-            ...state,
-            User: action.User,
-            isLoading: false
-        };
-    }
-
-    if (action.type === requestImage) {
-        return {
-            ...state,
-            isLoading: true
-        };
-    }
-
-    if (action.type === receiveImage) {
+        case receiveImage:
         return {
             ...state,
             image: action.ImgData,
             isLoading: false
         };
-    }
 
-    if (action.type === refreshImage) {
+        case refreshImage:
         return {
             ...state,
             isLoading: action.refresh
         };
+        default: return state;
     }
-    return state;
-};
+}
+

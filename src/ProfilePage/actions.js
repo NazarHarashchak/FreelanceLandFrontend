@@ -1,21 +1,20 @@
-import ApiService from '../services/apiService';
-
-const requestProfilePage = 'REQUEST_PROFILE_PAGE';
-const receiveProfilePage = 'RECEIVE_PROFILE_PAGE';
-const requestImage = 'REQUEST_IMAGE';
+import { requests } from '../services/apiService';
 const receiveImage = 'RECEIVE_IMAGE';
 const refreshImage = 'REFRESH_IMAGE';
-
-let apiService = new ApiService();
+const requestProfilePageType = 'REQUEST_PROFILE_PAGE_TYPE';
+const receiveProfilePageType = 'RECEIVE_PROFILE_PAGE_TYPE';
+const changeEditStatusType = 'CHANGE_EDIT_STATUS_TYPE';
 
 export const actionCreators = {
     requestProfilePage: (id) => async (dispatch) => {
-        dispatch({ type: requestProfilePage });
-        const url = 'https://localhost:44332/api/users/'+id;
-        const response = await fetch(url);
-        const User = await response.json();
+        dispatch({ type: requestProfilePageType });
+        const User = await requests.doGet('/users/' + id);
 
-        dispatch({ type: receiveProfilePage, User });
+        dispatch({ type: receiveProfilePageType, User });
+    },
+
+    changeEditStatus: () => async (dispatch) => {
+        dispatch({ type: changeEditStatusType });
     }
 }
 export const addImage = async (image)  => {

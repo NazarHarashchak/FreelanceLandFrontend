@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { requestTasksList } from '../actions';
 import TaskItemList from './TaskItemList';
 import SearchBar from './SearchBar';
@@ -18,8 +17,7 @@ class Tasks extends Component {
 
     render() {
         return (
-            <div className="container">
-             
+            <div className="container" id="tasks-container">          
                 <div className="main-content container">
                     <SearchBar />
                     <div className="row">

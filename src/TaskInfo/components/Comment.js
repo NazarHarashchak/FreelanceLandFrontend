@@ -1,12 +1,31 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import { Icon } from 'semantic-ui-react';
 
 import "./comments.css";
 
 class Comment extends React.Component {
+    constructor(props) {
+        super(props);
+        this.deleteSubmit = this.deleteSubmit.bind(this);
+    }
+
+    deleteSubmit() {
+        this.props.requestDelete(this.props.item.id);
+        document.location.replace('taskInf/'+ this.props.taskId);
+    }
+
+
   render() {
     return (
-      <div className="comentar">
+        <div className="comentar">
+            {sessionStorage.getItem('role') === "Moderator" ? 
+                (
+                    <button id="delete" onClick={this.deleteSubmit}>
+                        <Icon name='trash alternate'></Icon>
+                    </button>)
+                    :
+                    (null)}
         <form>
           <table className="comment-title">
               <tr> 

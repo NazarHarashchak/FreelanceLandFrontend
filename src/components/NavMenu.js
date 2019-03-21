@@ -6,9 +6,10 @@ import './NavMenu.css';
 import NotificationBadge from 'react-notification-badge';
 import {Effect} from 'react-notification-badge';
 function onClickLogout() {
-    localStorage.removeItem('tokenKey');
-    localStorage.removeItem('id');
-    localStorage.removeItem('login');
+    sessionStorage.removeItem('tokenKey');
+    sessionStorage.removeItem('id');
+    sessionStorage.removeItem('login');
+    sessionStorage.removeItem('role');
     document.location.replace('loginPage');
 }
 
@@ -22,11 +23,7 @@ export default props => (
         </Navbar.Header>
         <Navbar.Collapse>
             <Nav>
-                <LinkContainer to={'/home'} exact>
-                    <NavItem>
-                        <Glyphicon glyph='home' /> Home
-                    </NavItem>
-                </LinkContainer>
+                
                 <LinkContainer to={'/tasks/#'}>
                     <NavItem>
                         <Glyphicon glyph='tasks' /> Tasks
@@ -38,20 +35,20 @@ export default props => (
                     </NavItem>
                 </LinkContainer>
             </Nav>
-            {localStorage.getItem('tokenKey') ?
+            {sessionStorage.getItem('tokenKey') ?
                 (
                     <Nav pullRight id="LogoutNavigation">
-                        <LinkContainer to={'/home'}>
-                            <NavItem id="notificationCounter">
-                                <div>
-                                    <Glyphicon glyph='bell'><NotificationBadge count={2} effect={Effect.SCALE}/></Glyphicon>
-                                </div>
+                        <LinkContainer to={'/home'} exact>
+                            <NavItem>
+                                <Glyphicon glyph='home' /> {sessionStorage.getItem('login')}
                             </NavItem>
                         </LinkContainer>
                         <LinkContainer to={'/loginPage'}>
                             <NavItem id="logoutButton">
-                                <button onClick={onClickLogout}> Logout </button>
-                            </NavItem>
+
+                                <button className="logout-button" onClick={onClickLogout}> Logout </button>
+
+                    </NavItem>
                         </LinkContainer>
                     </Nav>
                 ) :

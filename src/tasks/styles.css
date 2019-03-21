@@ -6,12 +6,19 @@
     margin-top: 3px;
     margin-bottom: 3px;
     padding-right: 15px;
+    padding-top:5px;
     color: #555555;
     white-space: nowrap;
 }
+
+.l-item-features li i {
+    margin-right:5px;
+}
+
+
 header.l-project-title > :link{
     text-decoration-color: rgb(15, 133, 15);
-   color: #68af55;
+    color: #68af55;
     font-size: 22px;
 }
 .container {
@@ -19,17 +26,23 @@ header.l-project-title > :link{
  
 }
 
+.price-filter .col-md-6 {
+    padding-right:13px;
+}
+
 p, #filter label {
     font-size: 14px;
 }
 
-.clear-button
-{
-    color: #323232;
+#clear-filter-button {
+    color:rgba(0,0,0,.87);
+    text-decoration: underline;
 }
-.well{
+
+.well {
     background: linear-gradient(45deg, rgb(7, 82, 50),rgb(197, 232, 206));
 }
+
 .l-projectList {
     list-style: none;
     padding: 0;
@@ -64,14 +77,20 @@ a {
     text-decoration: underline;
 }
 
-.well h3 {
+#tasks-container .well h3 {
     margin-top:0px;
     margin-bottom: 15px;
 }
 
+#task-description {
+    text-align:left;
+}
+.price-filter h5 {
+    font-weight: 650;
+}
+
 .well h5 {
     color:#fff;
-    font-weight: 650;
 }
 .form-group button {
     padding:0;
@@ -83,21 +102,24 @@ a {
     color: red;
 }
 
-label {
+#tasks-container label {
     font-weight: normal;
 }
 
 .pagination-num .form-control {
-    width: 50px;
     display: inline-block;
     text-align: center;
+    padding: 0;
+    margin-left: 5px;
 }
 
 .pagination-num {
     float:right;
+    margin-top:20px;
+    margin-bottom:20px;
 }
 
-.main-content {
+#tasks-container>.main-content {
     padding-top:20px;
 }
 
@@ -107,9 +129,6 @@ label {
     color: #ffffff
 }
 
-.pagination {
-    padding-left:15px;
-}
 .pagination > li >a {
     color:rgb(6, 107, 63)
 }
@@ -123,31 +142,28 @@ a:hover {
     opacity:0.7
 }
 
-.j-order {
-    
-    border-radius: 10px; 
+#tasks-container .pagination {
     padding-left:15px;
     padding-top:15px;
-    
+}
+.j-orders-search-list {
+    padding-left:15px;
+    padding-top:15px;
+}
+
+#tasks-container .j-order {
+    border-radius: 10px; 
+    height:auto;
+}
+
+#tasks-container .ui.link.items{
+    height:auto;
 }
 .j-order:hover {
     box-shadow: 0 0 11px rgba(33,33,33,.2); 
     border-radius: 10px; 
     padding-left:15px;
     cursor: pointer;
-}
-.pagination-num {
-    margin-top:20px;
-    margin-bottom:20px;
-}
-body {
-    font-family: "Arial", sans-serif;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 22px;
-    background-color: #ffffff;
-    color: #333333;
-    padding-top: 40px;
 }
 
 .scroll-top-col
@@ -165,4 +181,3 @@ body {
     box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 12px 100px 0 rgba(0,0,0,0.19);
     border-radius: 12px;
 }
-

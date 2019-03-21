@@ -16,13 +16,15 @@ class Comments extends React.Component {
       <div className="comments-panel">
         <div id="comments-title">Comments</div>
         <AddComment userId='1' taskId={this.props.taskId}/>
-        <div className="comments">
+        <div className="comments" id="comments">
           <ul width="100%">
               <li>
                     {this.props.comments.map(item => (          
                       <Comment
-                      key={item.id}
-                      item={item}
+                                key={item.id}
+                                item={item}
+                                requestDelete={this.props.requestDelete}
+                                taskId={this.props.taskId}
                       />
                     ))}
               </li>
