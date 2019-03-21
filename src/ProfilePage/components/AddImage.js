@@ -8,7 +8,7 @@ import { Grid} from 'semantic-ui-react'
 import { addImage } from '../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { actionCreators } from '../actions';
+import { actionCreators1 } from '../actions';
 import Avatar from 'react-avatar';
 import  logo from './MyPhoto.jpg';
 
@@ -28,8 +28,8 @@ class AddImage extends Component {
         event.preventDefault();
         
         if((!this.state.inputError) && (this.state.file != "")){
-          addImage(this.state.file);
-          document.getElementById('img').value = "";
+          this.props.addImage(this.state.file);
+          document.getElementById('img').value = ""; 
         }
         else 
         {
@@ -73,5 +73,9 @@ class AddImage extends Component {
      )}
   }
   
-  export default AddImage;
+
+  export default connect(
+    state => state.profilePage,
+    dispatch => bindActionCreators(actionCreators1, dispatch)
+  )(AddImage);
   

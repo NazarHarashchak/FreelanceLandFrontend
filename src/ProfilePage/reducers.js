@@ -2,6 +2,7 @@ const requestProfilePage = 'REQUEST_PROFILE_PAGE';
 const receiveProfilePage = 'RECEIVE_PROFILE_PAGE';
 const requestImage = 'REQUEST_IMAGE';
 const receiveImage = 'RECEIVE_IMAGE';
+const refreshImage = 'REFRESH_IMAGE';
 
 const initialState = { User: [], isLoading: false };
 
@@ -38,5 +39,11 @@ export const reducer = (state, action) => {
         };
     }
 
+    if (action.type === refreshImage) {
+        return {
+            ...state,
+            isLoading: action.refresh
+        };
+    }
     return state;
 };

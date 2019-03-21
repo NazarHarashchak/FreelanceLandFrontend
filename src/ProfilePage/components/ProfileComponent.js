@@ -19,7 +19,6 @@ class ProfileComponent extends Component {
     return (
       <Grid>
         <Grid.Row centered>
-        
         </Grid.Row>
         <Grid.Row centered> 
           <ProfilePage id={this.props.match.params.id}/>

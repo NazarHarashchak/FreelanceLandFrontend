@@ -4,6 +4,7 @@ const requestProfilePage = 'REQUEST_PROFILE_PAGE';
 const receiveProfilePage = 'RECEIVE_PROFILE_PAGE';
 const requestImage = 'REQUEST_IMAGE';
 const receiveImage = 'RECEIVE_IMAGE';
+const refreshImage = 'REFRESH_IMAGE';
 
 let apiService = new ApiService();
 
@@ -44,4 +45,18 @@ export const actionCreators1 = {
     })
     const ImgData = await response.json();
     dispatch({ type: receiveImage, ImgData });
-}}
+},
+    addImage: (image) => async (dispatch)  => {
+    await fetch('https://localhost:44332/api/users/CreateImage',
+        { 
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + sessionStorage.tokenKey
+            },
+            method: 'POST',
+            body: image
+        })
+        const refresh = true;
+        dispatch({ type: refreshImage, refresh });
+    }
+}
