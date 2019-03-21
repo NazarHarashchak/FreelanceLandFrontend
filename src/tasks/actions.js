@@ -49,13 +49,6 @@ export const changeCategOpenedStatus = () => async (dispatch) => {
     dispatch({ type: changeCategOpenedStatusType });
 }
 
-export const requestCategoriesList = () => async (dispatch) => {
-
-    const categories = await requests.doGet('/taskcategories');
-
-    dispatch({ type: requestCategoriesListType, categories });
-}
-
 export const searchTasksList = (searchText) => {
     return ({ type: searchTaskListType, searchText });
 }   

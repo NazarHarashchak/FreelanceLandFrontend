@@ -46,6 +46,10 @@ export const reducer = (state, action) => {
                 tasks: action.tasks,
                 filteredTaskList: action.tasks,
                 foundTasksList: action.tasks,
+                filter: {
+                    ...state.filter,
+                    categories: createCategsList(action.tasks)
+                },
                 isLoading: false
             };
 
@@ -67,16 +71,6 @@ export const reducer = (state, action) => {
                 ...state,
                 isCategOpened: !state.isCategOpened
             };
-
-        case requestCategoriesListType:
-            return {
-                ...state,
-                filter: {
-                    ...state.filter,
-                    categories: cleanChecked(action.categories)
-                }
-            };
-
 
         case searchTaskListType:
             return {
@@ -153,6 +147,13 @@ function cleanChecked(categs) {
       });
     return newList;
 }
+
+function createCategsList(tasks) {
+    const categsNameArray = [...new Set(tasks.map(task => task.taskCategoryName))];
+    const categsList = categsNameArray.map(categ => {return {type:categ, isChecked:false}});
+    return categsList;
+}
+
 
 function switchCheckedStatus(categs,name) {
     const newList = categs.map(item =>
