@@ -11,4 +11,5 @@ export const requestTop = () => async (dispatch) => {
     const url=`/TopUsers/`;
     const users = await requests.doGet(url);
     dispatch({ type: receiveTop, users});
+    
 };
