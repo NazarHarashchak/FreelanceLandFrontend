@@ -1,3 +1,12 @@
+#avatar {
+    margin-top: 30px;
+}
+
+#img {
+    font-size: 14px;
+    height: 40px;
+}
+
 .photo-user {
     max-height: 500px;
     min-height: 50px;
