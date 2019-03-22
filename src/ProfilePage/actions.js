@@ -22,7 +22,7 @@ export const addImage = async (image)  => {
         { 
             headers: {
                 'Accept': 'application/json',
-                'Authorization': 'Bearer ' + sessionStorage.tokenKey
+                'Authorization': 'Bearer ' + localStorage.tokenKey
             },
             method: 'POST',
             body: image
@@ -39,7 +39,7 @@ export const actionCreators1 = {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + sessionStorage.tokenKey
+            'Authorization': 'Bearer ' + localStorage.tokenKey
         }
     })
     const ImgData = await response.json();
@@ -50,7 +50,7 @@ export const actionCreators1 = {
         { 
             headers: {
                 'Accept': 'application/json',
-                'Authorization': 'Bearer ' + sessionStorage.tokenKey
+                'Authorization': 'Bearer ' + localStorage.tokenKey
             },
             method: 'POST',
             body: image

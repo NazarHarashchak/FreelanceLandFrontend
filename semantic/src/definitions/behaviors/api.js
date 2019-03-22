@@ -145,7 +145,7 @@ $.api = $.fn.api = function(parameters) {
               module.error(error.noStorage);
               return;
             }
-            response = sessionStorage.getItem(url);
+            response = localStorage.getItem(url);
             module.debug('Using cached response', url, response);
             response = module.decode.json(response);
             return response;
@@ -164,7 +164,7 @@ $.api = $.fn.api = function(parameters) {
             if( $.isPlainObject(response) ) {
               response = JSON.stringify(response);
             }
-            sessionStorage.setItem(url, response);
+            localStorage.setItem(url, response);
             module.verbose('Storing cached response for url', url, response);
           }
         },

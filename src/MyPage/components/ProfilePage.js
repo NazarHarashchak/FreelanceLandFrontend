@@ -9,15 +9,15 @@ class ProfileComponent extends Component {
     return (
       <Grid>
         <Grid.Row centered>
-          <ProfilePhoto id={sessionStorage.getItem('id')}/>
+          <ProfilePhoto id={localStorage.getItem('id')}/>
         </Grid.Row>
         <Grid.Row centered>
-          <AddImage id={sessionStorage.getItem('id')}/>
+          <AddImage id={localStorage.getItem('id')}/>
         </Grid.Row>
 
         <Grid.Row centered>
           <Grid.Column width={10}>
-            <PersonalInfo id={sessionStorage.getItem('id')} />
+            <PersonalInfo id={localStorage.getItem('id')} />
           </Grid.Column>
         </Grid.Row>
       </Grid>
