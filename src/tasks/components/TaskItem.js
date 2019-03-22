@@ -20,14 +20,13 @@ class TaskItem extends React.Component {
 	render() {
 		return (
 			<Item.Group link>
-                <div className="media">
-                    {localStorage.getItem('role') === "Moderator" ?
-                        (
-                            <button id="delete" onClick={this.deleteSubmit}>
-                                <Icon name='trash alternate'></Icon>
-                    </button>)
-                        :
-                        (null)}
+        {sessionStorage.getItem('role') === "Moderator" ?
+         (
+           <button id="delete" onClick={this.deleteSubmit}>
+            <Icon name='trash alternate'></Icon>
+           </button>
+          ):(null)
+        }
 			<li className="j-order">
 				<header className="l-project-title">
 					<Link to={`/TaskInf/${this.props.item.id}`}>{this.props.item.title}</Link>
@@ -37,13 +36,8 @@ class TaskItem extends React.Component {
 					<span className="l-price">{this.props.item.price} $</span>
 				</div>
 
-
-              <article>
-                  <p>{this.props.item.deadline}</p>
-					</article>
-
 				<article>
-					<p>{this.props.item.description}</p>
+					<p id="task-description">{this.props.item.description}</p>
 				</article>
 
 				<ul className="l-item-features">
@@ -59,14 +53,13 @@ class TaskItem extends React.Component {
 					</li>
 
 					<li>
-						<a href="">
+						<a href={`/TaskInf/${this.props.item.id}/#comments`}>
 							<i className="fa fa-comments-o c-link-icon"></i>
 							<span>{this.props.item.commentsCount} offers</span>
 						</a>
 					</li>
 				</ul>
 			</li>
-			</div>
 			</Item.Group>
 		);
 	}
