@@ -4,14 +4,14 @@ import UsersList from "./UsersList";
 import FilterComponent from './FilterComponent'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {requestUsersList} from '../action';
+import {actionCreators} from '../action';
 import './stylles.css';
 import SeachBar from './SeachBar';
 import ScrollTop from './ScrollTop'
 
 class Users extends Component {
     componentWillMount() {
-        //this.props.requestUsersList;
+        this.props.requestUsersList;
     }
 
     componentWillReceiveProps(nextProps) {
@@ -41,5 +41,5 @@ class Users extends Component {
 
 export default connect(
     state => state.usersReducers,
-    dispatch => bindActionCreators(requestUsersList, dispatch)
+    dispatch => bindActionCreators(actionCreators, dispatch)
 )(Users);
