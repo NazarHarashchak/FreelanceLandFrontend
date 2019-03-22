@@ -145,7 +145,7 @@ class addTaskPage extends React.Component {
                         </div>
                     </div>
                     <div id="save-button">
-                        <input type="button" value="Save" onClick={this.saveChanges()}/>
+                        <input type="button" value="Save" onClick={this.saveChanges}/>
                     </div>
                 </div>
             </div>
