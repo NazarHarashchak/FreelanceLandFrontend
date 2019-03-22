@@ -19,7 +19,7 @@ class Comment extends React.Component {
   render() {
     return (
         <div className="comentar">
-            {sessionStorage.getItem('role') === "Moderator" ? 
+            {localStorage.getItem('role') === "Moderator" ? 
                 (
                     <button id="delete" onClick={this.deleteSubmit}>
                         <Icon name='trash alternate'></Icon>

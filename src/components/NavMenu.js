@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import './NavMenu.css';
 
 function onClickLogout() {
-    sessionStorage.removeItem('tokenKey');
-    sessionStorage.removeItem('id');
-    sessionStorage.removeItem('login');
-    sessionStorage.removeItem('role');
+    localStorage.removeItem('tokenKey');
+    localStorage.removeItem('id');
+    localStorage.removeItem('login');
+    localStorage.removeItem('role');
     document.location.replace('loginPage');
 }
 
@@ -34,7 +34,7 @@ export default props => (
                     </NavItem>
                 </LinkContainer>
             </Nav>
-            {sessionStorage.getItem('tokenKey') ?
+            {localStorage.getItem('tokenKey') ?
                 (
                     <Nav pullRight id="LogoutNavigation">
                         <LinkContainer to={'/home'} exact>

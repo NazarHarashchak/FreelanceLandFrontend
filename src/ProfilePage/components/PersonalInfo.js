@@ -21,7 +21,7 @@ async componentWillMount() {
   render() {
     if(!this.state.isLoaded){
     const { email, name, sur_Name, birth_Date, phone_Number, login } = this.props.User;
-    const birthDate = birth_Date.toString().slice(0,birth_Date.indexOf('T'));
+    const birthDate = birth_Date;
     return (
       <div>
         
