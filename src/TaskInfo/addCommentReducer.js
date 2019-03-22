@@ -1,6 +1,5 @@
 const requestSendComment = 'REQUEST_SEND';
 const receiveSendComment = 'RECEIVE_SEND';
-
 const initialState = { comment: [], isLoading: false};
 
 export const reducer = (state, action) => {

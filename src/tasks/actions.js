@@ -12,6 +12,8 @@ const changeToPriceType = 'CHANGE_TO_PRICE';
 const cleanFilterType = 'CLEAN_FILTER';
 const setFoundTasksListType = 'SET_FOUND_TASKS_LIST';
 const setPriceToValidateType = 'SET_PRICE_TO_VALIDATE';
+const requestDeleteTask = 'REQUEST_DELETE_TASK';
+const receiveDeleteTask = 'RECEIVE_DELETE_TASK';
 const requestTasksListForUserType = 'REQUEST-TASKS-LIST-FOR-USER-TYPE';
 const receiveTasksListForUserType = 'RECEIVE-TASKS-LIST-FOR-USER-TYPE'
 
@@ -23,23 +25,35 @@ export const requestTasksList = () => async (dispatch) => {
     dispatch({ type: receiveTasksListType, tasks });
 }
 
+export const requestDelete = (Id) => async (dispatch) => {
+    dispatch({ type: requestDeleteTask });
+
+    const deleteTaskResponse = await requests.doPost('/api/tasks/DeleteTask',
+        JSON.stringify({
+            id: Id
+        }));
+
+    dispatch({ type: receiveDeleteTask, deleteTaskResponse })
+}
+
 export const requestTasksListForUser = () => async (dispatch) =>{
     dispatch({ type: requestTasksListForUserType });
 
-    const url=`/tasks/`+localStorage.getItem('id');
+    const url=`/tasks/history/`+localStorage.getItem('id');
     console.log(url);
+    const tasks = await requests.doGet(url);
+    dispatch({ type: receiveTasksListForUserType, tasks});
+}
+
+export const requestActiveTasksListForUser = () => async (dispatch) =>{
+    dispatch({ type: requestTasksListForUserType });
+
+    const url=`/tasks/Active/`+localStorage.getItem('id');
     const tasks = await requests.doGet(url);
     dispatch({ type: receiveTasksListForUserType, tasks});
 }
 export const changeCategOpenedStatus = () => async (dispatch) => {
     dispatch({ type: changeCategOpenedStatusType });
-}
-
-export const requestCategoriesList = () => async (dispatch) => {
-
-    const categories = await requests.doGet('/taskcategories');
-    
-    dispatch({ type: requestCategoriesListType, categories });
 }
 
 export const searchTasksList = (searchText) => {

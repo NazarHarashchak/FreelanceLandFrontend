@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\LoginPage",
-    "\\src\\store"
+    "\\src\\TaskInfo",
+    "\\src\\TaskInfo\\components"
   ],
+  "SelectedNode": "\\src\\TaskInfo\\components\\Comments.js",
   "PreviewInSolutionExplorer": false
 }

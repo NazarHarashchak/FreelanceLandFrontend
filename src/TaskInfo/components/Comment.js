@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+<<<<<<< HEAD
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {addExcecutor} from '../taskActions';
@@ -27,10 +28,34 @@ class Comment extends React.Component {
   saveExcecutor() {
     this.props.addAnExcecutor(this.props.item.userId, this.props.item.taskId);
   }
+=======
+import { Icon } from 'semantic-ui-react';
+
+import "./comments.css";
+
+class Comment extends React.Component {
+    constructor(props) {
+        super(props);
+        this.deleteSubmit = this.deleteSubmit.bind(this);
+    }
+
+    deleteSubmit() {
+        this.props.requestDelete(this.props.item.id);
+        document.location.replace('taskInf/'+ this.props.taskId);
+    }
+
+>>>>>>> 981503df10a22c297207eee1b423af24b191c1d6
 
   render() {
     return (
-      <div className="comentar">
+        <div className="comentar">
+            {localStorage.getItem('role') === "Moderator" ? 
+                (
+                    <button id="delete" onClick={this.deleteSubmit}>
+                        <Icon name='trash alternate'></Icon>
+                    </button>)
+                    :
+                    (null)}
         <form>
           <table className="comment-title">
               <tr> 

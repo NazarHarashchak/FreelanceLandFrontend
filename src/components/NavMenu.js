@@ -8,6 +8,7 @@ function onClickLogout() {
     localStorage.removeItem('tokenKey');
     localStorage.removeItem('id');
     localStorage.removeItem('login');
+    localStorage.removeItem('role');
     document.location.replace('loginPage');
 }
 
