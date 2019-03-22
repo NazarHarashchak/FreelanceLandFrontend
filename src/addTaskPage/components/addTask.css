@@ -36,7 +36,19 @@
     float: right;
     bottom: 30px;
 }
+#price-text{
+    position: relative;
+    top:17px;
+    text-align: center;
+}
 #save-button{
     text-align: center;
     clear: both;
+}
+.Errors{
+    font: red;
+}
+#price-error{
+    position: relative;
+    top:17px;
 }

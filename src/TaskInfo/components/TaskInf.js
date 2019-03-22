@@ -15,6 +15,7 @@ class Task extends React.Component {
     render() {
         return (
             <div className="container-fluid">
+                        <div className="col-md-1"></div>
                         <TaskDescription myTask={this.props.forecasts} url={this.props.match.url} 
                                             id={this.props.match.params.id}
                                             customerId={this.props.forecasts.customerId}/>

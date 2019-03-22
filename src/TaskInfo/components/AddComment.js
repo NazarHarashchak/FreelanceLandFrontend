@@ -49,13 +49,17 @@ class AddComment extends React.Component {
     }
 
     sendMyComment(event) {
-        event.preventDefault();
         const valid = this.validationForm();
         if (valid)
         {
-            this.props.sendComment(this.state.commentContent, this.props.userId, this.props.taskId);
-            document.location.reload(true);    
+            this.props.sendComment(this.state.commentContent, this.props.userId, this.props.taskId).
+            then(() => {
+                if(this.props.comment != null) { document.location.reload(true);}
+            });
+                
         }
+        
+        event.preventDefault();
     }
 
     render() {

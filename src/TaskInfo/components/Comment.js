@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import {addExcecutor} from '../taskActions';
 import "./comments.css";
 
 class Comment extends React.Component {
+
   addExcecutorButton() {
     const userId = localStorage.getItem("id");
     const customerId = this.props.customerId;
@@ -11,7 +14,7 @@ class Comment extends React.Component {
     {
         return(
           <div id="choose_excecutor">
-            <input type="button" value="Choose"  onClick={this.saveExcecutor()}/>
+            <input type="button" value="Choose"/>
           </div>
         );
     }
@@ -22,7 +25,7 @@ class Comment extends React.Component {
   }
 
   saveExcecutor() {
-    
+    this.props.addAnExcecutor(this.props.item.userId, this.props.item.taskId);
   }
 
   render() {
@@ -58,4 +61,7 @@ class Comment extends React.Component {
   }
 }
 
-export default Comment;
+export default  connect(
+  state => state.addNewExcecutor,
+  dispatch => bindActionCreators(addExcecutor, dispatch)
+)(Comment);

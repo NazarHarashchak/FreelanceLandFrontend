@@ -8,7 +8,7 @@ class TaskDescription extends React.Component {
  
   render() {
     return (
-        <div className="col-md-9">
+        <div className="col-md-7">
           <h1>
             <span id="task-title">
               <Link to="/tasks">Back to list</Link> > {this.props.myTask.title}

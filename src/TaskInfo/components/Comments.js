@@ -32,7 +32,6 @@ class Comments extends React.Component {
         <div className="comments">
           <ul width="100%">
               <li>
-                {console.log(this.props.comments)}
                     {this.props.comments.map(item => (          
                       <Comment
                       key={item.id}

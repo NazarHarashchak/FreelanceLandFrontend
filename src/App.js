@@ -10,7 +10,7 @@ import Task from './TaskInfo/components/TaskInf'
 import ProfileComponent from './ProfilePage/components/ProfileComponent';
 import Users from './Users/components/Users';
 import MyPage from './MyPage/components/MyPage';
-import AddTaskPage from './addTaskPage/addTask';
+import AddTaskPage from './addTaskPage/components/addTask';
 export default () => (
   <Layout>
         <Route path='/main' component={MainPage} />

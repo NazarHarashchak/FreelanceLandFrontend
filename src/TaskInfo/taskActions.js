@@ -9,20 +9,7 @@ const receiveSendComment = 'RECEIVE_SEND';
 const requestExcecutor = 'REQUEST_EXCECUTOR';
 const receiveExcecutor = 'RECEIVE_EXCECUTOR';
 
-export const addExcecutor = {
-    addAnExcecutor: (id, myTaskId) => async (dispatch) => {
-        dispatch({type: requestExcecutor});
 
-        const url = `/api/taskinfo/addexcecutor`;
-        const response = await requests.doPost(url ,
-            JSON.stringify({
-                excecutorId: id,
-                taskId: myTaskId
-        }));
-        const comment = await response;
-        dispatch ({ type: receiveExcecutor, comment });
-    }
-}
 export const actionCreators = {
     requestTaskForecasts: (myId) => async (dispatch) => {
         dispatch({ type: requestTaskForecastsType });
@@ -57,6 +44,23 @@ export const actionCommentsPostCreators = {
 
         const comment = await response;
 
+        console.log(my_content + my_userId + my_taskId);
+
         dispatch ({ type: receiveSendComment, comment });
+    }
+}
+
+export const addExcecutor = {
+    addAnExcecutor: (id, myTaskId) => async (dispatch) => {
+        dispatch({type: requestExcecutor});
+
+        const url = `/api/taskinfo/addexcecutor`;
+        const response = await requests.doPost(url ,
+            JSON.stringify({
+                excecutorId: id,
+                taskId: myTaskId
+        }));
+        const user = await response;
+        dispatch ({ type: receiveExcecutor, user });
     }
 }

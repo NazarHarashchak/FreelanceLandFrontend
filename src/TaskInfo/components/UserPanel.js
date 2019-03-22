@@ -8,13 +8,13 @@ class UserPanel extends React.Component {
 
   render() {
     return (
-      <div className="col-md-3">
+      <div className="col-md-2">
           <div className="user-panel">
             <div className="top-row">Customer
             </div>
               <table id="user-table">
                 <tr id="bottom-row">
-                <td>
+                  <td>
                   <div id="user-photo">
                     <img src={require("./123.jpeg")} alt="фото користувача" width="80px"/>
                   </div>
@@ -34,7 +34,7 @@ class UserPanel extends React.Component {
                 <label>{this.props.dateAdded}</label>
             </div>
             <div className="user-panel">
-              <div className="top-row">Project deadline</div>
+              <div className="top-row">Task updated</div>
               <i className="fa fa-clock-o" ></i>
               <label>{this.props.deadline}</label>
             </div>
