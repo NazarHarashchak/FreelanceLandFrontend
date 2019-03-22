@@ -14,14 +14,14 @@ class PersonalInfo extends Component {
 
 async componentWillMount() {  
   await this.props.requestProfilePage(this.props.id);
-  if(this.props.id!==localStorage.getItem('id')){this.state.rea=!this.state.rea} 
+  if(this.props.id!==sessionStorage.getItem('id')){this.state.rea=!this.state.rea} 
   console.log(this.props.id);
   this.setState({user:this.props.User, isLoaded : false });
 }
   render() {
     if(!this.state.isLoaded){
     const { email, name, sur_Name, birth_Date, phone_Number, login } = this.props.User;
-    const birthDate = birth_Date.toString().slice(0,birth_Date.indexOf('T'));
+    const birthDate = birth_Date;
     return (
       <div>
         
@@ -125,7 +125,7 @@ async componentWillMount() {
                         value={values.email} />
                  </Form.Group>
                  
-                    {localStorage.getItem('id')=== this.props.id ?
+                    {sessionStorage.getItem('id')=== this.props.id ?
                     <Button className = "submit-button" type='submit'>Update</Button>
                     :<div></div>}
                   </Form>

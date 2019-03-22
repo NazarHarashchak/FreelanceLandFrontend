@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import UserPanel from './UserPanel';
+import UserPanel from './UserPanel'; 
 import TaskDescription from './TaskDescription';
-import Comments from './Comments';
+import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators } from '../taskActions';
@@ -14,12 +14,16 @@ class Task extends React.Component {
 
     render() {
         return (
-            <div className="task-body">
-                <div>
-                    <UserPanel id={this.props.match.params.id} myTask={this.props.forecasts} />
-                    <TaskDescription myTask={this.props.forecasts} url={this.props.match.url} />
-                    <Comments taskId={this.props.match.params.id} />
-                </div>
+            <div className="container-fluid">
+                        <div className="col-md-1"></div>
+                        <TaskDescription myTask={this.props.forecasts} url={this.props.match.url} 
+                                            id={this.props.match.params.id}
+                                            customerId={this.props.forecasts.customerId}/>
+                        <UserPanel id={this.props.match.params.id} name={this.props.forecasts.customerName}
+                                    secName={this.props.forecasts.customerSecondName}
+                                    customerId={this.props.forecasts.customerId}
+                                    dateAdded={this.props.forecasts.date}
+                                    deadline={this.props.forecasts.deadline}/>
             </div>
         );
     }

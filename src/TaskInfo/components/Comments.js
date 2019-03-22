@@ -3,28 +3,40 @@ import Comment from "./Comment";
 import AddComment from "./AddComment";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {actionCommentsCreators} from "../commentAction"
+import {actionCommentsCreators} from "../taskActions"
 
 import "./comments.css";
+import { AccordionTitle } from "semantic-ui-react";
 
 class Comments extends React.Component {
   componentWillMount(){
     this.props.requestComments(this.props.taskId);
   }
+
+  addNewComment() {
+    const myUserId = localStorage.getItem("id");
+    if (myUserId === null){
+       return (
+         <div id="comment-eror">Sign in to add the comment</div>
+       );}
+   else {
+      return (
+        <AddComment userId={myUserId} taskId={this.props.taskId}/>
+        );}
+  }
   render() {
     return (
       <div className="comments-panel">
         <div id="comments-title">Comments</div>
-        <AddComment userId='1' taskId={this.props.taskId}/>
+        {this.addNewComment()}
         <div className="comments">
           <ul width="100%">
               <li>
                     {this.props.comments.map(item => (          
                       <Comment
-                                key={item.id}
-                                item={item}
-                                requestDelete={this.props.requestDelete}
-                                taskId={this.props.taskId}
+                      key={item.id}
+                      item={item}
+                      customerId = {this.props.customerId}
                       />
                     ))}
               </li>
