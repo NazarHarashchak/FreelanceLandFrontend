@@ -20,7 +20,7 @@ export const
     }
 
 export const requestUserRoles = () => async (dispatch) => {
-        const roles = await requests.doGet('/UserRole');
+        const roles = await requests.doGet('/users/getRoles');
         
         dispatch({ type: requestUserRolesList, roles });
     }
