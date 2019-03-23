@@ -13,6 +13,18 @@ function onClickLogout() {
     document.location.replace('loginPage');
 }
 
+function addTask(){ 
+    if (localStorage.getItem("id") !== null) {
+     return (
+            <LinkContainer to={'/AddTask'}>
+                <NavItem>
+                    <Glyphicon glyph='plus' /> Add Task
+                </NavItem>
+            </LinkContainer>
+            );
+        }
+}
+
 export default props => (
     <Navbar inverse fixedTop fluid collapseOnSelect>
         <Navbar.Header>
@@ -34,6 +46,7 @@ export default props => (
                         <Glyphicon glyph='th-list' /> Freelancers & Customers
                     </NavItem>
                 </LinkContainer>
+                {addTask()}
             </Nav>
             {localStorage.getItem('tokenKey') ?
                 (
