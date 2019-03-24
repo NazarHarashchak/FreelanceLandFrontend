@@ -45,7 +45,7 @@ class AddImage extends Component {
     async sendImage(event) {
         event.preventDefault();
         
-        if((!this.state.inputError)){
+        if((!this.state.inputError) && !(this.state.file)){
           const img = this.editor.getImageScaledToCanvas().toDataURL('image/jpeg', 1.0);
           var file=this.dataURItoBlob(img);
           let form = new FormData();

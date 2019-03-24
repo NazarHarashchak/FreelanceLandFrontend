@@ -51,6 +51,11 @@ export default props => (
             {localStorage.getItem('tokenKey') ?
                 (
                     <Nav pullRight id="LogoutNavigation">
+                        <LinkContainer to={'/Message'} exact>
+                            <NavItem>
+                                <Glyphicon glyph='envelope' /> Messages
+                            </NavItem>
+                        </LinkContainer>
                         <LinkContainer to={'/home'} exact>
                             <NavItem>
                                 <Glyphicon glyph='home' /> {localStorage.getItem('login')}

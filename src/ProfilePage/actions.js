@@ -4,6 +4,8 @@ const refreshImage = 'REFRESH_IMAGE';
 const requestProfilePageType = 'REQUEST_PROFILE_PAGE_TYPE';
 const receiveProfilePageType = 'RECEIVE_PROFILE_PAGE_TYPE';
 const changeEditStatusType = 'CHANGE_EDIT_STATUS_TYPE';
+const receiveCreateChatRoom = 'RECEIVE_CREATE_CHAT_ROOM';
+const requestCreateChatRoom = 'RECEIVE_CREATE_CHAT_ROOM';
 
 export const actionCreators = {
     requestProfilePage: (id) => async (dispatch) => {
@@ -15,6 +17,29 @@ export const actionCreators = {
 
     changeEditStatus: () => async (dispatch) => {
         dispatch({ type: changeEditStatusType });
+    },
+
+    createChatRoomAndSendMessage: (creatorId, secondUserId, message) => async (dispatch) => {
+        dispatch({type: requestCreateChatRoom});
+
+        const url = 'https://localhost:44332/api/ChatRoom/CreateChatRoomWithFirstMessage';
+        await fetch(url,
+            {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    creatorId: creatorId,
+                    secondUserId: secondUserId,
+                    message: message
+                }) 
+            }
+        )
+
+        dispatch({type: receiveCreateChatRoom});
     }
 }
 export const addImage = async (image)  => {
