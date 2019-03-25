@@ -15,7 +15,7 @@ const panes = [
 const MyPage = () => <Tab menu={{ pointing: true }} panes={panes} />
 
   
-  export default MyPage;
+export default MyPage;
 
+localStorage.getItem('id');
 
- localStorage.getItem('id');

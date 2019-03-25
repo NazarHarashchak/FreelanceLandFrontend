@@ -90,7 +90,6 @@ class LoginPage extends Component {
                     if (this.props.user === null) { this.setState({ errorPop: true }) }
                 });
         }
-
     }
 
     render() {

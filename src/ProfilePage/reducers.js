@@ -1,3 +1,7 @@
+const requestImage = 'REQUEST_IMAGE';
+const receiveImage = 'RECEIVE_IMAGE';
+const refreshImage = 'REFRESH_IMAGE';
+
 const requestProfilePageType = 'REQUEST_PROFILE_PAGE_TYPE';
 const receiveProfilePageType = 'RECEIVE_PROFILE_PAGE_TYPE';
 const changeEditStatusType ='CHANGE_EDIT_STATUS_TYPE';
@@ -25,6 +29,25 @@ export const reducer = (state, action) => {
                 isEditOpen: !state.isEditOpen
             };
 
+        case requestImage:
+        return {
+            ...state,
+            isLoading: true
+        };
+
+        case receiveImage:
+        return {
+            ...state,
+            image: action.ImgData,
+            isLoading: false
+        };
+
+        case refreshImage:
+        return {
+            ...state,
+            isLoading: action.refresh
+        };
         default: return state;
     }
 }
+

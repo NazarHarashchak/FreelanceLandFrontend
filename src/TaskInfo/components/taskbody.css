@@ -1,11 +1,9 @@
-.task-body{
+.container-fluid{
   position:relative;
-  padding-right:50px;
 }
-.col-md-4 {
-    width: 75%;
-    position: static;
-  }
+.col-md-7{
+  position: static;
+}
   .task-description {
     position: relative;
     top: 10px;
@@ -31,15 +29,13 @@
     box-sizing: border-box;
     padding: 12px;
   }
-  .right-panel {
-    clear: both;
+  .col-md-2 {
     position: relative;
-    top:45px;
-    float: right;
-    width: 22%;
+    margin-left: 60px;
+    top:38px;
   }
   .user-panel{
-    width: 100%;
+    width:100%;
     margin-top:20px;
     border-width: 2px;
     border-style: outset;

@@ -19,6 +19,7 @@ class PersonalInfo extends Component {
     console.log(this.props.id);
     this.setState({ user: this.props.User, isLoaded: false });
   }
+
   render() {
     if (!this.state.isLoaded) {
       const { email, name, sur_Name, birth_Date, phone_Number, login, userRoleName } = this.props.User;
@@ -141,6 +142,7 @@ class PersonalInfo extends Component {
                     {localStorage.getItem('id') === this.props.id || localStorage.getItem('role') === "Administrator" ?
                       <Button className="submit-button" type='submit'>Update</Button>
                       : <div></div>}
+
                   </Form>
                 </Segment>
               )}
