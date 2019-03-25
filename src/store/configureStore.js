@@ -30,7 +30,7 @@ export default function configureStore(history, initialState) {
     commentsTask: commentsReducers.reducer,
     addComment: addCommentReducers.reducer,
     commentsTask: commentsReducers.reducer,
-    topUsers:topUsers.reducer
+    topUsers:topUsers.reducer,
     addTask: addNewTaskReducer.reducer,
     addNewExcecutor: addExcecutor.reducer
   };
