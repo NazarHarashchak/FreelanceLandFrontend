@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import UserImage from './userImage';
-import { Item } from 'semantic-ui-react';
+import { Item,Icon } from 'semantic-ui-react';
 
 
 class UserItem extends Component {
@@ -18,10 +18,12 @@ class UserItem extends Component {
                             <div class="media-body">
                                 <div class="media-heading">
                                     {this.props.item.name}
+                                    {this.props.item.userRoleName}
                                 </div>
                                 <p className="info">
                                     {this.props.item.phone_Number}
                                 </p>
+                                   
                                 <div className="description">
                                     {this.props.item.description}
                                 </div>
