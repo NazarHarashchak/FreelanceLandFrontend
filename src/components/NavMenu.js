@@ -17,8 +17,8 @@ function onClickLogout() {
     document.location.replace('loginPage');
 }
 
-function addTask(){ 
-    if (localStorage.getItem("id") !== null) {
+function addTask() {
+    if (sessionStorage.getItem("id") !== null || localStorage.getItem("id") !== null) {
      return (
             <LinkContainer to={'/AddTask'}>
                 <NavItem>
@@ -52,12 +52,12 @@ export default props => (
                 </LinkContainer>
                 {addTask()}
             </Nav>
-            {localStorage.getItem('tokenKey') ?
+            {(sessionStorage.getItem('tokenKey') || localStorage.getItem('tokenKey')) ?
                 (
                     <Nav pullRight id="LogoutNavigation">
                         <LinkContainer to={'/home'} exact>
                             <NavItem>
-                                <Glyphicon glyph='home' /> {sessionStorage.getItem('login')}
+                                <Glyphicon glyph='home' /> {sessionStorage.getItem('login') || localStorage.getItem('login')}
                             </NavItem>
                         </LinkContainer>
                         <LinkContainer to={'/loginPage'}>

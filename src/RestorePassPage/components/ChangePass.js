@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SweetAlert from 'sweetalert2-react';
+import Successfull from '../components/Successfull';
 
 
 class ChangePass extends Component {
@@ -93,25 +94,30 @@ class ChangePass extends Component {
     }
 
     render() {
+        if (this.state.showPop)
+            return (
+                <Successfull />);
         return (
             <div className="validateUser">
-                <SweetAlert
-                    show={this.state.showPop}
-                    title="Successfull!"
-                    text="Your password was changed, now you can sign in!"
-                    onConfirm={() => this.setState({ showPop: false })}
-                />
                 <SweetAlert
                     show={this.state.errorPop}
                     title="Fail!"
                     text="Something went wrong!"
+                    confirmButtonColor='#075232'
                     onConfirm={() => this.setState({ errorPop: false })}
                 />
+                <h1>Enter your new password.</h1>
+                <label for="password">
+                    <b>Password</b>
+                </label>
                 {this.state.passwordError ? (<div style={{ fontSize: 14, color: "red" }}>{this.state.passwordError}</div>) : null}
-                <input type="password" placeholder="Enter password" value={this.state.password}
+                <input type="password" className="password" placeholder="Enter password" value={this.state.password}
                     onChange={this.passwordChange} style={{ borderColor: this.state.passwordColor }} />
+                <label for="confirmPassword">
+                    <b>Confirm password</b>
+                </label>
                 {this.state.confPassError ? (<div style={{ fontSize: 14, color: "red" }}>{this.state.confPassError}</div>) : null}
-                <input type="password" placeholder="Confirm pasword" value={this.state.confirmedPass}
+                <input type="password" className="confirmPassword" placeholder="Confirm pasword" value={this.state.confirmedPass}
                     onChange={this.confirmedPassChange} style={{ borderColor: this.state.confirmPasswordColor }} />
                 <button type="submit" onClick={this.buttonSubmit}>
                     Change password

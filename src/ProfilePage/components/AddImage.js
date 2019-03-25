@@ -54,16 +54,16 @@ class AddImage extends Component {
           var element = e.target.files[index];
           form.append('image', element);
         }
-        form.append('fileName', e.target.files[0].name);
-        form.append('userid', sessionStorage.getItem('id'));
+            form.append('fileName', e.target.files[0].name);
+            form.append('userid', localStorage.getItem('id'));
         console.log(form.get('image'));
         {this.setState({file:  form});}
       }
 
     }
     render() {
-     return (
-        <div id = 'addImageWrapper' style={{ visibility: (sessionStorage.getItem('tokenKey') && this.props.id ===sessionStorage.getItem('id')) ? 'visible' : 'hidden' }}>
+        return (
+            <div id='addImageWrapper' style={{ visibility: (localStorage.getItem('tokenKey') && this.props.id === localStorage.getItem('id')) ? 'visible' : 'hidden' }}>
           <form>
               {this.state.inputError ? (<div style={{ fontSize: 14, color: "red" }}>{this.state.inputError}</div>) : null}
               <input name="Avatar" id="img" type="file" class="form-control"  accept="image/x-png,image/gif,image/jpeg" onChange={(e)=>this.handleImageChange(e)}/>

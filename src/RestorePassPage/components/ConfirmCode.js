@@ -25,12 +25,11 @@ class ConfirmCode extends Component {
     }
 
     codeSubmit() {
-        console.log("Code from input" + this.state.code + " props: " + this.props.code.Code);
-        if (this.state.code === this.props.code.Code) {
+        if (Number(this.state.code) === this.props.code.Code) {
             this.setState({ valid: true });
         }
         else {
-            this.setState({ valid: true });
+            this.setState({ errorPop: true });
         }
     }
 
@@ -47,6 +46,7 @@ class ConfirmCode extends Component {
                         show={this.state.errorPop}
                         title="Fail!"
                         text="Code is not correct!"
+                        confirmButtonColor='#075232'
                         onConfirm={() => this.setState({ errorPop: false })}
                     />
                     <h2>We have sent you a verification code. </h2>

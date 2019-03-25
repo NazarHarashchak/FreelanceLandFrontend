@@ -209,12 +209,14 @@ class RegistrationPage extends Component {
                 show={this.state.showPop}
                 title="Cool!"
                 text="Your Registration was successfull, now you can sign in!"
+                confirmButtonColor='#075232'
                 onConfirm={() => this.setState({ showPop: false })}
             />
             <SweetAlert
                 show={this.state.errorPop}
                 title="Fail!"
                 text="User with the same login already exists!"
+                confirmButtonColor='#075232'
                 onConfirm={() => this.setState({ errorPop: false })}
             />
                 <div class="createAccount" >

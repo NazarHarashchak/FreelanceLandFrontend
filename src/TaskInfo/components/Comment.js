@@ -2,12 +2,29 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {addExcecutor} from '../taskActions';
+import { addExcecutor } from '../taskActions';
+import { Icon } from 'semantic-ui-react';
+import SweetAlert from 'sweetalert2-react';
 import "./comments.css";
 
 class Comment extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            delete: false,
+            showPop: false
+        };
+        this.deleteSubmit = this.deleteSubmit.bind(this);
+    }
 
-  addExcecutorButton() {
+    deleteSubmit() {
+        this.props.deleteComment(this.props.item.id)
+            .then(() => {
+                if (this.props.deleteCommentResponse !== null) { this.setState({ showPop: true }) }
+            });
+    }
+
+    addExcecutorButton() {
     const userId = localStorage.getItem("id");
     const customerId = this.props.customerId;
     if (userId == customerId)
@@ -31,6 +48,14 @@ class Comment extends React.Component {
   render() {
     return (
         <div className="comentar">
+            <SweetAlert
+                show={this.state.showPop}
+                type= 'success'
+                title= 'Cool!'
+                text='Comment was deleted successful!'
+                confirmButtonColor='#075232'
+                onConfirm={() => this.setState({ showPop: false })}
+            />
             {localStorage.getItem('role') === "Moderator" ? 
                 (
                     <button id="delete" onClick={this.deleteSubmit}>

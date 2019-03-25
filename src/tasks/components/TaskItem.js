@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Item } from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
-import { requestDelete } from '../actions';
+import { deleteTask } from '../actions';
 import { Icon } from 'semantic-ui-react';
 
 class TaskItem extends React.Component {
@@ -13,14 +13,14 @@ class TaskItem extends React.Component {
     }
 
     deleteSubmit() {
-        requestDelete(this.props.item.id);
+        this.props.requestDelete(this.props.item.id);
         document.location.replace('tasks/');
     }
 
 	render() {
 		return (
-			<Item.Group link>
-        {sessionStorage.getItem('role') === "Moderator" ?
+            <Item.Group link>
+                {localStorage.getItem('role') === "Moderator" ?
          (
            <button id="delete" onClick={this.deleteSubmit}>
             <Icon name='trash alternate'></Icon>
@@ -66,5 +66,5 @@ class TaskItem extends React.Component {
 }
 export default connect(
     state => state.tasksReducers,
-    dispatch => bindActionCreators({ requestDelete: requestDelete }, dispatch)
+    dispatch => bindActionCreators(deleteTask, dispatch)
 )(TaskItem);

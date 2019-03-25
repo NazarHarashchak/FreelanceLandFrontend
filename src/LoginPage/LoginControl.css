@@ -86,9 +86,9 @@ span.password {
 }
 
 a.forgotPass {
-    color: #4CAF50;
+    color: rgb(7, 82, 50);
 }
 
-h1, p {
+h1, h2, h3, p {
     text-align: center;
 }

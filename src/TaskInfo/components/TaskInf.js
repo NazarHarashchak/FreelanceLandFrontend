@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import UserPanel from './UserPanel'; 
 import TaskDescription from './TaskDescription';
-import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators } from '../taskActions';

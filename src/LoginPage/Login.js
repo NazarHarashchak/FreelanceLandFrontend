@@ -3,7 +3,7 @@ import './LoginControl.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators } from '../LoginPage/actions';
-import { Redirect } from 'react-router'
+import { Redirect } from 'react-router';
 import SweetAlert from 'sweetalert2-react';
 import chechBoxes from '../Users/components/chechBoxes';
 
@@ -18,7 +18,7 @@ class LoginPage extends Component {
             password: '',
             passwordError: '',
             passwordColor: '',
-            checkBox: true,
+            checkBox: false,
             swaper: false,
             errorPop: false
         };
@@ -115,15 +115,14 @@ class LoginPage extends Component {
             return <Redirect to='/registrationPage' />
         }
         if (this.props.user !== null) {
-            if (this.props.user.access_token === localStorage.getItem("tokenKey")) {
+            if (this.props.user.access_token === sessionStorage.getItem("tokenKey")) {
                 console.log("Success!");
-                const id = this.props.user.id;
                 const link = '/home/';
                 return (<Redirect to={link} />);
             }
         }
 
-        if (!localStorage.getItem('tokenKey')) {
+        if (!sessionStorage.getItem('tokenKey') && !localStorage.getItem('tokenKey')) {
             return (
                 <div className="signInForm">
 
@@ -131,6 +130,7 @@ class LoginPage extends Component {
                         show={this.state.errorPop}
                         title="Fail!"
                         text="User with this login doesn`t exist!"
+                        confirmButtonColor='#075232'
                         onConfirm={() => this.setState({ errorPop: false })}
                     />
                     <div className="signIn">

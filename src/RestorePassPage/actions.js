@@ -36,7 +36,7 @@ export const actionCreators = {
     },
 
     requestChange: (login, pass) => async (dispatch) => {
-        disbatch({ type: requestChangePass });
+        dispatch({ type: requestChangePass });
 
         const response = await requests.doPost('/api/revertpass/changePass',
             JSON.stringify({

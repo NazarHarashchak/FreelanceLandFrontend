@@ -27,7 +27,7 @@ export default function configureStore(history, initialState) {
     commentsTask: commentsReducers.reducer,
     addComment: addCommentReducers.reducer,
     commentsTask: commentsReducers.reducer,
-    restorePassReducer: restorePassReducer.reducer
+    restorePassReducer: restorePassReducer.reducer,
     addTask: addNewTaskReducer.reducer,
     addNewExcecutor: addExcecutor.reducer
   };

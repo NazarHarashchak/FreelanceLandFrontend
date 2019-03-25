@@ -13,11 +13,12 @@ class ProfilePage extends Component {
      super(props);
      }
 
-     componentDidMount()
-     {    if(sessionStorage.getItem('tokenKey')&& sessionStorage.getItem('id') == this.props.id)
+    componentDidMount()
+    {
+        if (localStorage.getItem('tokenKey') && localStorage.getItem('id') == this.props.id)
          { let hubUrl = 'https://localhost:44332/notification';
-          const hubConnection = new signalR.HubConnectionBuilder()
-               .withUrl(hubUrl, { accessTokenFactory: () => sessionStorage.getItem('tokenKey')})
+            const hubConnection = new signalR.HubConnectionBuilder()
+                .withUrl(hubUrl, { accessTokenFactory: () => localStorage.getItem('tokenKey') })
                .configureLogging(signalR.LogLevel.Information)
                .build();
 
@@ -61,8 +62,8 @@ class ProfilePage extends Component {
 
      return (
           <div id="avatar">
-               {(img !== "") ? (<Avatar name="Avatar" src={img} round={10} size={300}/>) : (<Avatar name="Avatar" src={logo} round={10} size={300}/>)}
-          {(sessionStorage.getItem('tokenKey')&& sessionStorage.getItem('id') == this.props.id) ? (<div><div id="inputForm">
+             {(img !== "") ? (<Avatar name="Avatar" src={img} round={10} size={300} />) : (<Avatar name="Avatar" src={logo} round={10} size={300} />)}
+             {(localStorage.getItem('tokenKey') && localStorage.getItem('id') == this.props.id) ? (<div><div id="inputForm">
                <input type="text" id="message" placeholder="Enter message" />
                <input type="text" id="receiver" placeholder="Enter receiver" />
                <input type="button" id="sendBtn" value="Send" />

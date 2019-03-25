@@ -13,8 +13,8 @@ class PersonalInfo extends Component {
 }
 
 async componentWillMount() {  
-  await this.props.requestProfilePage(this.props.id);
-  if(this.props.id!==sessionStorage.getItem('id')){this.state.rea=!this.state.rea} 
+    await this.props.requestProfilePage(this.props.id);
+    if (this.props.id !== localStorage.getItem('id')) { this.state.rea = !this.state.rea } 
   console.log(this.props.id);
   this.setState({user:this.props.User, isLoaded : false });
 }
@@ -124,8 +124,8 @@ async componentWillMount() {
                         onBlur={handleBlur}
                         value={values.email} />
                  </Form.Group>
-                 
-                    {sessionStorage.getItem('id')=== this.props.id ?
+
+                                {localStorage.getItem('id') === this.props.id ?
                     <Button className = "submit-button" type='submit'>Update</Button>
                     :<div></div>}
                   </Form>

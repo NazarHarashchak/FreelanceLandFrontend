@@ -25,14 +25,18 @@ export const requestTasksList = () => async (dispatch) => {
     dispatch({ type: receiveTasksListType, tasks });
 }
 
-export const requestDelete = (Id) => async (dispatch) => {
-    dispatch({ type: requestDeleteTask });
-    const deleteTaskResponse = await requests.doPost('/api/tasks/DeleteTask',
-        JSON.stringify({
-            id: Id
-        }));
+export const deleteTask = {
+    requestDelete: (id) => async (dispatch) => {
+        dispatch({ type: requestDeleteTask });
 
-    dispatch({ type: receiveDeleteTask, deleteTaskResponse })
+        const url = '/api/tasks/DeleteTask';
+        const response = await requests.doPost(url,
+            JSON.stringify({
+                Id: id
+            }));
+        const deleteTaskResponse = await response;
+        dispatch({ type: receiveDeleteTask, deleteTaskResponse });
+    }
 }
 
 export const requestTasksListForUser = () => async (dispatch) =>{
