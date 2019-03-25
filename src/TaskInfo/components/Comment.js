@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {addExcecutor} from '../taskActions';
 import "./comments.css";
+import {Icon} from 'semantic-ui-react';
 
 class Comment extends React.Component {
 
