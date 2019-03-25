@@ -27,7 +27,6 @@ export const requestTasksList = () => async (dispatch) => {
 
 export const requestDelete = (Id) => async (dispatch) => {
     dispatch({ type: requestDeleteTask });
-
     const deleteTaskResponse = await requests.doPost('/api/tasks/DeleteTask',
         JSON.stringify({
             id: Id

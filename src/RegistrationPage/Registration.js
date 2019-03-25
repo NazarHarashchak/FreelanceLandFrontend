@@ -208,7 +208,7 @@ class RegistrationPage extends Component {
             <SweetAlert
                 show={this.state.showPop}
                 title="Cool!"
-                text="Your Registration was successfull, now you should sign in!"
+                text="Your Registration was successfull, now you can sign in!"
                 onConfirm={() => this.setState({ showPop: false })}
             />
             <SweetAlert

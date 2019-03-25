@@ -13,7 +13,7 @@ class TaskItem extends React.Component {
     }
 
     deleteSubmit() {
-        requestDelete();
+        requestDelete(this.props.item.id);
         document.location.replace('tasks/');
     }
 
@@ -73,5 +73,5 @@ class TaskItem extends React.Component {
 }
 export default connect(
     state => state.tasksReducers,
-    dispatch => bindActionCreators(requestDelete, dispatch)
+    dispatch => bindActionCreators({ requestDelete: requestDelete }, dispatch)
 )(TaskItem);

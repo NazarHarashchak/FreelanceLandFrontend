@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { actionCreators } from '../LoginPage/actions';
 import { Redirect } from 'react-router'
 import SweetAlert from 'sweetalert2-react';
+import chechBoxes from '../Users/components/chechBoxes';
 
 
 class LoginPage extends Component {
@@ -17,11 +18,13 @@ class LoginPage extends Component {
             password: '',
             passwordError: '',
             passwordColor: '',
+            checkBox: true,
             swaper: false,
             errorPop: false
         };
 
         this.loginChange = this.loginChange.bind(this);
+        this.boxRememberMeChange = this.boxRememberMeChange.bind(this);
         this.passwordChange = this.passwordChange.bind(this);
         this.authenticationSubmit = this.authenticationSubmit.bind(this);
         this.swap = this.swap.bind(this);
@@ -81,6 +84,11 @@ class LoginPage extends Component {
         this.setState({ password: event.target.value });
     }
 
+    boxRememberMeChange() {
+        this.setState({ checkBox: !this.state.checkBox });
+        console.log(this.state.checkBox);
+    }
+
     authenticationSubmit(event) {
         event.preventDefault();
         const validation = this.validationForm();
@@ -88,6 +96,15 @@ class LoginPage extends Component {
             this.props.requestLogin(this.state.login, this.state.password)
                 .then(() => {
                     if (this.props.user === null) { this.setState({ errorPop: true }) }
+                    else {
+                        if (this.state.checkBox)
+                        {
+                            localStorage.setItem('tokenKey', sessionStorage.getItem('tokenKey'));
+                            localStorage.setItem('id', sessionStorage.getItem('id'));
+                            localStorage.setItem('login', sessionStorage.getItem('login'));
+                            localStorage.setItem('role', sessionStorage.getItem('role'));
+                        }
+                    }
                 });
         }
 
@@ -134,10 +151,10 @@ class LoginPage extends Component {
                         <button type="submit" className="signin" onClick={this.authenticationSubmit}>
                             SIGN IN
                     </button>
-                        <input type="checkbox" name="remember" />
+                        <input type="checkbox" name="remember" onChange={this.boxRememberMeChange} />
                         <label for="remember">Remember me</label>
                         <span className="password">
-                            <a className="forgotPass" href="#">
+                            <a className="forgotPass" href="/restorePass">
                                 Forgot your password?
                             </a>
                         </span>

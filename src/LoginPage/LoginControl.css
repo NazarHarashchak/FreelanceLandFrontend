@@ -7,7 +7,14 @@ div.signInForm, div.signUpForm {
     margin: 5% 15% 0 15%;
 }
 
-div.signIn{
+div.validateUser {
+    margin: auto auto;
+    padding: 1% 1% 1% 1%;
+    color: rgb(6, 107, 63);
+    width: 35%;
+}
+
+div.signIn {
     margin: 0 auto;
     padding: 8% 1% 0 1%;
     float: left;

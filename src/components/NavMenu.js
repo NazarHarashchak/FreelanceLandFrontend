@@ -9,6 +9,10 @@ function onClickLogout() {
     sessionStorage.removeItem('id');
     sessionStorage.removeItem('login');
     sessionStorage.removeItem('role');
+    localStorage.removeItem('tokenKey');
+    localStorage.removeItem('id');
+    localStorage.removeItem('login');
+    localStorage.removeItem('role');
     document.location.replace('loginPage');
 }
 
@@ -39,7 +43,7 @@ export default props => (
                     <Nav pullRight id="LogoutNavigation">
                         <LinkContainer to={'/home'} exact>
                     <NavItem>
-                        <Glyphicon glyph='home' /> {localStorage.getItem('login')}
+                        <Glyphicon glyph='home' /> {sessionStorage.getItem('login')}
                     </NavItem>
                 </LinkContainer>
                         <LinkContainer to={'/loginPage'}>

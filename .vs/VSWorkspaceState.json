@@ -2,9 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\TaskInfo",
-    "\\src\\TaskInfo\\components"
+    "\\src\\components",
+    "\\src\\LoginPage",
+    "\\src\\RegistrationPage",
+    "\\src\\RestorePassPage",
+    "\\src\\RestorePassPage\\components",
+    "\\src\\services",
+    "\\src\\store",
+    "\\src\\tasks"
   ],
-  "SelectedNode": "\\src\\TaskInfo\\components\\Comments.js",
+  "SelectedNode": "\\src\\RestorePassPage\\reducers.js",
   "PreviewInSolutionExplorer": false
 }
