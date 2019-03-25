@@ -3,7 +3,8 @@ import { Glyphicon, Nav, Navbar, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
-
+import NotificationBadge from 'react-notification-badge';
+import {Effect} from 'react-notification-badge';
 function onClickLogout() {
     sessionStorage.removeItem('tokenKey');
     sessionStorage.removeItem('id');
@@ -14,6 +15,18 @@ function onClickLogout() {
     localStorage.removeItem('login');
     localStorage.removeItem('role');
     document.location.replace('loginPage');
+}
+
+function addTask(){ 
+    if (localStorage.getItem("id") !== null) {
+     return (
+            <LinkContainer to={'/AddTask'}>
+                <NavItem>
+                    <Glyphicon glyph='plus' /> Add Task
+                </NavItem>
+            </LinkContainer>
+            );
+        }
 }
 
 export default props => (
@@ -37,15 +50,16 @@ export default props => (
                         <Glyphicon glyph='th-list' /> Freelancers & Customers
                     </NavItem>
                 </LinkContainer>
+                {addTask()}
             </Nav>
-            {sessionStorage.getItem('tokenKey') ?
+            {localStorage.getItem('tokenKey') ?
                 (
                     <Nav pullRight id="LogoutNavigation">
                         <LinkContainer to={'/home'} exact>
-                    <NavItem>
-                        <Glyphicon glyph='home' /> {sessionStorage.getItem('login')}
-                    </NavItem>
-                </LinkContainer>
+                            <NavItem>
+                                <Glyphicon glyph='home' /> {sessionStorage.getItem('login')}
+                            </NavItem>
+                        </LinkContainer>
                         <LinkContainer to={'/loginPage'}>
                             <NavItem id="logoutButton">
 

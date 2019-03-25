@@ -11,6 +11,7 @@ import ProfileComponent from './ProfilePage/components/ProfileComponent';
 import Users from './Users/components/Users';
 import MyPage from './MyPage/components/MyPage';
 import ValidateUser from './RestorePassPage/components/ValidateUser';
+import AddTaskPage from './addTaskPage/components/addTask';
 export default () => (
   <Layout>
         <Route path='/main' component={MainPage} />
@@ -22,5 +23,6 @@ export default () => (
         <Route path='/taskInf/:id' component={Task}/>
         <Route path='/Users' component={Users} />
         <Route path='/restorePass' component={ValidateUser} />
+        <Route path='/AddTask' component={AddTaskPage} />
   </Layout>
 );

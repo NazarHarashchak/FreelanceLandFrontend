@@ -1,15 +1,11 @@
 import React from "react";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { requestCategoriesList, changeCheckedStatus } from '../actions';
+import { changeCheckedStatus } from '../actions';
 
 class CategoriesList extends React.Component {
 
-  componentWillMount() {
-    this.props.requestCategoriesList();
-  }
-
-  render() {
+  render() { 
     return (
       <div>
         {this.props.filter.categories.map(category => (
@@ -31,7 +27,7 @@ class CategoriesList extends React.Component {
 function matchDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      changeCheckedStatus, requestCategoriesList
+      changeCheckedStatus,
     },
     dispatch);
 }

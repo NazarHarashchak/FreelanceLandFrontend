@@ -1,8 +1,7 @@
     .comments-panel{
-      width: 72.8%;
+      width: 100%;
       position: relative;
-      bottom: 250px; 
-      left: 15px;
+      margin-top: 30px;
       border-style: outset;
       border-width: 2px;
       clear: both;
@@ -55,7 +54,7 @@
     #user-name{
       padding-left: 10px;
       position: relative;
-      top:5.5px;
+      top:3.5px;
       cursor: pointer;
     }
     #content{
@@ -72,4 +71,16 @@
     #submit{
       margin: 5px;
       height: 40px;
+    }
+    #comment-eror{
+      padding-top:5px;
+      height: 30px;
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+    }
+    #choose_excecutor{
+      width: 100px;
+      padding-right: 20px;
+      float: right;
     }

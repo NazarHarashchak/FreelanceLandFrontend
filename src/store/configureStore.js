@@ -5,13 +5,14 @@ import * as myReducers from './reducers';
 import * as tasksReducers from '../tasks/reducers';
 import * as profileReducer from '../ProfilePage/reducers';
 import * as userReducer from '../Users/reducers';
-import * as taskCustomerReducer from '../TaskInfo/userReducer';
 import * as usersReducers from '../Users/reducers';
 import * as commentsReducers from '../TaskInfo/commentReducer';
 import * as addCommentReducers from '../TaskInfo/addCommentReducer';
 import * as loginReducer from '../LoginPage/reducers';
 import * as registrationReducer from '../RegistrationPage/reducers';
 import * as restorePassReducer from '../RestorePassPage/reducers';
+import * as addNewTaskReducer from '../addTaskPage/reducer';
+import * as addExcecutor from '../TaskInfo/addExcecutorReducer';
 
 export default function configureStore(history, initialState) {
   const reducers = {
@@ -22,12 +23,13 @@ export default function configureStore(history, initialState) {
     loginReducer: loginReducer.reducer,
     registrationReducer: registrationReducer.reducer,
     taskProfilePage: myReducers.reducer,
-    customerOfTask: taskCustomerReducer.reducer,
     usersReducers: usersReducers.reducer,
     commentsTask: commentsReducers.reducer,
     addComment: addCommentReducers.reducer,
     commentsTask: commentsReducers.reducer,
     restorePassReducer: restorePassReducer.reducer
+    addTask: addNewTaskReducer.reducer,
+    addNewExcecutor: addExcecutor.reducer
   };
 
   const middleware = [

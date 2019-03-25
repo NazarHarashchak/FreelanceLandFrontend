@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { requestTasksListForUser } from '../../tasks/actions';
+import { requestActiveTasksListForUser } from '../../tasks/actions';
 import TaskItemList from '../../tasks/components/TaskItemList';
 import SearchBar from '../../tasks/components/SearchBar';
 import ScrollTop from '../../tasks/components/ScrollTop';
@@ -12,7 +12,7 @@ import '../../tasks/styles.css';
 
 class Tasks extends Component {
     componentWillMount() {
-        requestTasksListForUser();
+        requestActiveTasksListForUser();
     }
 
     render() {
@@ -39,5 +39,5 @@ class Tasks extends Component {
 
 export default connect(
     state => state.tasksReducers,
-    dispatch => bindActionCreators(requestTasksListForUser, dispatch)
+    dispatch => bindActionCreators(requestActiveTasksListForUser, dispatch)
 )(Tasks);
