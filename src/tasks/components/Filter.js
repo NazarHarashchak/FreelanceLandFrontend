@@ -19,7 +19,6 @@ class Filter extends React.Component {
     }
   }
   validateFromPriceField = (e) => {
-    console.log(e.target.value);
     let toPrice = this.props.filter.priceTo;
     let isValueNull = e.target.value === "";
     let isToPriceNull = toPrice === "";
@@ -39,7 +38,6 @@ class Filter extends React.Component {
   }
 
   validateToPriceField = (e) => {
-    console.log(e.target.value);
     let fromPrice = this.props.filter.priceFrom;
     let isSomeNull = fromPrice === "" || e.target.value === "";
     fromPrice = parseInt(fromPrice, 10);

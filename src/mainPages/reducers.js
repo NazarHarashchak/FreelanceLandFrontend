@@ -15,7 +15,6 @@ export const reducer = (state, action) => {
     }
 
     if (action.type === receiveTop) {
-         console.log(action.users);
         return {
             ...state,
             users: action.users,

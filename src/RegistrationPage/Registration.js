@@ -204,7 +204,7 @@ class RegistrationPage extends Component {
         }
 
         return (
-            <div class="signUpForm">
+            <div className="signUpForm">
             <SweetAlert
                 show={this.state.showPop}
                 title="Cool!"
@@ -219,7 +219,7 @@ class RegistrationPage extends Component {
                 confirmButtonColor='#075232'
                 onConfirm={() => this.setState({ errorPop: false })}
             />
-                <div class="createAccount" >
+                <div className="createAccount" >
                     <h1>Create Account</h1>
                     <label for="email">
                         <b>Email</b>
@@ -245,15 +245,15 @@ class RegistrationPage extends Component {
                     {this.state.confPassError ? (<div style = {{ fontSize: 14, color: "red"}}>{this.state.confPassError}</div>) : null}
                     <input type="password" placeholder="Confirm password" name="confirmPassword"
                         value={this.state.confirmedPass} onChange={this.confirmedPassChange} style={{borderColor: this.state.confirmPasswordColor}}/>
-                    <button type="submit" class="signup" onClick={this.registrationSubmit}>
+                    <button type="submit" className="signup" onClick={this.registrationSubmit}>
                         SIGN UP
                     </button>
                 </div>
-                <div class="swaper">
+                <div className="swaper">
                     <h1>Welcome Back!</h1>
                     <h3 className="text-detais">To keep connected with us please</h3>
                     <h3 className="text-detais">login with your personal info</h3>
-                    <button type="submit" class="sign" onClick={this.swap}>
+                    <button type="submit" className="sign" onClick={this.swap}>
                         SIGN IN
                     </button>
                 </div>

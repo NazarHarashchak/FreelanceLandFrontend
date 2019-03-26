@@ -10,7 +10,7 @@ import '../mainPage.css';
 class MainPage extends Component {
     render() {
         return (
-            <div class="container">
+            <div className="container">
                 <div className="MainPage">
                     <ControlledCarousel />
                     <HowItWork />

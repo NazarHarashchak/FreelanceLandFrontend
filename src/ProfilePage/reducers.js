@@ -5,6 +5,10 @@ const refreshImage = 'REFRESH_IMAGE';
 const requestProfilePageType = 'REQUEST_PROFILE_PAGE_TYPE';
 const receiveProfilePageType = 'RECEIVE_PROFILE_PAGE_TYPE';
 const changeEditStatusType ='CHANGE_EDIT_STATUS_TYPE';
+
+const receiveCreateChatRoom = 'RECEIVE_CREATE_CHAT_ROOM';
+const requestCreateChatRoom = 'RECEIVE_CREATE_CHAT_ROOM';
+
 const initialState = { User: [], isLoading: false, isEditOpen: 'readonly' };
 
 export const reducer = (state, action) => {
@@ -46,6 +50,18 @@ export const reducer = (state, action) => {
         return {
             ...state,
             isLoading: action.refresh
+        };
+
+        case requestCreateChatRoom:
+        return {
+            ...state,
+            isLoading: true
+        };
+
+        case receiveCreateChatRoom:
+        return {
+            ...state,
+            isLoading: false
         };
         default: return state;
     }

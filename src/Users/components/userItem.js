@@ -14,16 +14,16 @@ class UserItem extends Component {
     render() {
         return (
             <Item.Group link>
-            <div class="media">
+            <div className="media">
                 <li className="j-order" >
                     <a href={`/ProfilePage/${this.props.item.id}`}>
                         <ul className="l-item-features">
-                            <div class="media-left">
-                                <img class="media-object" src={logo}  alt='Loading...'></img>
+                            <div className="media-left">
+                                <img className="media-object" src={logo}  alt='Loading...'></img>
                             </div>
 
-                            <div class="media-body">
-                                <div class="media-heading">
+                            <div className="media-body">
+                                <div className="media-heading">
                                     {this.props.item.name}
                                     {this.props.item.userRoleName}
                                 </div>

@@ -3,8 +3,6 @@ import { Glyphicon, Nav, Navbar, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
-import NotificationBadge from 'react-notification-badge';
-import {Effect} from 'react-notification-badge';
 function onClickLogout() {
     localStorage.removeItem('tokenKey');
     localStorage.removeItem('id');
@@ -51,6 +49,11 @@ export default props => (
             {(localStorage.getItem('tokenKey')) ?
                 (
                     <Nav pullRight id="LogoutNavigation">
+                        <LinkContainer to={'/Message'} exact>
+                            <NavItem>
+                                <Glyphicon glyph='envelope' /> Messages
+                            </NavItem>
+                        </LinkContainer>
                         <LinkContainer to={'/home'} exact>
                             <NavItem>
                                 <Glyphicon glyph='home' /> {localStorage.getItem('login')}

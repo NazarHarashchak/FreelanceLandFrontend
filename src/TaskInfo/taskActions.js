@@ -46,7 +46,6 @@ export const actionCommentsPostCreators = {
 
         const comment = await response;
 
-        console.log(my_content + my_userId + my_taskId);
 
         dispatch ({ type: receiveSendComment, comment });
     }
