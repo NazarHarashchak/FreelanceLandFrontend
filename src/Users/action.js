@@ -12,12 +12,10 @@ const changeRolesOpenedStatusType = 'CHANGE_ROLES_OPENED_STATUS_TYPE';
 
 export const requestUsersList = () => async (dispatch) => {
         dispatch({ type: requestUsersListType });
-
         const users = await  requests.doGet('/users');
 
         dispatch({ type: receiveUsersListType, users });
     }
-
 
 export const requestUserRoles = () => async (dispatch) => {
         const roles = await requests.doGet('/users/getRoles');

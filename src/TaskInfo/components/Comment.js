@@ -31,7 +31,7 @@ class Comment extends React.Component {
     {
         return(
           <div id="choose_excecutor">
-            <input type="button" value="Choose"/>
+            <input type="button" value="Choose" onCLick={this.saveExcecutor}/>
           </div>
         );
     }

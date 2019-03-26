@@ -22,11 +22,12 @@ class TaskItem extends React.Component {
             <Item.Group link>
                 {localStorage.getItem('role') === "Moderator" ?
          (
-           <button id="delete" onClick={this.deleteSubmit}>
+           <button id="delete">
             <Icon name='trash alternate'></Icon>
            </button>
           ):(null)
-        }
+		}
+ 
 			<li className="j-order">
 				<header className="l-project-title">
 					<Link to={`/TaskInf/${this.props.item.id}`}>{this.props.item.title}</Link>
