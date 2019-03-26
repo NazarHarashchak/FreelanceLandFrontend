@@ -16,17 +16,138 @@ class addTaskPage extends React.Component {
             descriptionContent: '',
             descriptionError: '',
             priceContent: '',
-            priceError: '',
-            deadlineContent: new Date(),
-            deadlineError: '',
+            deadlineContent: '',
             categoryContent: '',
-            categoryError: ''
+            myError: ''
         };
-
+        
+        this.onTitleChange = this.onTitleChange.bind(this);
+        this.onDescriptionChange = this.onDescriptionChange.bind(this);
+        this.validContent = this.validContent.bind(this);
+        this.onPriceChange = this.onPriceChange.bind(this);
+        this.onDateChange = this.onDateChange.bind(this);
+        this.defaultDate = this.defaultDate.bind(this);
+        this.addedValues = this.addedValues.bind(this);
+        this.saveChanges = this.saveChanges.bind(this);
+        this.onCategoryChange = this.onCategoryChange.bind(this);
     }
 
     componentWillMount(){
         this.props.getCategories();
+    }
+
+    onTitleChange(event){
+        const value = event.target.value;
+        console.log("title", value);
+        this.setState({titleContent: value, titleError: '', myError: ''});
+    }
+
+    onDescriptionChange(event){
+        const value = event.target.value;
+        
+        console.log("desc", value);
+        this.setState({descriptionContent: value, descriptionError: '', myError: ''});
+    }
+
+    onCategoryChange(event){
+        const value = event.target.value;
+        
+        console.log("category", value);
+        this.setState({categoryContent: value});
+    }
+
+    onPriceChange(event){
+        const value = event.target.value;
+        console.log("price", value);
+
+        this.setState({priceContent: value});
+    }
+
+    onDateChange(event){
+        const value = event.target.value;
+        console.log("date", value);
+        
+        this.setState({deadlineContent: value});
+    }
+
+    defaultDate(){
+        const mounth = new Date().getMonth() + 1;
+        const date = new Date().getDate();
+        const year = new Date().getFullYear();
+        const value = year + '-' + mounth + '-' + date;
+        console.log(value);
+        return(value);
+    }
+
+    validContent(content, name){
+        const my_error = "This space can`t be empty";
+        if ((name === 'title-content') || (name === 'description-content')){
+            if (content !== ''){
+                return true;
+            }
+            else{
+                switch(name){
+                    case'title-content':{
+                        this.setState({titleError: my_error});
+                        return(false);
+                    }
+                    case'description-content':{
+                        this.setState({descriptionError: my_error});
+                        return(false);
+                    }
+                }
+             return false;
+            }
+        }
+        else {
+            switch(name){
+                case'price-content':{
+                    this.setState({priceContent: 0});
+                    return(true);
+                }
+                case'deadline-content':{
+                    this.setState({deadlineContent: this.defaultDate()});
+                    return(true);
+                }
+                case'category-content':{
+                    console.log('category def', content);
+                    this.setState({categoryContent: 'Web development'});
+                    return(true);
+                }
+            }
+        }
+    }
+
+    addedValues(){
+        if((this.validContent(this.state.titleContent, 'title-content'))
+            && (this.validContent(this.state.descriptionContent, 'description-content'))
+            && (this.validContent(this.state.priceContent, 'price-content'))
+            && (this.validContent(this.state.categoryContent, 'category-content'))
+            && (this.validContent(this.state.deadlineContent, 'deadline-content')))
+        {
+            return true;
+        }
+        else{
+        return(false);}
+    }
+
+    saveChanges(event){
+        console.log(this.state.titleContent, this.state.descriptionContent, 
+            localStorage.getItem('id'), this.state.priceContent,
+            this.state.deadlineContent, this.state.categoryContent);
+
+        if (this.addedValues()){
+            this.props.createNewTask(this.state.titleContent, this.state.descriptionContent, 
+                localStorage.getItem('id'), this.state.priceContent,
+                this.state.deadlineContent, this.state.categoryContent).
+                then(() => { 
+                    alert("The task is already saved");
+            });;
+        }
+        else{
+            this.setState({myError: "There are empty spaces"});
+        }
+        event.preventDefault();
     }
 
     render(){
@@ -35,13 +156,15 @@ class addTaskPage extends React.Component {
                 <h1>Add a new task</h1>
                 <div className="col-md-2"></div>
                 <div className="col-md-8">
-                <div className="add-task-description">                   
+                <div className="add-task-description"> 
+                <form name="my-add-task-form">                  
                      <div id="title">
                         <div className="label-element">
                             <label>Title:</label>
                         </div>
                         <div className="text-element">
-                        <input type="text" placeholder="Enter what to do" name="title-text" />
+                        <input type="text" placeholder="Enter what to do" name="title-text" 
+                                    onChange={this.onTitleChange}/>
                         <label id="title-error" className="Errors">{this.state.titleError}</label>
                         </div>
                     </div>
@@ -51,7 +174,7 @@ class addTaskPage extends React.Component {
                         </div>
                         <div className="text-element" >
                             <textarea placeholder="Enter detail description of your task" 
-                            id="add-task-description" name="description-text"/>
+                            id="add-task-description" name="description-text" onChange={this.onDescriptionChange}/>
                             <label id="description-error" className="Errors">{this.state.descriptionError}</label>
                         </div>
                     </div>
@@ -60,10 +183,8 @@ class addTaskPage extends React.Component {
                             <label>Category: </label>
                         </div>
                         <div id="task-category">
-                        {
-        console.log(this.props.categories)}
-                            <select id="my-task-category">
-                                {this.props.categories.map((item) => <option>{item.type}</option>)}
+                            <select id="my-task-category" name='category-content' onChange={this.onCategoryChange}>
+                                {this.props.categories.map((item) => <option value={item.type}>{item.type}</option>)}
                             </select>
                         </div>
                     </div>
@@ -73,7 +194,7 @@ class addTaskPage extends React.Component {
                         </div>
                         <div className="text-element">
                             <input type="number" min="0" step="10" placeholder="Enter your price in $" 
-                            id="price-text" name="price-text"/>
+                            id="price-text" name="price-text" onChange={this.onPriceChange} defaultValue='0'/>
                             <label id="price-error" className="Errors">{this.state.priceError}</label>
                         </div>
                     </div>
@@ -83,13 +204,15 @@ class addTaskPage extends React.Component {
                         </div>
                         <div className="text-element">
                             <input type="date" name="deadline-text"
-                             id="add-date" min='2019-03-25'/>
+                             id="add-date" min='2019-03-25' onChange={this.onDateChange}/>
                         <label id="deadline-error" className="Errors">{this.state.deadlineError}</label>
                         </div>
                     </div>
                     <div id="save-button">
-                        <input type="button" value="Save" id="save-new-task"/>
+                        <input type="button" value="Save" id="save-new-task" onClick={this.saveChanges}/>
+                        <label id="" className="Errors">{this.state.myError}</label>
                     </div>
+                    </form>
                     </div>
 
                 </div>

@@ -20,7 +20,8 @@
   #task-price {
     position: relative;
     float: right;
-    background-color: rgb(106, 255, 7);
+    background-color: #27551a;
+    color: white;
     height: 40px;
     text-align: center;
     box-sizing: border-box;
@@ -76,4 +77,16 @@
   }
   #user-link{
     margin-left: 20px;
+  }
+  #close-task-button{
+    margin-top:20px;
+    text-align: center;
+  }
+  #close{
+    height: 50px;
+    width:200px;
+    border-radius: 5px 5px 5px 5px;
+    border-style: none;
+    color: white;
+    background-color: rgb(7, 82, 50);
   }

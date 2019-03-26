@@ -173,7 +173,7 @@ function filterTasks(filter, tasks) {
             );
         })
     }
-    filter.priceFrom===''?filter.priceFrom===0:filter.priceFrom;
+   /* filter.priceFrom===null?filter.priceFrom===0:filter.priceFrom;*/
     tasks = tasks.filter(item => {
         return (
             filter.priceTo === 0||filter.priceTo === '' ? filter.priceFrom <= item.price : filter.priceFrom <= item.price && item.price <= filter.priceTo === true

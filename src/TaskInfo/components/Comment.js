@@ -5,29 +5,24 @@ import { connect } from 'react-redux';
 import {addExcecutor} from '../taskActions';
 import {Icon} from 'semantic-ui-react';
 import "./comments.css";
-import {Icon} from 'semantic-ui-react';
 
 class Comment extends React.Component {
-
-  addExcecutorButton() {
-    const userId = localStorage.getItem("id");
-    const customerId = this.props.customerId;
-    if (userId == customerId)
-    {
-        return(
-          <div id="choose_excecutor">
-            <input type="button" value="Choose" onCLick={this.saveExcecutor}/>
-          </div>
-        );
+  constructor(props){
+    super(props);
+    this.state = {
+      success: 'Excecutor is already added'
     }
-    else {
-       return(
-        <div></div>);
-      }
+
+    this.saveExcecutor = this.saveExcecutor.bind(this);
   }
 
-  saveExcecutor() {
-    this.props.addAnExcecutor(this.props.item.userId, this.props.item.taskId);
+  saveExcecutor(event) {
+    console.log("Something doing");
+    this.props.addAnExcecutor(this.props.item.userId, this.props.item.taskId).then(() => {
+      alert(this.state.success);
+      document.location.reload();
+    });;
+    event.preventDefault();
   }
 
   render() {
@@ -59,8 +54,16 @@ class Comment extends React.Component {
                   </Link>
                 </td>
               </tr>
-          </table>
-          {this.addExcecutorButton()}
+          </table>{console.log(localStorage.getItem("id"), this.props.excecutorId)}
+          { (localStorage.getItem("id") == this.props.customerId) && (this.props.excecutorId === 0) ?(
+                    <div id="choose_excecutor">
+                        <form>
+                          <input type="button" value="Choose" onClick={this.saveExcecutor} />
+                      </form>
+                   </div>
+                  ):(
+                       <div></div>)
+                    }
                 <div id="content">
                   <label >{this.props.item.content}</label>
                 </div>

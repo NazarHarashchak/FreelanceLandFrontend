@@ -26,7 +26,13 @@ class TaskDescription extends React.Component {
                 </p>
               </div>
             </form>
-            <Comments taskId={this.props.id} customerId={this.props.customerId}/>
+            <Comments taskId={this.props.id} customerId={this.props.customerId}
+             excecutorId={this.props.excecutorId}/>
+             { localStorage.getItem("id") == this.props.customerId ? (
+             <div id="close-task-button">
+                <input type="button" id="close" value="Close task" />
+             </div>) : null
+             }
             </div>
         </div>
     );
