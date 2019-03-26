@@ -4,13 +4,13 @@
     "\\src",
     "\\src\\components",
     "\\src\\LoginPage",
-    "\\src\\RegistrationPage",
-    "\\src\\RestorePassPage",
+    "\\src\\MyPage\\components",
+    "\\src\\ProfilePage\\components",
     "\\src\\RestorePassPage\\components",
     "\\src\\services",
-    "\\src\\store",
-    "\\src\\tasks"
+    "\\src\\tasks\\components",
+    "\\src\\Users\\components"
   ],
-  "SelectedNode": "\\src\\RestorePassPage\\reducers.js",
+  "SelectedNode": "\\src\\services\\apiService.js",
   "PreviewInSolutionExplorer": false
 }
