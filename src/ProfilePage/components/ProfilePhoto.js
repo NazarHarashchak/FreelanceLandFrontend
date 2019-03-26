@@ -7,11 +7,6 @@ import { actionCreators1 } from '../actions';
 import Avatar from 'react-avatar';
 
 class ProfilePage extends Component {
-     constructor(props) {
-     super(props);
-     }
-
-    
 
      render() {
      this.props.getImage(this.props.id);
