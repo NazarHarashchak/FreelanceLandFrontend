@@ -1,20 +1,33 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import { Icon } from 'semantic-ui-react';
-
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import {addExcecutor} from '../taskActions';
+import {Icon} from 'semantic-ui-react';
 import "./comments.css";
 
 class Comment extends React.Component {
-    constructor(props) {
-        super(props);
-        this.deleteSubmit = this.deleteSubmit.bind(this);
-    }
 
-    deleteSubmit() {
-        this.props.requestDelete(this.props.item.id);
-        document.location.replace('taskInf/'+ this.props.taskId);
+  addExcecutorButton() {
+    const userId = localStorage.getItem("id");
+    const customerId = this.props.customerId;
+    if (userId == customerId)
+    {
+        return(
+          <div id="choose_excecutor">
+            <input type="button" value="Choose" onCLick={this.saveExcecutor}/>
+          </div>
+        );
     }
+    else {
+       return(
+        <div></div>);
+      }
+  }
 
+  saveExcecutor() {
+    this.props.addAnExcecutor(this.props.item.userId, this.props.item.taskId);
+  }
 
   render() {
     return (
@@ -43,9 +56,10 @@ class Comment extends React.Component {
                   <Link to={`/ProfilePage/${this.props.item.userId}`}>
                     <label id="user-name">{this.props.item.userName}</label>
                   </Link>
-              </td>
+                </td>
               </tr>
           </table>
+          {this.addExcecutorButton()}
                 <div id="content">
                   <label >{this.props.item.content}</label>
                 </div>
@@ -55,4 +69,7 @@ class Comment extends React.Component {
   }
 }
 
-export default Comment;
+export default  connect(
+  state => state.addNewExcecutor,
+  dispatch => bindActionCreators(addExcecutor, dispatch)
+)(Comment);

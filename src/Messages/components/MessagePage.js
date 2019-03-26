@@ -22,8 +22,6 @@ class MessagePage extends Component {
 
     render() {
         
-        console.log(this.props.chatRooms);
-        console.log(this.props)
         return(
             <ChatRoomsList chatRoomsList={this.props.chatRooms} isLoading={this.props.isLoading}/>
         )

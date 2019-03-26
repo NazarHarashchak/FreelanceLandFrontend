@@ -2,32 +2,28 @@ import React from "react";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { actionUserCreators } from '../userAction';
 import "./taskbody.css";
 
 class UserPanel extends React.Component {
-  componentWillMount() {
-    // This method runs when the component is first added to the page
-       this.props.requestUser(this.props.id);
-    }
 
   render() {
     return (
-      <div className="right-panel">
+      <div className="col-md-3">
+         <div className="right-row-panel">
           <div className="user-panel">
             <div className="top-row">Customer
             </div>
               <table id="user-table">
                 <tr id="bottom-row">
-                <td>
+                  <td>
                   <div id="user-photo">
                     <img src={require("./123.jpeg")} alt="фото користувача" width="80px"/>
                   </div>
                   </td>
                   <td>
-                    <span id="user-link"> <Link to={`/ProfilePage/${this.props.users.id}`}>
-                    <i className="fa fa-address-book"></i>{this.props.users.name 
-                      + ' ' +  this.props.users.sur_Name}
+                    <span id="user-link"> <Link to={`/ProfilePage/${this.props.customerId}`}>
+                    <i className="fa fa-address-book"></i>{this.props.name 
+                      + ' ' +  this.props.secName}
                     </Link></span>
                   </td>
                 </tr>
@@ -36,27 +32,24 @@ class UserPanel extends React.Component {
             <div className="user-panel">
               <div className="top-row">Date added</div>
                <i className="fa fa-calendar-plus-o"></i>
-                <label>{this.props.myTask.dateAdded}</label>
+                <label>{this.props.dateAdded}</label>
             </div>
             <div className="user-panel">
-              <div className="top-row">Project deadline</div>
+              <div className="top-row">Task updated</div>
               <i className="fa fa-clock-o" ></i>
-              <label>{this.props.myTask.deadline}</label>
+              <label>{this.props.deadline}</label>
             </div>
             <div className="user-panel">
               <div className="top-row">
-                Same project
+                Similar project
               </div>
               <div>
-                
               </div>
+            </div>
             </div>
       </div>
     );
   }
 }
 
-export default connect(
-  state => state.customerOfTask,
-  dispatch => bindActionCreators(actionUserCreators, dispatch)
-)(UserPanel);
+export default UserPanel;

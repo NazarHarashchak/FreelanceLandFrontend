@@ -1,0 +1,83 @@
+.add-task-body{
+}
+.add-task-description{
+    position: relative;
+    padding: 20px;
+    background-color: rgb(19, 19, 19);
+    border-radius: 5px 5px 5px 5px;
+}
+.text-element{
+    position:relative;
+    width: 87%;
+    float: right;
+    bottom: 50px;
+}
+.label-element{
+    width:15%;
+    color:white;
+    position: relative;
+    clear:both;
+}
+#add-task-description{
+    height: 200px;
+    width: 100%;
+    padding: 20px;
+    flex-direction: column;
+    line-height: 20px;
+    flex-direction: column;
+    resize: auto;
+    cursor: text;
+    display: inline-block;
+    text-align: start;
+}
+#task-category{
+    position:relative;
+    width: 87%;
+    float: right;
+    bottom: 40px;
+}
+#price-text{
+    position: relative;
+    top:10px;
+    width: 100%;
+    height: 50px;
+    padding-left: 18px;
+    padding-right: 5px;
+}
+#save-button{
+    text-align: center;
+    clear: both;
+}
+.Errors{
+    font: red;
+}
+#price-error{
+    position: relative;
+    top:17px;
+}
+#my-task-category{
+    width: 100%;
+    height: 50px;
+    padding-left: 17px;
+}
+#save-new-task{
+    width: 250px;
+    height: 40px;
+    border-radius: 5px 5px 5px 5px;
+    border-style: none;
+    background-color: rgb(7, 82, 50);
+    color:white;
+    font-size:20px;
+    font-style: solid;
+}
+#add-date{
+    width:100%;
+    height: 50px;
+    padding-left: 18px;
+    vertical-align: middle;
+}
+#deadline{
+    
+    position: relative;
+    top:8px;
+}

@@ -12,12 +12,12 @@ class ChatRoomItem extends Component {
     render() {
         return (
             <Item.Group link>
-            <div class="media">
+            <div className="media">
                 <li className="j-order" >
                     <a href={`/ChatRoom/${this.props.item.id}`}>
                         <ul className="l-item-features">
-                            <div class="media-body">
-                                <div class="media-heading">
+                            <div className="media-body">
+                                <div className="media-heading">
                                     {localStorage.getItem('login') != this.props.item.firstUserLogin ?
                                         (this.props.item.firstUserName) : (this.props.item.secondUserName)}
                                 </div>

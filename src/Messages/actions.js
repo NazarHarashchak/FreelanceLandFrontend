@@ -12,12 +12,10 @@ export const actionCreators = {
         dispatch({ type: requestChatRooms });
 
         const chatRooms = await  requests.doGet('/ChatRoom/GetChatRoomsList/'+id);
-        console.log(chatRooms);
         dispatch({ type: recieveChatRooms, chatRooms });
     },
     requestMessages: (id) => async (dispatch) => {
         dispatch({ type: requestMessages });
-        console.log(2);
 
         const messages = await  requests.doGet('/Message/GetMessages/'+id);
         
@@ -25,7 +23,6 @@ export const actionCreators = {
     },
     requestChatRoomInfo: (id) => async (dispatch) => {
         dispatch({ type: requestChatRoomInfo });
-        console.log(3);
 
         const chatRoomInfo = await  requests.doGet('/ChatRoom/GetChatRooms/'+id);
         

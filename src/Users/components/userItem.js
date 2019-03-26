@@ -1,27 +1,36 @@
 import React, { Component } from 'react';
 import UserImage from './userImage';
-import { Item } from 'semantic-ui-react';
-
+import { Item,Icon } from 'semantic-ui-react';
+import  logo from './MyPhoto.jpg';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { actionCreators1 } from '../../ProfilePage/actions';
 
 class UserItem extends Component {
+    constructor(props) {
+        super(props);
+        }
+        
     render() {
         return (
             <Item.Group link>
-            <div class="media">
+            <div className="media">
                 <li className="j-order" >
                     <a href={`/ProfilePage/${this.props.item.id}`}>
                         <ul className="l-item-features">
-                            <div class="media-left">
-                                <UserImage />
+                            <div className="media-left">
+                                <img className="media-object" src={logo}  alt='Loading...'></img>
                             </div>
 
-                            <div class="media-body">
-                                <div class="media-heading">
+                            <div className="media-body">
+                                <div className="media-heading">
                                     {this.props.item.name}
+                                    {this.props.item.userRoleName}
                                 </div>
                                 <p className="info">
                                     {this.props.item.phone_Number}
                                 </p>
+                                   
                                 <div className="description">
                                     {this.props.item.description}
                                 </div>
@@ -39,4 +48,7 @@ class UserItem extends Component {
     }
 }
 
-export default UserItem; 
+export default connect(
+    state => state.profilePage,
+    dispatch => bindActionCreators(actionCreators1, dispatch)
+  )(UserItem);

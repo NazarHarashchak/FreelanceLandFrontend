@@ -99,7 +99,7 @@ class AddImage extends Component {
                                       /> : <div></div>}
           <form>
               {this.state.inputError ? (<div style={{ fontSize: 14, color: "red" }}>{this.state.inputError}</div>) : null}
-              <input name="Avatar" id="img" type="file" class="form-control"  accept="image/x-png,image/gif,image/jpeg" onChange={(e)=>this.handleImageChange(e)}/>
+              <input name="Avatar" id="img" type="file" className="form-control"  accept="image/x-png,image/gif,image/jpeg" onChange={(e)=>this.handleImageChange(e)}/>
               <input type="submit" value="change photo" onClick={this.sendImage} id='addImageButton'/>
           </form>
         </div>

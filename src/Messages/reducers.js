@@ -18,7 +18,6 @@ export const reducer = (state, action) => {
     }
 
     if (action.type === recieveChatRooms) {
-        console.log(5);
 
         return {
             ...state,

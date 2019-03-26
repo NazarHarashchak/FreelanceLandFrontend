@@ -1,25 +1,26 @@
-const requestUserForecastsType = 'REQUEST_USER_FORECASTS';
-const receiveUserForecastsType = 'RECEIVE_USER_FORECASTS';
+const receiveTop = 'RECEIVE_TOP';
+const requestTop = 'REQUEST_TOP';
 
-const initialState = { users: [], isLoading: false };
+const initialState = { users: [] }
 
 export const reducer = (state, action) => {
     state = state || initialState;
 
-    if (action.type === requestUserForecastsType) {
+    if (action.type === requestTop) {
+        
         return {
             ...state,
             isLoading: true
         };
     }
 
-    if (action.type === receiveUserForecastsType) {
+    if (action.type === receiveTop) {
         return {
             ...state,
             users: action.users,
             isLoading: false
         };
     }
-
+    
     return state;
 };

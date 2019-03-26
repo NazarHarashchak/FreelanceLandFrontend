@@ -1,7 +1,7 @@
 import React from "react";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {actionCommentsCreators} from "../addCommentAction"
+import {actionCommentsPostCreators} from "../taskActions"
 import { Redirect } from 'react-router'
 
 import "./comments.css";
@@ -49,13 +49,16 @@ class AddComment extends React.Component {
     }
 
     sendMyComment(event) {
-        event.preventDefault();
         const valid = this.validationForm();
         if (valid)
         {
-            this.props.sendComment(this.state.commentContent, this.props.userId, this.props.taskId);
-            document.location.reload(true);    
+            this.props.sendComment(this.state.commentContent, this.props.userId, this.props.taskId).
+            then(() => {
+                if(this.props.comment != null) { document.location.reload(true);}
+            });
+                
         }
+        event.preventDefault();
     }
 
     render() {
@@ -74,5 +77,5 @@ class AddComment extends React.Component {
 
 export default connect(
     state => state.addComment,
-    dispatch => bindActionCreators(actionCommentsCreators, dispatch)
+    dispatch => bindActionCreators(actionCommentsPostCreators, dispatch)
 )(AddComment);

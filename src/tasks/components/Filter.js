@@ -19,7 +19,6 @@ class Filter extends React.Component {
     }
   }
   validateFromPriceField = (e) => {
-    console.log(e.target.value);
     let toPrice = this.props.filter.priceTo;
     let isValueNull = e.target.value === "";
     let isToPriceNull = toPrice === "";
@@ -39,7 +38,6 @@ class Filter extends React.Component {
   }
 
   validateToPriceField = (e) => {
-    console.log(e.target.value);
     let fromPrice = this.props.filter.priceFrom;
     let isSomeNull = fromPrice === "" || e.target.value === "";
     fromPrice = parseInt(fromPrice, 10);
@@ -73,7 +71,7 @@ class Filter extends React.Component {
               </div>
             </Collapse>
           </div>
-          <div className="form-group">
+          <div className="form-group price-filter">
             <h5>Price:</h5>
             <div className="row">
               <div className="col-md-6">
@@ -82,6 +80,7 @@ class Filter extends React.Component {
                   value={this.props.filter.priceFrom}
                   className="form-control"
                   placeholder="From"
+                  id="from-price-filter"
                   onKeyDown={e => this.handleKeyDown(e)}
                   onChange={e => this.handleChange(e)}
                 />
@@ -99,7 +98,7 @@ class Filter extends React.Component {
             </div>
           </div>
           <div className="form-group">
-            <a href="" className="clear-button" onClick={e => (e.preventDefault(), this.props.cleanFilter())}>clean </a>
+            <a href="" id="clear-filter-button" onClick={e => (e.preventDefault(), this.props.cleanFilter())}>clean </a>
           </div>
         </form>
       </div>

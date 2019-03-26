@@ -39,21 +39,20 @@ export const requestDelete = (Id) => async (dispatch) => {
 export const requestTasksListForUser = () => async (dispatch) =>{
     dispatch({ type: requestTasksListForUserType });
 
-    const url=`/tasks/`+localStorage.getItem('id');
-    console.log(url);
+    const url=`/tasks/history/`+localStorage.getItem('id');
     const tasks = await requests.doGet(url);
     dispatch({ type: receiveTasksListForUserType, tasks});
 }
 
+export const requestActiveTasksListForUser = () => async (dispatch) =>{
+    dispatch({ type: requestTasksListForUserType });
+
+    const url=`/tasks/Active/`+localStorage.getItem('id');
+    const tasks = await requests.doGet(url);
+    dispatch({ type: receiveTasksListForUserType, tasks});
+}
 export const changeCategOpenedStatus = () => async (dispatch) => {
     dispatch({ type: changeCategOpenedStatusType });
-}
-
-export const requestCategoriesList = () => async (dispatch) => {
-
-    const categories = await requests.doGet('/taskcategories');
-
-    dispatch({ type: requestCategoriesListType, categories });
 }
 
 export const searchTasksList = (searchText) => {

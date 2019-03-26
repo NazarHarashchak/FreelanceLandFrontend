@@ -10,7 +10,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators } from '../actions';
 import SweetAlert from 'sweetalert2-react';
-import  logo from './MyPhoto.jpg';
 import AddImage from './AddImage';
 import ProfilePage from './ProfilePhoto';
 import Button from '@material-ui/core/Button';
@@ -21,6 +20,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+import  logo from './MyPhoto.jpg';
 class ProfileComponent extends Component {
   state = {
     open: false,

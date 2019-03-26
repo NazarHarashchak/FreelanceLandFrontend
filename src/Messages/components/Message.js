@@ -14,7 +14,7 @@ class Message extends Component {
 
     render() {
         return(
-            <div class = "messageBoxItem">
+            <div className = "messageBoxItem">
                 <MessageBox
                     dateString={this.props.item.dateAndTime}
                     data = {new Date()}

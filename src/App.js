@@ -12,6 +12,7 @@ import Users from './Users/components/Users';
 import MyPage from './MyPage/components/MyPage';
 import MessagePage from './Messages/components/MessagePage';
 import ChatRoom from './Messages/components/ChatRoom';
+import AddTaskPage from './addTaskPage/components/addTask';
 export default () => (
   <Layout>
         <Route path='/main' component={MainPage} />
@@ -24,5 +25,6 @@ export default () => (
         <Route path='/Users' component={Users} /> 
         <Route path='/Message' component={MessagePage} />
         <Route path='/ChatRoom/:id' component={ChatRoom} />
+        <Route path='/AddTask' component={AddTaskPage} />
   </Layout>
 );
