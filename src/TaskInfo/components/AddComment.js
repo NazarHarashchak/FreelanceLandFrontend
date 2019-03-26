@@ -58,7 +58,6 @@ class AddComment extends React.Component {
             });
                 
         }
-        
         event.preventDefault();
     }
 

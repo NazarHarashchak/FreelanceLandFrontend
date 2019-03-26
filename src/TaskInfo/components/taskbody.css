@@ -1,10 +1,7 @@
 .container-fluid{
   position:relative;
 }
-.col-md-7{
-  position: static;
-}
-  .task-description {
+  .my-task-description {
     position: relative;
     top: 10px;
     padding: 20px;
@@ -29,9 +26,9 @@
     box-sizing: border-box;
     padding: 12px;
   }
-  .col-md-2 {
+  .right-row-panel{
     position: relative;
-    margin-left: 60px;
+    margin-left: 20px;
     top:38px;
   }
   .user-panel{
