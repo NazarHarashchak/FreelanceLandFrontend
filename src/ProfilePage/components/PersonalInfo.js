@@ -22,7 +22,7 @@ class PersonalInfo extends Component {
   render() {
     if (!this.state.isLoaded) {
       const { email, name, sur_Name, birth_Date, phone_Number, login, userRoleName } = this.props.User;
-      const birthDate = birth_Date;
+      const birthDate = birth_Date.toString().slice(0,birth_Date.indexOf('T'));
       return (
         <div>
 
