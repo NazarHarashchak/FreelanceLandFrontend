@@ -10,12 +10,8 @@ import * as commentsReducers from '../TaskInfo/commentReducer';
 import * as addCommentReducers from '../TaskInfo/addCommentReducer';
 import * as loginReducer from '../LoginPage/reducers';
 import * as registrationReducer from '../RegistrationPage/reducers';
-<<<<<<< HEAD
 import * as restorePassReducer from '../RestorePassPage/reducers';
-=======
 import * as messageReducers from '../Messages/reducers';
-
->>>>>>> a62a20955cf70ae06857982db2feaa97699be36b
 import * as topUsers from '../mainPages/reducers';
 import * as addNewTaskReducer from '../addTaskPage/reducer';
 import * as addExcecutor from '../TaskInfo/addExcecutorReducer';
@@ -34,11 +30,8 @@ export default function configureStore(history, initialState) {
     commentsTask: commentsReducers.reducer,
     addComment: addCommentReducers.reducer,
     commentsTask: commentsReducers.reducer,
-<<<<<<< HEAD
     restorePassReducer: restorePassReducer.reducer,
-=======
     messageReducers: messageReducers.reducer,
->>>>>>> a62a20955cf70ae06857982db2feaa97699be36b
     topUsers:topUsers.reducer,
     addTask: addNewTaskReducer.reducer,
     addNewExcecutor: addExcecutor.reducer

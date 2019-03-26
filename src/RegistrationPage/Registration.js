@@ -207,8 +207,8 @@ class RegistrationPage extends Component {
             <div className="signUpForm">
             <SweetAlert
                 show={this.state.showPop}
-                title="Cool!"
-                text="Your Registration was successfull, now you can sign in!"
+                title="Successfull!"
+                text="Check your email to confirm!"
                 confirmButtonColor='#075232'
                 onConfirm={() => this.setState({ showPop: false })}
             />

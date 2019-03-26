@@ -129,7 +129,7 @@ class LoginPage extends Component {
                     <SweetAlert
                         show={this.state.errorPop}
                         title="Fail!"
-                        text="User with this login doesn`t exist!"
+                        text="Username or password is incorrect!"
                         confirmButtonColor='#075232'
                         onConfirm={() => this.setState({ errorPop: false })}
                     />

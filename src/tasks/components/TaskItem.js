@@ -21,11 +21,11 @@ class TaskItem extends React.Component {
 		return (
             <Item.Group link>
                 {localStorage.getItem('role') === "Moderator" ?
-         (
-           <button id="delete">
-            <Icon name='trash alternate'></Icon>
-           </button>
-          ):(null)
+                    (
+                        <button id="delete" onClick={this.deleteSubmit}>
+                            <Icon name='trash alternate'></Icon>
+                        </button>
+                    ):(null)
 		}
  
 			<li className="j-order">
