@@ -16,7 +16,6 @@ class PersonalInfo extends Component {
   async componentWillMount() {
     await this.props.requestProfilePage(this.props.id);
     if (this.props.id !== localStorage.getItem('id') && localStorage.getItem('role') !== "Administrator") { this.state.rea = !this.state.rea }
-    console.log(this.props.id);
     this.setState({ user: this.props.User, isLoaded: false });
   }
 
@@ -49,9 +48,7 @@ class PersonalInfo extends Component {
                   UserRoleName: values.role
                 })
               ).then(res => {
-                const parse = res;
                 alert("updated");
-                console.log(values);
               })
                 .catch(err => {
                   console.log(err);

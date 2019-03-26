@@ -4,9 +4,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 
-const { API_KEY } = process.env
-const API_URL = 'http://api.musicgraph.com/api/v2/artist/suggest'
-
 class SearchBar extends React.Component {
   render() {
     return (

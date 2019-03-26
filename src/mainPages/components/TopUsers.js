@@ -1,5 +1,4 @@
 import React from 'react';
-import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
 import 'bootstrap/dist/css/bootstrap-theme.css';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -13,9 +12,6 @@ import '../topUsers.css';
 
 
 class Gallery extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     
     componentWillMount(){
         requestTop();

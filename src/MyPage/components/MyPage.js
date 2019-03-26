@@ -1,9 +1,6 @@
-import React, { Component } from 'react';
-import apiService from '../../services/apiService';
+import React from 'react';
 import { Tab } from 'semantic-ui-react'
 import ActiveTasks from './ActiveTasks';
-import Login from '../../LoginPage/Login'
-import PersonalInfo from '../../ProfilePage/components/PersonalInfo';
 import ProfileComponent from './ProfilePage';
 import History from './History';
 const panes = [

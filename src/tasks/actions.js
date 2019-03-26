@@ -1,11 +1,9 @@
 import { requests } from '../services/apiService';
-import { request } from 'http';
 
 const requestTasksListType = 'REQUEST_TASKS_LIST';
 const receiveTasksListType = 'RECEIVE_TASKS_LIST';
 const searchTaskListType = 'SEARCH_TASKS_LIST';
 const changeCategOpenedStatusType = 'CHANGE_CATEG_OPENED_STATUS';
-const requestCategoriesListType = 'REQUEST_CATEGORIES_LIST';
 const changeCheckedStatusType = 'CHANGE_CHECKED_STATUS';
 const changeFromPriceType = 'CHANGE_FROM_PRICE';
 const changeToPriceType = 'CHANGE_TO_PRICE';

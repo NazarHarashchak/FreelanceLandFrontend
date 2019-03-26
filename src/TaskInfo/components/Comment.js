@@ -11,7 +11,7 @@ class Comment extends React.Component {
   addExcecutorButton() {
     const userId = localStorage.getItem("id");
     const customerId = this.props.customerId;
-    if (userId == customerId)
+    if (userId === customerId)
     {
         return(
           <div id="choose_excecutor">

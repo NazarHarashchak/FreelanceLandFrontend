@@ -99,7 +99,7 @@ class LoginPage extends Component {
         }
         if (this.props.user !== null) {
             if (this.props.user.access_token === localStorage.getItem("tokenKey")) {
-                const id = this.props.user.id;
+
                 const link = '/home/';
                 return (<Redirect to={link} />);
             }
@@ -117,13 +117,13 @@ class LoginPage extends Component {
                     />
                     <div className="signIn">
                         <h1>Sign in to Freelance-land</h1>
-                        <label for="username">
+                        <label forHtml="username">
                             <b>Username</b>
                         </label>
                         {this.state.loginError ? (<div style={{ fontSize: 14, color: "red" }}>{this.state.loginError}</div>) : null}
                         <input type="text" placeholder="Enter username" name="username"
                             value={this.state.login} onChange={this.loginChange} />
-                        <label for="password">
+                        <label forHtml="password">
                             <b>Password</b>
                         </label>
                         {this.state.passwordError ? (<div style={{ fontSize: 14, color: "red" }}>{this.state.passwordError}</div>) : null}
@@ -133,7 +133,7 @@ class LoginPage extends Component {
                             SIGN IN
                     </button>
                         <input type="checkbox" name="remember" />
-                        <label for="remember">Remember me</label>
+                        <label forHtml="remember">Remember me</label>
                         <span className="password">
                             <a className="forgotPass" href="#">
                                 Forgot your password?
@@ -144,7 +144,7 @@ class LoginPage extends Component {
                         <h1>Hello, Friend!</h1>
                         <h3 className="text-detais">Enter your personal details</h3>
                         <h3 className="text-detais">and start journey with us</h3>
-                        <button type="submit" class="sign" onClick={this.swap}>
+                        <button type="submit" className="sign" onClick={this.swap}>
                             SIGN UP
                     </button>
                     </div>

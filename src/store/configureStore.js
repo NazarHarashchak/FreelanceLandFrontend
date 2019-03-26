@@ -11,9 +11,7 @@ import * as addCommentReducers from '../TaskInfo/addCommentReducer';
 import * as loginReducer from '../LoginPage/reducers';
 import * as registrationReducer from '../RegistrationPage/reducers';
 import * as messageReducers from '../Messages/reducers';
-
 import * as topUsers from '../mainPages/reducers';
-
 import * as addNewTaskReducer from '../addTaskPage/reducer';
 import * as addExcecutor from '../TaskInfo/addExcecutorReducer';
 
@@ -30,7 +28,6 @@ export default function configureStore(history, initialState) {
     usersReducers: usersReducers.reducer,
     commentsTask: commentsReducers.reducer,
     addComment: addCommentReducers.reducer,
-    commentsTask: commentsReducers.reducer,
     messageReducers: messageReducers.reducer,
     topUsers:topUsers.reducer,
     addTask: addNewTaskReducer.reducer,

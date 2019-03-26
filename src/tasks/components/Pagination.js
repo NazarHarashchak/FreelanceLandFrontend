@@ -15,7 +15,7 @@ class Pagination extends React.Component {
           <li><a data-page="2" className="j-pgn-page" href="">»</a></li>
         </ul>
         <div className="col-lg-3 pagination-num">
-          <label for="pagination-num">Go to page:</label>
+          <label forHtml="pagination-num">Go to page:</label>
           <input type="text" className="form-control j-pgn-goto" placeholder="№" />
         </div>
       </div>

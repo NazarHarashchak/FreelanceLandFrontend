@@ -129,7 +129,7 @@ class RegistrationPage extends Component {
         if(!(confPass.length > 0))
         {
             confPassError = "Confirmed password can not be blank!";
-        } else if(confPass != Pass)
+        } else if(confPass !== Pass)
         {
             confPassError = "Passwords must match!";
         }
@@ -219,25 +219,25 @@ class RegistrationPage extends Component {
             />
                 <div className="createAccount" >
                     <h1>Create Account</h1>
-                    <label for="email">
+                    <label forHtml="email">
                         <b>Email</b>
                     </label>
                     {this.state.emailError ? (<div style = {{ fontSize: 14, color: "red"}}>{this.state.emailError}</div>) : null}
                     <input type="text" placeholder="Enter email" name="email"
                         value={this.state.email} onChange={this.emailChange} style={{borderColor: this.state.emailColor}}/>
-                    <label for="uname">
+                    <label forHtml="uname">
                         <b>Username</b>
                     </label>
                     {this.state.loginError ? (<div style = {{ fontSize: 14, color: "red"}}>{this.state.loginError}</div>) : null}
                     <input type="text" placeholder="Enter username" name="uname"
                         value={this.state.login} onChange={this.loginChange} style={{borderColor: this.state.loginColor}}/>
-                    <label for="password">
+                    <label forHtml="password">
                         <b>Password</b>
                     </label>
                     {this.state.passwordError ? (<div style = {{ fontSize: 14, color: "red"}}>{this.state.passwordError}</div>) : null}
                     <input type="password" placeholder="Enter password" name="password"
                         value={this.state.password} onChange={this.passwordChange} style={{borderColor: this.state.passwordColor}}/>
-                    <label for="confirmPassword">
+                    <label forHtml="confirmPassword">
                         <b>Confirm password</b>
                     </label>
                     {this.state.confPassError ? (<div style = {{ fontSize: 14, color: "red"}}>{this.state.confPassError}</div>) : null}

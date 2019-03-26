@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators } from '../actions';
-import ChatRoomItem from './ChatRoomItem';
 import ChatRoomsList from './ChatRoomsList';
 
 

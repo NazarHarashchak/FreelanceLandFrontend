@@ -17,8 +17,7 @@ class Message extends Component {
             <div className = "messageBoxItem">
                 <MessageBox
                     dateString={this.props.item.dateAndTime}
-                    data = {new Date()}
-                    position={(localStorage.getItem('login') != this.props.item.senderLogin) ? 'left' : 'right'}
+                    position={(localStorage.getItem('login') !== this.props.item.senderLogin) ? 'left' : 'right'}
                     type={'text'}
                     text={this.props.item.content}
                     data={{

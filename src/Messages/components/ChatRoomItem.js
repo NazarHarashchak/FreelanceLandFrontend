@@ -4,11 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators } from '../actions';
 
-class ChatRoomItem extends Component {
-    constructor(props) {
-        super(props);
-        }
-        
+class ChatRoomItem extends Component {        
     render() {
         return (
             <Item.Group link>
@@ -18,7 +14,7 @@ class ChatRoomItem extends Component {
                         <ul className="l-item-features">
                             <div className="media-body">
                                 <div className="media-heading">
-                                    {localStorage.getItem('login') != this.props.item.firstUserLogin ?
+                                    {localStorage.getItem('login') !== this.props.item.firstUserLogin ?
                                         (this.props.item.firstUserName) : (this.props.item.secondUserName)}
                                 </div>
                                 <p className="info">

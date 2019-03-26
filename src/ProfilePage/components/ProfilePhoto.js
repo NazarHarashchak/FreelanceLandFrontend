@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './ProfilePage.css';
 import  logo from './MyPhoto.jpg';
-import {  Image } from 'semantic-ui-react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators1 } from '../actions';

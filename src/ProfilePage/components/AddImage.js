@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
 import './ProfilePage.css';
-import ProfilePhoto from './ProfilePhoto';
-import ActiveTasks from './ActiveTasks';
-import History from './History';
-import PersonalInfo from './PersonalInfo';
-import { Grid} from 'semantic-ui-react'
-import { addImage } from '../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators1 } from '../actions';
-import  logo from './MyPhoto.jpg';
-import Avatar from 'react-avatar';
 import AvatarEditor from 'react-avatar-editor'
 
 class AddImage extends Component {
@@ -87,7 +79,7 @@ class AddImage extends Component {
     render() {
      return (
         <div id = 'addImageWrapper' style={{ visibility: (localStorage.getItem('tokenKey') && this.props.id === localStorage.getItem('id')) ? 'visible' : 'hidden' }}>
-          {(this.state.image != '') ?  <AvatarEditor
+          {(this.state.image !== '') ?  <AvatarEditor
                                         ref={this.setEditorRef}
                                         image={this.state.image}
                                         width={250}

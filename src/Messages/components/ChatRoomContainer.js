@@ -41,7 +41,7 @@ class ChatRoomContainer extends Component {
               this.setState({newMessages: [...this.state.newMessages,<MessageBox
                                                 dateString={currentTime}
                                                 key={this.state.counter}
-                                                position={(localStorage.getItem('login') != userName) ? 'left' : 'right'}
+                                                position={(localStorage.getItem('login') !== userName) ? 'left' : 'right'}
                                                 type={'text'}
                                                 text={message}
                                                 data={{
@@ -54,11 +54,11 @@ class ChatRoomContainer extends Component {
           }.bind(this));
          hubConnection.on('Notify', function (message) {
             
-          }.bind(this));
+          });
 
          var roomId = this.props.roomId;
          let to = "";
-         if(this.props.roomInfo.firstUserLogin != localStorage.getItem('login'))
+         if(this.props.roomInfo.firstUserLogin !== localStorage.getItem('login'))
             to = this.props.roomInfo.firstUserLogin; 
          else
             to = this.props.roomInfo.secondUserLogin;

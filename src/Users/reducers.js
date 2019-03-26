@@ -60,16 +60,6 @@ export const reducer = (state, action) => {
     
 };
 
-function cleanChecked(categs) {
-    const newList = categs.map(item => {
-        return {
-          ...item,
-          isChecked: false
-        };
-      });
-    return newList;
-}
-
 function switchCheckedStatus(roles,name) {
     
     const newList = roles.map(item =>

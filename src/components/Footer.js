@@ -1,5 +1,4 @@
 import React from "react";
-import { Col, Grid, Nav, NavItem, Row } from 'react-bootstrap';
 import './Footer.css';
 
 const Footer = () => {
