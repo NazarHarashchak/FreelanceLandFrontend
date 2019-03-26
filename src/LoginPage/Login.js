@@ -117,13 +117,13 @@ class LoginPage extends Component {
                     />
                     <div className="signIn">
                         <h1>Sign in to Freelance-land</h1>
-                        <label forHtml="username">
+                        <label htmlFor="username">
                             <b>Username</b>
                         </label>
                         {this.state.loginError ? (<div style={{ fontSize: 14, color: "red" }}>{this.state.loginError}</div>) : null}
                         <input type="text" placeholder="Enter username" name="username"
                             value={this.state.login} onChange={this.loginChange} />
-                        <label forHtml="password">
+                        <label htmlFor="password">
                             <b>Password</b>
                         </label>
                         {this.state.passwordError ? (<div style={{ fontSize: 14, color: "red" }}>{this.state.passwordError}</div>) : null}
@@ -133,7 +133,7 @@ class LoginPage extends Component {
                             SIGN IN
                     </button>
                         <input type="checkbox" name="remember" />
-                        <label forHtml="remember">Remember me</label>
+                        <label htmlFor="remember">Remember me</label>
                         <span className="password">
                             <a className="forgotPass" href="#">
                                 Forgot your password?

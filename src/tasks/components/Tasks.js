@@ -12,7 +12,7 @@ import '../styles.css';
 
 class Tasks extends Component {
     componentWillMount() {
-        requestTasksList();
+        this.props.requestTasksList();
     }
 
     render() {
@@ -38,5 +38,5 @@ class Tasks extends Component {
 
 export default connect(
     state => state.tasksReducers,
-    dispatch => bindActionCreators(requestTasksList, dispatch)
+    dispatch => bindActionCreators({requestTasksList:requestTasksList}, dispatch)
 )(Tasks);

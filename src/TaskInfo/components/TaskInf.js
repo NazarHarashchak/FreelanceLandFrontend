@@ -3,15 +3,16 @@ import UserPanel from './UserPanel';
 import TaskDescription from './TaskDescription';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { actionCreators } from '../taskActions';
+import { requestTaskForecasts } from '../taskActions';
 
 class Task extends Component {
 
     componentWillMount() {
-        this.props.requestTaskForecasts(this.props.match.params.id);
+       this.props.requestTaskForecasts(this.props.match.params.id);
     }
 
     render() {
+        console.log(this.props.forecasts)
         return (
             <div className="container-fluid">
                         <div className="col-md-1"></div>
@@ -30,5 +31,5 @@ class Task extends Component {
 
 export default connect(
     state => state.taskProfilePage,
-    dispatch => bindActionCreators(actionCreators, dispatch)
+    dispatch => bindActionCreators({requestTaskForecasts:requestTaskForecasts}, dispatch)
 )(Task);

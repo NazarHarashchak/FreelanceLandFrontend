@@ -1,3 +1,4 @@
+
 const requestTaskForecastsType = 'REQUEST_WEATHER_FORECASTS';
 const receiveTaskForecastsType = 'RECEIVE_WEATHER_FORECASTS';
 
@@ -7,6 +8,7 @@ export const reducer = (state, action) => {
     state = state || initialState;
 
     if (action.type === requestTaskForecastsType) {
+        console.log(1);
         return {
             ...state,
             isLoading: true
@@ -14,6 +16,8 @@ export const reducer = (state, action) => {
     }
 
     if (action.type === receiveTaskForecastsType) {
+        console.log(2);
+
         return {
             ...state,
             forecasts: action.forecasts,

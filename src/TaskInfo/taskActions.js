@@ -10,14 +10,13 @@ const requestExcecutor = 'REQUEST_EXCECUTOR';
 const receiveExcecutor = 'RECEIVE_EXCECUTOR';
 
 
-export const actionCreators = {
-    requestTaskForecasts: (myId) => async (dispatch) => {
+export const  requestTaskForecasts = (myId) => async (dispatch) => {
         dispatch({ type: requestTaskForecastsType });
         const forecasts = await requests.doGet('/taskinfo/' + myId);
-
+          console.log(5)  
         dispatch({ type: receiveTaskForecastsType, forecasts });
     }
-}
+
 
 export const actionCommentsCreators = {
     requestComments: (myId) => async (dispatch) => {
