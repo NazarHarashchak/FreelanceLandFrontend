@@ -20,7 +20,7 @@ class TaskItem extends React.Component {
 	render() {
 		return (
             <Item.Group link>
-                {localStorage.getItem('role') === "Moderator" ?
+                {sessionStorage.getItem('role') === "Moderator" ?
                     (
                         <button id="delete" onClick={this.deleteSubmit}>
                             <Icon name='trash alternate'></Icon>

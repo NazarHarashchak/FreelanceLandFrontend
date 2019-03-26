@@ -14,7 +14,7 @@ class Comments extends React.Component {
   }
 
   addNewComment() {
-    const myUserId = localStorage.getItem("id");
+    const myUserId = sessionStorage.getItem("id");
     if (myUserId === null){
        return (
          <div id="comment-eror">Sign in to add the comment</div>

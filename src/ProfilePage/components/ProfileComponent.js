@@ -36,7 +36,7 @@ class ProfileComponent extends Component {
   };
 
   handleSendMessage = () => {
-    var sender = localStorage.getItem('id');
+    var sender = sessionStorage.getItem('id');
     var getter = this.props.match.params.id;
     var message = this.state.messageToSend;
     this.props.createChatRoomAndSendMessage(sender, getter, message);
@@ -55,7 +55,7 @@ class ProfileComponent extends Component {
         <Grid.Row centered>
           <AddImage id={this.props.match.params.id}/>
         </Grid.Row>
-        {localStorage.getItem('id')!= this.props.match.params.id ? (<Grid.Row centered>
+        {sessionStorage.getItem('id')!= this.props.match.params.id ? (<Grid.Row centered>
           <div id= "sendMessageButton">
         <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
           Send Message

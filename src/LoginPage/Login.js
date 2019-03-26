@@ -12,13 +12,13 @@ class LoginPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            login: '',
+            login: localStorage.login,
             loginError: '',
             loginColor: '',
-            password: '',
+            password: localStorage.password,
             passwordError: '',
             passwordColor: '',
-            checkBox: false,
+            checkBox: localStorage.checked,
             swaper: false,
             errorPop: false
         };
@@ -86,7 +86,6 @@ class LoginPage extends Component {
 
     boxRememberMeChange() {
         this.setState({ checkBox: !this.state.checkBox });
-        console.log(this.state.checkBox);
     }
 
     authenticationSubmit(event) {
@@ -99,10 +98,9 @@ class LoginPage extends Component {
                     else {
                         if (this.state.checkBox)
                         {
-                            localStorage.setItem('tokenKey', sessionStorage.getItem('tokenKey'));
-                            localStorage.setItem('id', sessionStorage.getItem('id'));
-                            localStorage.setItem('login', sessionStorage.getItem('login'));
-                            localStorage.setItem('role', sessionStorage.getItem('role'));
+                            localStorage.setItem('login', this.state.login);
+                            localStorage.setItem('password', this.state.password);
+                            localStorage.setItem('checked', true);
                         }
                     }
                 });
@@ -115,14 +113,14 @@ class LoginPage extends Component {
             return <Redirect to='/registrationPage' />
         }
         if (this.props.user !== null) {
-            if (this.props.user.access_token === localStorage.getItem("tokenKey")) {
+            if (this.props.user.access_token === sessionStorage.getItem("tokenKey")) {
                 const id = this.props.user.id;
                 const link = '/home/';
                 return (<Redirect to={link} />);
             }
         }
 
-        if (!localStorage.getItem('tokenKey')) {
+        if (!sessionStorage.getItem('tokenKey')) {
             return (
                 <div className="signInForm">
 
@@ -150,7 +148,7 @@ class LoginPage extends Component {
                         <button type="submit" className="signin" onClick={this.authenticationSubmit}>
                             SIGN IN
                     </button>
-                        <input type="checkbox" name="remember" onChange={this.boxRememberMeChange} />
+                        <input type="checkbox" name="remember" checked={this.state.checkBox} onChange={this.boxRememberMeChange} />
                         <label for="remember">Remember me</label>
                         <span className="password">
                             <a className="forgotPass" href="/restorePass">

@@ -25,7 +25,7 @@ class ChatRoom extends Component {
       
         return(
             <div>
-               {(localStorage.getItem('tokenKey') && this.props.chatRoomInfo) ? (<ChatRoomContainer roomId = {this.props.match.params.id} roomInfo = {this.props.chatRoomInfo} messages = {this.props.messages}/>) : <div></div>}
+               {(sessionStorage.getItem('tokenKey') && this.props.chatRoomInfo) ? (<ChatRoomContainer roomId = {this.props.match.params.id} roomInfo = {this.props.chatRoomInfo} messages = {this.props.messages}/>) : <div></div>}
             </div>
         )
     }

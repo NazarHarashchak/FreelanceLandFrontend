@@ -16,7 +16,7 @@ class MessagePage extends Component {
 
     componentWillMount()
     { 
-        this.props.requestChatRoomsList(localStorage.getItem('id'));
+        this.props.requestChatRoomsList(sessionStorage.getItem('id'));
         this.setState({chatRoomsList: this.props.chatRooms});
     }
 

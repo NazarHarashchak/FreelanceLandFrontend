@@ -42,7 +42,7 @@ export const deleteTask = {
 export const requestTasksListForUser = () => async (dispatch) =>{
     dispatch({ type: requestTasksListForUserType });
 
-    const url=`/tasks/history/`+localStorage.getItem('id');
+    const url=`/tasks/history/`+sessionStorage.getItem('id');
     const tasks = await requests.doGet(url);
     dispatch({ type: receiveTasksListForUserType, tasks});
 }
@@ -50,7 +50,7 @@ export const requestTasksListForUser = () => async (dispatch) =>{
 export const requestActiveTasksListForUser = () => async (dispatch) =>{
     dispatch({ type: requestTasksListForUserType });
 
-    const url=`/tasks/Active/`+localStorage.getItem('id');
+    const url=`/tasks/Active/`+sessionStorage.getItem('id');
     const tasks = await requests.doGet(url);
     dispatch({ type: receiveTasksListForUserType, tasks});
 }

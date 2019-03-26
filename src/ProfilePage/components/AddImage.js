@@ -51,7 +51,7 @@ class AddImage extends Component {
           let form = new FormData();
           form.append('image', file);
           form.append('fileName', this.state.imageName);
-          form.append('userid', localStorage.getItem('id'));
+          form.append('userid', sessionStorage.getItem('id'));
 
           this.props.addImage(form);
           document.getElementById('img').value = ""; 
@@ -86,7 +86,7 @@ class AddImage extends Component {
 
     render() {
      return (
-        <div id = 'addImageWrapper' style={{ visibility: (localStorage.getItem('tokenKey') && this.props.id === localStorage.getItem('id')) ? 'visible' : 'hidden' }}>
+        <div id = 'addImageWrapper' style={{ visibility: (sessionStorage.getItem('tokenKey') && this.props.id === sessionStorage.getItem('id')) ? 'visible' : 'hidden' }}>
           {(this.state.image != '') ?  <AvatarEditor
                                         ref={this.setEditorRef}
                                         image={this.state.image}

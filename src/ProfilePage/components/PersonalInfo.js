@@ -15,7 +15,7 @@ class PersonalInfo extends Component {
 
   async componentWillMount() {
     await this.props.requestProfilePage(this.props.id);
-    if (this.props.id !== localStorage.getItem('id') && localStorage.getItem('role') !== "Administrator") { this.state.rea = !this.state.rea }
+    if (this.props.id !== sessionStorage.getItem('id') && sessionStorage.getItem('role') !== "Administrator") { this.state.rea = !this.state.rea }
     console.log(this.props.id);
     this.setState({ user: this.props.User, isLoaded: false });
   }
@@ -122,7 +122,7 @@ class PersonalInfo extends Component {
                         value={values.email} />
                     </Form.Group>
 
-                    {localStorage.getItem('role') === "Administrator" ?
+                    {sessionStorage.getItem('role') === "Administrator" ?
                       (<Form.Group widths='equal'>
                         <Form.Dropdown fluid label='Role'
                           placeholder='role'
@@ -139,7 +139,7 @@ class PersonalInfo extends Component {
                       ) : (null)
                     }
 
-                    {localStorage.getItem('id') === this.props.id || localStorage.getItem('role') === "Administrator" ?
+                    {sessionStorage.getItem('id') === this.props.id || sessionStorage.getItem('role') === "Administrator" ?
                       <Button className="submit-button" type='submit'>Update</Button>
                       : <div></div>}
                   </Form>

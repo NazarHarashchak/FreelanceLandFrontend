@@ -25,7 +25,7 @@ class Comment extends React.Component {
     }
 
     addExcecutorButton() {
-    const userId = localStorage.getItem("id");
+    const userId = sessionStorage.getItem("id");
     const customerId = this.props.customerId;
     if (userId == customerId)
     {
@@ -56,7 +56,7 @@ class Comment extends React.Component {
                 confirmButtonColor='#075232'
                 onConfirm={() => this.setState({ showPop: false })}
             />
-            {localStorage.getItem('role') === "Moderator" ? 
+            {sessionStorage.getItem('role') === "Moderator" ? 
                 (
                     <button id="delete" onClick={this.deleteSubmit}>
                         <Icon name='trash alternate'></Icon>

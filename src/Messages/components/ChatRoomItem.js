@@ -18,7 +18,7 @@ class ChatRoomItem extends Component {
                         <ul className="l-item-features">
                             <div className="media-body">
                                 <div className="media-heading">
-                                    {localStorage.getItem('login') != this.props.item.firstUserLogin ?
+                                    {sessionStorage.getItem('login') != this.props.item.firstUserLogin ?
                                         (this.props.item.firstUserName) : (this.props.item.secondUserName)}
                                 </div>
                                 <p className="info">
