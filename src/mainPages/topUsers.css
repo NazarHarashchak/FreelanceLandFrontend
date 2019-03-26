@@ -1,0 +1,10 @@
+.top-users{
+    display:flex;  
+    list-style:none;
+    padding: 20px 10px;
+    margin:10px 10% 10px 10%;
+}
+.top-users-item{
+    border: 3px solid rgb(22, 84, 218);
+    border-radius: 5px;
+}

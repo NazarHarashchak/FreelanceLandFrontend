@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import {addExcecutor} from '../taskActions';
 import {Icon} from 'semantic-ui-react';
 import "./comments.css";
+import {Icon} from 'semantic-ui-react';
 
 class Comment extends React.Component {
 

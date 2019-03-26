@@ -53,7 +53,7 @@ export default props => (
                     <Nav pullRight id="LogoutNavigation">
                         <LinkContainer to={'/home'} exact>
                             <NavItem>
-                                <Glyphicon glyph='home' /> {sessionStorage.getItem('login')}
+                                <Glyphicon glyph='home' /> {localStorage.getItem('login')}
                             </NavItem>
                         </LinkContainer>
                         <LinkContainer to={'/loginPage'}>
