@@ -3,6 +3,7 @@ import ProfilePhoto from '../../ProfilePage/components/ProfilePhoto';
 import PersonalInfo from '../../ProfilePage/components/PersonalInfo';
 import { Grid} from 'semantic-ui-react'
 import AddImage from '../../ProfilePage/components/AddImage';
+
 class ProfileComponent extends Component {
   
   render() {

@@ -22,9 +22,6 @@ export default props => (
         
         <Row>
             <Col>
-                <div id="push50"></div>
-            </Col>
-            <Col>
                <Footer />
             </Col>
         </Row>

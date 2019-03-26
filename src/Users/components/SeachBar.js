@@ -10,10 +10,10 @@ const API_URL = 'http://api.musicgraph.com/api/v2/artist/suggest'
 class SearchBar extends React.Component {
   render() {
     return (
-      <div class="form-group has-search">
-        <span class="fa fa-search form-control-feedback"></span>
+      <div className="form-group has-search">
+        <span className="fa fa-search form-control-feedback"></span>
         <input type="text" 
-          class="form-control" 
+          className="form-control" 
           placeholder="Search" 
           onChange={(e) => this.props.searchUsersList(e.target.value)} 
           

@@ -21,6 +21,7 @@
     "react-avatar-editor": "^11.0.6",
     "react-bootstrap": "^0.31.5",
     "react-bootstrap-sweetalert": "^4.4.1",
+    "react-chat-elements": "^10.3.0",
     "react-dom": "^16.8.3",
     "react-easy-crop": "^1.8.3",
     "react-fontawesome": "^1.6.1",

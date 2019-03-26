@@ -6,7 +6,7 @@ class UserImage extends Component {
    return (
      <div className="container-fluid">
      
-        <img class="media-object" src={logo}  alt='Loading...'></img>
+        <img className="media-object" src={logo}  alt='Loading...'></img>
        
       </div>
 

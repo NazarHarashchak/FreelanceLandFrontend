@@ -40,7 +40,6 @@ export const requestTasksListForUser = () => async (dispatch) =>{
     dispatch({ type: requestTasksListForUserType });
 
     const url=`/tasks/history/`+localStorage.getItem('id');
-    console.log(url);
     const tasks = await requests.doGet(url);
     dispatch({ type: receiveTasksListForUserType, tasks});
 }
