@@ -2,6 +2,8 @@ import { requests } from '../services/apiService';
 
 const requestTask = 'REQUEST_TASK';
 const receiveTask = 'RECEIVE_TASK';
+const requestCategoriesTask = 'REQUEST_CATEGORIES_TASK';
+const receiveCategoriesTask = 'RECEIVE_CATEGORIES_TASK';
 
 export const actionTaskPost = {
     createNewTask: (my_title, my_description, my_userId, my_price,
@@ -22,5 +24,16 @@ export const actionTaskPost = {
         const newTask = await response;
 
         dispatch ({ type: receiveTask, newTask });
+    },
+
+    getCategories: () => async (dispatch) => {
+        dispatch({ type: requestCategoriesTask });
+
+        const url = `/taskinfo/getcategories`;
+        const response = await requests.doGet(url);
+
+        const categories = await response;
+
+        dispatch ({ type: receiveCategoriesTask, categories });
     }
 }

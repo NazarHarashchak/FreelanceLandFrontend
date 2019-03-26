@@ -8,7 +8,8 @@ class UserPanel extends React.Component {
 
   render() {
     return (
-      <div className="col-md-2">
+      <div className="col-md-3">
+         <div className="right-row-panel">
           <div className="user-panel">
             <div className="top-row">Customer
             </div>
@@ -40,11 +41,11 @@ class UserPanel extends React.Component {
             </div>
             <div className="user-panel">
               <div className="top-row">
-                Simular project
+                Similar project
               </div>
               <div>
-                
               </div>
+            </div>
             </div>
       </div>
     );

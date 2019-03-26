@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {addExcecutor} from '../taskActions';
+import {Icon} from 'semantic-ui-react';
 import "./comments.css";
 import {Icon} from 'semantic-ui-react';
 
@@ -15,7 +16,7 @@ class Comment extends React.Component {
     {
         return(
           <div id="choose_excecutor">
-            <input type="button" value="Choose"/>
+            <input type="button" value="Choose" onCLick={this.saveExcecutor}/>
           </div>
         );
     }
