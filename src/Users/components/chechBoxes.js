@@ -18,7 +18,6 @@ class CheckBox extends React.Component {
                         <label className="category-text-style"  >
                             <input
                                 type="checkbox"
-                               
                                 name={item.type}
                                 onChange={(e) => this.props.changeCheckedStatus(e.target.name)}
                                 checked={item.isChecked}

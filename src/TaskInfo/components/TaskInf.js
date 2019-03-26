@@ -12,7 +12,6 @@ class Task extends Component {
     }
 
     render() {
-        console.log(this.props.forecasts)
         return (
             <div className="container-fluid">
                         <div className="col-md-1"></div>

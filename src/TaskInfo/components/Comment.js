@@ -41,6 +41,7 @@ class Comment extends React.Component {
                     (null)}
         <form>
           <table className="comment-title">
+          <tbody>
               <tr> 
                 <td>
                     <div id="comment-user-photo"> 
@@ -58,6 +59,7 @@ class Comment extends React.Component {
                   </Link>
                 </td>
               </tr>
+              </tbody>
           </table>
           {this.addExcecutorButton()}
                 <div id="content">

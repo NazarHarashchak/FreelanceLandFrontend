@@ -12,6 +12,7 @@ class UserPanel extends React.Component {
             <div className="top-row">Customer
             </div>
               <table id="user-table">
+              <tbody>
                 <tr id="bottom-row">
                   <td>
                   <div id="user-photo">
@@ -25,6 +26,7 @@ class UserPanel extends React.Component {
                     </Link></span>
                   </td>
                 </tr>
+                </tbody>
               </table>
            </div>
             <div className="user-panel">

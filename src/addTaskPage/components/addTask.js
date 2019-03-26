@@ -60,7 +60,7 @@ class addTaskPage extends React.Component {
                         <div id="task-category">
                        
                             <select id="my-task-category">
-                                {this.props.categories.map((item) => <option>{item.type}</option>)}
+                                {this.props.categories.map((item) => <option key={item.type}>{item.type}</option>)}
                             </select>
                         </div>
                     </div>

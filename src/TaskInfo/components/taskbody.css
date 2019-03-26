@@ -20,7 +20,8 @@
   #task-price {
     position: relative;
     float: right;
-    background-color: rgb(106, 255, 7);
+    background-color:#27551a;
+    color: white;
     height: 40px;
     text-align: center;
     box-sizing: border-box;

@@ -53,7 +53,7 @@ class ProfileComponent extends Component {
         </Grid.Row>
         {localStorage.getItem('id')!== this.props.match.params.id ? (<Grid.Row centered>
           <div id= "sendMessageButton">
-        <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
+        <Button variant="outlined" className="send-message-button" color="primary" onClick={this.handleClickOpen}>
           Send Message
         </Button>
         <Dialog
@@ -77,10 +77,10 @@ class ProfileComponent extends Component {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={this.handleClose} className="send-message-button" color="primary">
               Cancel
             </Button>
-            <Button onClick={this.handleSendMessage} color="primary">
+            <Button onClick={this.handleSendMessage} className="send-message-button" color="primary">
               Send
             </Button>
           </DialogActions>
