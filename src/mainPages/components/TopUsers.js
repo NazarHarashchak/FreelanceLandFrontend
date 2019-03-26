@@ -8,8 +8,8 @@ import { bindActionCreators } from 'redux';
 import { requestTop } from '../actions';
 import '../topUsers.css';
 //
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+//import Carousel from 'react-multi-carousel';
+//import 'react-multi-carousel/lib/styles.css';
 
 
 class Gallery extends React.Component {

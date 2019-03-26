@@ -82,7 +82,6 @@ function switchCheckedStatus(roles,name) {
 
 function filterUsers(roles, users){
     let checkedRoles=roles.filter(typ =>typ.isChecked === true);
-    console.log(checkedRoles)
     if(checkedRoles.length !== 0){
         users=users.filter(item => {
             return(

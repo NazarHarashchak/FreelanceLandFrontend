@@ -24,7 +24,6 @@ class FetchData extends Component {
 }
 
 function renderForecastsTable(props) {
-    console.log(props.forecasts);
     return (
 		<ul>
             {props.forecasts.map(forecast =>

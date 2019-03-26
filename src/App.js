@@ -10,6 +10,8 @@ import Task from './TaskInfo/components/TaskInf'
 import ProfileComponent from './ProfilePage/components/ProfileComponent';
 import Users from './Users/components/Users';
 import MyPage from './MyPage/components/MyPage';
+import MessagePage from './Messages/components/MessagePage';
+import ChatRoom from './Messages/components/ChatRoom';
 import AddTaskPage from './addTaskPage/components/addTask';
 export default () => (
   <Layout>
@@ -21,6 +23,8 @@ export default () => (
         <Route path='/registrationPage' component={RegistrationPage} />
         <Route path='/taskInf/:id' component={Task}/>
         <Route path='/Users' component={Users} /> 
+        <Route path='/Message' component={MessagePage} />
+        <Route path='/ChatRoom/:id' component={ChatRoom} />
         <Route path='/AddTask' component={AddTaskPage} />
   </Layout>
 );
