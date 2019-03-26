@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ProfilePhoto from '../../ProfilePage/components/ProfilePhoto';
 import PersonalInfo from '../../ProfilePage/components/PersonalInfo';
 import { Grid} from 'semantic-ui-react'
+import AddImage from '../../ProfilePage/components/AddImage';
 
 class ProfileComponent extends Component {
   
@@ -9,7 +10,10 @@ class ProfileComponent extends Component {
     return (
       <Grid>
         <Grid.Row centered>
-          <ProfilePhoto/>
+          <ProfilePhoto id={localStorage.getItem('id')}/>
+        </Grid.Row>
+        <Grid.Row centered>
+          <AddImage id={localStorage.getItem('id')}/>
         </Grid.Row>
 
         <Grid.Row centered>

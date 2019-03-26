@@ -11,7 +11,7 @@ import * as commentsReducers from '../TaskInfo/commentReducer';
 import * as addCommentReducers from '../TaskInfo/addCommentReducer';
 import * as loginReducer from '../LoginPage/reducers';
 import * as registrationReducer from '../RegistrationPage/reducers';
-
+import * as messageReducers from '../Messages/reducers';
 export default function configureStore(history, initialState) {
   const reducers = {
     weatherForecasts: myReducers.reducer,
@@ -25,7 +25,8 @@ export default function configureStore(history, initialState) {
     usersReducers: usersReducers.reducer,
     commentsTask: commentsReducers.reducer,
     addComment: addCommentReducers.reducer,
-    commentsTask: commentsReducers.reducer
+    commentsTask: commentsReducers.reducer,
+    messageReducers: messageReducers.reducer,
   };
 
   const middleware = [

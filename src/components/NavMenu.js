@@ -3,13 +3,24 @@ import { Glyphicon, Nav, Navbar, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
-
 function onClickLogout() {
-    sessionStorage.removeItem('tokenKey');
-    sessionStorage.removeItem('id');
-    sessionStorage.removeItem('login');
-    sessionStorage.removeItem('role');
+    localStorage.removeItem('tokenKey');
+    localStorage.removeItem('id');
+    localStorage.removeItem('login');
+    localStorage.removeItem('role');
     document.location.replace('loginPage');
+}
+
+function addTask(){ 
+    if (localStorage.getItem("id") !== null) {
+     return (
+            <LinkContainer to={'/AddTask'}>
+                <NavItem>
+                    <Glyphicon glyph='plus' /> Add Task
+                </NavItem>
+            </LinkContainer>
+            );
+        }
 }
 
 export default props => (
@@ -33,15 +44,21 @@ export default props => (
                         <Glyphicon glyph='th-list' /> Freelancers & Customers
                     </NavItem>
                 </LinkContainer>
+                {addTask()}
             </Nav>
-            {sessionStorage.getItem('tokenKey') ?
+            {localStorage.getItem('tokenKey') ?
                 (
                     <Nav pullRight id="LogoutNavigation">
+                        <LinkContainer to={'/Message'} exact>
+                            <NavItem>
+                                <Glyphicon glyph='envelope' /> Messages
+                            </NavItem>
+                        </LinkContainer>
                         <LinkContainer to={'/home'} exact>
-                    <NavItem>
-                        <Glyphicon glyph='home' /> {localStorage.getItem('login')}
-                    </NavItem>
-                </LinkContainer>
+                            <NavItem>
+                                <Glyphicon glyph='home' /> {localStorage.getItem('login')}
+                            </NavItem>
+                        </LinkContainer>
                         <LinkContainer to={'/loginPage'}>
                             <NavItem id="logoutButton">
 
