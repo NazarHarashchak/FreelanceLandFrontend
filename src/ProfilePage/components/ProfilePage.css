@@ -2,6 +2,12 @@
     margin-top: 30px;
 }
 
+#addImageButton {
+    margin-top:5px;
+    background: #075232 !important;
+    color: white !important;
+}
+
 #img {
     font-size: 14px;
     height: 40px;
