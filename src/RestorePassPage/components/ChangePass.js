@@ -107,13 +107,13 @@ class ChangePass extends Component {
                     onConfirm={() => this.setState({ errorPop: false })}
                 />
                 <h1>Enter your new password.</h1>
-                <label for="password">
+                <label htmlFor="password">
                     <b>Password</b>
                 </label>
                 {this.state.passwordError ? (<div style={{ fontSize: 14, color: "red" }}>{this.state.passwordError}</div>) : null}
                 <input type="password" className="password" placeholder="Enter password" value={this.state.password}
                     onChange={this.passwordChange} style={{ borderColor: this.state.passwordColor }} />
-                <label for="confirmPassword">
+                <label htmlFor="confirmPassword">
                     <b>Confirm password</b>
                 </label>
                 {this.state.confPassError ? (<div style={{ fontSize: 14, color: "red" }}>{this.state.confPassError}</div>) : null}

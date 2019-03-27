@@ -7,7 +7,7 @@ class ConfirmCode extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            code: null,
+            code: '',
             valid: false,
             errorPop: false
         };

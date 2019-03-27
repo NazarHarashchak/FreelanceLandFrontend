@@ -147,8 +147,8 @@ class LoginPage extends Component {
                         <button type="submit" className="signin" onClick={this.authenticationSubmit}>
                             SIGN IN
                     </button>
-                        <input type="checkbox" name="remember" checked={this.state.checkBox} onChange={this.boxRememberMeChange} />
-                        <label for="remember">Remember me</label>
+                        <input type="checkbox" name="remember" checked={Boolean(this.state.checkBox)} onChange={this.boxRememberMeChange} />
+                        <label htmlFor="remember">Remember me</label>
                         <span className="password">
                             <a className="forgotPass" href="/restorePass">
                                 Forgot your password?
