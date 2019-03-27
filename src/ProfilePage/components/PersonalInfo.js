@@ -23,7 +23,7 @@ class PersonalInfo extends Component {
   render() {
     if (!this.state.isLoaded) {
       const { email, name, sur_Name, birth_Date, phone_Number, login, userRoleName } = this.props.User;
-      const birthDate = birth_Date;
+      const birthDate = birth_Date.toString().slice(0,birth_Date.indexOf('T'));
       return (
         <div>
 
@@ -49,9 +49,7 @@ class PersonalInfo extends Component {
                   UserRoleName: values.role
                 })
               ).then(res => {
-                const parse = res;
                 alert("updated");
-                console.log(values);
               })
                 .catch(err => {
                   console.log(err);
@@ -70,7 +68,7 @@ class PersonalInfo extends Component {
                     <Form.Group widths='equal'>
                       <Form.Input
                         className="first-name"
-                        fluid label='First name'
+                        label='First name'
                         placeholder='First name'
                         type="text"
                         readOnly={this.state.rea}
@@ -79,7 +77,7 @@ class PersonalInfo extends Component {
                         onBlur={handleBlur}
                         value={values.firstName}
                       />
-                      <Form.Input fluid label='Last name'
+                      <Form.Input  label='Last name'
                         placeholder='Last name'
                         type="text"
                         name="lastName"
@@ -90,7 +88,7 @@ class PersonalInfo extends Component {
                     </Form.Group>
 
                     <Form.Group widths='equal'>
-                      <Form.Input fluid label='Birth date'
+                      <Form.Input label='Birth date'
                         placeholder='Birth date'
                         type="date"
                         readOnly={this.state.rea}
@@ -101,7 +99,7 @@ class PersonalInfo extends Component {
                     </Form.Group>
 
                     <Form.Group widths='equal'>
-                      <Form.Input fluid label='Phone'
+                      <Form.Input  label='Phone'
                         placeholder='Phone'
                         readOnly={this.state.rea}
                         type="tel"
@@ -112,7 +110,7 @@ class PersonalInfo extends Component {
                     </Form.Group>
 
                     <Form.Group widths='equal'>
-                      <Form.Input fluid label='Email'
+                      <Form.Input  label='Email'
                         placeholder='email'
                         type="email"
                         name="email"
@@ -124,14 +122,15 @@ class PersonalInfo extends Component {
 
                     {sessionStorage.getItem('role') === "Administrator" ?
                       (<Form.Group widths='equal'>
-                        <Form.Dropdown fluid label='Role'
+                        <Form.Dropdown  label='Role'
                           placeholder='role'
                           name="role"
                           onChange={handleChange}
                           readOnly={this.state.rea}
                           onBlur={handleBlur}
-                          control="select">
-                          <option value='' hidden selected disabled>{values.role}</option>
+                          control="select"
+                          defaultValue="">
+                          <option value='' hidden disabled>{values.role}</option>
                           <option value='User'>User</option>
                           <option value='Moderator'>Moderator</option>
                           </Form.Dropdown>

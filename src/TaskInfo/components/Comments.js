@@ -4,9 +4,7 @@ import AddComment from "./AddComment";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {actionCommentsCreators} from "../taskActions"
-
 import "./comments.css";
-import { AccordionTitle } from "semantic-ui-react";
 
 class Comments extends React.Component {
   componentWillMount(){

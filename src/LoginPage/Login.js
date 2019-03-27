@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { actionCreators } from '../LoginPage/actions';
 import { Redirect } from 'react-router';
 import SweetAlert from 'sweetalert2-react';
-import chechBoxes from '../Users/components/chechBoxes';
 
 
 class LoginPage extends Component {
@@ -133,13 +132,13 @@ class LoginPage extends Component {
                     />
                     <div className="signIn">
                         <h1>Sign in to Freelance-land</h1>
-                        <label for="username">
+                        <label htmlFor="username">
                             <b>Username</b>
                         </label>
                         {this.state.loginError ? (<div style={{ fontSize: 14, color: "red" }}>{this.state.loginError}</div>) : null}
                         <input type="text" placeholder="Enter username" name="username"
                             value={this.state.login} onChange={this.loginChange} />
-                        <label for="password">
+                        <label htmlFor="password">
                             <b>Password</b>
                         </label>
                         {this.state.passwordError ? (<div style={{ fontSize: 14, color: "red" }}>{this.state.passwordError}</div>) : null}
@@ -160,7 +159,7 @@ class LoginPage extends Component {
                         <h1>Hello, Friend!</h1>
                         <h3 className="text-detais">Enter your personal details</h3>
                         <h3 className="text-detais">and start journey with us</h3>
-                        <button type="submit" class="sign" onClick={this.swap}>
+                        <button type="submit" className="sign" onClick={this.swap}>
                             SIGN UP
                     </button>
                     </div>

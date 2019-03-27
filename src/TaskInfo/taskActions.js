@@ -12,14 +12,12 @@ const requestDeleteComment = 'REQUEST_DELETE_COMMENT';
 const receiveDeleteComment = 'RECEIVE_DELETE_COMMENT';
 
 
-export const actionCreators = {
-    requestTaskForecasts: (myId) => async (dispatch) => {
+export const  requestTaskForecasts = (myId) => async (dispatch) => {
         dispatch({ type: requestTaskForecastsType });
         const forecasts = await requests.doGet('/taskinfo/' + myId);
-
         dispatch({ type: receiveTaskForecastsType, forecasts });
     }
-}
+
 
 export const actionCommentsCreators = {
     requestComments: (myId) => async (dispatch) => {

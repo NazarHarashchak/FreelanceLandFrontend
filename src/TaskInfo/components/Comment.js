@@ -27,7 +27,7 @@ class Comment extends React.Component {
     addExcecutorButton() {
     const userId = sessionStorage.getItem("id");
     const customerId = this.props.customerId;
-    if (userId == customerId)
+    if (userId === customerId)
     {
         return(
           <div id="choose_excecutor">
@@ -65,6 +65,7 @@ class Comment extends React.Component {
                     (null)}
         <form>
           <table className="comment-title">
+          <tbody>
               <tr> 
                 <td>
                     <div id="comment-user-photo"> 
@@ -82,6 +83,7 @@ class Comment extends React.Component {
                   </Link>
                 </td>
               </tr>
+              </tbody>
           </table>
           {this.addExcecutorButton()}
                 <div id="content">

@@ -24,7 +24,7 @@ function addTask() {
 }
 
 export default props => (
-    <Navbar inverse fixedTop fluid collapseOnSelect>
+    <Navbar inverse fixedTop  collapseOnSelect fluid >
         <Navbar.Header>
             <Navbar.Brand>
                 <Link to={'/main'}>FreelanceLand</Link>

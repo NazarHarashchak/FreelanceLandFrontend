@@ -1,3 +1,4 @@
+
 const requestUsersListType = 'REQUEST_USERS_LIST';
 const receiveUsersListType = 'RECEIVE_USERS_LIST';
 const requestUserRolesList='RECEIVE_USERS_ROLES';
@@ -5,7 +6,7 @@ const searchTaskListType = 'SEARCH_TASKS_LIST';
 const setFoundRolesListType = 'SET_FOUND_ROLES_LIST_TYPE';
 const changeRoleStatusType = 'CHANGE_CHECKED_ROLE_TYPE';
 const changeRolesOpenedStatusType = 'CHANGE_ROLES_OPENED_STATUS_TYPE';
-const initialState = { users: [],filteredRolesList: [],searchText:"",isLoading: false, roles: [], foundRolesList: [], isRoleOpened: false };
+const initialState = { users: [],filteredRolesList: [],searchText:"",isLoading: false, roles: [], foundRolesList: [], isRoleOpened: false, isChecked: false};
 
 
 export const reducer = (state, action) => {
@@ -28,7 +29,8 @@ export const reducer = (state, action) => {
         case requestUserRolesList:
             return{
                 ...state,
-                roles:action.roles
+                roles:action.roles.map(item=>{return{...item, isChecked:false}})
+
             }
         case searchTaskListType:
             return{
@@ -59,16 +61,6 @@ export const reducer = (state, action) => {
     }
     
 };
-
-function cleanChecked(categs) {
-    const newList = categs.map(item => {
-        return {
-          ...item,
-          isChecked: false
-        };
-      });
-    return newList;
-}
 
 function switchCheckedStatus(roles,name) {
     

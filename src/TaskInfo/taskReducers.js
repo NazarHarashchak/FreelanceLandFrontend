@@ -1,3 +1,4 @@
+
 const requestTaskForecastsType = 'REQUEST_WEATHER_FORECASTS';
 const receiveTaskForecastsType = 'RECEIVE_WEATHER_FORECASTS';
 const requestDeleteComment = 'REQUEST_DELETE_COMMENT';

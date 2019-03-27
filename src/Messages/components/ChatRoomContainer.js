@@ -27,10 +27,10 @@ class ChatRoomContainer extends Component {
     componentDidMount()
     { 
         this.scrollToBottom();
-        if(sessionStorage.getItem('tokenKey'))
+        if (sessionStorage.getItem('tokenKey'))
         { let hubUrl = 'https://localhost:44332/chat';
          const hubConnection = new signalR.HubConnectionBuilder()
-              .withUrl(hubUrl, { accessTokenFactory: () => sessionStorage.getItem('tokenKey')})
+             .withUrl(hubUrl, { accessTokenFactory: () => sessionStorage.getItem('tokenKey')})
               .configureLogging(signalR.LogLevel.Information)
               .build();
 
@@ -53,12 +53,11 @@ class ChatRoomContainer extends Component {
               ]});
           }.bind(this));
          hubConnection.on('Notify', function (message) {
-            
-          }.bind(this));
+          });
 
          var roomId = this.props.roomId;
          let to = "";
-         if(this.props.roomInfo.firstUserLogin != sessionStorage.getItem('login'))
+         if(this.props.roomInfo.firstUserLogin !== sessionStorage.getItem('login'))
             to = this.props.roomInfo.firstUserLogin; 
          else
             to = this.props.roomInfo.secondUserLogin;

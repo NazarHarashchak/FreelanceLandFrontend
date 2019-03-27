@@ -1,6 +1,5 @@
 ﻿import React from 'react';
 import { Route } from 'react-router';
-import FetchData from './components/FetchData';
 import Tasks from './tasks/components/Tasks';
 import Layout from './components/Layout';
 import MainPage from './mainPages/components/MainPage';

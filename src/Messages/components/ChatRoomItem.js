@@ -4,11 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators } from '../actions';
 
-class ChatRoomItem extends Component {
-    constructor(props) {
-        super(props);
-        }
-        
+class ChatRoomItem extends Component {        
     render() {
         return (
             <Item.Group link>

@@ -41,5 +41,5 @@ class Users extends Component {
 
 export default connect(
     state => state.usersReducers,
-    dispatch => bindActionCreators(requestUsersList, dispatch)
+    dispatch => bindActionCreators({requestUsersList:requestUsersList}, dispatch)
 )(Users);

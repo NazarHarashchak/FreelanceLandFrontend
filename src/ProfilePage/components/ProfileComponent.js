@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import './ProfilePage.css';
-import ProfilePhoto from './ProfilePhoto';
 import ActiveTasks from './ActiveTasks';
 import History from './History';
 import PersonalInfo from './PersonalInfo';
 import { Grid} from 'semantic-ui-react'
-import { addImage } from '../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators } from '../actions';
-import SweetAlert from 'sweetalert2-react';
 import AddImage from './AddImage';
 import ProfilePage from './ProfilePhoto';
 import Button from '@material-ui/core/Button';
@@ -20,7 +17,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import  logo from './MyPhoto.jpg';
 class ProfileComponent extends Component {
   state = {
     open: false,
@@ -55,9 +51,9 @@ class ProfileComponent extends Component {
         <Grid.Row centered>
           <AddImage id={this.props.match.params.id}/>
         </Grid.Row>
-        {sessionStorage.getItem('id')!= this.props.match.params.id ? (<Grid.Row centered>
+        {sessionStorage.getItem('id')!== this.props.match.params.id ? (<Grid.Row centered>
           <div id= "sendMessageButton">
-        <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
+        <Button variant="outlined" className="send-message-button" color="primary" onClick={this.handleClickOpen}>
           Send Message
         </Button>
         <Dialog
@@ -81,10 +77,10 @@ class ProfileComponent extends Component {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={this.handleClose} className="send-message-button" color="primary">
               Cancel
             </Button>
-            <Button onClick={this.handleSendMessage} color="primary">
+            <Button onClick={this.handleSendMessage} className="send-message-button" color="primary">
               Send
             </Button>
           </DialogActions>

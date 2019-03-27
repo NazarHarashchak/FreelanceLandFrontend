@@ -2,15 +2,14 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\components",
+    "\\src\\addTaskPage\\components",
     "\\src\\LoginPage",
-    "\\src\\MyPage\\components",
+    "\\src\\mainPages\\components",
+    "\\src\\Messages\\components",
     "\\src\\ProfilePage\\components",
-    "\\src\\RestorePassPage\\components",
-    "\\src\\services",
+    "\\src\\TaskInfo\\components",
     "\\src\\tasks\\components",
     "\\src\\Users\\components"
   ],
-  "SelectedNode": "\\src\\services\\apiService.js",
   "PreviewInSolutionExplorer": false
 }

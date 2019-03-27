@@ -1,9 +1,7 @@
 import React from "react";
 import {bindActionCreators}  from 'redux';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import {actionTaskPost} from '../action';
-import {Form, Control} from 'react-bootstrap';
 
 import "./addTask.css";
 
@@ -62,7 +60,7 @@ class addTaskPage extends React.Component {
                         <div id="task-category">
                        
                             <select id="my-task-category">
-                                {this.props.categories.map((item) => <option>{item.type}</option>)}
+                                {this.props.categories.map((item) => <option key={item.type}>{item.type}</option>)}
                             </select>
                         </div>
                     </div>

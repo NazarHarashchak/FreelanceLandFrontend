@@ -14,8 +14,8 @@ class CheckBox extends React.Component {
             <form className="check-box">
             <h3 className="check-title">Category</h3>
                 {this.props.roles.map(item => (
-                    <div className="category-text">
-                        <label className="category-text-style">
+                    <div key={item.type} className="category-text" >
+                        <label className="category-text-style"  >
                             <input
                                 type="checkbox"
                                 name={item.type}

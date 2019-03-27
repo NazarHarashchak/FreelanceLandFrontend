@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
 import './ProfilePage.css';
-import ProfilePhoto from './ProfilePhoto';
-import ActiveTasks from './ActiveTasks';
-import History from './History';
-import PersonalInfo from './PersonalInfo';
-import { Grid} from 'semantic-ui-react'
-import { addImage } from '../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators1 } from '../actions';
-import  logo from './MyPhoto.jpg';
-import Avatar from 'react-avatar';
 import AvatarEditor from 'react-avatar-editor'
 
 class AddImage extends Component {
@@ -52,7 +44,6 @@ class AddImage extends Component {
           form.append('image', file);
           form.append('fileName', this.state.imageName);
           form.append('userid', sessionStorage.getItem('id'));
-
           this.props.addImage(form);
           document.getElementById('img').value = ""; 
           this.setState({file: '', image: ''});

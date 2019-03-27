@@ -2,7 +2,6 @@ import React from "react";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {actionCommentsPostCreators} from "../taskActions"
-import { Redirect } from 'react-router'
 
 import "./comments.css";
 
@@ -52,8 +51,8 @@ class AddComment extends React.Component {
         const valid = this.validationForm();
         if (valid)
         {
-            this.props.sendComment(this.state.commentContent, this.props.userId, this.props.taskId).
-            then(() => {
+            this.props.sendComment(this.state.commentContent, this.props.userId, this.props.taskId)
+            .then(() => {
                 if(this.props.comment != null) { document.location.reload(true);}
             });
                 

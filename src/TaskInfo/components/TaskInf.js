@@ -3,12 +3,12 @@ import UserPanel from './UserPanel';
 import TaskDescription from './TaskDescription';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { actionCreators } from '../taskActions';
+import { requestTaskForecasts } from '../taskActions';
 
-class Task extends React.Component {
+class Task extends Component {
 
     componentWillMount() {
-        this.props.requestTaskForecasts(this.props.match.params.id);
+       this.props.requestTaskForecasts(this.props.match.params.id);
     }
 
     render() {
@@ -30,5 +30,5 @@ class Task extends React.Component {
 
 export default connect(
     state => state.taskProfilePage,
-    dispatch => bindActionCreators(actionCreators, dispatch)
+    dispatch => bindActionCreators({requestTaskForecasts:requestTaskForecasts}, dispatch)
 )(Task);
