@@ -1,6 +1,4 @@
 import { requests } from '../services/apiService';
-import { disbatch } from 'redux-act';
-import { request } from 'https';
 
 const requestValidateEmail = 'REQUEST_VALIDATE_EMAIL';
 const receiveValidateEmail = 'RECEIVE_VALIDATE_EMAIL';

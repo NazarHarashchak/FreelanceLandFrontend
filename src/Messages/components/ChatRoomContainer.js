@@ -41,7 +41,7 @@ class ChatRoomContainer extends Component {
               this.setState({newMessages: [...this.state.newMessages,<MessageBox
                                                 dateString={currentTime}
                                                 key={this.state.counter}
-                                                position={(sessionStorage.getItem('login') != userName) ? 'left' : 'right'}
+                                                position={(sessionStorage.getItem('login') !== userName) ? 'left' : 'right'}
                                                 type={'text'}
                                                 text={message}
                                                 data={{

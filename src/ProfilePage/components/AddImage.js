@@ -78,7 +78,7 @@ class AddImage extends Component {
     render() {
      return (
         <div id = 'addImageWrapper' style={{ visibility: (sessionStorage.getItem('tokenKey') && this.props.id === sessionStorage.getItem('id')) ? 'visible' : 'hidden' }}>
-          {(this.state.image != '') ?  <AvatarEditor
+          {(this.state.image !== '') ?  <AvatarEditor
                                         ref={this.setEditorRef}
                                         image={this.state.image}
                                         width={250}

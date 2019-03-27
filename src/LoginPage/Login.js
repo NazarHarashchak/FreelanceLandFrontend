@@ -113,7 +113,6 @@ class LoginPage extends Component {
         }
         if (this.props.user !== null) {
             if (this.props.user.access_token === sessionStorage.getItem("tokenKey")) {
-                const id = this.props.user.id;
                 const link = '/home/';
                 return (<Redirect to={link} />);
             }

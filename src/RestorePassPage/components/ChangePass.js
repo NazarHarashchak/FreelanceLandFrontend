@@ -62,7 +62,7 @@ class ChangePass extends Component {
         let confPassError = '';
         if (!(confPass.length > 0)) {
             confPassError = "Confirmed password can not be blank!";
-        } else if (confPass != Pass) {
+        } else if (confPass !== Pass) {
             confPassError = "Passwords must match!";
         }
         this.setState({ confPassError: confPassError });
