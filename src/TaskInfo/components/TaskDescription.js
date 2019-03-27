@@ -1,11 +1,25 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import Comments from './Comments';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { actionCreators } from '../taskActions';
 
 import "./taskbody.css";
 
 class TaskDescription extends React.Component {
- 
+  constructor(props){
+    super(props);
+
+    this.closeTask = this.closeTask.bind(this);
+  }
+
+  closeTask(){
+    this.props.closeMyTask(this.props.myTask.id).then(() => { 
+      alert("The task is already closed");
+});
+  }
+
   render() {
     return (
         <div className="col-md-8">
@@ -30,7 +44,7 @@ class TaskDescription extends React.Component {
              excecutorId={this.props.excecutorId}/>
              { localStorage.getItem("id") == this.props.customerId ? (
              <div id="close-task-button">
-                <input type="button" id="close" value="Close task" />
+                <input type="button" id="close" value="Close task" onClick={this.closeTask}/>
              </div>) : null
              }
             </div>
@@ -39,4 +53,7 @@ class TaskDescription extends React.Component {
   }
 }
 
-export default TaskDescription;
+export default connect(
+  state => state.taskProfilePage,
+  dispatch => bindActionCreators(actionCreators, dispatch)
+)(TaskDescription);

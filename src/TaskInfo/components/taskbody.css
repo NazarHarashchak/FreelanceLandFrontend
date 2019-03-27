@@ -30,7 +30,6 @@
   .right-row-panel{
     position: relative;
     margin-left: 20px;
-    top:38px;
   }
   .user-panel{
     width:100%;
@@ -79,8 +78,9 @@
     margin-left: 20px;
   }
   #close-task-button{
-    margin-top:20px;
+    margin-top:10px;
     text-align: center;
+    padding-bottom:10px; 
   }
   #close{
     height: 50px;
