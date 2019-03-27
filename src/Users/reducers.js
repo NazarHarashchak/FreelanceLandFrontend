@@ -5,7 +5,7 @@ const searchTaskListType = 'SEARCH_TASKS_LIST';
 const setFoundRolesListType = 'SET_FOUND_ROLES_LIST_TYPE';
 const changeRoleStatusType = 'CHANGE_CHECKED_ROLE_TYPE';
 const changeRolesOpenedStatusType = 'CHANGE_ROLES_OPENED_STATUS_TYPE';
-const initialState = { users: [],filteredRolesList: [],searchText:"",isLoading: false, roles: [], foundRolesList: [], isRoleOpened: false };
+const initialState = { newUsers: [],pageSize:"",filteredRolesList: [],searchText:"",isLoading: false, roles: [], foundRolesList: [], isRoleOpened: false };
 
 
 export const reducer = (state, action) => {
@@ -20,9 +20,11 @@ export const reducer = (state, action) => {
         case receiveUsersListType:
             return{
                 ...state,
-                users:action.users,
-                filteredRolesList: action.users,
+                newUsers:action.newUsers,
+                filteredRolesList: action.newUsers,
                 foundRolesList:action.roles,
+                pageSize: action.pageNumber,
+                
                 isLoading: false
             };
         case requestUserRolesList:
@@ -47,7 +49,7 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 roles: newRoleList,
-                filteredRolesList: filterUsers(newRoleList,state.users)
+                filteredRolesList: filterUsers(newRoleList,state.newUsers)
             }
             case changeRolesOpenedStatusType:
             return {
@@ -80,15 +82,15 @@ function switchCheckedStatus(roles,name) {
     return newList;
 }
 
-function filterUsers(roles, users){
+function filterUsers(roles, newUsers){
     let checkedRoles=roles.filter(typ =>typ.isChecked === true);
     if(checkedRoles.length !== 0){
-        users=users.filter(item => {
+        newUsers=newUsers.filter(item => {
             return(
                 checkedRoles.some(typ => typ.id === item.userRoleId) ===true
             )
         })
     }
 
-    return users;
+    return newUsers;
 }

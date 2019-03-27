@@ -1,5 +1,7 @@
 import { requests } from '../services/apiService';
 
+
+
 const requestUsersListType = 'REQUEST_USERS_LIST';
 const receiveUsersListType = 'RECEIVE_USERS_LIST';
 const requestUserRolesList = 'RECEIVE_USERS_ROLES';
@@ -10,11 +12,16 @@ const setFoundRolesListType = 'SET_FOUND_ROLES_LIST_TYPE';
 const changeRoleStatusType = 'CHANGE_CHECKED_ROLE_TYPE';
 const changeRolesOpenedStatusType = 'CHANGE_ROLES_OPENED_STATUS_TYPE';
 
+
 export const requestUsersList = () => async (dispatch) => {
         dispatch({ type: requestUsersListType });
         const users = await  requests.doGet('/users');
+        const newUsers = users.list;
 
-        dispatch({ type: receiveUsersListType, users });
+        const pageNumber = users.pageNumber;
+        const pageSize = users.totalItems;
+       
+        dispatch({ type: receiveUsersListType, newUsers ,pageNumber});
     }
     
 export const requestUserRoles = () => async (dispatch) => {

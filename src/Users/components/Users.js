@@ -24,7 +24,7 @@ class Users extends Component {
                     <SeachBar/>
                     <div className="row">
                         <div className="col-md-9" id="j-orders-search-list">
-                            <UsersList usersList={this.props.users} isLoading={this.props.isLoading}/>
+                            <UsersList usersList={this.props.newusers} isLoading={this.props.isLoading}/>
                         </div>
                         <div className="col-md-3" >
                         <FilterComponent/>
