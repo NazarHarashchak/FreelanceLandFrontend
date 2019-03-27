@@ -5,7 +5,7 @@ const searchTaskListType = 'SEARCH_TASKS_LIST';
 const setFoundRolesListType = 'SET_FOUND_ROLES_LIST_TYPE';
 const changeRoleStatusType = 'CHANGE_CHECKED_ROLE_TYPE';
 const changeRolesOpenedStatusType = 'CHANGE_ROLES_OPENED_STATUS_TYPE';
-const initialState = { newUsers: [],pageSize:"",filteredRolesList: [],searchText:"",isLoading: false, roles: [], foundRolesList: [], isRoleOpened: false };
+const initialState = { newUsers: [],totalPages:"",filteredRolesList: [],searchText:"",isLoading: false, roles: [], foundRolesList: [], isRoleOpened: false };
 
 
 export const reducer = (state, action) => {
@@ -23,7 +23,7 @@ export const reducer = (state, action) => {
                 newUsers:action.newUsers,
                 filteredRolesList: action.newUsers,
                 foundRolesList:action.roles,
-                pageSize: action.pageNumber,
+                totalPages:action.totalPages,
                 
                 isLoading: false
             };
@@ -82,6 +82,11 @@ function switchCheckedStatus(roles,name) {
     return newList;
 }
 
+function totalItems(totalPages)
+{
+    
+    return totalPages;
+}
 function filterUsers(roles, newUsers){
     let checkedRoles=roles.filter(typ =>typ.isChecked === true);
     if(checkedRoles.length !== 0){
@@ -91,6 +96,6 @@ function filterUsers(roles, newUsers){
             )
         })
     }
-
+    console.log(newUsers);
     return newUsers;
 }

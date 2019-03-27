@@ -8,7 +8,7 @@ const receiveCreateChatRoom = 'RECEIVE_CREATE_CHAT_ROOM';
 const requestCreateChatRoom = 'RECEIVE_CREATE_CHAT_ROOM';
 
 export const actionCreators = {
-    requestProfilePage: (id) => async (dispatch) => {
+    requestProfilePage:  (id)=> async (dispatch) => {
         dispatch({ type: requestProfilePageType });
         const User = await requests.doGet('/users/' + id);
 
