@@ -11,7 +11,11 @@ import ScrollTop from './ScrollTop'
 
 class Users extends Component {
     componentWillMount() {
+<<<<<<< HEAD
         requestUsersList();
+=======
+        this.props.requestUsersList();
+>>>>>>> 47d55a4977c44601c522cafdea8d34cd7cd3a1a3
     }
 
     componentWillReceiveProps(nextProps) {
@@ -41,5 +45,5 @@ class Users extends Component {
 
 export default connect(
     state => state.usersReducers,
-    dispatch => bindActionCreators(requestUsersList, dispatch)
+    dispatch => bindActionCreators({requestUsersList:requestUsersList}, dispatch)
 )(Users);

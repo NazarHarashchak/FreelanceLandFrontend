@@ -6,7 +6,10 @@
     font-size: 14px;
     height: 40px;
 }
-
+.send-message-button{
+    background: #075232 !important;
+    color: white !important;
+}
 .photo-user {
     max-height: 500px;
     min-height: 50px;

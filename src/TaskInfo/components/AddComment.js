@@ -2,7 +2,6 @@ import React from "react";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {actionCommentsPostCreators} from "../taskActions"
-import { Redirect } from 'react-router'
 
 import "./comments.css";
 

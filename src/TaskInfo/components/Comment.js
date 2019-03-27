@@ -2,8 +2,9 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {addExcecutor} from '../taskActions';
-import {Icon} from 'semantic-ui-react';
+import { addExcecutor } from '../taskActions';
+import { Icon } from 'semantic-ui-react';
+import SweetAlert from 'sweetalert2-react';
 import "./comments.css";
 
 class Comment extends React.Component {
@@ -28,7 +29,15 @@ class Comment extends React.Component {
   render() {
     return (
         <div className="comentar">
-            {localStorage.getItem('role') === "Moderator" ? 
+            <SweetAlert
+                show={this.state.showPop}
+                type= 'success'
+                title= 'Cool!'
+                text='Comment was deleted successful!'
+                confirmButtonColor='#075232'
+                onConfirm={() => this.setState({ showPop: false })}
+            />
+            {sessionStorage.getItem('role') === "Moderator" ? 
                 (
                     <button id="delete" onClick={this.deleteSubmit}>
                         <Icon name='trash alternate'></Icon>
@@ -37,6 +46,7 @@ class Comment extends React.Component {
                     (null)}
         <form>
           <table className="comment-title">
+          <tbody>
               <tr> 
                 <td>
                     <div id="comment-user-photo"> 
@@ -54,7 +64,8 @@ class Comment extends React.Component {
                   </Link>
                 </td>
               </tr>
-          </table>{console.log(localStorage.getItem("id"), this.props.excecutorId)}
+              </tbody>
+          </table>
           { (localStorage.getItem("id") == this.props.customerId) && (this.props.excecutorId === 0) ?(
                     <div id="choose_excecutor">
                         <form>

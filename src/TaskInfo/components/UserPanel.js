@@ -1,6 +1,4 @@
 import React from "react";
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import "./taskbody.css";
 
@@ -14,6 +12,7 @@ class UserPanel extends React.Component {
             <div className="top-row">Customer
             </div>
               <table id="user-table">
+              <tbody>
                 <tr id="bottom-row">
                   <td>
                   <div id="user-photo">
@@ -27,6 +26,7 @@ class UserPanel extends React.Component {
                     </Link></span>
                   </td>
                 </tr>
+                </tbody>
               </table>
            </div>
            { this.props.excecutorId !== 0  ? (

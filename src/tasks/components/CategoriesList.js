@@ -9,7 +9,8 @@ class CategoriesList extends React.Component {
     return (
       <div>
         {this.props.filter.categories.map(category => (
-          <label>
+          <label 
+          key={category.type}>
             <input
               type="checkbox"
               name={category.type}

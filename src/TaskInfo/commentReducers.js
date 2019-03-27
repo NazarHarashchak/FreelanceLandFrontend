@@ -6,7 +6,7 @@ const requestSendComment = 'REQUEST_SEND';
 const receiveSendComment = 'RECEIVE_SEND';
 
 
-const initialState = { comments: [], deleteCommentResponse: [], isLoading: false };
+const initialState = { comments: [], isLoading: false };
 
 export const reducer = (state, action) => {
     state = state || initialState;

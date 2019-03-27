@@ -20,7 +20,11 @@
   #task-price {
     position: relative;
     float: right;
+<<<<<<< HEAD
     background-color: #27551a;
+=======
+    background-color:#27551a;
+>>>>>>> 47d55a4977c44601c522cafdea8d34cd7cd3a1a3
     color: white;
     height: 40px;
     text-align: center;

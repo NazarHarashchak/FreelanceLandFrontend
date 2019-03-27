@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import UserImage from './userImage';
-import { Item,Icon } from 'semantic-ui-react';
+import { Item } from 'semantic-ui-react';
 import  logo from './MyPhoto.jpg';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators1 } from '../../ProfilePage/actions';
 
 class UserItem extends Component {
-    constructor(props) {
-        super(props);
-        }
+   
         
     render() {
         return (
