@@ -136,13 +136,13 @@ class LoginPage extends Component {
                         </label>
                         {this.state.loginError ? (<div style={{ fontSize: 14, color: "red" }}>{this.state.loginError}</div>) : null}
                         <input type="text" placeholder="Enter username" name="username"
-                            value={this.state.login} onChange={this.loginChange} />
+                            value={this.state.login || ''} onChange={this.loginChange} />
                         <label htmlFor="password">
                             <b>Password</b>
                         </label>
                         {this.state.passwordError ? (<div style={{ fontSize: 14, color: "red" }}>{this.state.passwordError}</div>) : null}
                         <input type="password" placeholder="Enter password" name="password"
-                            value={this.state.password} onChange={this.passwordChange} />
+                            value={this.state.password || ''} onChange={this.passwordChange} />
                         <button type="submit" className="signin" onClick={this.authenticationSubmit}>
                             SIGN IN
                     </button>
