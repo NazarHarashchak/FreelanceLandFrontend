@@ -8,16 +8,16 @@ const requestSendComment = 'REQUEST_SEND';
 const receiveSendComment = 'RECEIVE_SEND';
 const requestExcecutor = 'REQUEST_EXCECUTOR';
 const receiveExcecutor = 'RECEIVE_EXCECUTOR';
+const requestDeleteComment = 'REQUEST_DELETE_COMMENT';
+const receiveDeleteComment = 'RECEIVE_DELETE_COMMENT';
 
 
-export const actionCreators = {
-    requestTaskForecasts: (myId) => async (dispatch) => {
+export const  requestTaskForecasts = (myId) => async (dispatch) => {
         dispatch({ type: requestTaskForecastsType });
         const forecasts = await requests.doGet('/taskinfo/' + myId);
-
         dispatch({ type: receiveTaskForecastsType, forecasts });
     }
-}
+
 
 export const actionCommentsCreators = {
     requestComments: (myId) => async (dispatch) => {
@@ -61,5 +61,17 @@ export const addExcecutor = {
         }));
         const user = await response;
         dispatch ({ type: receiveExcecutor, user });
+    },
+
+    deleteComment: (id) => async (dispatch) => {
+        dispatch({ type: requestDeleteComment });
+
+        const url = `/api/comments/DeleteComment`;
+        const response = await requests.doPost(url,
+            JSON.stringify({
+                Id: id
+            }));
+        const deleteCommentResponse = await response;
+        dispatch({ type: receiveDeleteComment, deleteCommentResponse });
     }
 }

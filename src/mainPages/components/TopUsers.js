@@ -1,5 +1,4 @@
 import React from 'react';
-import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
 import 'bootstrap/dist/css/bootstrap-theme.css';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -13,9 +12,6 @@ import '../topUsers.css';
 
 
 class Gallery extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     
     componentWillMount(){
         requestTop();
@@ -25,7 +21,7 @@ class Gallery extends React.Component {
           return(
             <div className=" top-users d-flex flex-row justify-content-center">
              {this.props.users.map(item =>(
-                <li className="top-users-item">
+                <li key={item.id} className="top-users-item">
                 <h4>Top position : {item.id}</h4>
                 <h5>Name:{item.name}</h5> 
                 <h5>Surname:{item.sur_Name} </h5>
@@ -136,5 +132,5 @@ class Gallery extends React.Component {
 
 export default connect(
     state => state.topUsers,
-    dispatch => bindActionCreators(requestTop, dispatch)
+    dispatch => bindActionCreators({requestTop:requestTop}, dispatch)
 )(Gallery);

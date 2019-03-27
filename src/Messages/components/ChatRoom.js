@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators } from '../actions';
-import * as signalR from '@aspnet/signalr';
-import ShowMessages from './ShowMessages';
 import ChatRoomContainer from './ChatRoomContainer';
 
 class ChatRoom extends Component {
@@ -25,7 +23,7 @@ class ChatRoom extends Component {
       
         return(
             <div>
-               {(localStorage.getItem('tokenKey') && this.props.chatRoomInfo) ? (<ChatRoomContainer roomId = {this.props.match.params.id} roomInfo = {this.props.chatRoomInfo} messages = {this.props.messages}/>) : <div></div>}
+               {(sessionStorage.getItem('tokenKey') && this.props.chatRoomInfo) ? (<ChatRoomContainer roomId = {this.props.match.params.id} roomInfo = {this.props.chatRoomInfo} messages = {this.props.messages}/>) : <div></div>}
             </div>
         )
     }

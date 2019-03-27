@@ -12,15 +12,27 @@ import '../styles.css';
 
 class Tasks extends Component {
     componentWillMount() {
-        requestTasksList();
+        this.props.requestTasksList();
+    }
+
+    scrollToBottom = () => {
+        this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+    }
+
+    componentDidMount() {
+        this.scrollToBottom();
     }
 
     render() {
         return (
-            <div className="container" id="tasks-container">          
+            <div className="container" id="tasks-container">
+
                 <div className="main-content container">
                     <SearchBar />
                     <div className="row">
+                        <div
+                            ref={(el) => { this.messagesEnd = el; }}>
+                        </div>
                         <div className="col-md-9" id="j-orders-search-list">
                             <TaskItemList />
                             <Pagination />
@@ -30,7 +42,7 @@ class Tasks extends Component {
                         </div>
                     </div >
                 </div >
-                <ScrollTop />
+                <ScrollTop scrollFunc={this.scrollToBottom} />
             </div >
         );
     }
@@ -38,5 +50,5 @@ class Tasks extends Component {
 
 export default connect(
     state => state.tasksReducers,
-    dispatch => bindActionCreators(requestTasksList, dispatch)
+    dispatch => bindActionCreators({requestTasksList:requestTasksList}, dispatch)
 )(Tasks);
