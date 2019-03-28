@@ -131,12 +131,12 @@ class addTaskPage extends React.Component {
 
     saveChanges(event){
         console.log(this.state.titleContent, this.state.descriptionContent, 
-            localStorage.getItem('id'), this.state.priceContent,
+            sessionStorage.getItem('id'), this.state.priceContent,
             this.state.deadlineContent, this.state.categoryContent);
 
         if (this.addedValues()){
             this.props.createNewTask(this.state.titleContent, this.state.descriptionContent, 
-                localStorage.getItem('id'), this.state.priceContent,
+                sessionStorage.getItem('id'), this.state.priceContent,
                 this.state.deadlineContent, this.state.categoryContent).
                 then(() => { 
                     alert("The task is already saved");
