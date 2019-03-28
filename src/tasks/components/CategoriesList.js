@@ -2,13 +2,22 @@ import React from "react";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { changeCheckedStatus } from '../actions';
+import PropTypes from 'prop-types';
 
 class CategoriesList extends React.Component {
-
+  static propTypes = {
+		categories:PropTypes.arrayOf (
+      PropTypes.shape({
+        type: PropTypes.string.isRequired,
+        isChecked: PropTypes.bool.isRequired
+      }).isRequired
+    ).isRequired
+  }
+  
   render() { 
     return (
       <div>
-        {this.props.filter.categories.map(category => (
+        {this.props.categories.map(category => (
           <label 
           key={category.type}>
             <input
@@ -33,7 +42,11 @@ function matchDispatchToProps(dispatch) {
     dispatch);
 }
 
+const mapStateToProps = state => ({
+  categories: state.tasksReducers.filter.categories
+})
+
 export default connect(
-  state => state.tasksReducers,
+  mapStateToProps,
   matchDispatchToProps
 )(CategoriesList);

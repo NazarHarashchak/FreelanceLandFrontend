@@ -7,10 +7,15 @@ import SearchBar from './SearchBar';
 import ScrollTop from './ScrollTop';
 import Filter from './Filter';
 import Pagination from './Pagination';
+import PropTypes from 'prop-types';
 import '../styles.css';
 
 
 class Tasks extends Component {
+    static propTypes = {
+		requestTasksList:PropTypes.func.isRequired
+	}
+    
     componentWillMount() {
         this.props.requestTasksList();
     }

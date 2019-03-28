@@ -2,10 +2,22 @@ import React from "react";
 import {bindActionCreators}  from 'redux';
 import { connect } from 'react-redux';
 import {actionTaskPost} from '../action';
+import PropTypes from 'prop-types';
 
 import "./addTask.css";
 
 class addTaskPage extends React.Component {
+
+        
+    static propTypes = {
+        categories: PropTypes.arrayOf(
+            PropTypes.shape({
+                id:PropTypes.number.isRequired,
+                type:PropTypes.string.isRequired
+            }.isRequired)
+        ).isRequired
+    }
+
     constructor(props){
         super(props);
         this.state = {

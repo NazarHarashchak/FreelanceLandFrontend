@@ -5,8 +5,22 @@ import { Item } from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import { deleteTask } from '../actions';
 import { Icon } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 
 class TaskItem extends React.Component {
+	static propTypes = {
+		requestDelete: PropTypes.func.isRequired,
+		item: PropTypes.shape({
+			id: PropTypes.number.isRequired,
+			price: PropTypes.number.isRequired,
+			title: PropTypes.string.isRequired,
+			description: PropTypes.string.isRequired,
+			dateAdded: PropTypes.string.isRequired,
+			taskCategoryName: PropTypes.string.isRequired,
+			commentsCount: PropTypes.number.isRequired
+		}).isRequired
+	}
+
     constructor(props) {
         super(props);
         this.deleteSubmit = this.deleteSubmit.bind(this);

@@ -3,9 +3,16 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators } from '../actions';
 import { MessageBox } from 'react-chat-elements';
+import PropTypes from 'prop-types';
 import '../message.css';
 
 class Message extends Component {
+    static propTypes = {
+        item: PropTypes.shape({
+            
+        })
+    }
+
     constructor(props) {
         super(props);
         this.state = {

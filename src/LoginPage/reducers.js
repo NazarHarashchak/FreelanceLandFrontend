@@ -1,7 +1,7 @@
 const requestSignIn = 'REQUEST_SIGN_IN';
 const receiveSignIn = 'RECEIVE_SIGN_IN';
 
-const initialState = { user: [], isLoading: false};
+const initialState = { user: {}, isLoading: false};
 
 export const reducer = (state, action) => {
     state = state || initialState;

@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { requestTop } from '../actions';
+import PropTypes from 'prop-types';
+
 import '../topUsers.css';
 //
 //import Carousel from 'react-multi-carousel';
@@ -12,7 +14,14 @@ import '../topUsers.css';
 
 
 class Gallery extends React.Component {
-    
+    static propTypes = {
+        users:PropTypes.arrayOf(PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            name: PropTypes.string,
+            sur_Name: PropTypes.string
+        }))
+    }
+
     componentWillMount(){
         requestTop();
         
