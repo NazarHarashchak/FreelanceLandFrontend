@@ -4,15 +4,15 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
 function onClickLogout() {
-    localStorage.removeItem('tokenKey');
-    localStorage.removeItem('id');
-    localStorage.removeItem('login');
-    localStorage.removeItem('role');
+    sessionStorage.removeItem('tokenKey');
+    sessionStorage.removeItem('id');
+    sessionStorage.removeItem('login');
+    sessionStorage.removeItem('role');
     document.location.replace('loginPage');
 }
 
-function addTask(){ 
-    if (localStorage.getItem("id") !== null) {
+function addTask() {
+    if (sessionStorage.getItem("id") !== null) {
      return (
             <LinkContainer to={'/AddTask'}>
                 <NavItem>
@@ -24,7 +24,7 @@ function addTask(){
 }
 
 export default props => (
-    <Navbar inverse fixedTop fluid collapseOnSelect>
+    <Navbar inverse fixedTop  collapseOnSelect fluid >
         <Navbar.Header>
             <Navbar.Brand>
                 <Link to={'/main'}>FreelanceLand</Link>
@@ -46,7 +46,7 @@ export default props => (
                 </LinkContainer>
                 {addTask()}
             </Nav>
-            {localStorage.getItem('tokenKey') ?
+            {(sessionStorage.getItem('tokenKey')) ?
                 (
                     <Nav pullRight id="LogoutNavigation">
                         <LinkContainer to={'/Message'} exact>
@@ -56,7 +56,7 @@ export default props => (
                         </LinkContainer>
                         <LinkContainer to={'/home'} exact>
                             <NavItem>
-                                <Glyphicon glyph='home' /> {localStorage.getItem('login')}
+                                <Glyphicon glyph='home' /> {sessionStorage.getItem('login')}
                             </NavItem>
                         </LinkContainer>
                         <LinkContainer to={'/loginPage'}>

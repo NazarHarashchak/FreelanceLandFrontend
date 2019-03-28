@@ -2,16 +2,32 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {addExcecutor} from '../taskActions';
-import {Icon} from 'semantic-ui-react';
+import { addExcecutor } from '../taskActions';
+import { Icon } from 'semantic-ui-react';
+import SweetAlert from 'sweetalert2-react';
 import "./comments.css";
 
 class Comment extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            delete: false,
+            showPop: false
+        };
+        this.deleteSubmit = this.deleteSubmit.bind(this);
+    }
 
-  addExcecutorButton() {
-    const userId = localStorage.getItem("id");
+    deleteSubmit() {
+        this.props.deleteComment(this.props.item.id)
+            .then(() => {
+                if (this.props.deleteCommentResponse !== null) { this.setState({ showPop: true }) }
+            });
+    }
+
+    addExcecutorButton() {
+    const userId = sessionStorage.getItem("id");
     const customerId = this.props.customerId;
-    if (userId == customerId)
+    if (userId === customerId)
     {
         return(
           <div id="choose_excecutor">
@@ -32,7 +48,15 @@ class Comment extends React.Component {
   render() {
     return (
         <div className="comentar">
-            {localStorage.getItem('role') === "Moderator" ? 
+            <SweetAlert
+                show={this.state.showPop}
+                type= 'success'
+                title= 'Cool!'
+                text='Comment was deleted successful!'
+                confirmButtonColor='#075232'
+                onConfirm={() => this.setState({ showPop: false })}
+            />
+            {sessionStorage.getItem('role') === "Moderator" ? 
                 (
                     <button id="delete" onClick={this.deleteSubmit}>
                         <Icon name='trash alternate'></Icon>
@@ -41,6 +65,7 @@ class Comment extends React.Component {
                     (null)}
         <form>
           <table className="comment-title">
+          <tbody>
               <tr> 
                 <td>
                     <div id="comment-user-photo"> 
@@ -58,6 +83,7 @@ class Comment extends React.Component {
                   </Link>
                 </td>
               </tr>
+              </tbody>
           </table>
           {this.addExcecutorButton()}
                 <div id="content">

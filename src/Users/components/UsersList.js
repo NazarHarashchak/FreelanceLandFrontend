@@ -2,7 +2,6 @@ import UserItem from './userItem';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { actionCreators } from '../action';
 import { setFoundRolesList } from '../action';
 import { Pagination } from 'react-bootstrap'; 
 import { push } from 'react-router-redux'; 

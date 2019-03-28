@@ -129,7 +129,7 @@ class RegistrationPage extends Component {
         if(!(confPass.length > 0))
         {
             confPassError = "Confirmed password can not be blank!";
-        } else if(confPass != Pass)
+        } else if(confPass !== Pass)
         {
             confPassError = "Passwords must match!";
         }
@@ -207,37 +207,39 @@ class RegistrationPage extends Component {
             <div className="signUpForm">
             <SweetAlert
                 show={this.state.showPop}
-                title="Cool!"
-                text="Your Registration was successfull, now you should sign in!"
+                title="Successfull!"
+                text="Check your email to confirm!"
+                confirmButtonColor='#075232'
                 onConfirm={() => this.setState({ showPop: false })}
             />
             <SweetAlert
                 show={this.state.errorPop}
                 title="Fail!"
                 text="User with the same login already exists!"
+                confirmButtonColor='#075232'
                 onConfirm={() => this.setState({ errorPop: false })}
             />
                 <div className="createAccount" >
                     <h1>Create Account</h1>
-                    <label for="email">
+                    <label htmlFor="email">
                         <b>Email</b>
                     </label>
                     {this.state.emailError ? (<div style = {{ fontSize: 14, color: "red"}}>{this.state.emailError}</div>) : null}
                     <input type="text" placeholder="Enter email" name="email"
                         value={this.state.email} onChange={this.emailChange} style={{borderColor: this.state.emailColor}}/>
-                    <label for="uname">
+                    <label htmlFor="uname">
                         <b>Username</b>
                     </label>
                     {this.state.loginError ? (<div style = {{ fontSize: 14, color: "red"}}>{this.state.loginError}</div>) : null}
                     <input type="text" placeholder="Enter username" name="uname"
                         value={this.state.login} onChange={this.loginChange} style={{borderColor: this.state.loginColor}}/>
-                    <label for="password">
+                    <label htmlFor="password">
                         <b>Password</b>
                     </label>
                     {this.state.passwordError ? (<div style = {{ fontSize: 14, color: "red"}}>{this.state.passwordError}</div>) : null}
                     <input type="password" placeholder="Enter password" name="password"
                         value={this.state.password} onChange={this.passwordChange} style={{borderColor: this.state.passwordColor}}/>
-                    <label for="confirmPassword">
+                    <label htmlFor="confirmPassword">
                         <b>Confirm password</b>
                     </label>
                     {this.state.confPassError ? (<div style = {{ fontSize: 14, color: "red"}}>{this.state.confPassError}</div>) : null}

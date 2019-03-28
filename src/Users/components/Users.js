@@ -20,13 +20,13 @@ class Users extends Component {
     constructor(props){
         super(props);
         this.current_page = this.props.page;
-     console.log(pages)
+  
         this.changePage = this.changePage.bind(this);
       };
   
     componentWillMount() {
+
         this.props.requestUsersList(this.props.page);
-       
     }
     
     componentWillReceiveProps(nextProps) {
@@ -52,7 +52,7 @@ class Users extends Component {
                         <FilterComponent/>
                         </div>
                         </div >
-                    <Pagination className="users-pagination pull" 
+                    <Pagination className="users-pagination pull-center" 
         bsSize="medium" maxButtons={10} first last next prev boundaryLinks 
         items={pages} activePage={this.current_page} onSelect={this.changePage} />
                    
@@ -88,4 +88,5 @@ export default connect(
     mapStateToProps,
     
     dispatch => bindActionCreators({requestUsersList: requestUsersList,push: push}, dispatch)
+
 )(Users);

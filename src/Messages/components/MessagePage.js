@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators } from '../actions';
-import ChatRoomItem from './ChatRoomItem';
 import ChatRoomsList from './ChatRoomsList';
 
 
@@ -16,7 +15,7 @@ class MessagePage extends Component {
 
     componentWillMount()
     { 
-        this.props.requestChatRoomsList(localStorage.getItem('id'));
+        this.props.requestChatRoomsList(sessionStorage.getItem('id'));
         this.setState({chatRoomsList: this.props.chatRooms});
     }
 

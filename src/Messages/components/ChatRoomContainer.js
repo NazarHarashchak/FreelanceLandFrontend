@@ -27,10 +27,10 @@ class ChatRoomContainer extends Component {
     componentDidMount()
     { 
         this.scrollToBottom();
-        if(localStorage.getItem('tokenKey'))
+        if (sessionStorage.getItem('tokenKey'))
         { let hubUrl = 'https://localhost:44332/chat';
          const hubConnection = new signalR.HubConnectionBuilder()
-              .withUrl(hubUrl, { accessTokenFactory: () => localStorage.getItem('tokenKey')})
+             .withUrl(hubUrl, { accessTokenFactory: () => sessionStorage.getItem('tokenKey')})
               .configureLogging(signalR.LogLevel.Information)
               .build();
 
@@ -41,7 +41,7 @@ class ChatRoomContainer extends Component {
               this.setState({newMessages: [...this.state.newMessages,<MessageBox
                                                 dateString={currentTime}
                                                 key={this.state.counter}
-                                                position={(localStorage.getItem('login') != userName) ? 'left' : 'right'}
+                                                position={(sessionStorage.getItem('login') !== userName) ? 'left' : 'right'}
                                                 type={'text'}
                                                 text={message}
                                                 data={{
@@ -53,12 +53,11 @@ class ChatRoomContainer extends Component {
               ]});
           }.bind(this));
          hubConnection.on('Notify', function (message) {
-            
-          }.bind(this));
+          });
 
          var roomId = this.props.roomId;
          let to = "";
-         if(this.props.roomInfo.firstUserLogin != localStorage.getItem('login'))
+         if(this.props.roomInfo.firstUserLogin !== sessionStorage.getItem('login'))
             to = this.props.roomInfo.firstUserLogin; 
          else
             to = this.props.roomInfo.secondUserLogin;
@@ -66,7 +65,7 @@ class ChatRoomContainer extends Component {
          document.getElementById("sendBtn").addEventListener("click", function (e) {
               let message = document.getElementById("message").value;
               document.getElementById("message").value="";
-              hubConnection.invoke("Send",roomId, message, localStorage.getItem('id'), to);
+              hubConnection.invoke("Send",roomId, message, sessionStorage.getItem('id'), to);
           });
          hubConnection.start()
               .then(() => console.info('SignalR Connected'))
@@ -90,7 +89,7 @@ class ChatRoomContainer extends Component {
       
         return(
             <div id="messageContainer">
-               {(localStorage.getItem('tokenKey')) ? (<div>
+               {(sessionStorage.getItem('tokenKey')) ? (<div>
                     <div id="chatroom"><ShowMessages messages={this.state.messages} isLoading={this.props.isLoading}/>
                         <div id="newMessagesContainer">
                         {this.state.newMessages.map(el => el)}

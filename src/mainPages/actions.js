@@ -1,5 +1,4 @@
 import { requests } from '../services/apiService';
-import { request } from 'http';
 
 const receiveTop = 'RECEIVE_TOP';
 const requestTopType = 'REQUEST_TOP';

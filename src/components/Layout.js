@@ -15,7 +15,7 @@ export default props => (
             <Col>
                 <div id="push50"></div>
             </Col>
-            <Col >
+            <Col>
                 {props.children}
             </Col>
         </Row>

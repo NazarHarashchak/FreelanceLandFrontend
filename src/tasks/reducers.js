@@ -2,7 +2,6 @@ const requestTasksListType = 'REQUEST_TASKS_LIST';
 const receiveTasksListType = 'RECEIVE_TASKS_LIST';
 const searchTaskListType = 'SEARCH_TASKS_LIST';
 const changeCategOpenedStatusType = 'CHANGE_CATEG_OPENED_STATUS';
-const requestCategoriesListType = 'REQUEST_CATEGORIES_LIST';
 const changeCheckedStatusType = 'CHANGE_CHECKED_STATUS';
 const changeFromPriceType = 'CHANGE_FROM_PRICE';
 const changeToPriceType = 'CHANGE_TO_PRICE';
@@ -173,10 +172,10 @@ function filterTasks(filter, tasks) {
             );
         })
     }
-    filter.priceFrom===''?filter.priceFrom===0:filter.priceFrom;
+    
     tasks = tasks.filter(item => {
         return (
-            filter.priceTo === 0||filter.priceTo === '' ? filter.priceFrom <= item.price : filter.priceFrom <= item.price && item.price <= filter.priceTo === true
+            (filter.priceTo === 0||filter.priceTo === '') ? (filter.priceFrom <= item.price) : ((filter.priceFrom <= item.price) && (item.price <= filter.priceTo)) === true
         )
     })
     return tasks;

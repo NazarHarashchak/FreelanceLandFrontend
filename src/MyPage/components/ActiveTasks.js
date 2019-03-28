@@ -39,5 +39,5 @@ class Tasks extends Component {
 
 export default connect(
     state => state.tasksReducers,
-    dispatch => bindActionCreators(requestActiveTasksListForUser, dispatch)
+    dispatch => bindActionCreators({requestActiveTasksListForUser:requestActiveTasksListForUser}, dispatch)
 )(Tasks);
