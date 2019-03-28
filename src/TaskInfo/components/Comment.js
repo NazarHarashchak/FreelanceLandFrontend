@@ -8,41 +8,22 @@ import SweetAlert from 'sweetalert2-react';
 import "./comments.css";
 
 class Comment extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            delete: false,
-            showPop: false
-        };
-        this.deleteSubmit = this.deleteSubmit.bind(this);
+  constructor(props){
+    super(props);
+    this.state = {
+      success: 'Excecutor is already added'
     }
 
-    deleteSubmit() {
-        this.props.deleteComment(this.props.item.id)
-            .then(() => {
-                if (this.props.deleteCommentResponse !== null) { this.setState({ showPop: true }) }
-            });
-    }
-
-    addExcecutorButton() {
-    const userId = sessionStorage.getItem("id");
-    const customerId = this.props.customerId;
-    if (userId === customerId)
-    {
-        return(
-          <div id="choose_excecutor">
-            <input type="button" value="Choose" onCLick={this.saveExcecutor}/>
-          </div>
-        );
-    }
-    else {
-       return(
-        <div></div>);
-      }
+    this.saveExcecutor = this.saveExcecutor.bind(this);
   }
 
-  saveExcecutor() {
-    this.props.addAnExcecutor(this.props.item.userId, this.props.item.taskId);
+  saveExcecutor(event) {
+    console.log("Something doing");
+    this.props.addAnExcecutor(this.props.item.userId, this.props.item.taskId).then(() => {
+      alert(this.state.success);
+      document.location.reload();
+    });;
+    event.preventDefault();
   }
 
   render() {
@@ -85,7 +66,15 @@ class Comment extends React.Component {
               </tr>
               </tbody>
           </table>
-          {this.addExcecutorButton()}
+          { (sessionStorage.getItem("id") == this.props.customerId) && (this.props.excecutorId === 0) ?(
+                    <div id="choose_excecutor">
+                        <form>
+                          <input type="button" value="Choose" onClick={this.saveExcecutor} />
+                      </form>
+                   </div>
+                  ):(
+                       <div></div>)
+                    }
                 <div id="content">
                   <label >{this.props.item.content}</label>
                 </div>

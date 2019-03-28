@@ -29,6 +29,27 @@ class UserPanel extends React.Component {
                 </tbody>
               </table>
            </div>
+           { this.props.excecutorId !== 0  ? (
+             <div className="user-panel">
+              <div className="top-row">Excecutor
+              </div>
+                <table id="user-table">
+                  <tr id="bottom-row">
+                    <td>
+                    <div id="user-photo">
+                      <img src={require("./123.jpeg")} alt="фото користувача" width="80px"/>
+                    </div>
+                    </td>
+                    <td>
+                      <span id="user-link"> <Link to={`/ProfilePage/${this.props.excecutorId}`}>
+                      <i className="fa fa-address-book"></i>{this.props.exName 
+                        + ' ' +  this.props.exSecName}
+                      </Link></span>
+                    </td>
+                  </tr>
+                </table>
+             </div>):(null)
+           }
             <div className="user-panel">
               <div className="top-row">Date added</div>
                <i className="fa fa-calendar-plus-o"></i>
