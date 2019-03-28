@@ -172,11 +172,6 @@ function filterTasks(filter, tasks) {
             );
         })
     }
-<<<<<<< HEAD
-   /* filter.priceFrom===null?filter.priceFrom===0:filter.priceFrom;*/
-=======
-    
->>>>>>> 47d55a4977c44601c522cafdea8d34cd7cd3a1a3
     tasks = tasks.filter(item => {
         return (
             (filter.priceTo === 0||filter.priceTo === '') ? (filter.priceFrom <= item.price) : ((filter.priceFrom <= item.price) && (item.price <= filter.priceTo)) === true
