@@ -45,7 +45,7 @@ class TaskDescription extends React.Component {
             </form>
             <Comments taskId={this.props.id} customerId={this.props.customerId}
              excecutorId={this.props.excecutorId}/>
-             { localStorage.getItem("id") == this.props.customerId ? (
+             { sessionStorage.getItem("id") == this.props.customerId ? (
              <div id="close-task-button">
                 <input type="button" id="close" value="Close task" onClick={this.closeTask}/>
              </div>) : null
