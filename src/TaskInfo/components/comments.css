@@ -76,6 +76,10 @@
     #submit{
       margin: 5px;
       height: 40px;
+    border-radius: 5px 5px 5px 5px;
+    border-style: none;
+    color: white;
+    background-color: rgb(7, 82, 50);
     }
     #comment-eror{
       padding-top:5px;

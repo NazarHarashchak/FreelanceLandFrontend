@@ -18,6 +18,15 @@ export const  requestTaskForecasts = (myId) => async (dispatch) => {
         dispatch({ type: receiveTaskForecastsType, forecasts });
     }
 
+export const   closeMyTask = (taskId) => async (dispatch) => {
+        dispatch({type: requestTaskForecastsType });
+        const forecasts = await requests.doPost('/api/taskinfo/closetask',JSON.stringify({
+            id: taskId
+    }));
+
+        dispatch({ type: receiveTaskForecastsType, forecasts });
+    }
+
 
 export const actionCommentsCreators = {
     requestComments: (myId) => async (dispatch) => {
@@ -43,7 +52,6 @@ export const actionCommentsPostCreators = {
         }));
 
         const comment = await response;
-
 
         dispatch ({ type: receiveSendComment, comment });
     }

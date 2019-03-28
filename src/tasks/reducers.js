@@ -172,7 +172,6 @@ function filterTasks(filter, tasks) {
             );
         })
     }
-    
     tasks = tasks.filter(item => {
         return (
             (filter.priceTo === 0||filter.priceTo === '') ? (filter.priceFrom <= item.price) : ((filter.priceFrom <= item.price) && (item.price <= filter.priceTo)) === true

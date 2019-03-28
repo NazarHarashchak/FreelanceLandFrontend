@@ -49,7 +49,7 @@
     clear: both;
 }
 .Errors{
-    font: red;
+    color: red;
 }
 #price-error{
     position: relative;

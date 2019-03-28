@@ -34,6 +34,7 @@ class Comments extends React.Component {
                       key={item.id}
                       item={item}
                       customerId = {this.props.customerId}
+                      excecutorId = {this.props.excecutorId}
                       />
                     ))}
               </li>

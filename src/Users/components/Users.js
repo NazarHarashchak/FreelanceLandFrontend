@@ -26,6 +26,7 @@ class Users extends Component {
   
     componentWillMount() {
 
+
         this.props.requestUsersList(this.props.page);
     }
     
