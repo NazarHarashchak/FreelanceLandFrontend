@@ -53,19 +53,12 @@ class UserPanel extends React.Component {
             <div className="user-panel">
               <div className="top-row">Date added</div>
                <i className="fa fa-calendar-plus-o"></i>
-                <label>{this.props.dateAdded}</label>
+                <label className="labelText">{this.props.dateAdded}</label>
             </div>
             <div className="user-panel">
               <div className="top-row">Task updated</div>
               <i className="fa fa-clock-o" ></i>
-              <label>{this.props.deadline}</label>
-            </div>
-            <div className="user-panel">
-              <div className="top-row">
-                Similar project
-              </div>
-              <div>
-              </div>
+              <label className="labelText">{this.props.deadline}</label>
             </div>
             </div>
       </div>
