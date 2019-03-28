@@ -48,11 +48,8 @@ class ProfileComponent extends Component {
         <Grid.Row centered> 
           <ProfilePage id={this.props.match.params.id}/>
         </Grid.Row>
-        <Grid.Row centered>
-          <AddImage id={this.props.match.params.id}/>
-        </Grid.Row>
         {sessionStorage.getItem('id')!== this.props.match.params.id ? (<Grid.Row centered>
-          <div id= "sendMessageButton">
+          {sessionStorage.getItem('tokenKey')?(<div id= "sendMessageButton">
         <Button variant="outlined" className="send-message-button" color="primary" onClick={this.handleClickOpen}>
           Send Message
         </Button>
@@ -85,9 +82,12 @@ class ProfileComponent extends Component {
             </Button>
           </DialogActions>
         </Dialog>
-      </div>
+          </div>):<div></div>}
         </Grid.Row>) : <div></div>}
 
+        <Grid.Row centered>
+          <AddImage id={this.props.match.params.id}/>
+        </Grid.Row>
         <Grid.Row centered>
           <Grid.Column width={10}>
             <PersonalInfo id={this.props.match.params.id}/>

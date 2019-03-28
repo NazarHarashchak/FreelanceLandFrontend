@@ -4,7 +4,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators1 } from '../actions';
 import AvatarEditor from 'react-avatar-editor'
+import { Grid, GridRow, GridColumn} from 'semantic-ui-react';
 
+import './ProfilePage.css';
 class AddImage extends Component {
     
   constructor(props) {
@@ -76,8 +78,8 @@ class AddImage extends Component {
     setEditorRef = (editor) => this.editor = editor
 
     render() {
-     return (
-        <div id = 'addImageWrapper' style={{ visibility: (sessionStorage.getItem('tokenKey') && this.props.id === sessionStorage.getItem('id')) ? 'visible' : 'hidden' }}>
+     if((sessionStorage.getItem('tokenKey') && this.props.id === sessionStorage.getItem('id'))) return (
+        <div id = 'addImageWrapper'>
           {(this.state.image !== '') ?  <AvatarEditor
                                         ref={this.setEditorRef}
                                         image={this.state.image}
@@ -88,13 +90,19 @@ class AddImage extends Component {
                                         scale={1.2}
                                         rotate={0}
                                       /> : <div></div>}
-          <form>
+          <form className="inputContainer">
+              <Grid.Row>
               {this.state.inputError ? (<div style={{ fontSize: 14, color: "red" }}>{this.state.inputError}</div>) : null}
-              <input name="Avatar" id="img" type="file" className="form-control"  accept="image/x-png,image/gif,image/jpeg" onChange={(e)=>this.handleImageChange(e)}/>
-              <input type="submit" value="change photo" onClick={this.sendImage} id='addImageButton'/>
+              <Grid.Column>
+                <input name="Avatar" id="img" type="file" className="form-control"  accept="image/x-png,image/gif,image/jpeg" onChange={(e)=>this.handleImageChange(e)}/>
+                <input type="submit" value="change photo" onClick={this.sendImage} id='addImageButton'/>
+              </Grid.Column>
+              </Grid.Row>
           </form>
         </div>
-     )}
+     )
+      return (<div></div>)
+    }
   }
   
 

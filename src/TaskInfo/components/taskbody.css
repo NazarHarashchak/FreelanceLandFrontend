@@ -1,31 +1,55 @@
 .container-fluid{
   position:relative;
 }
+#task-title {
+  
+  font-size: 25px;
+  height: 20px;
+}
+#push_block {
+  height: 20px;
+}
+
+
+#hr-tag {
+  margin: 30px -20px 20px;
+  border: 0;
+  border-top: 1px solid #c9c7c7;
+}
+
   .my-task-description {
     position: relative;
     top: 10px;
     padding: 20px;
     border-width: 2px;
     border-style: outset;
+    border-radius: 10px;
     background-color: #fbfbfc;
     text-align: center;
   }
   #task-desk {
     position: relative;
-    bottom: 50px;
     width: 70%;
     text-align: left;
     clear: both;
   }
+
+  #text-container {
+
+    vertical-align: middle;
+  }
+
   #task-price {
     position: relative;
     float: right;
     background-color:#27551a;
     color: white;
-    height: 40px;
+    height: 30px;
+    width: 40px;
+    font-size: 18px;
+    vertical-align: middle; 
     text-align: center;
     box-sizing: border-box;
-    padding: 12px;
   }
   .right-row-panel{
     position: relative;
@@ -33,25 +57,32 @@
     top:38px;
   }
   .user-panel{
-    width:100%;
-    margin-top:20px;
     border-width: 2px;
     border-style: outset;
+    border-radius: 10px;
+    width:100%;
+    margin-top:20px;
   }
+
+  .labelText {
+    text-align: center;
+  }
+
   .top-row {
+    border-width: 2px;
+    border-style: outset;
+    border-radius: 10px;
     height: 50px;
     width: 100%;
     background: -webkit-gradient(
       linear,
       left bottom,
       left top,
-      color-stop(0, #e5e5e9),
-      color-stop(1, #fbfbfc)
+      color-stop(0, #27551a)
     );
     box-sizing: border-box;
     font-family: PT Sans, Helvetica Neue, Arial, sans-serif;
-    text-shadow: 1px 1px 0 #fff;
-    color: #707083;
+    color: white;
     font-size: 20px;
     text-align: center;
     padding: 15px;

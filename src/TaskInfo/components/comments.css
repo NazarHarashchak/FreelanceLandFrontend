@@ -5,8 +5,14 @@
       border-style: outset;
       border-width: 2px;
       clear: both;
+      border-width: 2px;
+      border-style: outset;
+      border-radius: 10px;
     }
     .comentar{
+      border-width: 2px;
+      border-style: outset;
+      border-radius: 10px;
       width: 95%;
       margin-top: 5px;
       border-style:outset;
@@ -17,6 +23,9 @@
       list-style-type: none;
     }
     #comments-title{
+      border-width: 2px;
+      border-style: outset;
+      border-radius: 10px;
       height:40px;
       padding:9px;
       text-align: center;
@@ -25,11 +34,9 @@
       linear,
       left bottom,
       left top,
-      color-stop(0, #e5e5e9),
-      color-stop(1, #fbfbfc)
+      color-stop(0, #27551a)
     );
-    color: #707083;
-    text-shadow: 1px 1px 0 #fff;
+    color: white;
     }
     #add-comment{
       position: relative;
