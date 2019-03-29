@@ -8,7 +8,7 @@ class Successfull extends Component {
             <div className="validateUser">
                 <h1>Your password was changed successfull!</h1>
                 <Link className="revertPass" to='/loginPage'>
-                    <h3>Now you can back and login</h3>
+                    <h3>Now you can go back and login</h3>
                 </Link>
             </div>
             );
