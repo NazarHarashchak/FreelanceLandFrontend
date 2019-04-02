@@ -77,11 +77,7 @@ function switchCheckedStatus(roles,name) {
     return newList;
 }
 
-function totalItems(totalPages)
-{
-    
-    return totalPages;
-}
+
 function filterUsers(roles, newUsers){
     let checkedRoles=roles.filter(typ =>typ.isChecked === true);
     if(checkedRoles.length !== 0){
@@ -91,6 +87,5 @@ function filterUsers(roles, newUsers){
             )
         })
     }
-    console.log(newUsers);
     return newUsers;
 }

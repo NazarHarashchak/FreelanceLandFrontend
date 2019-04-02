@@ -15,13 +15,11 @@ class TaskDescription extends React.Component {
 
   closeTask(){
     this.props.closeMyTask(this.props.myTask.id).then(() => { 
-      alert("The task is already closed");
 });
   }
 
   render() {
     return (
-        <div className="col-md-8" >
         <div>
           <div><Link to="/tasks">Back to list</Link> </div>
          
@@ -45,13 +43,12 @@ class TaskDescription extends React.Component {
             </form>
             <Comments taskId={this.props.id} customerId={this.props.customerId}
              excecutorId={this.props.excecutorId}/>
-             { sessionStorage.getItem("id") == this.props.customerId ? (
+             { sessionStorage.getItem("id") === this.props.customerId ? (
              <div id="close-task-button">
                 <input type="button" id="close" value="Close task" onClick={this.closeTask}/>
              </div>) : null
              }
             </div>
-        </div>
     );
   }
 }

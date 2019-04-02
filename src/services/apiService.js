@@ -9,7 +9,9 @@ export const requests = {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + sessionStorage.tokenKey
+                    'Authorization': 'Bearer ' + sessionStorage.tokenKey,
+                    'Access-Control-Allow-Origin': 'http://localhost:3001',
+                    'Access-Control-Allow-Credentials': 'true'
                 },
                 body: body
             }
@@ -25,7 +27,9 @@ export const requests = {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + sessionStorage.tokenKey
+                    'Authorization': 'Bearer ' + sessionStorage.tokenKey,
+                    'Access-Control-Allow-Origin': 'http://localhost:3001',
+                    'Access-Control-Allow-Credentials': 'true'
                 }
             }
         )
@@ -40,7 +44,9 @@ export const requests = {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + sessionStorage.tokenKey
+                    'Authorization': 'Bearer ' + sessionStorage.tokenKey,
+                    'Access-Control-Allow-Origin': 'http://localhost:3001',
+                    'Access-Control-Allow-Credentials': 'true'
                 },
                 body: body
             }
@@ -56,7 +62,9 @@ export const requests = {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + sessionStorage.tokenKey
+                    'Authorization': 'Bearer ' + sessionStorage.tokenKey,
+                    'Access-Control-Allow-Origin': 'http://localhost:3001',
+                    'Access-Control-Allow-Credentials': 'true'
                 }
             }
         )

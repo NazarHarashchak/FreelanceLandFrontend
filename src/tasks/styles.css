@@ -15,6 +15,9 @@
     margin-right:5px;
 }
 
+#clear-filter-button, .scrolltop{
+    cursor: pointer;
+}
 
 header.l-project-title > :link{
     text-decoration-color: rgb(15, 133, 15);

@@ -3,10 +3,6 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { setFoundRolesList } from '../action';
-import { Pagination } from 'react-bootstrap'; 
-import { push } from 'react-router-redux'; 
-
-
 
 class UsersList extends React.Component {
   
@@ -14,15 +10,10 @@ class UsersList extends React.Component {
     this.props.setFoundRolesList(this.props.foundRolesList)
     
   } 
-  render() {
-   const  pages = Math.ceil((this.props.foundRolesList.length+2)/10)
-      
+  render() {      
     return (
-     
         <div className="list">
-        
             {this.props.foundRolesList.map((item,index) => {   
-              
                 return(
                   <UserItem
                 key={item.id}
@@ -30,10 +21,8 @@ class UsersList extends React.Component {
                 />
                 );
               }    
-                
             )}
         </div>
-       
     );
   }
   

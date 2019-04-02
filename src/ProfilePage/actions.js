@@ -22,7 +22,7 @@ export const actionCreators = {
     createChatRoomAndSendMessage: (creatorId, secondUserId, message) => async (dispatch) => {
         dispatch({type: requestCreateChatRoom});
 
-        const url = 'https://localhost:44332/api/ChatRoom/CreateChatRoomWithFirstMessage';
+        const url = 'https://localhost:44338/api/ChatRoom/CreateChatRoomWithFirstMessage';
         await fetch(url,
             {
                 method: 'POST',
@@ -43,7 +43,7 @@ export const actionCreators = {
     }
 }
 export const addImage = async (image)  => {
-    await fetch('https://localhost:44332/api/users/CreateImage',
+    await fetch('https://localhost:44338/api/users/CreateImage',
         { 
             headers: {
                 'Accept': 'application/json',
@@ -56,7 +56,7 @@ export const addImage = async (image)  => {
 
 export const actionCreators1 = {
     getImage: (id) => async (dispatch) => {
-    const url = 'https://localhost:44332/api/users/GetImage/'+id;
+    const url = 'https://localhost:44338/api/users/GetImage/'+id;
     const response = await fetch(url,
     { 
         method: 'GET',
@@ -71,7 +71,7 @@ export const actionCreators1 = {
     dispatch({ type: receiveImage, ImgData });
 },
     addImage: (image) => async (dispatch)  => {
-    await fetch('https://localhost:44332/api/users/CreateImage',
+    await fetch('https://localhost:44338/api/users/CreateImage',
         { 
             headers: {
                 'Accept': 'application/json',

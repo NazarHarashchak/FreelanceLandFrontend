@@ -12,7 +12,7 @@ import '../../tasks/styles.css';
 
 class Tasks extends Component {
     componentWillMount() {
-        requestActiveTasksListForUser();
+        this.props.requestActiveTasksListForUser();
     }
 
     render() {
@@ -22,6 +22,10 @@ class Tasks extends Component {
                 <div className="main-content container">
                     <SearchBar />
                     <div className="row">
+                        <div
+                            ref={(el) => { this.anchor = el; }}>
+                        </div>
+
                         <div className="col-md-9" id="j-orders-search-list">
                             <TaskItemList />
                             <Pagination />
@@ -30,8 +34,8 @@ class Tasks extends Component {
                             <Filter />
                         </div>
                     </div >
-                </div >
-                <ScrollTop />
+                </div >             
+                   <ScrollTop anchor={this.anchor}/>
             </div >
         );
     }

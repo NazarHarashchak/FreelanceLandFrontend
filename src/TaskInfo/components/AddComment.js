@@ -51,8 +51,8 @@ class AddComment extends React.Component {
         const valid = this.validationForm();
         if (valid)
         {
-            this.props.sendComment(this.state.commentContent, this.props.userId, this.props.taskId).
-            then(() => {
+            this.props.sendComment(this.state.commentContent, this.props.userId, this.props.taskId)
+            .then(() => {
             });
                 
         }

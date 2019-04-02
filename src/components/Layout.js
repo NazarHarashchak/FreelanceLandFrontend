@@ -11,7 +11,7 @@ export default props => (
                 <NavMenu />
             </Col>
         </Row>
-        <Row>
+        <Row className="body-height">
             <Col>
                 <div id="push50"></div>
             </Col>

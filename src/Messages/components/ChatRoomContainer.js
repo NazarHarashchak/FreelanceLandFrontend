@@ -28,7 +28,7 @@ class ChatRoomContainer extends Component {
     { 
         this.scrollToBottom();
         if (sessionStorage.getItem('tokenKey'))
-        { let hubUrl = 'https://localhost:44332/chat';
+        { let hubUrl = 'https://localhost:44338/chat';
          const hubConnection = new signalR.HubConnectionBuilder()
              .withUrl(hubUrl, { accessTokenFactory: () => sessionStorage.getItem('tokenKey')})
               .configureLogging(signalR.LogLevel.Information)

@@ -6,14 +6,12 @@ import { connect } from 'react-redux';
 import {requestUsersList} from '../action';
 import './stylles.css';
 import SeachBar from './SeachBar';
-import ScrollTop from './ScrollTop'
 import { Pagination } from 'react-bootstrap'; 
 import { push } from 'react-router-redux'; 
-import pages from './UsersList'
+import ScrollTop from '../../tasks/components/ScrollTop';
 
 
 
-console.log(pages)
 
 class Users extends Component {
 
@@ -46,6 +44,9 @@ class Users extends Component {
                 <div className="main-content container">
                     <SeachBar/>
                     <div className="row">
+                        <div
+                            ref={(el) => { this.anchor = el; }}>
+                        </div>
                         <div className="col-md-9" id="j-orders-search-list">
                             <UsersList usersList={this.props.newusers} isLoading={this.props.isLoading}/>
                         </div>
@@ -58,14 +59,13 @@ class Users extends Component {
         items={pages} activePage={this.current_page} onSelect={this.changePage} />
                    
                     </div>
-                    <ScrollTop/>
+                    <ScrollTop anchor={this.anchor}/>
             </div >
         );
         
     }
     
     changePage(page){
-        alert(page);
         this.props.push(page)
         this.props.requestUsersList(page);
         this.current_page =page;
@@ -83,8 +83,6 @@ function mapStateToProps (state ) {
     
   }
   
-
-
 export default connect(
     mapStateToProps,
     

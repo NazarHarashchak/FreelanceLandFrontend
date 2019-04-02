@@ -11,14 +11,25 @@ class Comment extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      success: 'Excecutor is already added'
-    }
-
+        success: 'Excecutor is already added',
+        showPop: false
+      }
+      this.deleteClick = this.deleteClick.bind(this);
+      this.deleteSubmit = this.deleteSubmit.bind(this);
     this.saveExcecutor = this.saveExcecutor.bind(this);
   }
 
+    deleteSubmit() {
+        this.setState({ showPop: false });
+        this.props.deleteComment(this.props.item.id);
+        document.location.replace('taskInf/' + this.props.item.taskId);
+    }
+
+    deleteClick() {
+        this.setState({ showPop: true });
+    }
+
   saveExcecutor(event) {
-    console.log("Something doing");
     this.props.addAnExcecutor(this.props.item.userId, this.props.item.taskId).then(() => {
       alert(this.state.success);
       document.location.reload();
@@ -31,15 +42,18 @@ class Comment extends React.Component {
         <div className="comentar">
             <SweetAlert
                 show={this.state.showPop}
-                type= 'success'
-                title= 'Cool!'
-                text='Comment was deleted successful!'
+                type='warning'
+                title='Are you sure?'
+                text="You won't be able to revert this!"
+                showCancelButton={true}
                 confirmButtonColor='#075232'
-                onConfirm={() => this.setState({ showPop: false })}
+                cancelButtonColor='#ffff00'
+                confirmButtonText='Yes, delete it!'
+                onConfirm={this.deleteSubmit}
             />
             {sessionStorage.getItem('role') === "Moderator" ? 
                 (
-                    <button id="delete" onClick={this.deleteSubmit}>
+                    <button id="delete" onClick={this.deleteClick}>
                         <Icon name='trash alternate'></Icon>
                     </button>)
                     :
@@ -66,7 +80,7 @@ class Comment extends React.Component {
               </tr>
               </tbody>
           </table>
-          { (sessionStorage.getItem("id") == this.props.customerId) && (this.props.excecutorId === 0) ?(
+          { (sessionStorage.getItem("id") === this.props.customerId) && (this.props.excecutorId === 0) ?(
                     <div id="choose_excecutor">
                         <form>
                           <input type="button" value="Choose" onClick={this.saveExcecutor} />

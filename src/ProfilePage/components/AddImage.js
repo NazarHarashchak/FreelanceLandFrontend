@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators1 } from '../actions';
 import AvatarEditor from 'react-avatar-editor'
-import { Grid, GridRow, GridColumn} from 'semantic-ui-react';
+import { Grid} from 'semantic-ui-react';
 
 import './ProfilePage.css';
 class AddImage extends Component {

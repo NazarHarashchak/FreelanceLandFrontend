@@ -11,10 +11,7 @@ class Pagination extends React.Component {
         
           <li><a data-page="2" className="j-pgn-page" >»</a></li>
         </ul>
-      
-         
-      
-      
+
       </div>
     );
   }

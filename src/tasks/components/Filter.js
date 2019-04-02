@@ -98,7 +98,7 @@ class Filter extends React.Component {
             </div>
           </div>
           <div className="form-group">
-            <a href="" id="clear-filter-button" onClick={e => {e.preventDefault(); this.props.cleanFilter()}}>clean </a>
+            <h4 id="clear-filter-button" onClick={e => {e.preventDefault(); this.props.cleanFilter()}}>clean </h4>
           </div>
         </form>
       </div>
