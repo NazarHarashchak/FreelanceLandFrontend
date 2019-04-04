@@ -125,12 +125,17 @@ a {
 
 .pagination > .active > span {
     border-color: rgb(6, 107, 63);
-    background-color: rgb(6, 107, 63);
+   
     color: #ffffff
 }
 
 .pagination > li >a {
     color:rgb(6, 107, 63)
+}
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+   
+    background-color: rgb(6, 107, 63);
+     border-color: rgb(6, 107, 63);
 }
 
 .form-control {
@@ -142,10 +147,11 @@ a:hover {
     opacity:0.7
 }
 
-#tasks-container .pagination {
-    padding-left:15px;
-    padding-top:15px;
+#clear-filter-button, .scrolltop{
+    cursor: pointer;
 }
+
+
 .j-orders-search-list {
     padding-left:15px;
     padding-top:15px;
@@ -165,6 +171,7 @@ a:hover {
     padding-left:15px;
     cursor: pointer;
 }
+
 
 .scroll-top-col
 {

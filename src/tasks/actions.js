@@ -15,11 +15,11 @@ const receiveDeleteTask = 'RECEIVE_DELETE_TASK';
 const requestTasksListForUserType = 'REQUEST-TASKS-LIST-FOR-USER-TYPE';
 const receiveTasksListForUserType = 'RECEIVE-TASKS-LIST-FOR-USER-TYPE'
 
-export const requestTasksList = () => async (dispatch) => {
+export const requestTasksList = (pageNumber) => async (dispatch) => {
     dispatch({ type: requestTasksListType });
 
-    const tasks = await requests.doGet('/tasks');
-
+    const allTasks = await requests.doGet('/tasks/pageNumber/'+pageNumber);
+    const tasks=allTasks.list;
     dispatch({ type: receiveTasksListType, tasks });
 }
 

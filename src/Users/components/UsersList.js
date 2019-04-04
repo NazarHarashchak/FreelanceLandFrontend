@@ -3,27 +3,43 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { setFoundRolesList } from '../action';
+import { Pagination } from 'react-bootstrap'; 
+import { push } from 'react-router-redux'; 
+
+
 
 class UsersList extends React.Component {
+  
   componentWillMount() {
     this.props.setFoundRolesList(this.props.foundRolesList)
-  }
+    
+  } 
   render() {
+   const  pages = Math.ceil((this.props.foundRolesList.length+2)/10)
+      
     return (
+     
         <div className="list">
         
-            {this.props.foundRolesList.map(item => (          
-                <UserItem
+            {this.props.foundRolesList.map((item,index) => {   
+              
+                return(
+                  <UserItem
                 key={item.id}
                 item={item}
                 />
-            ))}
+                );
+              }    
+                
+            )}
         </div>
+       
     );
   }
+  
 }
-function searchList(users, filterText) {
-  var foundRolesList = users.filter(item => {
+function searchList(newusers, filterText) {
+  var foundRolesList = newusers.filter(item => {
     return (
       item.name.toLowerCase().search(filterText.toLowerCase()) !== -1
     );
@@ -31,9 +47,12 @@ function searchList(users, filterText) {
   return foundRolesList;
 }
 
-const mapStateToProps = state => ({
-  foundRolesList: searchList(state.usersReducers.filteredRolesList, state.usersReducers.searchText)
-})
+function mapStateToProps (state ) {
+  return({
+    foundRolesList: searchList(state.usersReducers.filteredRolesList, state.usersReducers.searchText),
+  });
+  
+}
 
 export default connect(
   mapStateToProps,

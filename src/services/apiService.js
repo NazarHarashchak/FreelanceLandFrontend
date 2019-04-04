@@ -1,14 +1,19 @@
 import { API_ROOT, ROOT } from './api-config';
 
+const standartHeaders = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + sessionStorage.tokenKey
+};
 export const requests = {
+    
     doPost: async function (path, body) {
         const response = await fetch(ROOT + path,
             {
                 method: 'POST',
                 mode: 'cors',
-                headers: {
+                headers: (body.values===undefined)?standartHeaders: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + sessionStorage.tokenKey
                 },
                 body: body
@@ -22,11 +27,7 @@ export const requests = {
             {
                 method: 'GET',
                 mode: 'cors',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + sessionStorage.tokenKey
-                }
+                headers: standartHeaders
             }
         )
         return response.json();
@@ -37,11 +38,7 @@ export const requests = {
             {
                 method: 'PUT',
                 mode: 'cors',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + sessionStorage.tokenKey
-                },
+                headers: standartHeaders,
                 body: body
             }
         )
@@ -53,12 +50,9 @@ export const requests = {
             {
                 method: 'DELETE',
                 mode: 'cors',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + sessionStorage.tokenKey
-                }
+                headers: standartHeaders
             }
         )
         return response.json();
-    }}
+    }
+}

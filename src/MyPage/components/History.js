@@ -22,6 +22,9 @@ class Tasks extends Component {
                 <div className="main-content container">
                     <SearchBar />
                     <div className="row">
+                        <div
+                            ref={(el) => { this.anchor = el; }}>
+                        </div>
                         <div className="col-md-9" id="j-orders-search-list">
                             <TaskItemList />
                             <Pagination />
@@ -31,7 +34,7 @@ class Tasks extends Component {
                         </div>
                     </div >
                 </div >
-                <ScrollTop />
+                <ScrollTop anchor={this.anchor}/>
             </div >
         );
     }
