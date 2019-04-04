@@ -13,9 +13,9 @@ class addTaskPage extends React.Component {
             titleError: '',
             descriptionContent: '',
             descriptionError: '',
-            priceContent: '',
-            deadlineContent: '',
-            categoryContent: '',
+            priceContent: '0',
+            deadlineContent: this.defaultDate(),
+            categoryContent: 'Web development',
             myError: ''
         };
         
@@ -36,34 +36,29 @@ class addTaskPage extends React.Component {
 
     onTitleChange(event){
         const value = event.target.value;
-        console.log("title", value);
         this.setState({titleContent: value, titleError: '', myError: ''});
     }
 
     onDescriptionChange(event){
         const value = event.target.value;
         
-        console.log("desc", value);
         this.setState({descriptionContent: value, descriptionError: '', myError: ''});
     }
 
     onCategoryChange(event){
         const value = event.target.value;
         
-        console.log("category", value);
         this.setState({categoryContent: value});
     }
 
     onPriceChange(event){
         const value = event.target.value;
-        console.log("price", value);
 
         this.setState({priceContent: value});
     }
 
     onDateChange(event){
         const value = event.target.value;
-        console.log("date", value);
         
         this.setState({deadlineContent: value});
     }
@@ -73,7 +68,6 @@ class addTaskPage extends React.Component {
         const date = new Date().getDate();
         const year = new Date().getFullYear();
         const value = year + '-' + mounth + '-' + date;
-        console.log(value);
         return(value);
     }
 
@@ -100,16 +94,12 @@ class addTaskPage extends React.Component {
         else {
             switch(name){
                 case'price-content':{
-                    this.setState({priceContent: 0});
                     return(true);
                 }
                 case'deadline-content':{
-                    this.setState({deadlineContent: this.defaultDate()});
                     return(true);
                 }
                 case'category-content':{
-                    console.log('category def', content);
-                    this.setState({categoryContent: 'Web development'});
                     return(true);
                 }
             }
@@ -130,16 +120,13 @@ class addTaskPage extends React.Component {
     }
 
     saveChanges(event){
-        console.log(this.state.titleContent, this.state.descriptionContent, 
-            localStorage.getItem('id'), this.state.priceContent,
-            this.state.deadlineContent, this.state.categoryContent);
-
         if (this.addedValues()){
             this.props.createNewTask(this.state.titleContent, this.state.descriptionContent, 
-                localStorage.getItem('id'), this.state.priceContent,
+                sessionStorage.getItem('id'), this.state.priceContent,
                 this.state.deadlineContent, this.state.categoryContent).
                 then(() => { 
-                    alert("The task is already saved");
+                    alert("Success");
+                    document.location = 'http://localhost:3000/tasks/';
             });;
         }
         else{

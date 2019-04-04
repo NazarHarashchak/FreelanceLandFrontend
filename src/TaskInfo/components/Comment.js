@@ -66,7 +66,7 @@ class Comment extends React.Component {
               </tr>
               </tbody>
           </table>
-          { (localStorage.getItem("id") == this.props.customerId) && (this.props.excecutorId === 0) ?(
+          { (sessionStorage.getItem("id") == this.props.customerId) && (this.props.excecutorId === 0) ?(
                     <div id="choose_excecutor">
                         <form>
                           <input type="button" value="Choose" onClick={this.saveExcecutor} />

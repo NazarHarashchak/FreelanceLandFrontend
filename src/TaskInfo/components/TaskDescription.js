@@ -15,7 +15,8 @@ class TaskDescription extends React.Component {
 
   closeTask(){
     this.props.closeMyTask(this.props.myTask.id).then(() => { 
-      alert("The task is already closed");
+      alert("Success");
+      document.location.reload();
 });
   }
 
@@ -45,7 +46,8 @@ class TaskDescription extends React.Component {
             </form>
             <Comments taskId={this.props.id} customerId={this.props.customerId}
              excecutorId={this.props.excecutorId}/>
-             { localStorage.getItem("id") == this.props.customerId ? (
+             { (sessionStorage.getItem("id") == this.props.customerId) 
+                  && (this.props.myTask.taskStatus !== "Done") ? (
              <div id="close-task-button">
                 <input type="button" id="close" value="Close task" onClick={this.closeTask}/>
              </div>) : null
