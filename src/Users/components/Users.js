@@ -6,9 +6,9 @@ import { connect } from 'react-redux';
 import {requestUsersList} from '../action';
 import './stylles.css';
 import SeachBar from './SeachBar';
+import ScrollTop from '../../tasks/components/ScrollTop';
 import { Pagination } from 'react-bootstrap'; 
 import { push } from 'react-router-redux'; 
-import ScrollTop from '../../tasks/components/ScrollTop';
 
 
 

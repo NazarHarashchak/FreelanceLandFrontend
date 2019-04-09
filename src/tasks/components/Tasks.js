@@ -34,16 +34,19 @@ class Tasks extends Component {
                 <div className="main-content container">
                     <SearchBar />
                     <div className="row">
-                        
+                        <div
+                            ref={(el) => { this.anchor = el; }}>
+                        </div>
                         <div className="col-md-9" id="j-orders-search-list">
                             <TaskItemList />
-                            <Pagination className="users-pagination pull-center"
-                                bsSize="medium"
-                                maxButtons={10}
-                                first last next prev boundaryLinks
-                                items={pages}
-                                activePage={this.current_page}
-                                onSelect={this.changePage} />                </div>
+                            <Pagination className="users-pagination pull-center" 
+                            bsSize="medium" 
+                            maxButtons={10} 
+                            first last next prev boundaryLinks 
+                            items={pages} 
+                            activePage={this.current_page} 
+                            onSelect={this.changePage} />
+                        </div>
                         <div className="col-md-3">
                             <Filter />
                         </div>

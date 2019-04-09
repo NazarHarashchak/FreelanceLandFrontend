@@ -25,7 +25,6 @@ class Tasks extends Component {
                         <div
                             ref={(el) => { this.anchor = el; }}>
                         </div>
-
                         <div className="col-md-9" id="j-orders-search-list">
                             <TaskItemList />
                             <Pagination />
@@ -34,8 +33,8 @@ class Tasks extends Component {
                             <Filter />
                         </div>
                     </div >
-                </div >             
-                   <ScrollTop anchor={this.anchor}/>
+                </div >
+                <ScrollTop anchor={this.anchor}/>
             </div >
         );
     }

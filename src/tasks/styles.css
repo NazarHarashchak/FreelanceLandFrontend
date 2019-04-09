@@ -150,6 +150,10 @@ a:hover {
     opacity:0.7
 }
 
+#clear-filter-button, .scrolltop{
+    cursor: pointer;
+}
+
 
 .j-orders-search-list {
     padding-left:15px;
@@ -170,6 +174,7 @@ a:hover {
     padding-left:15px;
     cursor: pointer;
 }
+
 
 .scroll-top-col
 {
