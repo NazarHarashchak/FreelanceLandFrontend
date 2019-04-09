@@ -20,7 +20,7 @@ class Tasks extends Component {
         this.changePage = this.changePage.bind(this);
     };
     componentWillMount() {
-        this.props.requestTasksList(this.props.page);
+        this.props.requestTasksList(this.props.page, this.props.filter, this.props.searchText);
     }
 
     render() {
@@ -38,7 +38,7 @@ class Tasks extends Component {
                             ref={(el) => { this.anchor = el; }}>
                         </div>
                         <div className="col-md-9" id="j-orders-search-list">
-                            <TaskItemList />
+                            {this.props.state.tasksAreLoading===true ? <h3>Loading data...</h3> : <TaskItemList tasks={this.props.state.tasks} />}
                             <Pagination className="users-pagination pull-center" 
                             bsSize="medium" 
                             maxButtons={10} 
@@ -59,7 +59,7 @@ class Tasks extends Component {
     }
     changePage(page) {
         this.props.push(page)
-        this.props.requestTasksList(page);
+        this.props.requestTasksList(page,this.props.filter, this.props.searchText);
         this.current_page = page;
 
     }

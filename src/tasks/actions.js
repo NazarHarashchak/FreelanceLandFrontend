@@ -15,10 +15,17 @@ const receiveDeleteTask = 'RECEIVE_DELETE_TASK';
 const requestTasksListForUserType = 'REQUEST-TASKS-LIST-FOR-USER-TYPE';
 const receiveTasksListForUserType = 'RECEIVE-TASKS-LIST-FOR-USER-TYPE'
 
-export const requestTasksList = (pageNumber) => async (dispatch) => {
+export const requestTasksList = (pageNumber, filter, searchText) => async (dispatch) => {
     dispatch({ type: requestTasksListType });
 
-    const allTasks = await requests.doGet('/tasks/pageNumber/'+pageNumber);
+    const allTasks = await requests.doPost('/api/tasks/all',
+    JSON.stringify(
+        {
+            pageNumber: 1,
+            filter:filter,
+            searchText:searchText
+        }
+    ));
     const tasks=allTasks.list;
     dispatch({ type: receiveTasksListType, tasks });
 }
@@ -74,10 +81,6 @@ export const changeToPrice = (price) => {
 
 export const cleanFilter = () => {
     return ({ type: cleanFilterType });
-} 
-
-export const setFoundTasksList = (foundTasksList) => {
-    return ({ type: setFoundTasksListType, foundTasksList });
 } 
 
 export const setPriceToValidate = (priceToValidate) => {

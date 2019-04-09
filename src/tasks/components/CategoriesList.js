@@ -1,9 +1,13 @@
 import React from "react";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { changeCheckedStatus } from '../actions';
+import { changeCheckedStatus, requestTasksList } from '../actions';
 
 class CategoriesList extends React.Component {
+  
+  componentDidMount() {
+    this.props.requestTasksList(this.props.page, this.props.filter, this.props.searchText);
+  }
 
   render() { 
     return (
@@ -14,7 +18,7 @@ class CategoriesList extends React.Component {
             <input
               type="checkbox"
               name={category.type}
-              onChange={(e) => this.props.changeCheckedStatus(e.target.name)}
+              onChange={(e) => {this.props.changeCheckedStatus(e.target.name);} }
               checked={category.isChecked}
             />
             {category.type}
@@ -25,15 +29,7 @@ class CategoriesList extends React.Component {
   }
 }
 
-function matchDispatchToProps(dispatch) {
-  return bindActionCreators(
-    {
-      changeCheckedStatus,
-    },
-    dispatch);
-}
-
 export default connect(
   state => state.tasksReducers,
-  matchDispatchToProps
+  dispatch => bindActionCreators({ requestTasksList: requestTasksList, changeCheckedStatus:changeCheckedStatus }, dispatch)
 )(CategoriesList);

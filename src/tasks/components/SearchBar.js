@@ -1,7 +1,7 @@
 import React from "react";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { searchTasksList } from '../actions';
+import { searchTasksList, requestTasksList } from '../actions';
 
 class SearchBar extends React.Component {
   render() {
@@ -10,7 +10,7 @@ class SearchBar extends React.Component {
         <input type="text" 
           className="form-control" 
           placeholder="Search" 
-          onChange={(e) => this.props.searchTasksList(e.target.value)} 
+          onChange={(e) => {this.props.searchTasksList(e.target.value); this.props.requestTasksList(this.props.page,this.props.filter, e.target.value);}} 
         />
       </div>
     );
@@ -18,7 +18,7 @@ class SearchBar extends React.Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ searchTasksList: searchTasksList }, dispatch);
+  return bindActionCreators({ searchTasksList: searchTasksList , requestTasksList:requestTasksList}, dispatch);
 }
 
 export default connect(

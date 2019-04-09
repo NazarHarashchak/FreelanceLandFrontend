@@ -13,7 +13,7 @@ const receiveDeleteTask = 'RECEIVE_DELETE_TASK';
 const requestTasksListForUserType = 'REQUEST-TASKS-LIST-FOR-USER-TYPE';
 const receiveTasksListForUserType = 'RECEIVE-TASKS-LIST-FOR-USER-TYPE'
 
-const initialState = { tasks: [], priceToValidate:"", deleteTaskResponse: [], filteredTaskList: [], foundTasksList:[],filter: {categories:[], priceFrom:'', priceTo:''}, searchText:"", isLoading: false, isCategOpened:false };
+const initialState = { tasks: [], priceToValidate:"", deleteTaskResponse: [], filteredTaskList: [], foundTasksList:[],filter: {categories:[], priceFrom:0, priceTo:0}, searchText:"", isLoading: true, tasksAreLoading: true, isCategOpened:false };
 
 export const reducer = (state, action) => {
     state = state || initialState;
@@ -21,7 +21,7 @@ export const reducer = (state, action) => {
         case requestTasksListType:
             return {
                 ...state,
-                isLoading: true
+                tasksAreLoading: true
             };
 
         case requestTasksListForUserType:
@@ -34,8 +34,6 @@ export const reducer = (state, action) => {
             return{
                 ...state,
                 tasks: action.tasks,
-                filteredTaskList: action.tasks,
-                foundTasksList: action.tasks,
                 isLoading: false
             }
 
@@ -43,13 +41,11 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 tasks: action.tasks,
-                filteredTaskList: action.tasks,
-                foundTasksList: action.tasks,
                 filter: {
                     ...state.filter,
                     categories: createCategsList(action.tasks)
                 },
-                isLoading: false
+                tasksAreLoading: false
             };
 
         case requestDeleteTask:
@@ -78,14 +74,12 @@ export const reducer = (state, action) => {
             };
 
         case changeCheckedStatusType:
-            let newCategoriesList = switchCheckedStatus(state.filter.categories,action.name);
             return {
                 ...state,
                 filter: {
                     ...state.filter,
-                    categories: newCategoriesList
-                },
-                filteredTaskList: filterTasks({...state.filter,categories:newCategoriesList},state.tasks)
+                    categories: switchCheckedStatus(state.filter.categories, action.name)
+                }
             }
 
         case changeFromPriceType:
@@ -93,9 +87,8 @@ export const reducer = (state, action) => {
             ...state,
                 filter: {
                     ...state.filter,
-                    priceFrom: action.price
-                },
-                filteredTaskList: filterTasks({...state.filter,priceFrom:action.price},state.tasks)
+                    priceFrom: parseInt(action.price,10)
+                }
         }
 
         case changeToPriceType:
@@ -103,9 +96,8 @@ export const reducer = (state, action) => {
             ...state,
                 filter: {
                     ...state.filter,
-                    priceTo: action.price
-                },
-                filteredTaskList: filterTasks({...state.filter,priceTo: action.price},state.tasks)
+                    priceTo: parseInt(action.price,10)
+                }
         }
 
         case cleanFilterType:
@@ -114,16 +106,9 @@ export const reducer = (state, action) => {
             filter: {
                 ...state.filter,
                 categories: cleanChecked(state.filter.categories),
-                priceTo: '',
-                priceFrom: ''
-            },
-            filteredTaskList:state.tasks
-        }
-
-        case setFoundTasksListType:
-        return {
-            ...state,
-            foundTasksList: action.foundTasksList
+                priceTo: 0,
+                priceFrom: 0
+            }
         }
 
         case setPriceToValidateType:
@@ -131,6 +116,7 @@ export const reducer = (state, action) => {
             ...state,
             priceToValidate: action.priceToValidate
         }
+
         default:
             return state;
     }
@@ -161,22 +147,4 @@ function switchCheckedStatus(categs,name) {
         : item
     )
     return newList;
-}
-
-function filterTasks(filter, tasks) {
-    let checkedCategs = filter.categories.filter(categ => categ.isChecked === true);
-    if (checkedCategs.length !== 0) {
-        tasks = tasks.filter(item => {
-            return (
-                checkedCategs.some(categ => categ.type === item.taskCategoryName) === true
-            );
-        })
-    }
-    tasks = tasks.filter(item => {
-        return (
-            (filter.priceTo === 0||filter.priceTo === '') ? (filter.priceFrom <= item.price) :
-             ((filter.priceFrom <= item.price) && (item.price <= filter.priceTo)) === true
-        )
-    })
-    return tasks;
 }

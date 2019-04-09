@@ -3,7 +3,7 @@ import CategoriesList from "./CategoriesList";
 import { Button, Collapse } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { changeCategOpenedStatus, changeFromPrice, changeToPrice, cleanFilter } from '../actions';
+import { changeCategOpenedStatus, changeFromPrice, changeToPrice, cleanFilter,requestTasksList } from '../actions';
 import '../styles.css';
 const ENTER_KEY = 13;
 
@@ -67,7 +67,11 @@ class Filter extends React.Component {
             </Button>
             <Collapse in={this.props.isCategOpened}>
               <div id="collapse-categories">
-                <CategoriesList />
+                <CategoriesList 
+                  categories={this.props.filter.categories} 
+                  changeCheckedStatus={this.props.changeCheckedStatus} 
+                  requestTasksList={this.props.requestTasksList}
+                />
               </div>
             </Collapse>
           </div>
@@ -113,7 +117,8 @@ export default connect(
       changeCategOpenedStatus: changeCategOpenedStatus,
       changeFromPrice: changeFromPrice,
       changeToPrice: changeToPrice,
-      cleanFilter: cleanFilter
+      cleanFilter: cleanFilter,
+      requestTasksList: requestTasksList
     },
     dispatch)
 )(Filter);
