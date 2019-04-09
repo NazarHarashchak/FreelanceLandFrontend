@@ -15,7 +15,7 @@ class UserPanel extends React.Component {
                     <div className="col-md-4 customer-photo ">
                       <img  src={require("./123.jpeg")} alt="фото користувача" width="80px"/>
                     </div>
-                    <div className="col-md-8 customer-name" id="user-link" >
+                    <div className="col-md-7 customer-name">
                       <Link to={`/ProfilePage/${this.props.customerId}`}>
                       {this.props.name 
                         + ' ' +  this.props.secName}
@@ -29,21 +29,17 @@ class UserPanel extends React.Component {
              <div className="user-panel">
               <div className="top-row">Excecutor
               </div>
-                <tbody id="user-table">
-                  <tr id="bottom-row">
-                    <td>
-                    <div id="user-photo">
+                  <div id=" bottom-row" className='row customer-photo-name'>
+                    <div  className='customer-photo col-md-4'>
                       <img src={require("./123.jpeg")} alt="фото користувача" width="80px"/>
                     </div>
-                    </td>
-                    <td>
-                      <span id="user-link"> <Link to={`/ProfilePage/${this.props.excecutorId}`}>
-                      <i className="fa fa-address-book"></i>{this.props.exName 
+                    <div className='col-md-7 customer-name'>
+                       <Link to={`/ProfilePage/${this.props.excecutorId}`}>
+                      {this.props.exName 
                         + ' ' +  this.props.exSecName}
-                      </Link></span>
-                    </td>
-                  </tr>
-                </tbody>
+                      </Link>
+                    </div>
+                  </div>
              </div>):(null)
            }
             <div className="user-panel">
