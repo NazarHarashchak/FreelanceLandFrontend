@@ -3,18 +3,16 @@ const receiveTasksListType = 'RECEIVE_TASKS_LIST';
 const searchTaskListType = 'SEARCH_TASKS_LIST';
 const changeCategOpenedStatusType = 'CHANGE_CATEG_OPENED_STATUS';
 const changeCheckedStatusType = 'CHANGE_CHECKED_STATUS';
-const changeFromPriceType = 'CHANGE_FROM_PRICE';
-const changeToPriceType = 'CHANGE_TO_PRICE';
+const changePriceType = 'CHANGE_PRICE';
 const cleanFilterType = 'CLEAN_FILTER';
 const requestCategoriesListType = 'REQUEST_CATEGORIES_LIST';
 const receiveCategoriesListType = 'RECEIVE_CATEGORIES_LIST';
-const setPriceToValidateType = 'SET_PRICE_TO_VALIDATE';
 const requestDeleteTask = 'REQUEST_DELETE_TASK';
 const receiveDeleteTask = 'RECEIVE_DELETE_TASK';
 const requestTasksListForUserType = 'REQUEST-TASKS-LIST-FOR-USER-TYPE';
 const receiveTasksListForUserType = 'RECEIVE-TASKS-LIST-FOR-USER-TYPE'
 
-const initialState = { tasks: [], priceToValidate:"", deleteTaskResponse: [], filteredTaskList: [], foundTasksList:[],filter: {categories:[], priceFrom:0, priceTo:0}, searchText:"", isLoading: true, tasksAreLoading: true, categsAreLoading: true, isCategOpened:false };
+const initialState = { tasks: [], deleteTaskResponse: [], filteredTaskList: [], foundTasksList:[],filter: {categories:[], priceFrom:0, priceTo:0}, searchText:"", isLoading: true, tasksAreLoading: true, categsAreLoading: true, isCategOpened:false };
 
 export const reducer = (state, action) => {
     state = state || initialState;
@@ -94,22 +92,14 @@ export const reducer = (state, action) => {
                 }
             }
 
-        case changeFromPriceType:
+        case changePriceType:
         return {
             ...state,
-                filter: {
-                    ...state.filter,
-                    priceFrom: parseInt(action.price,10)
-                }
-        }
-
-        case changeToPriceType:
-        return {
-            ...state,
-                filter: {
-                    ...state.filter,
-                    priceTo: parseInt(action.price,10)
-                }
+            filter: {
+                ...state.filter,
+                priceTo: action.payload.toValue,
+                priceFrom: action.payload.fromValue
+            }
         }
 
         case cleanFilterType:
@@ -121,12 +111,6 @@ export const reducer = (state, action) => {
                 priceTo: 0,
                 priceFrom: 0
             }
-        }
-
-        case setPriceToValidateType:
-        return {
-            ...state,
-            priceToValidate: action.priceToValidate
         }
 
         default:

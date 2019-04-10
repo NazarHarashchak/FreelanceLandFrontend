@@ -5,12 +5,10 @@ const receiveTasksListType = 'RECEIVE_TASKS_LIST';
 const searchTaskListType = 'SEARCH_TASKS_LIST';
 const changeCategOpenedStatusType = 'CHANGE_CATEG_OPENED_STATUS';
 const changeCheckedStatusType = 'CHANGE_CHECKED_STATUS';
-const changeFromPriceType = 'CHANGE_FROM_PRICE';
-const changeToPriceType = 'CHANGE_TO_PRICE';
+const changePriceType = 'CHANGE_PRICE';
 const cleanFilterType = 'CLEAN_FILTER';
 const requestCategoriesListType = 'REQUEST_CATEGORIES_LIST';
 const receiveCategoriesListType = 'RECEIVE_CATEGORIES_LIST';
-const setPriceToValidateType = 'SET_PRICE_TO_VALIDATE';
 const requestDeleteTask = 'REQUEST_DELETE_TASK';
 const receiveDeleteTask = 'RECEIVE_DELETE_TASK';
 const requestTasksListForUserType = 'REQUEST-TASKS-LIST-FOR-USER-TYPE';
@@ -80,18 +78,10 @@ export const changeCheckedStatus = (name) => {
     return ({ type: changeCheckedStatusType, name });
 }   
 
-export const changeFromPrice = (price) => {
-    return ({ type: changeFromPriceType, price });
-}   
-
-export const changeToPrice = (price) => {
-    return ({ type: changeToPriceType, price });
-}   
+export const changePrice = (payload) => {
+    return ({ type: changePriceType, payload});
+}
 
 export const cleanFilter = () => {
     return ({ type: cleanFilterType });
 } 
-
-export const setPriceToValidate = (priceToValidate) => {
-    return ({ type: setPriceToValidateType, priceToValidate });
-}

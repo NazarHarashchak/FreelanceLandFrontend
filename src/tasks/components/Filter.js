@@ -3,54 +3,89 @@ import CategoriesList from "./CategoriesList";
 import { Button, Collapse } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { changeCategOpenedStatus, changeFromPrice, changeToPrice, cleanFilter,requestTasksList } from '../actions';
+import { changeCategOpenedStatus, changePrice, cleanFilter,requestTasksList } from '../actions';
 import '../styles.css';
 const ENTER_KEY = 13;
+const WAIT_INTERVAL = 1200;
+
+
 
 class Filter extends React.Component {
+  constructor(props) {
+    super();
 
-  handleChange = (e) => {
-    e.target.name === "ToField" ? this.validateToPriceField(e) : this.validateFromPriceField(e)
-  }
+    this.state = {
+        toValue: 0,
+        fromValue:0,
+        isValid: null,
+        errorMsg: null,
+        edit: true
+    };
+}
 
-  handleKeyDown = (e) => {
-    if (e.keyCode === ENTER_KEY) {
-      e.target.name === "ToField" ? this.validateToPriceField(e) : this.validateFromPriceField(e);
-    }
-  }
-  validateFromPriceField = (e) => {
-    let toPrice = this.props.filter.priceTo;
-    let isValueNull = e.target.value === "";
-    let isToPriceNull = toPrice === "";
-    let fromPrice = parseInt(e.target.value, 10);
-    toPrice = parseInt(toPrice, 10);
-    let isgreaterZero = isValueNull ? true : fromPrice >= 0;
-    let isLowerToPrice = isToPriceNull || isValueNull ? true : fromPrice <= toPrice;
+timer = null
 
-    if (isgreaterZero && isLowerToPrice) {
-      this.props.changeFromPrice(e.target.value);
-      e.target.setCustomValidity("");
-    }
-    else {
-      e.target.setCustomValidity("Value must be between 0 and ToPrice");
-      e.target.reportValidity();
-    }
-  }
+contains(parent, child) {
+  if (!child || !child.parentElement) return false;
+  if (child.parentElement === parent) return true;
 
-  validateToPriceField = (e) => {
-    let fromPrice = this.props.filter.priceFrom;
-    let isSomeNull = fromPrice === "" || e.target.value === "";
-    fromPrice = parseInt(fromPrice, 10);
-    let toPrice = parseInt(e.target.value, 10);
-    if (isSomeNull ? true : toPrice >= fromPrice) {
-      this.props.changeToPrice(e.target.value);
-      e.target.setCustomValidity("");
-    }
-    else {
-      e.target.setCustomValidity("Value must be greater FromPrice");
-      e.target.reportValidity();
-    }
+  return this.contains(parent, child.parentElement);
+}
+
+handleBlur(e) {
+  const target = e.relatedTarget;
+  const parent = e.currentTarget;
+  console.log('blur');
+  if (!this.contains(parent, target)) {
+    console.log('trigger');
+    this.triggerChange(e);
+    this.setState({
+      ...this.state,
+      edit: false,
+    });
   }
+}
+
+handleFocus(e) {
+  console.log('focus');
+  this.setState({
+    ...this.state,
+    edit: true,
+  });
+}
+
+handleChange = e => {
+  this.setState(e.target.name === "ToField"?
+    { ...this.state,toValue: parseInt(e.target.value,10)}:
+    { ...this.state,fromValue: parseInt(e.target.value,10)}
+  )
+}
+
+handleKeyDown = e => {
+  if (e.keyCode === ENTER_KEY) {
+    this.triggerChange(e);
+  }
+}
+
+triggerChange(e) {
+  const { toValue,fromValue } = this.state;
+  let isValid = this.validatePriceFileds(fromValue,toValue);
+  console.log(fromValue,toValue,isValid);
+  if (isValid) {
+    this.props.changePrice({fromValue:fromValue,toValue:toValue}); 
+  }
+  else {
+    //e.target.setCustomValidity("Value must be between 0 and ToPrice"); 
+    //e.target.reportValidity();
+  }
+}
+
+
+validatePriceFileds(fromPrice,toPrice){
+  let isValid = false;
+  (fromPrice>=0 && (fromPrice<=toPrice||toPrice===0)) ? isValid=true : isValid=false;
+  return isValid;
+}
 
   render() {
     return (
@@ -79,26 +114,24 @@ class Filter extends React.Component {
           </div>
           <div className="form-group price-filter">
             <h5>Price:</h5>
-            <div className="row">
+            <div className="row" onFocus={(e)=>this.handleFocus(e)} onBlur={(e)=> this.handleBlur(e)} tabIndex="1">
               <div className="col-md-6">
                 <input type="number"
                   name="FromField"
-                  value={this.props.filter.priceFrom}
                   className="form-control"
                   placeholder="From"
                   id="from-price-filter"
                   onKeyDown={e => this.handleKeyDown(e)}
-                  onChange={e => this.handleChange(e)}
+                  onChange = {(e) => this.handleChange(e)}
                 />
               </div>
               <div className="col-md-6">
                 <input type="number"
-                  value={this.props.filter.priceTo}
-                  className="form-control"
+                  className="form-control" 
                   placeholder="To"
                   name="ToField"
                   onKeyDown={e => this.handleKeyDown(e)}
-                  onChange={e => this.handleChange(e)}
+                  onChange = {(e) => this.handleChange(e)}
                 />
               </div>
             </div>
@@ -117,8 +150,7 @@ export default connect(
   dispatch => bindActionCreators(
     {
       changeCategOpenedStatus: changeCategOpenedStatus,
-      changeFromPrice: changeFromPrice,
-      changeToPrice: changeToPrice,
+      changePrice: changePrice,
       cleanFilter: cleanFilter,
       requestTasksList: requestTasksList
     },
