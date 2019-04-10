@@ -8,7 +8,8 @@ const changeCheckedStatusType = 'CHANGE_CHECKED_STATUS';
 const changeFromPriceType = 'CHANGE_FROM_PRICE';
 const changeToPriceType = 'CHANGE_TO_PRICE';
 const cleanFilterType = 'CLEAN_FILTER';
-const setFoundTasksListType = 'SET_FOUND_TASKS_LIST';
+const requestCategoriesListType = 'REQUEST_CATEGORIES_LIST';
+const receiveCategoriesListType = 'RECEIVE_CATEGORIES_LIST';
 const setPriceToValidateType = 'SET_PRICE_TO_VALIDATE';
 const requestDeleteTask = 'REQUEST_DELETE_TASK';
 const receiveDeleteTask = 'RECEIVE_DELETE_TASK';
@@ -28,7 +29,7 @@ export const requestTasksList = (pageNumber, filter, searchText) => async (dispa
     ));
     const tasks=allTasks.list;
     dispatch({ type: receiveTasksListType, tasks });
-}
+} 
 
 export const deleteTask = {
     requestDelete: (id) => async (dispatch) => {
@@ -59,6 +60,14 @@ export const requestActiveTasksListForUser = () => async (dispatch) =>{
     const tasks = await requests.doGet(url);
     dispatch({ type: receiveTasksListForUserType, tasks});
 }
+
+export const requestCategoriesList = () => async (dispatch) =>{
+    dispatch({ type: requestCategoriesListType });
+
+    const categories = await requests.doGet("/taskinfo/getCategories");
+    dispatch({ type: receiveCategoriesListType, categories});
+}
+
 export const changeCategOpenedStatus = () => async (dispatch) => {
     dispatch({ type: changeCategOpenedStatusType });
 }

@@ -6,14 +6,15 @@ const changeCheckedStatusType = 'CHANGE_CHECKED_STATUS';
 const changeFromPriceType = 'CHANGE_FROM_PRICE';
 const changeToPriceType = 'CHANGE_TO_PRICE';
 const cleanFilterType = 'CLEAN_FILTER';
-const setFoundTasksListType = 'SET_FOUND_TASKS_LIST';
+const requestCategoriesListType = 'REQUEST_CATEGORIES_LIST';
+const receiveCategoriesListType = 'RECEIVE_CATEGORIES_LIST';
 const setPriceToValidateType = 'SET_PRICE_TO_VALIDATE';
 const requestDeleteTask = 'REQUEST_DELETE_TASK';
 const receiveDeleteTask = 'RECEIVE_DELETE_TASK';
 const requestTasksListForUserType = 'REQUEST-TASKS-LIST-FOR-USER-TYPE';
 const receiveTasksListForUserType = 'RECEIVE-TASKS-LIST-FOR-USER-TYPE'
 
-const initialState = { tasks: [], priceToValidate:"", deleteTaskResponse: [], filteredTaskList: [], foundTasksList:[],filter: {categories:[], priceFrom:0, priceTo:0}, searchText:"", isLoading: true, tasksAreLoading: true, isCategOpened:false };
+const initialState = { tasks: [], priceToValidate:"", deleteTaskResponse: [], filteredTaskList: [], foundTasksList:[],filter: {categories:[], priceFrom:0, priceTo:0}, searchText:"", isLoading: true, tasksAreLoading: true, categsAreLoading: true, isCategOpened:false };
 
 export const reducer = (state, action) => {
     state = state || initialState;
@@ -29,6 +30,21 @@ export const reducer = (state, action) => {
                 ...state,
                 isLoading: true
             };
+        
+        case requestCategoriesListType:
+            return{
+                ...state,
+                categsAreLoading: true
+            };
+        
+        case receiveCategoriesListType:
+            return{
+                ...state,
+                filter: {
+                    ...state.filter,
+                    categories: createCategsList(action.categories)
+                }
+            };
 
         case receiveTasksListForUserType:
             return{
@@ -41,10 +57,6 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 tasks: action.tasks,
-                filter: {
-                    ...state.filter,
-                    categories: createCategsList(action.tasks)
-                },
                 tasksAreLoading: false
             };
 
@@ -133,9 +145,8 @@ function cleanChecked(categs) {
     return newList;
 }
 
-function createCategsList(tasks) {
-    const categsNameArray = [...new Set(tasks.map(task => task.taskCategoryName))];
-    const categsList = categsNameArray.map(categ => {return {type:categ, isChecked:false}});
+function createCategsList(categories) {
+    const categsList = categories.map(categ => {return {type:categ.type, isChecked:false}});
     return categsList;
 }
 

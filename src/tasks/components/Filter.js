@@ -67,11 +67,13 @@ class Filter extends React.Component {
             </Button>
             <Collapse in={this.props.isCategOpened}>
               <div id="collapse-categories">
+              {this.props.tasksAreLoading===true ? <h3>Loading data...</h3> : 
                 <CategoriesList 
                   categories={this.props.filter.categories} 
                   changeCheckedStatus={this.props.changeCheckedStatus} 
                   requestTasksList={this.props.requestTasksList}
                 />
+              }
               </div>
             </Collapse>
           </div>

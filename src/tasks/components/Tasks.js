@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { requestTasksList } from '../actions';
+import { requestTasksList, requestCategoriesList } from '../actions';
 import TaskItemList from './TaskItemList';
 import SearchBar from './SearchBar';
 import ScrollTop from './ScrollTop';
@@ -20,6 +20,7 @@ class Tasks extends Component {
         this.changePage = this.changePage.bind(this);
     };
     componentWillMount() {
+        this.props.requestCategoriesList();
         this.props.requestTasksList(this.props.page, this.props.filter, this.props.searchText);
     }
 
@@ -78,5 +79,5 @@ function mapStateToProps(state) {
 
 export default connect(
     mapStateToProps,
-    dispatch => bindActionCreators({ requestTasksList: requestTasksList, push: push }, dispatch)
+    dispatch => bindActionCreators({ requestTasksList: requestTasksList, requestCategoriesList:requestCategoriesList, push: push }, dispatch)
 )(Tasks);
