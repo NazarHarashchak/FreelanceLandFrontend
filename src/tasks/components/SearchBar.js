@@ -5,6 +5,7 @@ import { searchTasksList, requestTasksList } from '../actions';
 
 class SearchBar extends React.Component {
   render() {
+  
     return (
       <div className="form-group has-search">
         <input type="text" 

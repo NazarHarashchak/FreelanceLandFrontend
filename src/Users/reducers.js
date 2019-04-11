@@ -6,8 +6,7 @@ const searchTaskListType = 'SEARCH_TASKS_LIST';
 const setFoundRolesListType = 'SET_FOUND_ROLES_LIST_TYPE';
 const changeRoleStatusType = 'CHANGE_CHECKED_ROLE_TYPE';
 const changeRolesOpenedStatusType = 'CHANGE_ROLES_OPENED_STATUS_TYPE';
-
-const initialState = { newUsers: [],totalPages:"",filteredRolesList: [],searchText:"",isLoading: false, roles: [], foundRolesList: [], isRoleOpened: false };
+const initialState = { newUsers: [],totalPages:1,currentPage:1,filteredRolesList: [],searchText:"",isLoading: false, roles: [], foundRolesList: [], isRoleOpened: false };
 
 
 
@@ -28,7 +27,7 @@ export const reducer = (state, action) => {
                 filteredRolesList: action.newUsers,
                 foundRolesList:action.roles,
                 totalPages:action.totalPages,
-                
+                currentPage: action.currentPage,
                 isLoading: false
             };
         case requestUserRolesList:
