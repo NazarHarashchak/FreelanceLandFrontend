@@ -17,15 +17,25 @@ const receiveTasksListForUserType = 'RECEIVE-TASKS-LIST-FOR-USER-TYPE'
 export const requestTasksList = (pageNumber, filter, searchText) => async (dispatch) => {
     dispatch({ type: requestTasksListType });
 
-    const allTasks = await requests.doPost('/api/tasks/all',
-    JSON.stringify(
-        {
-            pageNumber: 1,
-            filter:filter,
-            searchText:searchText
-        }
-    ));
-    const tasks=allTasks.list;
+    let url = '/tasks/all?page='+pageNumber+'&search='+searchText+'&priceTo='+filter.priceTo+'&priceFrom='+filter.priceFrom+'&';
+    console.log(url);
+    
+    filter.categories.filter(categ => categ.isChecked===true).map 
+        (categ => {url+='categ='+categ.type+'&'});
+    
+    console.log(url);
+    url = url.substring(0, url.length - 1);
+    console.log(url);
+    const tasks = await requests.doGet(url);
+    //const allTasks = await requests.doPost('/api/tasks/all',
+    //JSON.stringify(
+       // {
+        //    pageNumber: 1,
+        //    filter:filter,
+        //    searchText:searchText
+      //  }
+   // ));
+    //const tasks=allTasks.list;
     dispatch({ type: receiveTasksListType, tasks });
 } 
 

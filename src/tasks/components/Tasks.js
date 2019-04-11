@@ -19,7 +19,7 @@ class Tasks extends Component {
 
         this.changePage = this.changePage.bind(this);
     };
-    componentWillMount() {
+    componentDidMount() {
         this.props.requestCategoriesList();
         this.props.requestTasksList(this.props.page, this.props.filter, this.props.searchText);
     }
@@ -39,7 +39,7 @@ class Tasks extends Component {
                             ref={(el) => { this.anchor = el; }}>
                         </div>
                         <div className="col-md-9" id="j-orders-search-list">
-                            {this.props.state.tasksAreLoading===true ? <h3>Loading data...</h3> : <TaskItemList tasks={this.props.state.tasks} />}
+                            {this.props.tasksAreLoading===true ? <h3>Loading data...</h3> : <TaskItemList tasks={this.props.tasks} />}
                             <Pagination className="users-pagination pull-center" 
                             bsSize="medium" 
                             maxButtons={10} 
@@ -60,7 +60,7 @@ class Tasks extends Component {
     }
     changePage(page) {
         this.props.push(page)
-        this.props.requestTasksList(page,this.props.filter, this.props.searchText);
+        this.props.requestTasksList(page,this.props.state.filter, this.props.state.searchText);
         this.current_page = page;
 
     }
@@ -69,10 +69,15 @@ class Tasks extends Component {
 
 function mapStateToProps(state) {
     return ({
-        state: state.tasksReducers,
-        page: state.routing && state.routing.locationBeforeTransitions && state.routing.locationBeforeTransitions.query && state.routing.locationBeforeTransitions.query.page_no || 1,
-        current_page: state.page,
-
+        page: state.tasksReducers.routing && 
+            state.tasksReducers.routing.locationBeforeTransitions && 
+            state.tasksReducers.routing.locationBeforeTransitions.query && 
+            state.tasksReducers.routing.locationBeforeTransitions.query.page_no || 1,
+        current_page: state.tasksReducers.page,
+        filter: state.tasksReducers.filter,
+        searchText: state.tasksReducers.searchText,
+        tasksAreLoading: state.tasksReducers.tasksAreLoading,
+        tasks: state.tasksReducers.tasks
     });
 
 }
