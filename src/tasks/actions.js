@@ -5,11 +5,10 @@ const receiveTasksListType = 'RECEIVE_TASKS_LIST';
 const searchTaskListType = 'SEARCH_TASKS_LIST';
 const changeCategOpenedStatusType = 'CHANGE_CATEG_OPENED_STATUS';
 const changeCheckedStatusType = 'CHANGE_CHECKED_STATUS';
-const changeFromPriceType = 'CHANGE_FROM_PRICE';
-const changeToPriceType = 'CHANGE_TO_PRICE';
+const changePriceType = 'CHANGE_PRICE';
 const cleanFilterType = 'CLEAN_FILTER';
-const setFoundTasksListType = 'SET_FOUND_TASKS_LIST';
-const setPriceToValidateType = 'SET_PRICE_TO_VALIDATE';
+const requestCategoriesListType = 'REQUEST_CATEGORIES_LIST';
+const receiveCategoriesListType = 'RECEIVE_CATEGORIES_LIST';
 const requestDeleteTask = 'REQUEST_DELETE_TASK';
 const receiveDeleteTask = 'RECEIVE_DELETE_TASK';
 const requestTasksListForUserType = 'REQUEST-TASKS-LIST-FOR-USER-TYPE';
@@ -18,17 +17,27 @@ const receiveTasksListForUserType = 'RECEIVE-TASKS-LIST-FOR-USER-TYPE'
 export const requestTasksList = (pageNumber, filter, searchText) => async (dispatch) => {
     dispatch({ type: requestTasksListType });
 
-    const allTasks = await requests.doPost('/api/tasks/all',
-    JSON.stringify(
-        {
-            pageNumber: 1,
-            filter:filter,
-            searchText:searchText
-        }
-    ));
-    const tasks=allTasks.list;
+    let url = '/tasks/all?page='+pageNumber+'&search='+searchText+'&priceTo='+filter.priceTo+'&priceFrom='+filter.priceFrom+'&';
+    console.log(url);
+    
+    filter.categories.filter(categ => categ.isChecked===true).map 
+        (categ => {url+='categ='+categ.type+'&'});
+    
+    console.log(url);
+    url = url.substring(0, url.length - 1);
+    console.log(url);
+    const tasks = await requests.doGet(url);
+    //const allTasks = await requests.doPost('/api/tasks/all',
+    //JSON.stringify(
+       // {
+        //    pageNumber: 1,
+        //    filter:filter,
+        //    searchText:searchText
+      //  }
+   // ));
+    //const tasks=allTasks.list;
     dispatch({ type: receiveTasksListType, tasks });
-}
+} 
 
 export const deleteTask = {
     requestDelete: (id) => async (dispatch) => {
@@ -59,6 +68,14 @@ export const requestActiveTasksListForUser = () => async (dispatch) =>{
     const tasks = await requests.doGet(url);
     dispatch({ type: receiveTasksListForUserType, tasks});
 }
+
+export const requestCategoriesList = () => async (dispatch) =>{
+    dispatch({ type: requestCategoriesListType });
+
+    const categories = await requests.doGet("/taskinfo/getCategories");
+    dispatch({ type: receiveCategoriesListType, categories});
+}
+
 export const changeCategOpenedStatus = () => async (dispatch) => {
     dispatch({ type: changeCategOpenedStatusType });
 }
@@ -71,18 +88,10 @@ export const changeCheckedStatus = (name) => {
     return ({ type: changeCheckedStatusType, name });
 }   
 
-export const changeFromPrice = (price) => {
-    return ({ type: changeFromPriceType, price });
-}   
-
-export const changeToPrice = (price) => {
-    return ({ type: changeToPriceType, price });
-}   
+export const changePrice = (payload) => {
+    return ({ type: changePriceType, payload});
+}
 
 export const cleanFilter = () => {
     return ({ type: cleanFilterType });
 } 
-
-export const setPriceToValidate = (priceToValidate) => {
-    return ({ type: setPriceToValidateType, priceToValidate });
-}
