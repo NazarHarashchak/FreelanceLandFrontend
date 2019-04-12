@@ -12,7 +12,7 @@ const receiveDeleteTask = 'RECEIVE_DELETE_TASK';
 const requestTasksListForUserType = 'REQUEST-TASKS-LIST-FOR-USER-TYPE';
 const receiveTasksListForUserType = 'RECEIVE-TASKS-LIST-FOR-USER-TYPE'
 
-const initialState = { tasks: [], deleteTaskResponse: [], filteredTaskList: [], foundTasksList:[],filter: {categories:[], priceFrom:0, priceTo:0}, searchText:"", isLoading: true, tasksAreLoading: true, categsAreLoading: true, isCategOpened:false };
+const initialState = { tasks: [], totalPages:1, deleteTaskResponse: [], filteredTaskList: [], foundTasksList:[],filter: {categories:[], priceFrom:0, priceTo:0}, searchText:"", isLoading: true, tasksAreLoading: true, categsAreLoading: true, isCategOpened:false };
 
 export const reducer = (state, action) => {
     state = state || initialState;
@@ -54,7 +54,8 @@ export const reducer = (state, action) => {
         case receiveTasksListType:
             return {
                 ...state,
-                tasks: action.tasks,
+                tasks: action.payload.tasks,
+                totalPages: action.payload.totalPages,
                 tasksAreLoading: false
             };
 

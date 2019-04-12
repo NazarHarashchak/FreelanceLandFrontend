@@ -6,7 +6,7 @@ import TaskItemList from '../../tasks/components/TaskItemList';
 import SearchBar from '../../tasks/components/SearchBar';
 import ScrollTop from '../../tasks/components/ScrollTop';
 import Filter from '../../tasks/components/Filter';
-import Pagination from '../../tasks/components/Pagination';
+import Pagination from './Pagination';
 import '../../tasks/styles.css';
 
 
@@ -26,7 +26,7 @@ class Tasks extends Component {
                             ref={(el) => { this.anchor = el; }}>
                         </div>
                         <div className="col-md-9" id="j-orders-search-list">
-                            <TaskItemList />
+                            <TaskItemList />z
                             <Pagination />
                         </div>
                         <div className="col-md-3">

@@ -10,6 +10,9 @@
     color: #555555;
     white-space: nowrap;
 }
+.validate-error-text {
+    font-size:12px;
+}
 
 .l-item-features li i {
     margin-right:5px;
