@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 class FilterComponent extends React.Component{
 
   componentDidUpdate(){
-  }
+}
 render(){
     return(
              <div className="well" id="filter">
@@ -34,15 +34,9 @@ render(){
         );
 
         }
-    }function matchDispatchToProps(dispatch) {
-      return bindActionCreators(
-        {
-          changeCheckedStatus:changeCheckedStatus,
-          requestUsersList:requestUsersList
-        },
-        dispatch);
     }
   export default connect(
-      state => state.userRoles,
-      matchDispatchToProps
+      state => ({roles: state.usersReducers.roles,
+      searchText:state.usersReducers.searchText}),
+      dispatch => bindActionCreators({requestUsersList:requestUsersList,changeCheckedStatus:changeCheckedStatus}, dispatch)
   )(FilterComponent);
