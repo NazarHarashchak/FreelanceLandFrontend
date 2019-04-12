@@ -16,6 +16,4 @@ class Pagination extends React.Component {
     );
   }
 }
-export default connect(
-  state => state.tasksReducers
-)(Pagination);
+export default Pagination;

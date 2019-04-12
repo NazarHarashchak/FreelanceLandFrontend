@@ -31,7 +31,6 @@ class CategoriesList extends React.Component {
 
 export default connect(
   state => ({
-    page: state.tasksReducers.page,
     filter: state.tasksReducers.filter,
     searchText: state.tasksReducers.searchText
   }),

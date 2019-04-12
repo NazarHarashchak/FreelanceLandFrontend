@@ -6,17 +6,14 @@ import { connect } from 'react-redux';
 import { changeCategOpenedStatus, changePrice, cleanFilter,requestTasksList } from '../actions';
 import '../styles.css';
 const ENTER_KEY = 13;
-const WAIT_INTERVAL = 1200;
-
-
 
 class Filter extends React.Component {
   constructor(props) {
     super();
 
     this.state = {
-        toValue: 0,
-        fromValue:0,
+        toValue: '',
+        fromValue:'',
         isValid: null,
         errorMsg: null,
         edit: true
@@ -33,16 +30,16 @@ contains(parent, child) {
 }
 
 handleBlur(e) {
+  console.log('blur');
   const target = e.relatedTarget;
   const parent = e.currentTarget;
-  console.log('blur');
   if (!this.contains(parent, target)) {
-    console.log('trigger');
-    this.triggerChange(e);
+    let isValid = this.triggerChange();
     this.setState({
       ...this.state,
       edit: false,
-    });
+      isValid: isValid
+    },console.log("HAAA",this.state));
   }
 }
 
@@ -55,6 +52,7 @@ handleFocus(e) {
 }
 
 handleChange = e => {
+  console.log('change');
   this.setState(e.target.name === "ToField"?
     { ...this.state,toValue: parseInt(e.target.value,10)}:
     { ...this.state,fromValue: parseInt(e.target.value,10)}
@@ -67,17 +65,17 @@ handleKeyDown = e => {
   }
 }
 
-triggerChange(e) {
-  const { toValue,fromValue } = this.state;
+triggerChange(self) {
+  console.log('trigger',this.state.fromValue,this.state.toValue);
+  let fromValue = this.state.fromValue;
+  let toValue = this.state.toValue;
+  if (fromValue==='') {fromValue=0};
+  if (toValue==='') {toValue=0};
   let isValid = this.validatePriceFileds(fromValue,toValue);
-  console.log(fromValue,toValue,isValid);
   if (isValid) {
     this.props.changePrice({fromValue:fromValue,toValue:toValue}); 
   }
-  else {
-    //e.target.setCustomValidity("Value must be between 0 and ToPrice"); 
-    //e.target.reportValidity();
-  }
+  return isValid;
 }
 
 
@@ -85,6 +83,13 @@ validatePriceFileds(fromPrice,toPrice){
   let isValid = false;
   (fromPrice>=0 && (fromPrice<=toPrice||toPrice===0)) ? isValid=true : isValid=false;
   return isValid;
+}
+
+
+onCleanFilter(e) {
+  e.preventDefault(); 
+  this.setState({ ...this.state,toValue: '', fromValue: '', isValid:null});
+  this.props.cleanFilter(); 
 }
 
   render() {
@@ -104,6 +109,7 @@ validatePriceFileds(fromPrice,toPrice){
               <div id="collapse-categories">
               {this.props.tasksAreLoading===true ? <h3>Loading data...</h3> : 
                 <CategoriesList 
+                  page={this.props.page}
                   categories={this.props.filter.categories} 
                   changeCheckedStatus={this.props.changeCheckedStatus} 
                   requestTasksList={this.props.requestTasksList}
@@ -114,9 +120,16 @@ validatePriceFileds(fromPrice,toPrice){
           </div>
           <div className="form-group price-filter">
             <h5>Price:</h5>
-            <div className="row" onFocus={(e)=>this.handleFocus(e)} onBlur={(e)=> this.handleBlur(e)} tabIndex="1">
+            {this.state.isValid||this.state.isValid===null ? "": 
+              <div>
+                <span className="fa fa-warning" ></span>
+                <span className="validate-error-text">Value must be between 0 and ToPrice</span>
+              </div>
+            }
+            <div className={`row ${this.state.isValid||this.state.isValid===null?'':'has-error'}`} onFocus={(e)=>this.handleFocus(e)} onBlur={(e)=> this.handleBlur(e)} tabIndex="1">
               <div className="col-md-6">
                 <input type="number"
+                  value={this.state.fromValue}
                   name="FromField"
                   className="form-control"
                   placeholder="From"
@@ -127,6 +140,7 @@ validatePriceFileds(fromPrice,toPrice){
               </div>
               <div className="col-md-6">
                 <input type="number"
+                  value={this.state.toValue}
                   className="form-control" 
                   placeholder="To"
                   name="ToField"
@@ -137,7 +151,7 @@ validatePriceFileds(fromPrice,toPrice){
             </div>
           </div>
           <div className="form-group">
-            <h4 id="clear-filter-button" onClick={e => {e.preventDefault(); this.props.cleanFilter()}}>clean </h4>
+            <h4 id="clear-filter-button" onClick={e => this.onCleanFilter(e)}>clean </h4>
           </div>
         </form>
       </div>
@@ -145,8 +159,17 @@ validatePriceFileds(fromPrice,toPrice){
   }
 }
 
+function mapStateToProps(state) {
+  return ({
+      isCategOpened: state.tasksReducers.isCategOpened,
+      filter: state.tasksReducers.filter,
+      tasksAreLoading: state.tasksReducers.tasksAreLoading
+  });
+}
+
+
 export default connect(
-  state => state.tasksReducers,
+  mapStateToProps,
   dispatch => bindActionCreators(
     {
       changeCategOpenedStatus: changeCategOpenedStatus,
