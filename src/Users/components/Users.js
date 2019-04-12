@@ -3,7 +3,7 @@ import UsersList from "./UsersList";
 import FilterComponent from './FilterComponent'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {requestUsersList} from '../action';
+import {requestUsersList,requestUserRoles} from '../action';
 import './stylles.css';
 import SeachBar from './SeachBar';
 import ScrollTop from '../../tasks/components/ScrollTop';
@@ -17,16 +17,19 @@ class Users extends Component {
 
     constructor(props){
         super(props);
-        this.current_page = this.props.page;
-  
+        this.props.state.currentPage = this.props.page;
+        
         this.changePage = this.changePage.bind(this);
       };
-  
-    componentWillMount() {
 
-        console.log(this.current_page);
-        this.props.requestUsersList(this.props.page);
+      componentDidMount(){
+        this.props.requestUsersList(this.props.page,this.props.state.searchText);
+      }
+    componentWillMount(){
+        this.props.requestUserRoles();
+
     }
+
     
     componentWillReceiveProps(nextProps) {
     }
@@ -35,14 +38,11 @@ class Users extends Component {
     
     render()
     {
-      
-  
-       const pages = 2
         return (
             <div className="container">
                
                 <div className="main-content container">
-                    <SeachBar/>
+                    <SeachBar page={1}/>
                     <div className="row">
                         <div
                             ref={(el) => { this.anchor = el; }}>
@@ -51,12 +51,12 @@ class Users extends Component {
                             <UsersList usersList={this.props.newusers} isLoading={this.props.isLoading}/>
                         </div>
                         <div className="col-md-3" >
-                        <FilterComponent/>
+                        <FilterComponent page={1} searchT={this.props.state.searchText} roles1={this.props.roles}/>
                         </div>
                         </div >
                     <Pagination className="users-pagination pull-center" 
         bsSize="medium" maxButtons={10} first last next prev boundaryLinks 
-        items={pages} activePage={this.current_page} onSelect={this.changePage} />
+        items={this.props.state.totalPages} activePage={this.props.state.currentPage} onSelect={this.changePage} />
                    
                     </div>
                     <ScrollTop anchor={this.anchor}/>
@@ -67,8 +67,8 @@ class Users extends Component {
     
     changePage(page){
         this.props.push(page)
-        this.props.requestUsersList(page);
-        this.current_page =page;
+        this.props.requestUsersList(page,this.props.state.searchText);
+        this.props.state.currentPage =page;
         
     }
 }
@@ -76,16 +76,19 @@ class Users extends Component {
 function mapStateToProps (state ) {
     return({
         state : state.usersReducers,
-      page: state.routing && state.routing.locationBeforeTransitions && state.routing.locationBeforeTransitions.query && state.routing.locationBeforeTransitions.query.page_no || 1,
-      current_page: state.page,
-      
-    });
+        page: state.tasksReducers.routing && 
+        state.tasksReducers.routing.locationBeforeTransitions && 
+        state.tasksReducers.routing.locationBeforeTransitions.query && 
+        state.tasksReducers.routing.locationBeforeTransitions.query.page_no || 1,
+        searchText: state.usersReducers.searchText,
+        roles: state.usersReducers.roles,
+        });
     
   }
   
 export default connect(
     mapStateToProps,
     
-    dispatch => bindActionCreators({requestUsersList: requestUsersList,push: push}, dispatch)
+    dispatch => bindActionCreators({requestUsersList: requestUsersList,requestUserRoles:requestUserRoles, push: push}, dispatch)
 
 )(Users);
