@@ -24,14 +24,14 @@ class Users extends Component {
 
       componentDidMount(){
         this.props.requestUsersList(this.props.page,this.props.state.searchText);
-      }
-    componentWillMount(){
         this.props.requestUserRoles();
-
-    }
+      }
 
     
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps() {
+        
+        console.log(this.props.state.roles)
+
     }
 
     
@@ -48,7 +48,7 @@ class Users extends Component {
                             ref={(el) => { this.anchor = el; }}>
                         </div>
                         <div className="col-md-9" id="j-orders-search-list">
-                            <UsersList usersList={this.props.newusers} isLoading={this.props.isLoading}/>
+                            <UsersList usersList={this.props.state.newUsers} isLoading={this.props.isLoading}/>
                         </div>
                         <div className="col-md-3" >
                         <FilterComponent page={1} searchT={this.props.state.searchText} roles1={this.props.roles}/>
@@ -68,7 +68,7 @@ class Users extends Component {
     changePage(page){
         this.props.push(page)
         this.props.requestUsersList(page,this.props.state.searchText);
-        this.props.state.currentPage =page;
+        this.props.state.currentPage = page;
         
     }
 }
@@ -82,6 +82,7 @@ function mapStateToProps (state ) {
         state.tasksReducers.routing.locationBeforeTransitions.query.page_no || 1,
         searchText: state.usersReducers.searchText,
         roles: state.usersReducers.roles,
+        
         });
     
   }
