@@ -41,7 +41,8 @@ class UserPanel extends React.Component {
                     </div>
                     </td>
                     <td>
-                      <span id="user-link"> <Link to={`/ProfilePage/${this.props.excecutorId}`}>
+                      <span id="user-link"> 
+                      <Link to={`/ProfilePage/${this.props.excecutorId}`}>
                       <i className="fa fa-address-book"></i>{this.props.exName 
                         + ' ' +  this.props.exSecName}
                       </Link></span>

@@ -25,17 +25,12 @@
     #comments-title{
       border-width: 2px;
       border-style: outset;
-      border-radius: 10px;
-      height:40px;
+      border-radius: 10px 10px 0px 0px;
+      font-size: 20px;
       padding:9px;
       text-align: center;
       box-sizing: border-box;
-      background: -webkit-gradient(
-      linear,
-      left bottom,
-      left top,
-      color-stop(0, #27551a)
-    );
+      background:  rgb(7, 82, 50);
     color: white;
     }
     #add-comment{
@@ -92,4 +87,10 @@
       width: 100px;
       padding-right: 20px;
       float: right;
+    }
+    #choose-button{
+    border-radius: 5px 5px 5px 5px;
+    border-style: none;
+    color: white;
+    background-color: rgb(7, 82, 50);
     }

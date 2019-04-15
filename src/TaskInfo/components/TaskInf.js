@@ -4,7 +4,6 @@ import TaskDescription from './TaskDescription';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { requestTaskForecasts } from '../taskActions';
-import { Grid} from 'semantic-ui-react'
 class Task extends Component {
 
     componentWillMount() {

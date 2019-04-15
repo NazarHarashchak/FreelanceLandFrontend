@@ -12,7 +12,7 @@ import '../../tasks/styles.css';
 
 class Tasks extends Component {
     componentWillMount() {
-        requestActiveTasksListForUser();
+        this.props.requestActiveTasksListForUser();
     }
 
     render() {

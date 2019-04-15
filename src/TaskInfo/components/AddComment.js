@@ -53,6 +53,7 @@ class AddComment extends React.Component {
         {
             this.props.sendComment(this.state.commentContent, this.props.userId, this.props.taskId).
             then(() => {
+                document.getElementById("text-content").value = "";
             });
                 
         }
