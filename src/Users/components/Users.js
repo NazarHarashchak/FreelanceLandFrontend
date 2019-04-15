@@ -17,25 +17,16 @@ class Users extends Component {
 
     constructor(props){
         super(props);
-        this.props.state.currentPage = this.props.page;
+        this.currentPage = this.props.page;
         
         this.changePage = this.changePage.bind(this);
       };
 
       componentDidMount(){
-        this.props.requestUsersList(this.props.page,this.props.state.searchText);
+        this.props.requestUsersList(this.props.page,this.props.searchText,this.props.roles);
         this.props.requestUserRoles();
-      }
-
-    
-    componentWillReceiveProps() {
-        
-        console.log(this.props.state.roles)
-
-    }
-
-    
-    
+        console.log(this.props.page)
+      } 
     render()
     {
         return (
@@ -48,16 +39,15 @@ class Users extends Component {
                             ref={(el) => { this.anchor = el; }}>
                         </div>
                         <div className="col-md-9" id="j-orders-search-list">
-                            <UsersList usersList={this.props.state.newUsers} isLoading={this.props.isLoading}/>
+                            <UsersList usersList={this.props.newUsers} isLoading={this.props.isLoading}/>
                         </div>
                         <div className="col-md-3" >
-                        <FilterComponent page={1} searchT={this.props.state.searchText} roles1={this.props.roles}/>
+                        <FilterComponent page={1} searchT={this.props.searchText} roles1={this.props.roles}/>
                         </div>
                         </div >
                     <Pagination className="users-pagination pull-center" 
         bsSize="medium" maxButtons={10} first last next prev boundaryLinks 
-        items={this.props.state.totalPages} activePage={this.props.state.currentPage} onSelect={this.changePage} />
-                   
+        items={this.props.totalPages} activePage={this.props.currentPage} onSelect={this.changePage} />
                     </div>
                     <ScrollTop anchor={this.anchor}/>
             </div >
@@ -67,22 +57,23 @@ class Users extends Component {
     
     changePage(page){
         this.props.push(page)
-        this.props.requestUsersList(page,this.props.state.searchText);
-        this.props.state.currentPage = page;
+        this.props.requestUsersList(page,this.props.searchText,this.props.roles);
+        this.currentPage = page;
         
     }
 }
 
 function mapStateToProps (state ) {
     return({
-        state : state.usersReducers,
         page: state.tasksReducers.routing && 
         state.tasksReducers.routing.locationBeforeTransitions && 
         state.tasksReducers.routing.locationBeforeTransitions.query && 
         state.tasksReducers.routing.locationBeforeTransitions.query.page_no || 1,
         searchText: state.usersReducers.searchText,
         roles: state.usersReducers.roles,
-        
+        newUsers: state.usersReducers.newUsers,
+        totalPages: state.usersReducers.totalPages,
+        currentPage: state.usersReducers.currentPage
         });
     
   }

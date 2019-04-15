@@ -43,10 +43,12 @@ export const deleteTask = {
 }
 
 export const requestTasksListForUser = () => async (dispatch) =>{
+    console.log(3)
     dispatch({ type: requestTasksListForUserType });
 
     const url=`/tasks/history/`+sessionStorage.getItem('id');
     const tasks = await requests.doGet(url);
+    console.log(tasks)
     dispatch({ type: receiveTasksListForUserType, tasks});
 }
 

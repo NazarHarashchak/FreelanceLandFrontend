@@ -20,11 +20,10 @@ export const reducer = (state, action) => {
         case receiveUsersListType:
             return{
                 ...state,
-                newUsers:action.newUsers,
-                filteredRolesList: action.newUsers,
-                foundRolesList:action.roles,
-                totalPages:action.totalPages,
-                currentPage: action.currentPage,
+                newUsers:action.users.newUsers,
+                filteredRolesList: action.users.newUsers,
+                totalPages:action.users.totalPages,
+                currentPage: action.users.currentPage,
                 isLoading: false
             };
         case requestUserRolesList:
@@ -73,15 +72,3 @@ function switchCheckedStatus(roles,name) {
     return newList;
 }
 
-
-function filterUsers(roles, newUsers){
-    let checkedRoles=roles.filter(typ =>typ.isChecked === true);
-    if(checkedRoles.length !== 0){
-        newUsers=newUsers.filter(item => {
-            return(
-                checkedRoles.some(typ => typ.id === item.userRoleId) ===true
-            )
-        })
-    }
-    return newUsers;
-}

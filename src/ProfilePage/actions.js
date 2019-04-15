@@ -22,7 +22,7 @@ export const actionCreators = {
     createChatRoomAndSendMessage: (creatorId, secondUserId, message) => async (dispatch) => {
         dispatch({ type: requestCreateChatRoom });
 
-        const response = await requests.doPost('/api/ChatRoom/CreateChatRoomWithFirstMessage',
+        await requests.doPost('/api/ChatRoom/CreateChatRoomWithFirstMessage',
             JSON.stringify({
                 creatorId: creatorId,
                 secondUserId: secondUserId,
@@ -35,7 +35,7 @@ export const actionCreators = {
 }
 export const addImage = async (image) => {
 
-    const response = await requests.doPost('/api/users/CreateImage',image);
+    await requests.doPost('/api/users/CreateImage',image);
 }
 
 export const actionCreators1 = {
@@ -46,7 +46,7 @@ export const actionCreators1 = {
         dispatch({ type: receiveImage, ImgData });
     },
     addImage: (image) => async (dispatch) => {
-        const response = await requests.doPost('/api/users/CreateImage',image);
+        await requests.doPost('/api/users/CreateImage',image);
 
         const refresh = true;
         dispatch({ type: refreshImage, refresh });

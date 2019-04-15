@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 class FilterComponent extends React.Component{
 
   componentDidUpdate(){
+    this.props.requestUsersList(this.props.page,this.props.searchText,this.props.roles )
 }
 render(){
     return(
@@ -36,7 +37,13 @@ render(){
         }
     }
   export default connect(
-      state => ({roles: state.usersReducers.roles,
+      state => ({
+        page: (state.tasksReducers.routing  
+        && state.tasksReducers.routing.locationBeforeTransitions
+        && state.tasksReducers.routing.locationBeforeTransitions.query 
+        && state.tasksReducers.routing.locationBeforeTransitions.query.page_no 
+        || 1),
+        roles: state.usersReducers.roles,
       searchText:state.usersReducers.searchText}),
       dispatch => bindActionCreators({requestUsersList:requestUsersList,changeCheckedStatus:changeCheckedStatus}, dispatch)
   )(FilterComponent);
