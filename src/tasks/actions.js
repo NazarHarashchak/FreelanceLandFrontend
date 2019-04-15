@@ -6,6 +6,7 @@ const searchTaskListType = 'SEARCH_TASKS_LIST';
 const changeCategOpenedStatusType = 'CHANGE_CATEG_OPENED_STATUS';
 const changeCheckedStatusType = 'CHANGE_CHECKED_STATUS';
 const changePriceType = 'CHANGE_PRICE';
+const changeCurrentPageType = 'CHANGE_CURRENT_PAGE';
 const cleanFilterType = 'CLEAN_FILTER';
 const requestCategoriesListType = 'REQUEST_CATEGORIES_LIST';
 const receiveCategoriesListType = 'RECEIVE_CATEGORIES_LIST';
@@ -71,8 +72,8 @@ export const changeCategOpenedStatus = () => async (dispatch) => {
     dispatch({ type: changeCategOpenedStatusType });
 }
 
-export const searchTasksList = (searchText) => {
-    return ({ type: searchTaskListType, searchText });
+export const searchTasksList = (search) => {
+    return ({ type: searchTaskListType, search });
 }   
 
 export const changeCheckedStatus = (name) => {
@@ -81,6 +82,10 @@ export const changeCheckedStatus = (name) => {
 
 export const changePrice = (payload) => {
     return ({ type: changePriceType, payload});
+}
+
+export const changeCurrentPage = (curPage) => {
+    return ({ type: changeCurrentPageType, curPage});
 }
 
 export const cleanFilter = () => {

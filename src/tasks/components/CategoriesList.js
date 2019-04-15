@@ -6,7 +6,7 @@ import { changeCheckedStatus, requestTasksList } from '../actions';
 class CategoriesList extends React.Component {
   
   componentDidUpdate() {
-    this.props.requestTasksList(this.props.page, this.props.filter, this.props.searchText);
+    this.props.requestTasksList(this.props.page, this.props.filter, this.props.search);
   }
 
   render() { 
@@ -32,7 +32,8 @@ class CategoriesList extends React.Component {
 export default connect(
   state => ({
     filter: state.tasksReducers.filter,
-    searchText: state.tasksReducers.searchText
+    search: state.tasksReducers.search,
+    page: state.tasksReducers.curPage
   }),
   dispatch => bindActionCreators({ requestTasksList: requestTasksList, changeCheckedStatus:changeCheckedStatus }, dispatch)
 )(CategoriesList);

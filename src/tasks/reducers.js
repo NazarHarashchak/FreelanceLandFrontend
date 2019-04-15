@@ -4,6 +4,7 @@ const searchTaskListType = 'SEARCH_TASKS_LIST';
 const changeCategOpenedStatusType = 'CHANGE_CATEG_OPENED_STATUS';
 const changeCheckedStatusType = 'CHANGE_CHECKED_STATUS';
 const changePriceType = 'CHANGE_PRICE';
+const changeCurrentPageType = 'CHANGE_CURRENT_PAGE';
 const cleanFilterType = 'CLEAN_FILTER';
 const requestCategoriesListType = 'REQUEST_CATEGORIES_LIST';
 const receiveCategoriesListType = 'RECEIVE_CATEGORIES_LIST';
@@ -12,7 +13,7 @@ const receiveDeleteTask = 'RECEIVE_DELETE_TASK';
 const requestTasksListForUserType = 'REQUEST-TASKS-LIST-FOR-USER-TYPE';
 const receiveTasksListForUserType = 'RECEIVE-TASKS-LIST-FOR-USER-TYPE'
 
-const initialState = { tasks: [], totalPages:1, deleteTaskResponse: [], filteredTaskList: [], foundTasksList:[],filter: {categories:[], priceFrom:0, priceTo:0}, searchText:"", isLoading: true, tasksAreLoading: true, categsAreLoading: true, isCategOpened:false };
+const initialState = { tasks: [], curPage: 1, totalPages: 1, deleteTaskResponse: [], filteredTaskList: [], foundTasksList:[],filter: {categories:[], priceFrom:0, priceTo:0}, search:"", isLoading: true, tasksAreLoading: true, categsAreLoading: true, isCategOpened:false };
 
 export const reducer = (state, action) => {
     state = state || initialState;
@@ -81,7 +82,13 @@ export const reducer = (state, action) => {
         case searchTaskListType:
             return {
                 ...state,
-                searchText:action.searchText
+                search:action.search
+            };
+
+        case changeCurrentPageType:
+            return {
+                ...state,
+                curPage: action.curPage
             };
 
         case changeCheckedStatusType:
@@ -110,7 +117,8 @@ export const reducer = (state, action) => {
                 ...state.filter,
                 categories: cleanChecked(state.filter.categories),
                 priceTo: 0,
-                priceFrom: 0
+                priceFrom: 0,
+                search: ""
             }
         }
 
