@@ -4,13 +4,14 @@ import { connect } from 'react-redux';
 import { searchTasksList, requestTasksList } from '../actions';
 
 class SearchBar extends React.Component {
+  
   render() {
   
     return (
       <div className="form-group has-search">
         <input type="text" 
           className="form-control" 
-          placeholder="Search" 
+          placeholder="Search"
           onChange={(e) => {this.props.searchTasksList(e.target.value); this.props.requestTasksList(this.props.page,this.props.filter, e.target.value);}} 
         />
       </div>
@@ -23,6 +24,10 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(
-  state => state.tasksReducers,
+  state => ({
+    page: state.tasksReducers.curPage,
+    filter: state.tasksReducers.filter,
+    search: state.tasksReducers.search
+  }),
   mapDispatchToProps
 )(SearchBar);

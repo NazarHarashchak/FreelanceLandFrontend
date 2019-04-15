@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { requestTasksList, requestCategoriesList } from '../actions';
+import { requestTasksList, requestCategoriesList, changeCurrentPage } from '../actions';
 import TaskItemList from './TaskItemList';
 import SearchBar from './SearchBar';
 import ScrollTop from './ScrollTop';
@@ -15,13 +15,12 @@ import { push } from 'react-router-redux';
 class Tasks extends Component {
     constructor(props) {
         super(props);
-        this.current_page = 1;
 
         this.changePage = this.changePage.bind(this);
     };
     componentDidMount() {
         this.props.requestCategoriesList();
-        this.props.requestTasksList(this.current_page, this.props.filter, this.props.searchText);
+        this.props.requestTasksList(this.props.page, this.props.filter, this.props.search);
     }
 
     render() {
@@ -44,11 +43,11 @@ class Tasks extends Component {
                             maxButtons={10} 
                             first last next prev boundaryLinks 
                             items={this.props.totalPages} 
-                            activePage={this.current_page} 
+                            activePage={this.props.page} 
                             onSelect={this.changePage} />
                         </div>
                         <div className="col-md-3">
-                            <Filter page={this.current_page} />
+                            <Filter/>
                         </div>
                     </div >
 
@@ -59,8 +58,8 @@ class Tasks extends Component {
     }
     changePage(page) {
         this.props.push(page);
-        this.props.requestTasksList(page,this.props.filter, this.props.searchText);
-        this.current_page = page;
+        this.props.requestTasksList(page,this.props.filter, this.props.search);
+        this.props.changeCurrentPage(page);
     }
 }
 
@@ -68,15 +67,16 @@ class Tasks extends Component {
 function mapStateToProps(state) {
     return ({
         filter: state.tasksReducers.filter,
-        searchText: state.tasksReducers.searchText,
+        search: state.tasksReducers.search,
         tasksAreLoading: state.tasksReducers.tasksAreLoading,
         tasks: state.tasksReducers.tasks,
-        totalPages: state.tasksReducers.totalPages
+        totalPages: state.tasksReducers.totalPages,
+        page: state.tasksReducers.curPage
     });
 
 }
 
 export default connect(
     mapStateToProps,
-    dispatch => bindActionCreators({ requestTasksList: requestTasksList, requestCategoriesList:requestCategoriesList, push: push }, dispatch)
+    dispatch => bindActionCreators({ requestTasksList: requestTasksList, requestCategoriesList:requestCategoriesList, push: push, changeCurrentPage:changeCurrentPage }, dispatch)
 )(Tasks);

@@ -30,7 +30,6 @@ contains(parent, child) {
 }
 
 handleBlur(e) {
-  console.log('blur');
   const target = e.relatedTarget;
   const parent = e.currentTarget;
   if (!this.contains(parent, target)) {
@@ -39,12 +38,11 @@ handleBlur(e) {
       ...this.state,
       edit: false,
       isValid: isValid
-    },console.log("HAAA",this.state));
+    });
   }
 }
 
 handleFocus(e) {
-  console.log('focus');
   this.setState({
     ...this.state,
     edit: true,
@@ -52,7 +50,6 @@ handleFocus(e) {
 }
 
 handleChange = e => {
-  console.log('change');
   this.setState(e.target.name === "ToField"?
     { ...this.state,toValue: parseInt(e.target.value,10)}:
     { ...this.state,fromValue: parseInt(e.target.value,10)}
@@ -66,7 +63,6 @@ handleKeyDown = e => {
 }
 
 triggerChange(self) {
-  console.log('trigger',this.state.fromValue,this.state.toValue);
   let fromValue = this.state.fromValue;
   let toValue = this.state.toValue;
   if (fromValue==='') {fromValue=0};
@@ -108,12 +104,7 @@ onCleanFilter(e) {
             <Collapse in={this.props.isCategOpened}>
               <div id="collapse-categories">
               {this.props.tasksAreLoading===true ? <h3>Loading data...</h3> : 
-                <CategoriesList 
-                  page={this.props.page}
-                  categories={this.props.filter.categories} 
-                  changeCheckedStatus={this.props.changeCheckedStatus} 
-                  requestTasksList={this.props.requestTasksList}
-                />
+                <CategoriesList/>
               }
               </div>
             </Collapse>
