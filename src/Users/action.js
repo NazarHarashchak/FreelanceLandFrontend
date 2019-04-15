@@ -8,13 +8,15 @@ const setFoundRolesListType = 'SET_FOUND_ROLES_LIST_TYPE';
 const changeRoleStatusType = 'CHANGE_CHECKED_ROLE_TYPE';
 const changeRolesOpenedStatusType = 'CHANGE_ROLES_OPENED_STATUS_TYPE';
 
-export const requestUsersList = (pageNumber, text) => async (dispatch) => {
+export const requestUsersList = (pageNumber, text,roles) => async (dispatch) => {
         dispatch({ type: requestUsersListType });
-        const users = await  requests.doGet('/users/Pagination/text?Search='+text+'&PageNumber='+pageNumber);
+        var url='/users/Pagination/text?Search='+text+'&PageNumber='+pageNumber;
+        roles.filter(r => r.isChecked==true).map(r=> url+='&role='+r.type);
+        const users = await  requests.doGet(url);
         const newUsers = users.list;
         const totalPages =users.totalPages;
         const currentPage=users.pageNumber;
-        dispatch({ type: receiveUsersListType, newUsers ,totalPages, currentPage});
+        dispatch({ type: receiveUsersListType,users:{ newUsers:newUsers,totalPages:totalPages, currentPage:currentPage}});
     }
 
 export const requestUserRoles = () => async (dispatch) => {

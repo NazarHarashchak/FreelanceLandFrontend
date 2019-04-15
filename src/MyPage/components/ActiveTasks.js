@@ -27,7 +27,6 @@ class Tasks extends Component {
                         </div>
                         <div className="col-md-9" id="j-orders-search-list">
                             <TaskItemList />
-                            <Pagination />
                         </div>
                         <div className="col-md-3">
                             <Filter />
