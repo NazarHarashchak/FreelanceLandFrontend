@@ -26,7 +26,7 @@ class Tasks extends Component {
                             ref={(el) => { this.anchor = el; }}>
                         </div>
                         <div className="col-md-9" id="j-orders-search-list">
-                            <TaskItemList />z
+                            <TaskItemList />
                         </div>
                         <div className="col-md-3">
                             <Filter />
