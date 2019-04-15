@@ -2,9 +2,13 @@
 }
 .add-task-description{
     position: relative;
-    padding: 20px;
-    background-color: rgb(19, 19, 19);
-    border-radius: 5px 5px 5px 5px;
+    padding: 10px;
+    padding-top:20px;
+    padding-bottom: 20px;
+    background-color: #fbfbfc;
+    border-style: outset;
+    border-width: 3px;
+    border-radius: 10px 10px 10px 10px;
 }
 .text-element{
     position:relative;
@@ -14,10 +18,15 @@
 }
 .label-element{
     width:15%;
-    color:white;
+    color:black;
     position: relative;
     clear:both;
 }
+#my-hr-tag {
+    margin: 20px -10px 50px;
+    border: 0;
+    border-top: 1px solid #c9c7c7;
+  }
 #add-task-description{
     height: 200px;
     width: 100%;
@@ -75,9 +84,16 @@
     height: 50px;
     padding-left: 18px;
     vertical-align: middle;
-}
-#deadline{
-    
     position: relative;
     top:8px;
+}
+#deadline{
+    position: relative;
+    top:8px;
+}
+#some-space{
+    height: 10px;
+}
+#error{
+    text-align: center;
 }

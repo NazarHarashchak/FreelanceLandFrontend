@@ -11,7 +11,9 @@ const setPriceToValidateType = 'SET_PRICE_TO_VALIDATE';
 const requestDeleteTask = 'REQUEST_DELETE_TASK';
 const receiveDeleteTask = 'RECEIVE_DELETE_TASK';
 const requestTasksListForUserType = 'REQUEST-TASKS-LIST-FOR-USER-TYPE';
-const receiveTasksListForUserType = 'RECEIVE-TASKS-LIST-FOR-USER-TYPE'
+const receiveTasksListForUserType = 'RECEIVE-TASKS-LIST-FOR-USER-TYPE';
+const requestCreatedTasksListForUserType = 'REQUEST-CREATED-TASKS-LIST-FOR-USER-TYPE';
+const receiveCreatedTasksListForUserType = 'RECEIVE-CREATED-TASKS-LIST-FOR-USER-TYPE';
 
 const initialState = { tasks: [], priceToValidate:"", deleteTaskResponse: [], filteredTaskList: [], foundTasksList:[],filter: {categories:[], priceFrom:'', priceTo:''}, searchText:"", isLoading: false, isCategOpened:false };
 
@@ -49,6 +51,21 @@ export const reducer = (state, action) => {
                     ...state.filter,
                     categories: createCategsList(action.tasks)
                 },
+                isLoading: false
+            };
+
+        case requestCreatedTasksListForUserType:
+            return{
+                ...state,
+                isLoading: true
+            };
+        
+        case receiveCreatedTasksListForUserType:
+            return{
+                ...state,
+                tasks: action.tasks,
+                filteredTaskList: action.tasks,
+                foundTasksList: action.tasks,
                 isLoading: false
             };
 
@@ -131,6 +148,7 @@ export const reducer = (state, action) => {
             ...state,
             priceToValidate: action.priceToValidate
         }
+
         default:
             return state;
     }

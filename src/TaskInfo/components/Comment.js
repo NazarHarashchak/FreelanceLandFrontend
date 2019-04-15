@@ -69,7 +69,8 @@ class Comment extends React.Component {
           { (sessionStorage.getItem("id") == this.props.customerId) && (this.props.excecutorId === 0) ?(
                     <div id="choose_excecutor">
                         <form>
-                          <input type="button" value="Choose" onClick={this.saveExcecutor} />
+                          <input type="button" value="Choose" id="choose-button" title="Add an excecutor"
+                           onClick={this.saveExcecutor} />
                       </form>
                    </div>
                   ):(

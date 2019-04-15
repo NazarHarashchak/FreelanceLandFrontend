@@ -10,7 +10,10 @@ const requestExcecutor = 'REQUEST_EXCECUTOR';
 const receiveExcecutor = 'RECEIVE_EXCECUTOR';
 const requestDeleteComment = 'REQUEST_DELETE_COMMENT';
 const receiveDeleteComment = 'RECEIVE_DELETE_COMMENT';
-
+const requestCategoriesTask = 'REQUEST_CATEGORIES_TASK';
+const receiveCategoriesTask = 'RECEIVE_CATEGORIES_TASK';
+const requestTask = 'REQUEST_TASK';
+const receiveTask = 'RECEIVE_TASK';
 
 export const  requestTaskForecasts = (myId) => async (dispatch) => {
         dispatch({ type: requestTaskForecastsType });
@@ -18,9 +21,51 @@ export const  requestTaskForecasts = (myId) => async (dispatch) => {
         dispatch({ type: receiveTaskForecastsType, forecasts });
     }
 
+export const getTaskInformation = {
+        editMyTask: (task_id, my_title, my_description, my_price, my_category) => 
+        async (dispatch) => {
+
+            dispatch({ type: requestTask });
+
+            const url = `/api/taskinfo/edittask`;
+            const response = await requests.doPost(url ,
+            JSON.stringify({
+                id: task_id,
+                title: my_title,
+                description: my_description,
+                price: my_price,
+                taskCategory: my_category
+            })
+            );
+
+            const newTask = await response;
+
+            dispatch ({ type: receiveTask, newTask });
+        },
+
+        getCategories: () => async (dispatch) => {
+            dispatch({ type: requestCategoriesTask });
+    
+            const url = `/taskinfo/getcategories`;
+            const response = await requests.doGet(url);
+    
+            const categories = await response;
+    
+            dispatch ({ type: receiveCategoriesTask, categories });
+        },
+
+        getTasks: (myId) => async (dispatch) => {
+            dispatch({ type: requestTaskForecastsType });
+
+            const forecasts = await requests.doGet('/taskinfo/' + myId);
+
+            dispatch({ type: receiveTaskForecastsType, forecasts });
+        }
+}
+
 export const   closeMyTask = (taskId) => async (dispatch) => {
         dispatch({type: requestTaskForecastsType });
-        const forecasts = await requests.doPost('/api/taskinfo/closetask',JSON.stringify({
+        const forecasts = await requests.doPost(`/api/taskinfo/closetask/` + taskId,JSON.stringify({
             id: taskId
     }));
 
