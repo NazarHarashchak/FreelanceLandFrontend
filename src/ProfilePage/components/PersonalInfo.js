@@ -16,7 +16,6 @@ class PersonalInfo extends Component {
   async componentWillMount() {
     await this.props.requestProfilePage(this.props.id);
     if (this.props.id !== sessionStorage.getItem('id') && sessionStorage.getItem('role') !== "Administrator") { this.state.rea = !this.state.rea }
-    console.log(this.props.id);
     this.setState({ user: this.props.User, isLoaded: false });
   }
 

@@ -4,7 +4,6 @@ import AddComment from "./AddComment";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {actionCommentsCreators} from "../taskActions"
-import "./comments.css";
 
 class Comments extends React.Component {
   componentWillMount(){
@@ -35,6 +34,7 @@ class Comments extends React.Component {
                       key={item.id}
                       item={item}
                       customerId = {this.props.customerId}
+                      excecutorId = {this.props.excecutorId}
                       />
                     ))}
               </li>

@@ -53,7 +53,6 @@ class AddComment extends React.Component {
         {
             this.props.sendComment(this.state.commentContent, this.props.userId, this.props.taskId)
             .then(() => {
-                if(this.props.comment != null) { document.location.reload(true);}
             });
                 
         }
@@ -66,7 +65,7 @@ class AddComment extends React.Component {
              <form >
                   <img src={require("./123.jpeg")} alt="фото користувача" id="user-photo"/>
                   <input type="text" id="text-content" placeholder="write your comment to start working" 
-                        onChange={this.contentChange} defaultValue={this.state.commentError} />
+                        onChange={this.contentChange} defaultValue={this.state.commentError} name="contentTextBox"/>
                   <input type="button" id="submit" value="Send" onClick={this.sendMyComment}/>
               </form>
             </div>

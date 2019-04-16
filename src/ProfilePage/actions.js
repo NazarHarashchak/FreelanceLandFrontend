@@ -20,66 +20,34 @@ export const actionCreators = {
     },
 
     createChatRoomAndSendMessage: (creatorId, secondUserId, message) => async (dispatch) => {
-        dispatch({type: requestCreateChatRoom});
+        dispatch({ type: requestCreateChatRoom });
 
-        const url = 'https://localhost:44332/api/ChatRoom/CreateChatRoomWithFirstMessage';
-        await fetch(url,
-            {
-                method: 'POST',
-                mode: 'cors',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    creatorId: creatorId,
-                    secondUserId: secondUserId,
-                    message: message
-                }) 
-            }
-        )
+        await requests.doPost('/api/ChatRoom/CreateChatRoomWithFirstMessage',
+            JSON.stringify({
+                creatorId: creatorId,
+                secondUserId: secondUserId,
+                message: message
+            })
+        );
 
-        dispatch({type: receiveCreateChatRoom});
+        dispatch({ type: receiveCreateChatRoom });
     }
 }
-export const addImage = async (image)  => {
-    await fetch('https://localhost:44332/api/users/CreateImage',
-        { 
-            headers: {
-                'Accept': 'application/json',
-                'Authorization': 'Bearer ' + sessionStorage.tokenKey
-            },
-            method: 'POST',
-            body: image
-        })
+export const addImage = async (image) => {
+
+    await requests.doPost('/api/users/CreateImage',image);
 }
 
 export const actionCreators1 = {
     getImage: (id) => async (dispatch) => {
-    const url = 'https://localhost:44332/api/users/GetImage/'+id;
-    const response = await fetch(url,
-    { 
-        method: 'GET',
-        mode: 'cors',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + sessionStorage.tokenKey
-        }
-    })
-    const ImgData = await response.json();
-    dispatch({ type: receiveImage, ImgData });
-},
-    addImage: (image) => async (dispatch)  => {
-    await fetch('https://localhost:44332/api/users/CreateImage',
-        { 
-            headers: {
-                'Accept': 'application/json',
-                'Authorization': 'Bearer ' + sessionStorage.tokenKey
-            },
-            method: 'POST',
-            body: image
-        })
+
+        const ImgData = await requests.doGet('/users/GetImage/' + id);
+
+        dispatch({ type: receiveImage, ImgData });
+    },
+    addImage: (image) => async (dispatch) => {
+        await requests.doPost('/api/users/CreateImage',image);
+
         const refresh = true;
         dispatch({ type: refreshImage, refresh });
     }

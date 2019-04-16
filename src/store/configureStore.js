@@ -6,8 +6,8 @@ import * as taskInfoReducers from '../TaskInfo/taskReducers';
 import * as profileReducer from '../ProfilePage/reducers';
 import * as userReducer from '../Users/reducers';
 import * as usersReducers from '../Users/reducers';
-import * as commentsReducers from '../TaskInfo/commentReducer';
-import * as addCommentReducers from '../TaskInfo/addCommentReducer';
+import * as commentsReducers from '../TaskInfo/commentReducers';
+import * as addCommentReducers from '../TaskInfo/commentReducers';
 import * as loginReducer from '../LoginPage/reducers';
 import * as registrationReducer from '../RegistrationPage/reducers';
 import * as restorePassReducer from '../RestorePassPage/reducers';
@@ -15,7 +15,7 @@ import * as messageReducers from '../Messages/reducers';
 import * as topUsers from '../mainPages/reducers';
 import * as addNewTaskReducer from '../addTaskPage/reducer';
 import * as addExcecutor from '../TaskInfo/addExcecutorReducer';
-
+import * as paginationPage from '../pagination/reducer';
 
 export default function configureStore(history, initialState) {
   const reducers = {
@@ -32,7 +32,8 @@ export default function configureStore(history, initialState) {
     messageReducers: messageReducers.reducer,
     topUsers:topUsers.reducer,
     addTask: addNewTaskReducer.reducer,
-    addNewExcecutor: addExcecutor.reducer
+    addNewExcecutor: addExcecutor.reducer,
+    pagination: paginationPage.reducer
   };
 
   const middleware = [

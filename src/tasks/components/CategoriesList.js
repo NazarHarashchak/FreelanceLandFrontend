@@ -1,10 +1,11 @@
 import React from "react";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { changeCheckedStatus } from '../actions';
+import { changeCheckedStatus, requestTasksList } from '../actions';
 import PropTypes from 'prop-types';
 
 class CategoriesList extends React.Component {
+
   static propTypes = {
 		categories:PropTypes.arrayOf (
       PropTypes.shape({
@@ -13,7 +14,11 @@ class CategoriesList extends React.Component {
       }).isRequired
     ).isRequired
   }
-  
+
+  componentDidUpdate() {
+    this.props.requestTasksList(this.props.page, this.props.filter, this.props.search);
+  }
+
   render() { 
     return (
       <div>
@@ -23,7 +28,7 @@ class CategoriesList extends React.Component {
             <input
               type="checkbox"
               name={category.type}
-              onChange={(e) => this.props.changeCheckedStatus(e.target.name)}
+              onChange={(e) => {this.props.changeCheckedStatus(e.target.name);} }
               checked={category.isChecked}
             />
             {category.type}
@@ -34,19 +39,11 @@ class CategoriesList extends React.Component {
   }
 }
 
-function matchDispatchToProps(dispatch) {
-  return bindActionCreators(
-    {
-      changeCheckedStatus,
-    },
-    dispatch);
-}
-
-const mapStateToProps = state => ({
-  categories: state.tasksReducers.filter.categories
-})
-
 export default connect(
-  mapStateToProps,
-  matchDispatchToProps
+  state => ({
+    filter: state.tasksReducers.filter,
+    search: state.tasksReducers.search,
+    page: state.tasksReducers.curPage
+  }),
+  dispatch => bindActionCreators({ requestTasksList: requestTasksList, changeCheckedStatus:changeCheckedStatus }, dispatch)
 )(CategoriesList);
