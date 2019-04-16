@@ -24,7 +24,7 @@ class CategoriesList extends React.Component {
   }
 
   componentDidUpdate() {
-    this.props.requestTasksList(this.props.page, this.props.filter, this.props.search);
+    this.props.requestTasksList(this.props.page, this.props.filter, this.props.search,this.props.control);
   }
 
   render() { 

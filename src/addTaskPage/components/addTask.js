@@ -136,8 +136,8 @@ saveChanges(event){
         if (this.addedValues()){
             this.props.createNewTask(this.state.titleContent, this.state.descriptionContent, 
                 sessionStorage.getItem('id'), this.state.priceContent,
-                this.state.deadlineContent, this.state.categoryContent).
-                then(() => { 
+                this.state.deadlineContent, this.state.categoryContent)
+                .then(() => { 
                     alert("Success");
                     document.location = 'http://localhost:3000/tasks/';
             });;

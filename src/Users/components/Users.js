@@ -65,10 +65,10 @@ class Users extends Component {
 
 function mapStateToProps (state ) {
     return({
-        page: state.tasksReducers.routing && 
+        page: (state.tasksReducers.routing && 
         state.tasksReducers.routing.locationBeforeTransitions && 
         state.tasksReducers.routing.locationBeforeTransitions.query && 
-        state.tasksReducers.routing.locationBeforeTransitions.query.page_no || 1,
+        state.tasksReducers.routing.locationBeforeTransitions.query.page_no) || 1,
         searchText: state.usersReducers.searchText,
         roles: state.usersReducers.roles,
         newUsers: state.usersReducers.newUsers,

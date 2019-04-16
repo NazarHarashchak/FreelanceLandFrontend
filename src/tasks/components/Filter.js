@@ -27,17 +27,7 @@ class Filter extends React.Component {
     cleanFilter: PropTypes.func.isRequired,
     requestTasksList: PropTypes.func.isRequired,
     isCategOpened: PropTypes.bool.isRequired,
-    tasksAreLoading: PropTypes.bool.isRequired,
-    filter: PropTypes.shape({
-      categories: PropTypes.arrayOf(
-        PropTypes.shape({
-          type: PropTypes.string.isRequired,
-          isChecked: PropTypes.bool.isRequired
-        }).isRequired
-      ).isRequired,
-      priceFrom: PropTypes.number.isRequired,
-      priceTo: PropTypes.number.isRequired,
-    }).isRequired,
+    tasksAreLoading: PropTypes.bool.isRequired
   }
 
   timer = null
@@ -123,9 +113,9 @@ class Filter extends React.Component {
             </Button>
             <Collapse in={this.props.isCategOpened}>
               <div id="collapse-categories">
-                {this.props.tasksAreLoading === true ? <h3>Loading data...</h3> :
-                  <CategoriesList />
-                }
+              {this.props.tasksAreLoading===true ? <h3>Loading data...</h3> : 
+                <CategoriesList control={this.props.control}/>
+              }
               </div>
             </Collapse>
           </div>
@@ -172,9 +162,8 @@ class Filter extends React.Component {
 
 function mapStateToProps(state) {
   return ({
-    isCategOpened: state.tasksReducers.isCategOpened,
-    filter: state.tasksReducers.filter,
-    tasksAreLoading: state.tasksReducers.tasksAreLoading
+      isCategOpened: state.tasksReducers.isCategOpened,
+      tasksAreLoading: state.tasksReducers.tasksAreLoading
   });
 }
 

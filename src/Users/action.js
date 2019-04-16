@@ -11,7 +11,7 @@ const changeRolesOpenedStatusType = 'CHANGE_ROLES_OPENED_STATUS_TYPE';
 export const requestUsersList = (pageNumber, text,roles) => async (dispatch) => {
         dispatch({ type: requestUsersListType });
         var url='/users/Pagination/text?Search='+text+'&PageNumber='+pageNumber;
-        roles.filter(r => r.isChecked==true).map(r=> url+='&role='+r.type);
+        roles.filter(r => r.isChecked===true).map(r=> url+='&role='+r.type);
         const users = await  requests.doGet(url);
         const newUsers = users.list;
         const totalPages =users.totalPages;

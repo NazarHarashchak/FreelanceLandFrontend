@@ -14,7 +14,8 @@ import { push } from 'react-router-redux';
 class Tasks extends Component {
     constructor(props) {
         super(props);
-
+        this.state = {
+            id:"all?" }
         this.changePage = this.changePage.bind(this);
     };
 
@@ -50,20 +51,19 @@ class Tasks extends Component {
         page: PropTypes.number.isRequired
     }
     
-    componentDidMount() {
-        this.props.requestCategoriesList();
-        this.props.requestTasksList(this.props.page, this.props.filter, this.props.search);
+    async componentWillMount() {
+        await this.props.requestCategoriesList();
+        this.props.requestTasksList(this.props.page, this.props.filter, this.props.search, this.state.id);
     }
 
     render() {
         return (
-           
             <div className="container" id="tasks-container">
                 <div
                     ref={(el) => { this.anchor = el; }}>
                 </div>
                 <div className="main-content container">
-                    <SearchBar />
+                    <SearchBar control={this.state.id}/>
                     <div className="row">
                         <div
                             ref={(el) => { this.anchor = el; }}>
@@ -79,7 +79,7 @@ class Tasks extends Component {
                             onSelect={this.changePage} />
                         </div>
                         <div className="col-md-3">
-                            <Filter/>
+                            <Filter control={this.state.id}/>
                         </div>
                     </div >
 
@@ -90,11 +90,10 @@ class Tasks extends Component {
     }
     changePage(page) {
         this.props.push(page);
-        this.props.requestTasksList(page,this.props.filter, this.props.search);
+        this.props.requestTasksList(page,this.props.filter, this.props.search, this.state.id);
         this.props.changeCurrentPage(page);
     }
 }
-
 
 function mapStateToProps(state) {
     return ({
@@ -105,7 +104,6 @@ function mapStateToProps(state) {
         totalPages: state.tasksReducers.totalPages,
         page: state.tasksReducers.curPage
     });
-
 }
 
 export default connect(

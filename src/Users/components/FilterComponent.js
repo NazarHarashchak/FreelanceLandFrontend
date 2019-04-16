@@ -21,8 +21,7 @@ render(){
                                 type="checkbox"
                                 name={item.type}
                                 checked={item.isChecked}
-                                onChange={(e) => {{this.props.changeCheckedStatus(e.target.name)}
-                                  }}
+                                onChange={(e) => {this.props.changeCheckedStatus(e.target.name)}}
                             />
                             {item.type}
                         </label>
@@ -38,10 +37,10 @@ render(){
     }
   export default connect(
       state => ({
-        page: (state.tasksReducers.routing  
+        page: ((state.tasksReducers.routing  
         && state.tasksReducers.routing.locationBeforeTransitions
         && state.tasksReducers.routing.locationBeforeTransitions.query 
-        && state.tasksReducers.routing.locationBeforeTransitions.query.page_no 
+        && state.tasksReducers.routing.locationBeforeTransitions.query.page_no) 
         || 1),
         roles: state.usersReducers.roles,
       searchText:state.usersReducers.searchText}),

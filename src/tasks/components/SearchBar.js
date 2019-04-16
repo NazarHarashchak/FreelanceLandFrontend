@@ -29,7 +29,7 @@ class SearchBar extends React.Component {
         <input type="text"
           className="form-control"
           placeholder="Search"
-          onChange={(e) => { this.props.searchTasksList(e.target.value); this.props.requestTasksList(this.props.page, this.props.filter, e.target.value); }}
+          onChange={(e) => {this.props.searchTasksList(e.target.value); this.props.requestTasksList(this.props.page,this.props.filter, e.target.value, this.props.control);}} 
         />
       </div>
     );
