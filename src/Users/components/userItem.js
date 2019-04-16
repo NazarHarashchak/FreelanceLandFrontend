@@ -7,7 +7,7 @@ import { actionCreators1 } from '../../ProfilePage/actions';
 
 class UserItem extends Component {
    
-        
+    
     render() {
         return (
             <Item.Group link>

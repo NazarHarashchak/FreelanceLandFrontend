@@ -6,13 +6,12 @@ import { searchTasksList, requestTasksList } from '../actions';
 class SearchBar extends React.Component {
   
   render() {
-  
     return (
       <div className="form-group has-search">
         <input type="text" 
           className="form-control" 
           placeholder="Search"
-          onChange={(e) => {this.props.searchTasksList(e.target.value); this.props.requestTasksList(this.props.page,this.props.filter, e.target.value);}} 
+          onChange={(e) => {this.props.searchTasksList(e.target.value); this.props.requestTasksList(this.props.page,this.props.filter, e.target.value, this.props.control);}} 
         />
       </div>
     );

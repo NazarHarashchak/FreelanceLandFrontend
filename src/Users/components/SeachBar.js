@@ -28,10 +28,10 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(
   state =>( {
-    page: state.tasksReducers.routing && 
+    page: (state.tasksReducers.routing && 
     state.tasksReducers.routing.locationBeforeTransitions && 
     state.tasksReducers.routing.locationBeforeTransitions.query && 
-    state.tasksReducers.routing.locationBeforeTransitions.query.page_no || 1,
+    state.tasksReducers.routing.locationBeforeTransitions.query.page_no )|| 1,
     roles: state.usersReducers.roles,
     searchText:state.usersReducers.searchText
   }),

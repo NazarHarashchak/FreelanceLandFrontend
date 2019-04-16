@@ -18,75 +18,75 @@ class Filter extends React.Component {
         errorMsg: null,
         edit: true
     };
-}
+  }
 
-timer = null
+  timer = null
 
-contains(parent, child) {
-  if (!child || !child.parentElement) return false;
-  if (child.parentElement === parent) return true;
+  contains(parent, child) {
+    if (!child || !child.parentElement) return false;
+    if (child.parentElement === parent) return true;
 
-  return this.contains(parent, child.parentElement);
-}
+    return this.contains(parent, child.parentElement);
+  }
 
-handleBlur(e) {
-  const target = e.relatedTarget;
-  const parent = e.currentTarget;
-  if (!this.contains(parent, target)) {
-    let isValid = this.triggerChange();
+  handleBlur(e) {
+    const target = e.relatedTarget;
+    const parent = e.currentTarget;
+    if (!this.contains(parent, target)) {
+      let isValid = this.triggerChange();
+      this.setState({
+        ...this.state,
+        edit: false,
+        isValid: isValid
+      });
+    }
+  }
+
+  handleFocus(e) {
     this.setState({
       ...this.state,
-      edit: false,
-      isValid: isValid
+      edit: true,
     });
   }
-}
 
-handleFocus(e) {
-  this.setState({
-    ...this.state,
-    edit: true,
-  });
-}
-
-handleChange = e => {
-  this.setState(e.target.name === "ToField"?
-    { ...this.state,toValue: parseInt(e.target.value,10)}:
-    { ...this.state,fromValue: parseInt(e.target.value,10)}
-  )
-}
-
-handleKeyDown = e => {
-  if (e.keyCode === ENTER_KEY) {
-    this.triggerChange(e);
+  handleChange = e => {
+    this.setState(e.target.name === "ToField"?
+      { ...this.state,toValue: parseInt(e.target.value,10)}:
+      { ...this.state,fromValue: parseInt(e.target.value,10)}
+    )
   }
-}
 
-triggerChange(self) {
-  let fromValue = this.state.fromValue;
-  let toValue = this.state.toValue;
-  if (fromValue==='') {fromValue=0};
-  if (toValue==='') {toValue=0};
-  let isValid = this.validatePriceFileds(fromValue,toValue);
-  if (isValid) {
-    this.props.changePrice({fromValue:fromValue,toValue:toValue}); 
+  handleKeyDown = e => {
+    if (e.keyCode === ENTER_KEY) {
+      this.triggerChange(e);
+    }
   }
-  return isValid;
-}
+
+  triggerChange(self) {
+    let fromValue = this.state.fromValue;
+    let toValue = this.state.toValue;
+    if (fromValue==='') {fromValue=0};
+    if (toValue==='') {toValue=0};
+    let isValid = this.validatePriceFileds(fromValue,toValue);
+    if (isValid) {
+      this.props.changePrice({fromValue:fromValue,toValue:toValue}); 
+    }
+    return isValid;
+  }
 
 
-validatePriceFileds(fromPrice,toPrice){
-  let isValid = false;
-  (fromPrice>=0 && (fromPrice<=toPrice||toPrice===0)) ? isValid=true : isValid=false;
-  return isValid;
-}
+  validatePriceFileds(fromPrice,toPrice){
+    let isValid = false;
+    (fromPrice>=0 && (fromPrice<=toPrice||toPrice===0)) ? isValid=true : isValid=false;
+    return isValid;
+  }
 
 
-onCleanFilter(e) {
-  e.preventDefault(); 
-  this.setState({ ...this.state,toValue: '', fromValue: '', isValid:null});
-  this.props.cleanFilter(); 
-}
+  onCleanFilter(e) {
+    e.preventDefault(); 
+    this.setState({ ...this.state,toValue: '', fromValue: '', isValid:null});
+    this.props.cleanFilter(); 
+  }
 
   render() {
     return (
@@ -104,7 +104,7 @@ onCleanFilter(e) {
             <Collapse in={this.props.isCategOpened}>
               <div id="collapse-categories">
               {this.props.tasksAreLoading===true ? <h3>Loading data...</h3> : 
-                <CategoriesList/>
+                <CategoriesList control={this.props.control}/>
               }
               </div>
             </Collapse>
@@ -153,7 +153,6 @@ onCleanFilter(e) {
 function mapStateToProps(state) {
   return ({
       isCategOpened: state.tasksReducers.isCategOpened,
-      filter: state.tasksReducers.filter,
       tasksAreLoading: state.tasksReducers.tasksAreLoading
   });
 }

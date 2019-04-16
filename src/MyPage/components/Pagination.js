@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from 'react-redux';
 
 class Pagination extends React.Component {
   render() {

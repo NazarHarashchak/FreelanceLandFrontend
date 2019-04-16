@@ -41,8 +41,11 @@ export const reducer = (state, action) => {
                 ...state,
                 filter: {
                     ...state.filter,
-                    categories: createCategsList(action.categories)
-                }
+                    categories: createCategsList(action.categories),
+                    priceFrom:0,
+                    priceTo:0
+                },
+                search: ""
             };
 
         case receiveTasksListForUserType:

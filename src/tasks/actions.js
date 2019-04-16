@@ -12,16 +12,14 @@ const requestCategoriesListType = 'REQUEST_CATEGORIES_LIST';
 const receiveCategoriesListType = 'RECEIVE_CATEGORIES_LIST';
 const requestDeleteTask = 'REQUEST_DELETE_TASK';
 const receiveDeleteTask = 'RECEIVE_DELETE_TASK';
-const requestTasksListForUserType = 'REQUEST-TASKS-LIST-FOR-USER-TYPE';
-const receiveTasksListForUserType = 'RECEIVE-TASKS-LIST-FOR-USER-TYPE'
 
-export const requestTasksList = (pageNumber, filter, searchText) => async (dispatch) => {
+export const requestTasksList = (pageNumber, filter, searchText, control) => async (dispatch) => {
     dispatch({ type: requestTasksListType });
 
-    let url = '/tasks/all?page='+pageNumber+'&search='+searchText+'&priceFrom='+filter.priceFrom+'&priceTo='+filter.priceTo+'&';
+    let url = '/tasks/'+  control + 'page='+pageNumber+'&search='+searchText+'&priceFrom='+filter.priceFrom+'&priceTo='+filter.priceTo+'&';
     
-    filter.categories.filter(categ => categ.isChecked===true).map 
-        (categ => {url+='categ='+categ.type+'&'});
+    filter.categories.filter(categ => categ.isChecked===true)
+    .map(categ => {url+='categ='+categ.type+'&'});
     
     url = url.substring(0, url.length - 1);
     const tasks = await requests.doGet(url);
@@ -43,29 +41,12 @@ export const deleteTask = {
     }
 }
 
-export const requestTasksListForUser = () => async (dispatch) =>{
-    console.log(3)
-    dispatch({ type: requestTasksListForUserType });
-
-    const url=`/tasks/history/`+sessionStorage.getItem('id');
-    const tasks = await requests.doGet(url);
-    console.log(tasks)
-    dispatch({ type: receiveTasksListForUserType, tasks});
-}
-
-export const requestActiveTasksListForUser = () => async (dispatch) =>{
-    dispatch({ type: requestTasksListForUserType });
-
-    const url=`/tasks/Active/`+sessionStorage.getItem('id');
-    const tasks = await requests.doGet(url);
-    dispatch({ type: receiveTasksListForUserType, tasks});
-}
-
 export const requestCategoriesList = () => async (dispatch) =>{
     dispatch({ type: requestCategoriesListType });
 
     const categories = await requests.doGet("/taskinfo/getCategories");
     dispatch({ type: receiveCategoriesListType, categories});
+
 }
 
 export const changeCategOpenedStatus = () => async (dispatch) => {
