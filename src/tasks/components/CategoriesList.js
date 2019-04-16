@@ -7,12 +7,20 @@ import PropTypes from 'prop-types';
 class CategoriesList extends React.Component {
 
   static propTypes = {
-		categories:PropTypes.arrayOf (
-      PropTypes.shape({
-        type: PropTypes.string.isRequired,
-        isChecked: PropTypes.bool.isRequired
-      }).isRequired
-    ).isRequired
+    filter: PropTypes.shape({
+      categories: PropTypes.arrayOf (
+          PropTypes.shape({
+            type: PropTypes.string.isRequired,
+            isChecked: PropTypes.bool.isRequired
+          }).isRequired
+        ).isRequired,
+      priceFrom: PropTypes.number.isRequired,
+      priceTo: PropTypes.number.isRequired,
+    }).isRequired,     
+    search: PropTypes.string.isRequired,
+    page: PropTypes.number.isRequired,
+    requestTasksList: PropTypes.func.isRequired,
+    changeCheckedStatus: PropTypes.func.isRequired
   }
 
   componentDidUpdate() {
@@ -22,9 +30,8 @@ class CategoriesList extends React.Component {
   render() { 
     return (
       <div>
-        {this.props.categories.map(category => (
-          <label 
-          key={category.type}>
+        {this.props.filter.categories.map(category => (
+          <label key={category.type}>
             <input
               type="checkbox"
               name={category.type}

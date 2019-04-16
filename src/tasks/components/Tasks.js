@@ -19,7 +19,35 @@ class Tasks extends Component {
     };
 
     static propTypes = {
-		requestTasksList:PropTypes.func.isRequired
+        requestTasksList: PropTypes.func.isRequired,
+        push: PropTypes.func.isRequired,
+        requestCategoriesList: PropTypes.func.isRequired,
+        changeCurrentPage: PropTypes.func.isRequired,
+        filter: PropTypes.shape({
+            categories: PropTypes.arrayOf (
+                PropTypes.shape({
+                  type: PropTypes.string.isRequired,
+                  isChecked: PropTypes.bool.isRequired
+                }).isRequired
+              ).isRequired,
+            priceFrom: PropTypes.number.isRequired,
+            priceTo: PropTypes.number.isRequired,
+        }).isRequired,      
+        search: PropTypes.string.isRequired,
+        tasksAreLoading: PropTypes.bool.isRequired,
+        tasks: PropTypes.arrayOf (
+            PropTypes.shape({
+              id: PropTypes.number.isRequired,
+              price: PropTypes.number.isRequired,
+              title: PropTypes.string.isRequired,
+              description: PropTypes.string.isRequired,
+              dateAdded: PropTypes.string.isRequired,
+              taskCategoryName: PropTypes.string.isRequired,
+              commentsCount: PropTypes.number.isRequired
+            }).isRequired
+          ).isRequired,
+        totalPages: PropTypes.number.isRequired,
+        page: PropTypes.number.isRequired
     }
     
     componentDidMount() {
@@ -56,7 +84,7 @@ class Tasks extends Component {
                     </div >
 
                 </div >
-                <ScrollTop anchor={this.anchor} />
+                {this.props.tasksAreLoading===true? null :<ScrollTop anchor={this.anchor} />}
             </div >
         );
     }

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 class TaskItemList extends React.Component {
   static propTypes = {
-    foundTaskList: PropTypes.arrayOf (
+    tasks: PropTypes.arrayOf (
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         price: PropTypes.number.isRequired,
@@ -15,8 +15,6 @@ class TaskItemList extends React.Component {
         commentsCount: PropTypes.number.isRequired
       }).isRequired
     ).isRequired,
-    setFoundTasksList: PropTypes.func.isRequired,
-    isLoading:PropTypes.bool
   }
 
   render() {

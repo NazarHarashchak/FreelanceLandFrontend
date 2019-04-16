@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class ScrollTop extends React.Component {
     static propTypes = {
-        scrollFunc:PropTypes.func.isRequired
+        anchor: PropTypes.object.isRequired
     }
 
     render() {
