@@ -46,14 +46,13 @@
 
     vertical-align: middle;
   }
-
   #task-price {
     position: relative;
     float: right;
-    background-color: #27551a;
+    background-color: rgb(7, 82, 50);
     color: white;
     height: 30px;
-    width: 40px;
+    width: 50px;
     font-size: 18px;
     vertical-align: middle; 
     text-align: center;
@@ -97,10 +96,16 @@
     text-align: center;
   }
   #status-panel{
-    margin:10px;
+    margin-top:10px;
+    margin-bottom: 10px;
+    text-align: left;
   }
-  ul.my_list{
-    margin: 0px;
+  ul.my_list {
+    position: relative;
+    right: 45px;
+  }
+  img {
+    border-radius: 10px 10px 10px 10px;
   }
   ul.my_list li{
     display: inline;
@@ -153,7 +158,6 @@
   }
   .first-status{
     background-color: rgb(252, 171, 22);
-    text-decoration: underline;
     color:white;
   }
   .second-status::after{

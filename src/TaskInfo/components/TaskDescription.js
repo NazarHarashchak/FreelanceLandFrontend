@@ -76,7 +76,7 @@ GetStatusList(){
           </ul>
       </div>);
         case "Ready for verification":
-            return(<div id="status-pa0nel">
+            return(<div id="status-panel">
             <ul className="my_list">
               <li className="second-status">
                 To do >
@@ -116,7 +116,7 @@ GetStatusList(){
           </div>
           <hr id="hr-tag"/>
               <div id="task-price">
-                {this.props.myTask.price}$
+              {this.props.myTask.price}$
               </div>
               <div id="task-desk">
               <h4>
@@ -130,7 +130,7 @@ GetStatusList(){
             {this.props.myTask.taskStatus !== "Done" ? 
             
             <Comments taskId={this.props.id} customerId={this.props.customerId}
-             excecutorId={this.props.excecutorId}/> :
+             excecutorId={this.props.excecutorId} myTask={this.props.myTask}/> :
              <div></div>
             }
              { (sessionStorage.getItem("id") == this.props.customerId) 

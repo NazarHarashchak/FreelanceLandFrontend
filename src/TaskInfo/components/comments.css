@@ -22,6 +22,12 @@
     li {
       list-style-type: none;
     }
+    #comments-error{
+      text-align: center;
+    }
+    img {
+      border-radius: 10px 10px 10px 10px;
+    }
     #comments-title{
       border-width: 2px;
       border-style: outset;
@@ -67,6 +73,7 @@
     }
     #user-photo{
      width:80px;
+     border-radius: 10px 10px 10px 10px;
     }
     #submit{
       margin: 5px;

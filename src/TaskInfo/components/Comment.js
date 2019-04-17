@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { addExcecutor } from '../taskActions';
 import { Icon } from 'semantic-ui-react';
 import SweetAlert from 'sweetalert2-react';
+import  logo from './123.jpeg';
 import "./comments.css";
 
 class Comment extends React.Component {
@@ -50,7 +51,9 @@ class Comment extends React.Component {
               <tr> 
                 <td>
                     <div id="comment-user-photo"> 
-                    <img src={require("./123.jpeg")} alt="фото користувача" width="100%" />
+                    { (this.props.item.photo !== "empty") ? 
+                      <img src={this.props.item.photo} alt="user photo" width="100%" />:
+                      <img src={logo} alt="user photo" width="100%" />}
                     </div>
                </td>
                <td>  

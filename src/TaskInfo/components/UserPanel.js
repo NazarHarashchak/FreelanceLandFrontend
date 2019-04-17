@@ -1,8 +1,15 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import "./taskbody.css";
+import  Card  from './Card';
 
 class UserPanel extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      image: ''
+  };
+}
 
   render() {
     return (
@@ -11,55 +18,28 @@ class UserPanel extends React.Component {
           <div className="user-panel">
             <div className="top-row">Customer
             </div>
-              <table id="user-table">
-              <tbody>
-                <tr id="bottom-row">
-                  <td>
-                  <div id="user-photo">
-                    <img src={require("./123.jpeg")} alt="фото користувача" width="80px"/>
-                  </div>
-                  </td>
-                  <td>
-                    <span id="user-link"> <Link to={`/ProfilePage/${this.props.customerId}`}>
-                    <i className="fa fa-address-book"></i>{this.props.name 
-                      + ' ' +  this.props.secName}
-                    </Link></span>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
+              <Card id={this.props.forecasts.customerId} name={this.props.forecasts.customerName}
+                     secName={this.props.forecasts.customerSecondName}
+                     photo = {this.props.forecasts.customerPhoto} />
            </div>
-           { this.props.excecutorId !== 0  ? (
+           { this.props.forecasts.excecutorId !== 0  ? (
              <div className="user-panel">
               <div className="top-row">Excecutor
               </div>
-                <table id="user-table">
-                  <tr id="bottom-row">
-                    <td>
-                    <div id="user-photo">
-                      <img src={require("./123.jpeg")} alt="фото користувача" width="80px"/>
-                    </div>
-                    </td>
-                    <td>
-                      <span id="user-link"> 
-                      <Link to={`/ProfilePage/${this.props.excecutorId}`}>
-                      <i className="fa fa-address-book"></i>{this.props.exName 
-                        + ' ' +  this.props.exSecName}
-                      </Link></span>
-                    </td>
-                  </tr>
-                </table>
+               <Card id={this.props.forecasts.excecutorId} name={this.props.forecasts.excecutorName}
+                     secName={this.props.forecasts.excecutorSecondName}
+                     photo = {this.props.forecasts.excecutorPhoto}/>
              </div>):(null)
            }
             <div className="user-panel">
               <div className="top-row">Date added</div>
                <i className="fa fa-calendar-plus-o"></i>
-                <label className="labelText">{this.props.dateAdded}</label>
+                <label className="labelText">{this.props.forecasts.date}</label>
             </div>
             <div className="user-panel">
               <div className="top-row">Task updated</div>
               <i className="fa fa-clock-o" ></i>
-              <label className="labelText">{this.props.deadline}</label>
+              <label className="labelText">{this.props.forecasts.deadline}</label>
             </div>
             </div>
       </div>
