@@ -14,6 +14,7 @@ const requestCategoriesTask = 'REQUEST_CATEGORIES_TASK';
 const receiveCategoriesTask = 'RECEIVE_CATEGORIES_TASK';
 const requestTask = 'REQUEST_TASK';
 const receiveTask = 'RECEIVE_TASK';
+const receiveImage = 'RECEIVE_IMAGE';
 
 export const  requestTaskForecasts = (myId) => async (dispatch) => {
         dispatch({ type: requestTaskForecastsType });
@@ -81,6 +82,13 @@ export const actionCommentsCreators = {
         const comments = await requests.doGet(url);
 
         dispatch({ type: receiveCommentsListType, comments });
+    } ,
+
+    getImage: (id) => async (dispatch) => {
+
+        const ImgData = await requests.doGet('/users/GetImage/' + id);
+
+        dispatch({ type: receiveImage, ImgData });
     }
 }
 

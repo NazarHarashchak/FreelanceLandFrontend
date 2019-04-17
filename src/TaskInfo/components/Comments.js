@@ -8,6 +8,7 @@ import {actionCommentsCreators} from "../taskActions"
 class Comments extends React.Component {
   componentWillMount(){
     this.props.requestComments(this.props.taskId);
+    this.props.getImage(sessionStorage.getItem("id"));
   }
 
   addNewComment() {
@@ -16,10 +17,10 @@ class Comments extends React.Component {
        return (
          <div id="comment-eror">Sign in to add the comment</div>
        );}
-   else {
-      return (
-        <AddComment userId={myUserId} taskId={this.props.taskId}/>
-        );}
+   else { if (this.props.myTask.taskStatus === 'To do'){ return(
+        <AddComment userId={myUserId} taskId={this.props.taskId} userphoto={this.props.myphoto}/>);}
+      
+      else {return(<div id="comments-error">You cant send the comments becuse this task is already started</div>);}}
   }
   render() {
     return (
