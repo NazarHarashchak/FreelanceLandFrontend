@@ -3,9 +3,16 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators } from '../actions';
 import ChatRoomsList from './ChatRoomsList';
+import PropTypes from 'prop-types';
 
 
 class MessagePage extends Component {
+    static propTypes = {
+        requestChatRoomsList: PropTypes.func,
+        chatRooms: PropTypes.array,
+        isLoading: PropTypes.bool
+    }
+
     constructor(props) {
         super(props);
         this.state = {

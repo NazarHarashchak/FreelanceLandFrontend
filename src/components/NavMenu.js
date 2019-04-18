@@ -12,6 +12,7 @@ import NotificationIcon from './Notifications';
 import { actionCreators } from '../components/actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { ROOT } from '../services/api-config';
 
 function onClickLogout() {
     sessionStorage.removeItem('tokenKey');
@@ -47,7 +48,7 @@ class NavMenu extends Component {
 
     componentDidMount() {
         if (sessionStorage.getItem('tokenKey')) {
-            let hubUrl = 'https://localhost:44332/notification';
+            let hubUrl = ROOT + '/notification';
             const hubConnection = new signalR.HubConnectionBuilder()
                 .withUrl(hubUrl, { accessTokenFactory: () => sessionStorage.getItem('tokenKey') })
                 .configureLogging(signalR.LogLevel.Information)

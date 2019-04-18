@@ -12,8 +12,6 @@ const requestCategoriesListType = 'REQUEST_CATEGORIES_LIST';
 const receiveCategoriesListType = 'RECEIVE_CATEGORIES_LIST';
 const requestDeleteTask = 'REQUEST_DELETE_TASK';
 const receiveDeleteTask = 'RECEIVE_DELETE_TASK';
-const requestTasksListForUserType = 'REQUEST-TASKS-LIST-FOR-USER-TYPE';
-const receiveTasksListForUserType = 'RECEIVE-TASKS-LIST-FOR-USER-TYPE';
 const requestCreatedTasksListForUserType = 'REQUEST-CREATED-TASKS-LIST-FOR-USER-TYPE';
 const receiveCreatedTasksListForUserType = 'RECEIVE-CREATED-TASKS-LIST-FOR-USER-TYPE';
 

@@ -2,9 +2,31 @@ import React from "react";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { changeCheckedStatus, requestTasksList } from '../actions';
+import PropTypes from 'prop-types';
 
 class CategoriesList extends React.Component {
   
+  componentDidUpdate() {
+    this.props.requestTasksList(this.props.page, this.props.filter, this.props.search,this.props.control);
+  }
+
+  static propTypes = {
+    filter: PropTypes.shape({
+      categories: PropTypes.arrayOf (
+          PropTypes.shape({
+            type: PropTypes.string.isRequired,
+            isChecked: PropTypes.bool.isRequired
+          }).isRequired
+        ).isRequired,
+      priceFrom: PropTypes.number.isRequired,
+      priceTo: PropTypes.number.isRequired,
+    }).isRequired,     
+    search: PropTypes.string.isRequired,
+    page: PropTypes.number.isRequired,
+    requestTasksList: PropTypes.func.isRequired,
+    changeCheckedStatus: PropTypes.func.isRequired
+  }
+
   componentDidUpdate() {
     this.props.requestTasksList(this.props.page, this.props.filter, this.props.search,this.props.control);
   }
@@ -13,8 +35,7 @@ class CategoriesList extends React.Component {
     return (
       <div>
         {this.props.filter.categories.map(category => (
-          <label 
-          key={category.type}>
+          <label key={category.type}>
             <input
               type="checkbox"
               name={category.type}
