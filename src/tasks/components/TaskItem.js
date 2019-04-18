@@ -27,8 +27,8 @@ class TaskItem extends React.Component {
         this.setState({ showPop: true });
     }
 
-    render() {
-        return (
+	render() {
+		return (
             <Item.Group link>
                 <SweetAlert
                     show={this.state.showPop}

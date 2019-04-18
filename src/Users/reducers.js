@@ -6,11 +6,7 @@ const searchTaskListType = 'SEARCH_TASKS_LIST';
 const setFoundRolesListType = 'SET_FOUND_ROLES_LIST_TYPE';
 const changeRoleStatusType = 'CHANGE_CHECKED_ROLE_TYPE';
 const changeRolesOpenedStatusType = 'CHANGE_ROLES_OPENED_STATUS_TYPE';
-
-const initialState = { newUsers: [],totalPages:"",filteredRolesList: [],searchText:"",isLoading: false, roles: [], foundRolesList: [], isRoleOpened: false };
-
-
-
+const initialState = { newUsers: [],totalPages:1,currentPage:1,filteredRolesList: [],searchText:"",isLoading: true,categLoading:true, roles: [], foundRolesList: [], isRoleOpened: false };
 
 export const reducer = (state, action) => {
     state = state || initialState;
@@ -24,11 +20,10 @@ export const reducer = (state, action) => {
         case receiveUsersListType:
             return{
                 ...state,
-                newUsers:action.newUsers,
-                filteredRolesList: action.newUsers,
-                foundRolesList:action.roles,
-                totalPages:action.totalPages,
-                
+                newUsers:action.users.newUsers,
+                filteredRolesList: action.users.newUsers,
+                totalPages:action.users.totalPages,
+                currentPage: action.users.currentPage,
                 isLoading: false
             };
         case requestUserRolesList:
@@ -54,7 +49,7 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 roles: newRoleList,
-                filteredRolesList: filterUsers(newRoleList,state.newUsers)
+                categLoading:false
             }
             case changeRolesOpenedStatusType:
             return {
@@ -77,20 +72,3 @@ function switchCheckedStatus(roles,name) {
     return newList;
 }
 
-function totalItems(totalPages)
-{
-    
-    return totalPages;
-}
-function filterUsers(roles, newUsers){
-    let checkedRoles=roles.filter(typ =>typ.isChecked === true);
-    if(checkedRoles.length !== 0){
-        newUsers=newUsers.filter(item => {
-            return(
-                checkedRoles.some(typ => typ.id === item.userRoleId) ===true
-            )
-        })
-    }
-    console.log(newUsers);
-    return newUsers;
-}

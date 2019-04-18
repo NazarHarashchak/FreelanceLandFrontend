@@ -93,8 +93,8 @@ class addTaskPage extends React.Component {
                         this.setState({descriptionError: my_error});
                         return(false);
                     }
+                    default: return false;
                 }
-             return false;
             }
     }
 
@@ -169,7 +169,7 @@ class addTaskPage extends React.Component {
                             <label>Price: </label>
                         </div>
                         <div className="text-element">
-                            <input type="number" min="0" step="10" placeholder="Enter your price in $" 
+                            <input type="number" min="0" step="1" placeholder="Enter your price in $" 
                             id="price-text" name="price-text" onChange={this.onPriceChange} defaultValue='0'/>
                             <label id="price-error" className="Errors">{this.state.priceError}</label>
                         </div>
@@ -190,7 +190,8 @@ class addTaskPage extends React.Component {
                     <div id="error">
                     <label id="" className="Errors">{this.state.myError}</label>
                     </div>
-                    </form>
+
+</form>
                     </div>
                     <div id="some-space"></div>
                 </div>

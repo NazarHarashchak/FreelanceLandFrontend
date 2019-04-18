@@ -11,12 +11,12 @@ class UserPanel extends React.Component {
   };
 }
 
-    render() {
-        return (
-            <div>
-                <div className="right-row-panel">
-                    <div className="user-panel">
-                        <div className="top-row">Customer
+  render() {
+    return (
+      <div>
+         <div className="right-row-panel">
+          <div className="user-panel">
+            <div className="top-row">Customer
             </div>
               <Card id={this.props.forecasts.customerId} name={this.props.forecasts.customerName}
                      secName={this.props.forecasts.customerSecondName}

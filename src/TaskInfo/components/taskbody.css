@@ -11,6 +11,10 @@
     height: 20px;
 }
 
+#customer-photo{
+  margin: 10%;
+  text-align: center;
+}
 #edit-button{
   float:right;
   position: relative;
@@ -20,6 +24,11 @@
   height: 30px;
   width: 30px;
   cursor: pointer;
+}
+#customer-name
+{
+  text-align: center;
+  margin-top: 9%;
 }
 #hr-tag {
     margin: 30px -20px 20px;
@@ -191,12 +200,7 @@
     background-color: rgb(95, 95, 95);
     color:black;
   }
-  #user-photo{
-    padding: 10px;
-  }
-  #user-link{
-    margin-left: 20px;
-  }
+  
   #close-task-button{
     margin-top:10px;
     text-align: center;

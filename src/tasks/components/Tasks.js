@@ -1,52 +1,51 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { requestTasksList } from '../actions';
+import { requestTasksList, requestCategoriesList, changeCurrentPage } from '../actions';
 import TaskItemList from './TaskItemList';
 import SearchBar from './SearchBar';
 import ScrollTop from './ScrollTop';
 import Filter from './Filter';
-import { Pagination } from 'react-bootstrap'; 
+import { Pagination } from 'react-bootstrap';
 import '../styles.css';
-import { push } from 'react-router-redux'; 
-
-
+import { push } from 'react-router-redux';
 
 class Tasks extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.current_page = this.props.page;
-    
+        this.state = {
+            id:"all?" }
         this.changePage = this.changePage.bind(this);
-      };
-    componentWillMount() {
-        this.props.requestTasksList(this.props.page);
+    };
+    async componentWillMount() {
+        await this.props.requestCategoriesList();
+        this.props.requestTasksList(this.props.page, this.props.filter, this.props.search, this.state.id);
     }
 
     render() {
-        const pages = 1;
         return (
-           
             <div className="container" id="tasks-container">
-
+                <div
+                    ref={(el) => { this.anchor = el; }}>
+                </div>
                 <div className="main-content container">
-                    <SearchBar />
+                    <SearchBar control={this.state.id}/>
                     <div className="row">
                         <div
                             ref={(el) => { this.anchor = el; }}>
                         </div>
                         <div className="col-md-9" id="j-orders-search-list">
-                            <TaskItemList />
+                            {this.props.tasksAreLoading===true ? <h3>Loading data...</h3> : <TaskItemList tasks={this.props.tasks} />}
                             <Pagination className="users-pagination pull-center" 
                             bsSize="medium" 
                             maxButtons={10} 
                             first last next prev boundaryLinks 
-                            items={pages} 
-                            activePage={this.current_page} 
+                            items={this.props.totalPages} 
+                            activePage={this.props.page} 
                             onSelect={this.changePage} />
                         </div>
                         <div className="col-md-3">
-                            <Filter />
+                            <Filter control={this.state.id}/>
                         </div>
                     </div >
 
@@ -55,27 +54,25 @@ class Tasks extends Component {
             </div >
         );
     }
-    changePage(page){
-        alert(page);
-        this.props.push(page)
-        this.props.requestTasksList(page);
-        this.current_page =page;
-        
+    changePage(page) {
+        this.props.push(page);
+        this.props.requestTasksList(page,this.props.filter, this.props.search, this.state.id);
+        this.props.changeCurrentPage(page);
     }
 }
 
-
-function mapStateToProps (state ) {
-    return({
-        state :state.tasksReducers,
-      page: state.routing && state.routing.locationBeforeTransitions && state.routing.locationBeforeTransitions.query && state.routing.locationBeforeTransitions.query.page_no || 1,
-      current_page: state.page,
-      
+function mapStateToProps(state) {
+    return ({
+        filter: state.tasksReducers.filter,
+        search: state.tasksReducers.search,
+        tasksAreLoading: state.tasksReducers.tasksAreLoading,
+        tasks: state.tasksReducers.tasks,
+        totalPages: state.tasksReducers.totalPages,
+        page: state.tasksReducers.curPage
     });
-    
-  }
+}
 
 export default connect(
     mapStateToProps,
-    dispatch => bindActionCreators({requestTasksList:requestTasksList, push: push}, dispatch)
+    dispatch => bindActionCreators({ requestTasksList: requestTasksList, requestCategoriesList:requestCategoriesList, push: push, changeCurrentPage:changeCurrentPage }, dispatch)
 )(Tasks);

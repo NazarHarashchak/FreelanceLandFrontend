@@ -1,5 +1,6 @@
 import React from "react";
 import './Footer.css';
+import { Icon } from "semantic-ui-react";
 
 const Footer = () => {
     return (
@@ -20,10 +21,10 @@ const Footer = () => {
                             <h4>Support</h4>
                         </div>
                         <div className="col-md-3">
-                            <a href="#" className="fa fa-facebook-square"></a>
-                            <a href="#" className="fa fa-twitter-square"></a>
-                            <a href="#" className="fa fa-google-plus-square"></a>
-                            <a href="#" className="fa fa-linkedin-square"></a>
+                            <Icon href="#" className="fa fa-facebook-square"></Icon>
+                            <Icon href="#" className="fa fa-twitter-square"></Icon>
+                            <Icon href="#"className="fa fa-google-plus-square"></Icon>
+                            <Icon href="#" className="fa fa-linkedin-square"></Icon>
 
                         </div>
                     </div>

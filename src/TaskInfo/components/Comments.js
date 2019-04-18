@@ -28,7 +28,7 @@ class Comments extends React.Component {
         <div id="comments-title">Comments</div>
         {this.addNewComment()}
         <div className="comments">
-          <ul width="100%">
+          <ul width="100%" className="list-comments">
               <li>
                     {this.props.comments.map(item => (          
                       <Comment
@@ -36,6 +36,7 @@ class Comments extends React.Component {
                       item={item}
                       customerId = {this.props.customerId}
                       excecutorId = {this.props.excecutorId}
+                      task={this.props.myTask}
                       />
                     ))}
               </li>

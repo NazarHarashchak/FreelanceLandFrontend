@@ -3,53 +3,89 @@ import CategoriesList from "./CategoriesList";
 import { Button, Collapse } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { changeCategOpenedStatus, changeFromPrice, changeToPrice, cleanFilter } from '../actions';
+import { changeCategOpenedStatus, changePrice, cleanFilter,requestTasksList } from '../actions';
 import '../styles.css';
 const ENTER_KEY = 13;
 
 class Filter extends React.Component {
+  constructor(props) {
+    super();
 
-  handleChange = (e) => {
-    e.target.name === "ToField" ? this.validateToPriceField(e) : this.validateFromPriceField(e)
+    this.state = {
+        toValue: '',
+        fromValue:'',
+        isValid: null,
+        errorMsg: null,
+        edit: true
+    };
   }
 
-  handleKeyDown = (e) => {
+  timer = null
+
+  contains(parent, child) {
+    if (!child || !child.parentElement) return false;
+    if (child.parentElement === parent) return true;
+
+    return this.contains(parent, child.parentElement);
+  }
+
+  handleBlur(e) {
+    const target = e.relatedTarget;
+    const parent = e.currentTarget;
+    if (!this.contains(parent, target)) {
+      let isValid = this.triggerChange();
+      this.setState({
+        ...this.state,
+        edit: false,
+        isValid: isValid
+      });
+    }
+  }
+
+  handleFocus(e) {
+    this.setState({
+      ...this.state,
+      edit: true,
+    });
+  }
+
+  handleChange = e => {
+    this.setState(e.target.name === "ToField"?
+      { ...this.state,toValue: parseInt(e.target.value,10)}:
+      { ...this.state,fromValue: parseInt(e.target.value,10)}
+    )
+  }
+
+  handleKeyDown = e => {
     if (e.keyCode === ENTER_KEY) {
-      e.target.name === "ToField" ? this.validateToPriceField(e) : this.validateFromPriceField(e);
-    }
-  }
-  validateFromPriceField = (e) => {
-    let toPrice = this.props.filter.priceTo;
-    let isValueNull = e.target.value === "";
-    let isToPriceNull = toPrice === "";
-    let fromPrice = parseInt(e.target.value, 10);
-    toPrice = parseInt(toPrice, 10);
-    let isgreaterZero = isValueNull ? true : fromPrice >= 0;
-    let isLowerToPrice = isToPriceNull || isValueNull ? true : fromPrice <= toPrice;
-
-    if (isgreaterZero && isLowerToPrice) {
-      this.props.changeFromPrice(e.target.value);
-      e.target.setCustomValidity("");
-    }
-    else {
-      e.target.setCustomValidity("Value must be between 0 and ToPrice");
-      e.target.reportValidity();
+      this.triggerChange(e);
     }
   }
 
-  validateToPriceField = (e) => {
-    let fromPrice = this.props.filter.priceFrom;
-    let isSomeNull = fromPrice === "" || e.target.value === "";
-    fromPrice = parseInt(fromPrice, 10);
-    let toPrice = parseInt(e.target.value, 10);
-    if (isSomeNull ? true : toPrice >= fromPrice) {
-      this.props.changeToPrice(e.target.value);
-      e.target.setCustomValidity("");
+  triggerChange(self) {
+    let fromValue = this.state.fromValue;
+    let toValue = this.state.toValue;
+    if (fromValue==='') {fromValue=0};
+    if (toValue==='') {toValue=0};
+    let isValid = this.validatePriceFileds(fromValue,toValue);
+    if (isValid) {
+      this.props.changePrice({fromValue:fromValue,toValue:toValue}); 
     }
-    else {
-      e.target.setCustomValidity("Value must be greater FromPrice");
-      e.target.reportValidity();
-    }
+    return isValid;
+  }
+
+
+  validatePriceFileds(fromPrice,toPrice){
+    let isValid = false;
+    (fromPrice>=0 && (fromPrice<=toPrice||toPrice===0)) ? isValid=true : isValid=false;
+    return isValid;
+  }
+
+
+  onCleanFilter(e) {
+    e.preventDefault(); 
+    this.setState({ ...this.state,toValue: '', fromValue: '', isValid:null});
+    this.props.cleanFilter(); 
   }
 
   render() {
@@ -67,38 +103,46 @@ class Filter extends React.Component {
             </Button>
             <Collapse in={this.props.isCategOpened}>
               <div id="collapse-categories">
-                <CategoriesList />
+              {this.props.tasksAreLoading===true ? <h3>Loading data...</h3> : 
+                <CategoriesList control={this.props.control}/>
+              }
               </div>
             </Collapse>
           </div>
           <div className="form-group price-filter">
             <h5>Price:</h5>
-            <div className="row">
+            {this.state.isValid||this.state.isValid===null ? "": 
+              <div>
+                <span className="fa fa-warning" ></span>
+                <span className="validate-error-text">Value must be between 0 and ToPrice</span>
+              </div>
+            }
+            <div className={`row ${this.state.isValid||this.state.isValid===null?'':'has-error'}`} onFocus={(e)=>this.handleFocus(e)} onBlur={(e)=> this.handleBlur(e)} tabIndex="1">
               <div className="col-md-6">
                 <input type="number"
+                  value={this.state.fromValue}
                   name="FromField"
-                  value={this.props.filter.priceFrom}
                   className="form-control"
                   placeholder="From"
                   id="from-price-filter"
                   onKeyDown={e => this.handleKeyDown(e)}
-                  onChange={e => this.handleChange(e)}
+                  onChange = {(e) => this.handleChange(e)}
                 />
               </div>
               <div className="col-md-6">
                 <input type="number"
-                  value={this.props.filter.priceTo}
-                  className="form-control"
+                  value={this.state.toValue}
+                  className="form-control" 
                   placeholder="To"
                   name="ToField"
                   onKeyDown={e => this.handleKeyDown(e)}
-                  onChange={e => this.handleChange(e)}
+                  onChange = {(e) => this.handleChange(e)}
                 />
               </div>
             </div>
           </div>
           <div className="form-group">
-            <a href="" id="clear-filter-button" onClick={e => {e.preventDefault(); this.props.cleanFilter()}}>clean </a>
+            <h4 id="clear-filter-button" onClick={e => this.onCleanFilter(e)}>clean </h4>
           </div>
         </form>
       </div>
@@ -106,14 +150,22 @@ class Filter extends React.Component {
   }
 }
 
+function mapStateToProps(state) {
+  return ({
+      isCategOpened: state.tasksReducers.isCategOpened,
+      tasksAreLoading: state.tasksReducers.tasksAreLoading
+  });
+}
+
+
 export default connect(
-  state => state.tasksReducers,
+  mapStateToProps,
   dispatch => bindActionCreators(
     {
       changeCategOpenedStatus: changeCategOpenedStatus,
-      changeFromPrice: changeFromPrice,
-      changeToPrice: changeToPrice,
-      cleanFilter: cleanFilter
+      changePrice: changePrice,
+      cleanFilter: cleanFilter,
+      requestTasksList: requestTasksList
     },
     dispatch)
 )(Filter);

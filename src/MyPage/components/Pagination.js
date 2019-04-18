@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from 'react-redux';
 
 class Pagination extends React.Component {
   render() {
@@ -11,14 +10,9 @@ class Pagination extends React.Component {
         
           <li><a data-page="2" className="j-pgn-page" >»</a></li>
         </ul>
-      
-         
-      
-      
+
       </div>
     );
   }
 }
-export default connect(
-  state => state.tasksReducers
-)(Pagination);
+export default Pagination;

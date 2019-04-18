@@ -1,6 +1,5 @@
     .comments-panel{
       width: 100%;
-      position: relative;
       margin-top: 30px;
       border-style: outset;
       border-width: 2px;
@@ -47,8 +46,8 @@
       clear: both;
     }
     #comment-user-photo{
-      padding: 10px;
-      width:60px;
+      text-align: center;      
+      width:80px;
     }
     .date{
       padding-left: 10px;
@@ -67,13 +66,12 @@
       margin:15px;
     }
     #text-content{
-      width: 70%;
       height: 40px;
       margin-left: 5px;
     }
     #user-photo{
-     width:80px;
-     border-radius: 10px 10px 10px 10px;
+     width:60px;
+     border-radius: 10px 10px 10px 10px !important;
     }
     #submit{
       margin: 5px;
@@ -100,4 +98,8 @@
     border-style: none;
     color: white;
     background-color: rgb(7, 82, 50);
+    }
+    .comment-title
+    {
+      margin-top: 2%;
     }

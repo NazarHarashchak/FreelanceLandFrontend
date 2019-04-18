@@ -98,7 +98,6 @@ GetStatusList(){
 }
   render() {
     return (
-        <div className="col-md-8" >
         <div>
           <div><Link to="/tasks">Back to list</Link> </div>
            {this.GetStatusList()}
@@ -140,7 +139,6 @@ GetStatusList(){
              </div>) : null
              }
             </div>
-        </div>
     );
   }
 }

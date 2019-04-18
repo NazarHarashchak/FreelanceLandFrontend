@@ -10,11 +10,17 @@
     color: #555555;
     white-space: nowrap;
 }
+.validate-error-text {
+    font-size:12px;
+}
 
 .l-item-features li i {
     margin-right:5px;
 }
 
+#clear-filter-button, .scrolltop{
+    cursor: pointer;
+}
 
 header.l-project-title > :link{
     text-decoration-color: rgb(15, 133, 15);

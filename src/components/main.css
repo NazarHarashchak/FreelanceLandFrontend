@@ -3,9 +3,11 @@ html {
 }
 
 body {
-    min-height: 100%;
+    min-height: 100px;
 }
-
+.body-height{
+    min-height: 83.7vh !important;
+}
 #push50 {
     height: 17px;
 }
