@@ -1,12 +1,14 @@
-.container-fluid{
-  position:relative;
+.container-fluid {
+    position: relative;
 }
+
 #task-title {
   font-size: 25px;
   height: 20px;
 }
+
 #push_block {
-  height: 20px;
+    height: 20px;
 }
 
 #edit-button{
@@ -20,12 +22,12 @@
   cursor: pointer;
 }
 #hr-tag {
-  margin: 30px -20px 20px;
-  border: 0;
-  border-top: 1px solid #c9c7c7;
+    margin: 30px -20px 20px;
+    border: 0;
+    border-top: 1px solid #c9c7c7;
 }
 
-  .my-task-description {
+.my-task-description {
     position: relative;
     top: 10px;
     padding: 20px;
@@ -34,16 +36,16 @@
     border-radius: 10px;
     background-color: #fbfbfc;
     text-align: center;
-  }
-  #task-desk {
+}
+
+#task-desk {
     position: relative;
     width: 70%;
     text-align: left;
     clear: both;
-  }
+}
 
-  #text-container {
-
+#text-container {
     vertical-align: middle;
   }
   #task-price {
@@ -54,27 +56,29 @@
     height: 30px;
     width: 50px;
     font-size: 18px;
-    vertical-align: middle; 
+    vertical-align: middle;
     text-align: center;
     box-sizing: border-box;
-  }
-  .right-row-panel{
+}
+
+.right-row-panel {
     position: relative;
     margin-left: 20px;
-  }
-  .user-panel{
+}
+
+.user-panel {
     border-width: 2px;
     border-style: outset;
     border-radius: 10px;
-    width:100%;
-    margin-top:20px;
-  }
+    width: 100%;
+    margin-top: 20px;
+}
 
-  .labelText {
+.labelText {
     text-align: center;
-  }
+}
 
-  .top-row {
+.top-row {
     border-width: 2px;
     border-style: outset;
     border-radius: 10px 10px 0px 0px;
@@ -87,8 +91,9 @@
     font-size: 20px;
     text-align: center;
     padding: 15px;
-  }
-  #bottom-row {
+}
+
+#bottom-row {
     height: 80px;
     vertical-align: middle;
   }
@@ -195,13 +200,14 @@
   #close-task-button{
     margin-top:10px;
     text-align: center;
-    padding-bottom:10px; 
-  }
-  #close{
+    padding-bottom: 10px;
+}
+
+#close {
     height: 50px;
-    width:200px;
+    width: 200px;
     border-radius: 5px 5px 5px 5px;
     border-style: none;
     color: white;
     background-color: rgb(7, 82, 50);
-  }
+}

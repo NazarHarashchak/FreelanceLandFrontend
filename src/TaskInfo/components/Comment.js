@@ -9,40 +9,54 @@ import  logo from './123.jpeg';
 import "./comments.css";
 
 class Comment extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      success: 'Excecutor is already added'
+    constructor(props) {
+        super(props);
+        this.state = {
+            success: 'Excecutor is already added',
+            showPop: false
+        }
+        this.deleteClick = this.deleteClick.bind(this);
+        this.deleteSubmit = this.deleteSubmit.bind(this);
+        this.saveExcecutor = this.saveExcecutor.bind(this);
     }
 
-    this.saveExcecutor = this.saveExcecutor.bind(this);
-  }
+    deleteSubmit() {
+        this.setState({ showPop: false });
+        this.props.deleteComment(this.props.item.id);
+        //document.location.replace('taskInf/' + this.props.item.taskId);
+    }
 
-  saveExcecutor(event) {
-    console.log("Something doing");
-    this.props.addAnExcecutor(this.props.item.userId, this.props.item.taskId).then(() => {
-      alert(this.state.success);
-      document.location.reload();
-    });;
-    event.preventDefault();
-  }
+    deleteClick() {
+        this.setState({ showPop: true });
+    }
 
-  render() {
-    return (
-        <div className="comentar">
-            <SweetAlert
-                show={this.state.showPop}
-                type= 'success'
-                title= 'Cool!'
-                text='Comment was deleted successful!'
-                confirmButtonColor='#075232'
-                onConfirm={() => this.setState({ showPop: false })}
-            />
-            {sessionStorage.getItem('role') === "Moderator" ? 
-                (
-                    <button id="delete" onClick={this.deleteSubmit}>
-                        <Icon name='trash alternate'></Icon>
-                    </button>)
+    saveExcecutor(event) {
+        this.props.addAnExcecutor(this.props.item.userId, this.props.item.taskId).then(() => {
+            alert(this.state.success);
+            document.location.reload();
+        });;
+        event.preventDefault();
+    }
+
+    render() {
+        return (
+            <div className="comentar">
+                <SweetAlert
+                    show={this.state.showPop}
+                    type='warning'
+                    title='Are you sure?'
+                    text="You won't be able to revert this!"
+                    showCancelButton={true}
+                    confirmButtonColor='#075232'
+                    cancelButtonColor='#ffff00'
+                    confirmButtonText='Yes, delete it!'
+                    onConfirm={this.deleteSubmit}
+                />
+                {sessionStorage.getItem('role') === "Moderator" ?
+                    (
+                        <button id="delete" onClick={this.deleteClick}>
+                            <Icon name='trash alternate'></Icon>
+                        </button>)
                     :
                     (null)}
         <form>
@@ -79,16 +93,16 @@ class Comment extends React.Component {
                   ):(
                        <div></div>)
                     }
-                <div id="content">
-                  <label >{this.props.item.content}</label>
-                </div>
-        </form>
-      </div>
-    );
-  }
+                    <div id="content">
+                        <label >{this.props.item.content}</label>
+                    </div>
+                </form>
+            </div>
+        );
+    }
 }
 
-export default  connect(
-  state => state.addNewExcecutor,
-  dispatch => bindActionCreators(addExcecutor, dispatch)
+export default connect(
+    state => state.addNewExcecutor,
+    dispatch => bindActionCreators(addExcecutor, dispatch)
 )(Comment);

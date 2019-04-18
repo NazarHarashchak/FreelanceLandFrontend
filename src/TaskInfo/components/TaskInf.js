@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import UserPanel from './UserPanel'; 
+import UserPanel from './UserPanel';
 import TaskDescription from './TaskDescription';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -7,7 +7,7 @@ import { requestTaskForecasts } from '../taskActions';
 class Task extends Component {
 
     componentWillMount() {
-       this.props.requestTaskForecasts(this.props.match.params.id);
+        this.props.requestTaskForecasts(this.props.match.params.id);
     }
 
     render() {
@@ -27,5 +27,5 @@ class Task extends Component {
 
 export default connect(
     state => state.taskProfilePage,
-    dispatch => bindActionCreators({requestTaskForecasts:requestTaskForecasts}, dispatch)
+    dispatch => bindActionCreators({ requestTaskForecasts: requestTaskForecasts }, dispatch)
 )(Task);

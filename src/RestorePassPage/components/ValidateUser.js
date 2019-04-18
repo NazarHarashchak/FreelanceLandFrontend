@@ -63,8 +63,6 @@ class ValidateUser extends Component {
             return (
                 <ConfirmCode user={this.props.user}
                     requestSend={this.props.requestSend}
-                    validateCode={this.props.validateCode}
-                    validCode={this.props.validCode}
                     code={this.props.code}
                     requestChange={this.props.requestChange}
                     updatedUser={this.props.updatedUser}
