@@ -12,6 +12,10 @@ const requestCategoriesListType = 'REQUEST_CATEGORIES_LIST';
 const receiveCategoriesListType = 'RECEIVE_CATEGORIES_LIST';
 const requestDeleteTask = 'REQUEST_DELETE_TASK';
 const receiveDeleteTask = 'RECEIVE_DELETE_TASK';
+const requestTasksListForUserType = 'REQUEST-TASKS-LIST-FOR-USER-TYPE';
+const receiveTasksListForUserType = 'RECEIVE-TASKS-LIST-FOR-USER-TYPE';
+const requestCreatedTasksListForUserType = 'REQUEST-CREATED-TASKS-LIST-FOR-USER-TYPE';
+const receiveCreatedTasksListForUserType = 'RECEIVE-CREATED-TASKS-LIST-FOR-USER-TYPE';
 
 export const requestTasksList = (pageNumber, filter, searchText, control) => async (dispatch) => {
     dispatch({ type: requestTasksListType });
@@ -47,6 +51,14 @@ export const requestCategoriesList = () => async (dispatch) =>{
     const categories = await requests.doGet("/taskinfo/getCategories");
     dispatch({ type: receiveCategoriesListType, categories});
 
+}
+
+export const requestCreatedTasksListForUser = () => async (dispatch) => {
+    dispatch({ type: requestCreatedTasksListForUserType });
+
+    const url=`/tasks/Created/`+sessionStorage.getItem('id');
+    const tasks = await requests.doGet(url);
+    dispatch({ type: receiveCreatedTasksListForUserType, tasks});
 }
 
 export const changeCategOpenedStatus = () => async (dispatch) => {

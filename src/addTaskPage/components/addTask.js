@@ -15,7 +15,7 @@ class addTaskPage extends React.Component {
             descriptionError: '',
             priceContent: '0',
             deadlineContent: this.defaultDate(),
-            categoryContent: 'Web development',
+            categoryContent: '',
             myError: ''
         };
         
@@ -37,6 +37,11 @@ class addTaskPage extends React.Component {
     onTitleChange(event){
         const value = event.target.value;
         this.setState({titleContent: value, titleError: '', myError: ''});
+        if (this.state.categoryContent === ''){
+            const myCategory = this.props.categories[0].type;
+            this.setState({categoryContent: myCategory});
+        }
+        
     }
 
     onDescriptionChange(event){
@@ -64,16 +69,17 @@ class addTaskPage extends React.Component {
     }
 
     defaultDate(){
-        const mounth = new Date().getMonth() + 1;
-        const date = new Date().getDate();
+        var mounth = new Date().getMonth() + 1;
+        var date = new Date().getDate();
         const year = new Date().getFullYear();
+        if (date < 10) { date = '0' + date;}
+        if (mounth < 10) {mounth = '0' + mounth;}
         const value = year + '-' + mounth + '-' + date;
         return(value);
     }
 
     validContent(content, name){
         const my_error = "This space can`t be empty";
-        if ((name === 'title-content') || (name === 'description-content')){
             if (content !== ''){
                 return true;
             }
@@ -90,29 +96,11 @@ class addTaskPage extends React.Component {
                     default: return false;
                 }
             }
-        }
-        else {
-            switch(name){
-                case'price-content':{
-                    return(true);
-                }
-                case'deadline-content':{
-                    return(true);
-                }
-                case'category-content':{
-                    return(true);
-                }
-                default: return true;
-            }
-        }
     }
 
     addedValues(){
         if((this.validContent(this.state.titleContent, 'title-content'))
-            && (this.validContent(this.state.descriptionContent, 'description-content'))
-            && (this.validContent(this.state.priceContent, 'price-content'))
-            && (this.validContent(this.state.categoryContent, 'category-content'))
-            && (this.validContent(this.state.deadlineContent, 'deadline-content')))
+            && (this.validContent(this.state.descriptionContent, 'description-content')))
         {
             return true;
         }
@@ -120,12 +108,13 @@ class addTaskPage extends React.Component {
         return(false);}
     }
 
-saveChanges(event){
+    saveChanges(event){
+        console.log(this.state.categoryContent);
         if (this.addedValues()){
             this.props.createNewTask(this.state.titleContent, this.state.descriptionContent, 
                 sessionStorage.getItem('id'), this.state.priceContent,
-                this.state.deadlineContent, this.state.categoryContent)
-                .then(() => { 
+                this.state.deadlineContent, this.state.categoryContent).
+                then(() => { 
                     alert("Success");
                     document.location = 'http://localhost:3000/tasks/';
             });;
@@ -139,11 +128,12 @@ saveChanges(event){
     render(){
         return(
             <div className="add-task-body">
-                <h1>Add a new task</h1>
                 <div className="col-md-2"></div>
                 <div className="col-md-8">
                 <div className="add-task-description"> 
-                <form name="my-add-task-form">                  
+                <form name="my-add-task-form">       
+                <h1>Add a new task</h1>
+                <hr id="my-hr-tag"/>           
                      <div id="title">
                         <div className="label-element">
                             <label>Title:</label>
@@ -190,18 +180,20 @@ saveChanges(event){
                         </div>
                         <div className="text-element">
                             <input type="date" name="deadline-text"
-                             id="add-date" min='2019-03-25' onChange={this.onDateChange}/>
+                             id="add-date" min={this.defaultDate()} onChange={this.onDateChange} />
                         <label id="deadline-error" className="Errors">{this.state.deadlineError}</label>
                         </div>
                     </div>
                     <div id="save-button">
                         <input type="button" value="Save" id="save-new-task" onClick={this.saveChanges}/>
-                        <label id="" className="Errors">{this.state.myError}</label>
+                    </div>
+                    <div id="error">
+                    <label id="" className="Errors">{this.state.myError}</label>
                     </div>
 
 </form>
                     </div>
-
+                    <div id="some-space"></div>
                 </div>
             </div>
         );

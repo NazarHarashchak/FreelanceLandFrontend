@@ -13,6 +13,7 @@ import ValidateUser from './RestorePassPage/components/ValidateUser';
 import MessagePage from './Messages/components/MessagePage';
 import ChatRoom from './Messages/components/ChatRoom';
 import AddTaskPage from './addTaskPage/components/addTask';
+import editTask from './TaskInfo/editTask/editTask';
 export default () => (
   <Layout>
         <Route path='/main' component={MainPage} />
@@ -27,5 +28,6 @@ export default () => (
         <Route path='/Message' component={MessagePage} />
         <Route path='/ChatRoom/:id' component={ChatRoom} />
         <Route path='/AddTask' component={AddTaskPage} />
+        <Route path='/editTask/:id' component={editTask} />
   </Layout>
 );

@@ -51,7 +51,7 @@ class TaskItem extends React.Component {
  
 			<li className="j-order">
 				<header className="l-project-title">
-					<Link to={`/TaskInf/${this.props.item.id}`}>{this.props.item.title}</Link>
+					<Link to={`/taskInf/${this.props.item.id}`}>{this.props.item.title}</Link>
 				</header>
 
 				<div className="l-project-head flex-price-tag">

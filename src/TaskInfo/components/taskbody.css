@@ -2,32 +2,32 @@
   position:relative;
 }
 #task-title {
-  
   font-size: 25px;
   height: 20px;
 }
 #push_block {
   height: 20px;
 }
-.task-info-container
-{
-  padding: 2% 7% 0% 7%;
-}
-.customer-photo-name
-{
-  padding: 5%;
-}
-.customer-photo
-{
-  text-align: center !important;
-}
-.customer-name
-{
-  padding-top: 7%;
-  color: black;
+
+#customer-photo{
+  margin: 10%;
   text-align: center;
 }
-
+#edit-button{
+  float:right;
+  position: relative;
+  bottom:30px;
+}
+#edit{
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+#customer-name
+{
+  text-align: center;
+  margin-top: 9%;
+}
 #hr-tag {
   margin: 30px -20px 20px;
   border: 0;
@@ -55,14 +55,13 @@
 
     vertical-align: middle;
   }
-
   #task-price {
     position: relative;
     float: right;
-    background-color: #27551a;
+    background-color: rgb(7, 82, 50);
     color: white;
     height: 30px;
-    width: 40px;
+    width: 50px;
     font-size: 18px;
     vertical-align: middle; 
     text-align: center;
@@ -87,15 +86,10 @@
   .top-row {
     border-width: 2px;
     border-style: outset;
-    border-radius: 10px;
+    border-radius: 10px 10px 0px 0px;
     height: 50px;
     width: 100%;
-    background: -webkit-gradient(
-      linear,
-      left bottom,
-      left top,
-      color-stop(0, #27551a)
-    );
+    background: rgb(7, 82, 50);
     box-sizing: border-box;
     font-family: PT Sans, Helvetica Neue, Arial, sans-serif;
     color: white;
@@ -110,14 +104,96 @@
   #bottom-row tr{
     text-align: center;
   }
+  #status-panel{
+    margin-top:10px;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  ul.my_list {
+    position: relative;
+    right: 45px;
+  }
+  img {
+    border-radius: 10px 10px 10px 10px;
+  }
+  ul.my_list li{
+    display: inline;
+    position: relative;
+    padding-top: 10px;
+    padding-bottom:10px;
+    padding-left: 35px;
+    padding-right: 5px;
+    margin-left: 8px; 
+    cursor: default;
+  }
+  ul.my_list li:first-child{
+    border-radius: 10px 0px 0px 10px;
+  }
+  #in_progress::before{
+    content:'';
+    position: absolute;
+    left: 0px;
+    top: -0px;
+    border: 20px solid transparent;	
+    border-left: 30px solid white;
+    z-index: 1;
+  }
+  #ready_for::before{
+    content:'';
+    position: absolute;
+    left: 0px;
+    top: -0px;
+    border: 20px solid transparent;	
+    border-left: 30px solid white;
+    z-index: 1;
+  }
+  #done::before{
+    content:'';
+    position: absolute;
+    left: 0px;
+    top: -0px;
+    border: 20px solid transparent;	
+    border-left: 30px solid white;
+    z-index: 1;
+  }
+  .first-status::after{
+    content:'';
+    position: absolute;
+    right: -50px;
+    top: -0px;
+    border: 20px solid transparent;	
+    border-left: 30px solid rgb(252, 171, 22);
+    z-index: 2;
+  }
   .first-status{
-    background-color: orange;
+    background-color: rgb(252, 171, 22);
+    color:white;
+  }
+  .second-status::after{
+    content:'';
+    position: absolute;
+    right: -50px;
+    top: -0px;
+    border: 20px solid transparent;	
+    border-left: 30px solid rgb(7, 82, 50);
+    z-index: 2;
   }
   .second-status{
-    background-color: green;
+    background-color: rgb(7, 82, 50);
+    color:black;
+  }
+  .third-status::after{
+    content:'';
+    position: absolute;
+    right: -50px;
+    top: -0px;
+    border: 20px solid transparent;	
+    border-left: 30px solid rgb(95, 95, 95);
+    z-index: 2;
   }
   .third-status{
-    background-color: gray;
+    background-color: rgb(95, 95, 95);
+    color:black;
   }
   
   #close-task-button{
