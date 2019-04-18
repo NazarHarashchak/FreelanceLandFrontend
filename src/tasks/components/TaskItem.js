@@ -46,12 +46,13 @@ class TaskItem extends React.Component {
                         <button id="delete" onClick={this.deleteClick}>
                             <Icon name='trash alternate'></Icon>
                         </button>
-                    ) : (null)
-                }
-                <li className="j-order">
-                    <header className="l-project-title">
-                        <Link to={`/TaskInf/${this.props.item.id}`}>{this.props.item.title}</Link>
-                    </header>
+                    ):(null)
+		}
+ 
+			<li className="j-order">
+				<header className="l-project-title">
+					<Link to={`/taskInf/${this.props.item.id}`}>{this.props.item.title}</Link>
+				</header>
 
                     <div className="l-project-head flex-price-tag">
                         <span className="l-price">{this.props.item.price} $</span>

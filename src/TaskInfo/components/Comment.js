@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { addExcecutor } from '../taskActions';
 import { Icon } from 'semantic-ui-react';
 import SweetAlert from 'sweetalert2-react';
-import logo from './123.jpeg';
+import  logo from './123.jpeg';
 import "./comments.css";
 
 class Comment extends React.Component {
@@ -59,39 +59,39 @@ class Comment extends React.Component {
                         </button>)
                     :
                     (null)}
-                <form>
-                    <table className="comment-title">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div id="comment-user-photo">
-                                        {(this.props.item.photo !== "empty") ?
-                                            <img src={this.props.item.photo} alt="user photo" width="100%" /> :
-                                            <img src={logo} alt="user photo" width="100%" />}
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className="date">
-                                        <label id="comment-date">
-                                            <i className="fa fa-calendar-plus-o"></i>{this.props.item.date}</label>
-                                    </div></td>
-                                <td>
-                                    <Link to={`/ProfilePage/${this.props.item.userId}`}>
-                                        <label id="user-name">{this.props.item.userName}</label>
-                                    </Link>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    {(sessionStorage.getItem("id") == this.props.customerId) && (this.props.excecutorId === 0) ? (
-                        <div id="choose_excecutor">
-                            <form>
-                                <input type="button" value="Choose" id="choose-button" title="Add an excecutor"
-                                    onClick={this.saveExcecutor} />
-                            </form>
-                        </div>
-                    ) : (
-                            <div></div>)
+        <form>
+          <table className="comment-title">
+          <tbody>
+              <tr> 
+                <td>
+                    <div id="comment-user-photo"> 
+                    { (this.props.item.photo !== "empty") ? 
+                      <img src={this.props.item.photo} alt="user photo" width="100%" />:
+                      <img src={logo} alt="user photo" width="100%" />}
+                    </div>
+               </td>
+               <td>  
+                 <div className="date">
+                  <label id="comment-date"> 
+                  <i className="fa fa-calendar-plus-o"></i>{this.props.item.date}</label>
+                 </div></td>
+                 <td>
+                  <Link to={`/ProfilePage/${this.props.item.userId}`}>
+                    <label id="user-name">{this.props.item.userName}</label>
+                  </Link>
+                </td>
+              </tr>
+              </tbody>
+          </table>
+          { (sessionStorage.getItem("id") == this.props.customerId) && (this.props.excecutorId === 0) ?(
+                    <div id="choose_excecutor">
+                        <form>
+                          <input type="button" value="Choose" id="choose-button" title="Add an excecutor"
+                           onClick={this.saveExcecutor} />
+                      </form>
+                   </div>
+                  ):(
+                       <div></div>)
                     }
                     <div id="content">
                         <label >{this.props.item.content}</label>

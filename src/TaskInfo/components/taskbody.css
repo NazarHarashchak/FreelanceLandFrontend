@@ -11,10 +11,6 @@
     height: 20px;
 }
 
-.task-info-container {
-    padding: 2% 7% 0% 7%;
-}
-
 #edit-button{
   float:right;
   position: relative;
