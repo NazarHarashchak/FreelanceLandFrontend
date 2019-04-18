@@ -53,6 +53,7 @@ class AddComment extends React.Component {
         {
             this.props.sendComment(this.state.commentContent, this.props.userId, this.props.taskId).
             then(() => {
+                document.getElementById("text-content").value = "";
             });
                 
         }
@@ -63,7 +64,7 @@ class AddComment extends React.Component {
         return (
             <div id="add-comment">
              <form >
-                  <img src={require("./123.jpeg")} alt="фото користувача" id="user-photo"/>
+                  <img src={this.props.userphoto} alt="user photo" id="user-photo"/>
                   <input type="text" id="text-content" placeholder="write your comment to start working" 
                         onChange={this.contentChange} defaultValue={this.state.commentError} name="contentTextBox"/>
                   <input type="button" id="submit" value="Send" onClick={this.sendMyComment}/>

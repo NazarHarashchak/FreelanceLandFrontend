@@ -20,7 +20,7 @@ class TaskItem extends React.Component {
     deleteSubmit() {
         this.setState({ showPop: false });
         this.props.requestDelete(this.props.item.id);
-        document.location.replace('tasks/');
+        //document.location.replace('tasks/');
     }
 
     deleteClick() {
@@ -48,7 +48,6 @@ class TaskItem extends React.Component {
                         </button>
                     ) : (null)
                 }
-
                 <li className="j-order">
                     <header className="l-project-title">
                         <Link to={`/TaskInf/${this.props.item.id}`}>{this.props.item.title}</Link>

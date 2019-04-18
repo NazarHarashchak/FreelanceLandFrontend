@@ -4,9 +4,9 @@ const requestDeleteComment = 'REQUEST_DELETE_COMMENT';
 const receiveDeleteComment = 'RECEIVE_DELETE_COMMENT';
 const requestSendComment = 'REQUEST_SEND';
 const receiveSendComment = 'RECEIVE_SEND';
+const receiveImage = 'RECEIVE_IMAGE';
 
-
-const initialState = { comments: [], isLoading: false };
+const initialState = { comments: [], myphoto: [], isLoading: false };
 
 export const reducer = (state, action) => {
     state = state || initialState;
@@ -54,6 +54,14 @@ export const reducer = (state, action) => {
             deleteCommentResponse: action.deleteCommentResponse,
             isLoading: false
         };
+    }
+
+    if (action.type === receiveImage){
+        return{
+            ...state,
+            myphoto: action.ImgData,
+            isLoading: true
+        }
     }
 
     return state;

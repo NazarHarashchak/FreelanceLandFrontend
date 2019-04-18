@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import {requestUsersList} from '../action';
 import './stylles.css';
 import SeachBar from './SeachBar';
-import ScrollTop from './ScrollTop'
+import ScrollTop from '../../tasks/components/ScrollTop';
 import { Pagination } from 'react-bootstrap'; 
 import { push } from 'react-router-redux'; 
 import pages from './UsersList'
@@ -46,6 +46,9 @@ class Users extends Component {
                 <div className="main-content container">
                     <SeachBar/>
                     <div className="row">
+                        <div
+                            ref={(el) => { this.anchor = el; }}>
+                        </div>
                         <div className="col-md-9" id="j-orders-search-list">
                             <UsersList usersList={this.props.newusers} isLoading={this.props.isLoading}/>
                         </div>
@@ -58,7 +61,7 @@ class Users extends Component {
         items={pages} activePage={this.current_page} onSelect={this.changePage} />
                    
                     </div>
-                    <ScrollTop/>
+                    <ScrollTop anchor={this.anchor}/>
             </div >
         );
         

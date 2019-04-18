@@ -5,6 +5,7 @@ import { actionCreators } from '../actions';
 import * as signalR from '@aspnet/signalr';
 import ShowMessages from './ShowMessages';
 import { MessageBox } from 'react-chat-elements';
+import { ROOT } from '../../services/api-config';
 import 'react-chat-elements/dist/main.css';
 import '../message.css';
 
@@ -28,7 +29,7 @@ class ChatRoomContainer extends Component {
     { 
         this.scrollToBottom();
         if (sessionStorage.getItem('tokenKey'))
-        { let hubUrl = 'https://localhost:44332/chat';
+        { let hubUrl = ROOT+'/chat';
          const hubConnection = new signalR.HubConnectionBuilder()
              .withUrl(hubUrl, { accessTokenFactory: () => sessionStorage.getItem('tokenKey')})
               .configureLogging(signalR.LogLevel.Information)

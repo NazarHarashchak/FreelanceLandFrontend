@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { addExcecutor } from '../taskActions';
 import { Icon } from 'semantic-ui-react';
 import SweetAlert from 'sweetalert2-react';
+import logo from './123.jpeg';
 import "./comments.css";
 
 class Comment extends React.Component {
@@ -22,7 +23,7 @@ class Comment extends React.Component {
     deleteSubmit() {
         this.setState({ showPop: false });
         this.props.deleteComment(this.props.item.id);
-        document.location.replace('taskInf/' + this.props.item.taskId);
+        //document.location.replace('taskInf/' + this.props.item.taskId);
     }
 
     deleteClick() {
@@ -64,7 +65,9 @@ class Comment extends React.Component {
                             <tr>
                                 <td>
                                     <div id="comment-user-photo">
-                                        <img src={require("./123.jpeg")} alt="фото користувача" width="100%" />
+                                        {(this.props.item.photo !== "empty") ?
+                                            <img src={this.props.item.photo} alt="user photo" width="100%" /> :
+                                            <img src={logo} alt="user photo" width="100%" />}
                                     </div>
                                 </td>
                                 <td>
@@ -83,7 +86,8 @@ class Comment extends React.Component {
                     {(sessionStorage.getItem("id") == this.props.customerId) && (this.props.excecutorId === 0) ? (
                         <div id="choose_excecutor">
                             <form>
-                                <input type="button" value="Choose" onClick={this.saveExcecutor} />
+                                <input type="button" value="Choose" id="choose-button" title="Add an excecutor"
+                                    onClick={this.saveExcecutor} />
                             </form>
                         </div>
                     ) : (

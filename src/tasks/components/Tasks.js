@@ -23,14 +23,6 @@ class Tasks extends Component {
         this.props.requestTasksList(this.props.page);
     }
 
-    scrollToBottom = () => {
-        this.messagesEnd.scrollIntoView({ behavior: "smooth" });
-    }
-
-    componentDidMount() {
-        this.scrollToBottom();
-    }
-
     render() {
         const pages = 1;
         return (
@@ -41,13 +33,17 @@ class Tasks extends Component {
                     <SearchBar />
                     <div className="row">
                         <div
-                            ref={(el) => { this.messagesEnd = el; }}>
+                            ref={(el) => { this.anchor = el; }}>
                         </div>
                         <div className="col-md-9" id="j-orders-search-list">
                             <TaskItemList />
                             <Pagination className="users-pagination pull-center" 
-        bsSize="medium" maxButtons={10} first last next prev boundaryLinks 
-        items={pages} activePage={this.current_page} onSelect={this.changePage} />
+                            bsSize="medium" 
+                            maxButtons={10} 
+                            first last next prev boundaryLinks 
+                            items={pages} 
+                            activePage={this.current_page} 
+                            onSelect={this.changePage} />
                         </div>
                         <div className="col-md-3">
                             <Filter />
@@ -55,7 +51,7 @@ class Tasks extends Component {
                     </div >
 
                 </div >
-                <ScrollTop scrollFunc={this.scrollToBottom} />
+                <ScrollTop anchor={this.anchor} />
             </div >
         );
     }
