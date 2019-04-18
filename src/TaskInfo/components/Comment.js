@@ -89,16 +89,16 @@ class Comment extends React.Component {
                        <div> 
                        </div>)
                     }
-                <div id="content">
-                  <label >{this.props.item.content}</label>
-                </div>
-        </form>
-      </div>
-    );
-  }
+                    <div id="content">
+                        <label >{this.props.item.content}</label>
+                    </div>
+                </form>
+            </div>
+        );
+    }
 }
 
-export default  connect(
-  state => state.addNewExcecutor,
-  dispatch => bindActionCreators(addExcecutor, dispatch)
+export default connect(
+    state => state.addNewExcecutor,
+    dispatch => bindActionCreators(addExcecutor, dispatch)
 )(Comment);

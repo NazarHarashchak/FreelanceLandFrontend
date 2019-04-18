@@ -20,7 +20,7 @@ class TaskItem extends React.Component {
     deleteSubmit() {
         this.setState({ showPop: false });
         this.props.requestDelete(this.props.item.id);
-        document.location.replace('tasks/');
+        //document.location.replace('tasks/');
     }
 
     deleteClick() {
@@ -54,37 +54,37 @@ class TaskItem extends React.Component {
 					<Link to={`/taskInf/${this.props.item.id}`}>{this.props.item.title}</Link>
 				</header>
 
-				<div className="l-project-head flex-price-tag">
-					<span className="l-price">{this.props.item.price} $</span>
-				</div>
+                    <div className="l-project-head flex-price-tag">
+                        <span className="l-price">{this.props.item.price} $</span>
+                    </div>
 
-				<article>
-					<p id="task-description">{this.props.item.description}</p>
-				</article>
+                    <article>
+                        <p id="task-description">{this.props.item.description}</p>
+                    </article>
 
-				<ul className="l-item-features">
+                    <ul className="l-item-features">
 
-					<li>
-						<i className="fa fa-list-alt"></i>
-						{this.props.item.taskCategoryName}
-					</li>
+                        <li>
+                            <i className="fa fa-list-alt"></i>
+                            {this.props.item.taskCategoryName}
+                        </li>
 
-					<li>
-						<i className="fa fa-calendar-plus-o"></i>
-						{this.props.item.dateAdded}
-					</li>
+                        <li>
+                            <i className="fa fa-calendar-plus-o"></i>
+                            {this.props.item.dateAdded}
+                        </li>
 
-					<li>
-						<a href={`/TaskInf/${this.props.item.id}/#comments`}>
-							<i className="fa fa-comments-o c-link-icon"></i>
-							<span>{this.props.item.commentsCount} offers</span>
-						</a>
-					</li>
-				</ul>
-			</li>
-			</Item.Group>
-		);
-	}
+                        <li>
+                            <a href={`/TaskInf/${this.props.item.id}/#comments`}>
+                                <i className="fa fa-comments-o c-link-icon"></i>
+                                <span>{this.props.item.commentsCount} offers</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </Item.Group>
+        );
+    }
 }
 export default connect(
     state => state.tasksReducers,
