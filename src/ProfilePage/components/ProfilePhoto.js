@@ -13,7 +13,9 @@ class ProfilePage extends Component {
      var img = this.props.image;
      return (
           <div id="avatar">
-               <div id="CurrentAvatar">{(img !== "empty") ? (<Avatar name="Avatar" src={img} round={"10px"} size={300} />) : (<Avatar name="Avatar" src={logo} round={"10px"} size={300}/>)}</div>
+               <div id="CurrentAvatar">{(img !== "empty") ? 
+               (<Avatar name="Avatar" src={img} round={"10px"} size={300} />) :
+                (<Avatar name="Avatar" src={logo} round={"10px"} size={300}/>)}</div>
           </div>
      )}
 }

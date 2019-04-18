@@ -51,8 +51,9 @@ class AddComment extends React.Component {
         const valid = this.validationForm();
         if (valid)
         {
-            this.props.sendComment(this.state.commentContent, this.props.userId, this.props.taskId)
-            .then(() => {
+            this.props.sendComment(this.state.commentContent, this.props.userId, this.props.taskId).
+            then(() => {
+                document.getElementById("text-content").value = "";
             });
                 
         }
@@ -61,13 +62,19 @@ class AddComment extends React.Component {
 
     render() {
         return (
-            <div id="add-comment">
-             <form >
-                  <img src={require("./123.jpeg")} alt="фото користувача" id="user-photo"/>
-                  <input type="text" id="text-content" placeholder="write your comment to start working" 
+            <div className="container" id="add-comment">
+             <div className='row' >
+                  <div className="col-md-1" >
+                  <img id="user-photo"  src={this.props.userphoto} alt="user photo" />
+                  </div>
+                  <div className="col-md-10">
+                  <input  type="text" id="text-content" placeholder="write your comment to start working" 
                         onChange={this.contentChange} defaultValue={this.state.commentError} name="contentTextBox"/>
-                  <input type="button" id="submit" value="Send" onClick={this.sendMyComment}/>
-              </form>
+                  </div>
+                  <div className="col-md-1">
+                  <input  type="button" id="submit" value="Send" onClick={this.sendMyComment}/>
+                  </div>
+              </div>
             </div>
         );
     }

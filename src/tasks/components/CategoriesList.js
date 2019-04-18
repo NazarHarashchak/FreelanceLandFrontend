@@ -5,6 +5,10 @@ import { changeCheckedStatus, requestTasksList } from '../actions';
 import PropTypes from 'prop-types';
 
 class CategoriesList extends React.Component {
+  
+  componentDidUpdate() {
+    this.props.requestTasksList(this.props.page, this.props.filter, this.props.search,this.props.control);
+  }
 
   static propTypes = {
     filter: PropTypes.shape({

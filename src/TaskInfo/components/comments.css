@@ -1,6 +1,5 @@
     .comments-panel{
       width: 100%;
-      position: relative;
       margin-top: 30px;
       border-style: outset;
       border-width: 2px;
@@ -22,20 +21,21 @@
     li {
       list-style-type: none;
     }
+    #comments-error{
+      text-align: center;
+    }
+    img {
+      border-radius: 10px 10px 10px 10px;
+    }
     #comments-title{
       border-width: 2px;
       border-style: outset;
-      border-radius: 10px;
-      height:40px;
+      border-radius: 10px 10px 0px 0px;
+      font-size: 20px;
       padding:9px;
       text-align: center;
       box-sizing: border-box;
-      background: -webkit-gradient(
-      linear,
-      left bottom,
-      left top,
-      color-stop(0, #27551a)
-    );
+      background:  rgb(7, 82, 50);
     color: white;
     }
     #add-comment{
@@ -46,8 +46,8 @@
       clear: both;
     }
     #comment-user-photo{
-      padding: 10px;
-      width:60px;
+      text-align: center;      
+      width:80px;
     }
     .date{
       padding-left: 10px;
@@ -66,12 +66,12 @@
       margin:15px;
     }
     #text-content{
-      width: 70%;
       height: 40px;
       margin-left: 5px;
     }
     #user-photo{
-     width:80px;
+     width:60px;
+     border-radius: 10px 10px 10px 10px !important;
     }
     #submit{
       margin: 5px;
@@ -92,4 +92,14 @@
       width: 100px;
       padding-right: 20px;
       float: right;
+    }
+    #choose-button{
+    border-radius: 5px 5px 5px 5px;
+    border-style: none;
+    color: white;
+    background-color: rgb(7, 82, 50);
+    }
+    .comment-title
+    {
+      margin-top: 2%;
     }
