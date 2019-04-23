@@ -6,7 +6,7 @@ class TaskItem extends React.Component {
 
 	render() {
 		return (
-			<Item.Group link>
+			<Item.Group link draggable>
 				<li className="j-order" id="my-task-title">
 					<header className="l-project-title" >
 						<Link to={`/TaskInf/${this.props.item.id}`}>{this.props.item.title}</Link>

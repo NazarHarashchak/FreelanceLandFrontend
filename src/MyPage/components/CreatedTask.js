@@ -13,31 +13,19 @@ class Tasks extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            id:"created?id="+ sessionStorage.getItem("id")+"&",
-            toDoTasks: [],
-            inProgressTasks: [],
-            inReadyTasks: [],
-            inDoneTasks: []
+            id:"created?id="+ sessionStorage.getItem("id")+"&"
          }
 
         this.changePage = this.changePage.bind(this);
-        this.filterTasks = this.filterTasks.bind(this);
     };
     async componentDidMount() {
         await this.props.requestCategoriesList();
         this.props.requestTasksList(this.props.page, this.props.filter, this.props.search, this.state.id);
     }
 
-    filterTasks(){
-        this.setTaste({toDoTasks: this.props.tasks.filter(myTask => myTask.taskStatus == "To do")});
-        this.setTaste({inProgressTasks: this.props.tasks.filter(myTask => myTask.taskStatus == "In progress")});
-        this.setTaste({inReadyTasks: this.props.tasks.filter(myTask => myTask.taskStatus == "Ready for verification")});
-        this.setTaste({inDoneTasks: this.props.tasks.filter(myTask => myTask.taskStatus == "Done")});
-    }
-
     onDrop = (event, cat) => {
-        console.log("Drag drop");
-        let id = event.dataTransfer.getData("text" + cat);
+        let id = event.dataTransfer.getData("text");
+        console.log("DROP" + cat + id);
 
         let tasks = this.props.tasks.filter((task) => {if (task.id == id){task.taskStatus = cat}
     
@@ -55,7 +43,6 @@ class Tasks extends Component {
     }
 
     render() {
-        
         return (
             <div className="created-tasks container" id="tasks-container">
                 <div
@@ -71,9 +58,9 @@ class Tasks extends Component {
                         <p>To do</p>
                         {this.props.tasks.map(item =>
                             (item.taskStatus === "To do" ? 
-                            <TaskItem item={item} className="draggable"
-                                 draggable
-                                onDragStart = {(e) => this.onDragStart(e, item.id)}/>
+                            <div
+                            draggable
+                           onDragStart = {(e) => this.onDragStart(e, item.id)}><TaskItem item={item} className="draggable"/></div>
                             :null))}
                         </div>
 
@@ -85,7 +72,11 @@ class Tasks extends Component {
 
                         <div className="Ready-for-verification col-md-3">
                         <p>Ready for verification</p>
-                        {this.props.tasks.map(item => (item.taskStatus === "Ready for verification" ? <TaskItem item={item}/>:null))}
+                        {this.props.tasks.map(item => (item.taskStatus === "Ready for verification" ?
+                         <div
+                         draggable
+                        onDragStart = {(e) => this.onDragStart(e, item.id)}><TaskItem item={item} className="draggable"/></div>
+                         :null))}
                         </div>
 
                         <div className="Done col-md-3" 
