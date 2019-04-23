@@ -6,17 +6,17 @@ import { Form, Segment, Button } from 'semantic-ui-react'
 import { actionCreators } from '../actions';
 import { Formik } from 'formik';
 import { requests } from '../../services/apiService';
+import SweetAlert from 'sweetalert2-react';
 
 class PersonalInfo extends Component {
   constructor(props) {
     super(props);
-    this.state = { isLoaded: true, rea: false };
+    this.state = { isLoaded: true, rea: false, userUpdate: false };
   }
 
   async componentWillMount() {
     await this.props.requestProfilePage(this.props.id);
     if (this.props.id !== sessionStorage.getItem('id') && sessionStorage.getItem('role') !== "Administrator") { this.state.rea = !this.state.rea }
-    console.log(this.props.id);
     this.setState({ user: this.props.User, isLoaded: false });
   }
 
@@ -48,9 +48,7 @@ class PersonalInfo extends Component {
                   Login: values.login,
                   UserRoleName: values.role
                 })
-              ).then(res => {
-                alert("updated");
-              })
+              ).then( this.setState({ userUpdate: true }) )
                 .catch(err => {
                   console.log(err);
                 })
@@ -63,7 +61,13 @@ class PersonalInfo extends Component {
               handleSubmit,
             }) => (
                 <Segment inverted>
-
+                    <SweetAlert
+                        show={this.state.userUpdate}
+                        title="Updated"
+                        type = 'success'
+                        confirmButtonColor='#075232'
+                        onConfirm={() => this.setState({ userUpdate: false })}
+                    />
                   <Form inverted onSubmit={handleSubmit} >
                     <Form.Group widths='equal'>
                       <Form.Input
@@ -139,7 +143,7 @@ class PersonalInfo extends Component {
                     }
 
                     {sessionStorage.getItem('id') === this.props.id || sessionStorage.getItem('role') === "Administrator" ?
-                      <Button className="submit-button" type='submit'>Update</Button>
+                      <Button className="submit-button" type='submit' >Update</Button>
                       : <div></div>}
                   </Form>
                 </Segment>

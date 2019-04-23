@@ -3,8 +3,15 @@ import { Item } from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators } from '../actions';
+import PropTypes from 'prop-types';
 
-class ChatRoomItem extends Component {        
+class ChatRoomItem extends Component {     
+    static propTypes = {
+        item: PropTypes.shape({
+            
+        }).isRequired
+    }
+
     render() {
         return (
             <Item.Group link>

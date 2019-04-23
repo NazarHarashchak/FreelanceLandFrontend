@@ -13,7 +13,7 @@ class UserPanel extends React.Component {
 
   render() {
     return (
-      <div className="col-md-3">
+      <div>
          <div className="right-row-panel">
           <div className="user-panel">
             <div className="top-row">Customer
@@ -30,7 +30,7 @@ class UserPanel extends React.Component {
                      secName={this.props.forecasts.excecutorSecondName}
                      photo = {this.props.forecasts.excecutorPhoto}/>
              </div>):(null)
-           }
+              }
             <div className="user-panel">
               <div className="top-row">Date added</div>
                <i className="fa fa-calendar-plus-o"></i>
@@ -42,9 +42,9 @@ class UserPanel extends React.Component {
               <label className="labelText">{this.props.forecasts.deadline}</label>
             </div>
             </div>
-      </div>
+      </div >
     );
-  }
+    }
 }
 
 export default UserPanel;

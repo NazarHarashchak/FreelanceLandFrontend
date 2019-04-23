@@ -20,7 +20,7 @@ class Comments extends React.Component {
    else { if (this.props.myTask.taskStatus === 'To do'){ return(
         <AddComment userId={myUserId} taskId={this.props.taskId} userphoto={this.props.myphoto}/>);}
       
-      else {return(<div id="comments-error">You cant send the comments becuse this task is already started</div>);}}
+      else {return(<div id="comments-error">You cant send the comments because this task is already started</div>);}}
   }
   render() {
     return (
@@ -28,7 +28,7 @@ class Comments extends React.Component {
         <div id="comments-title">Comments</div>
         {this.addNewComment()}
         <div className="comments">
-          <ul width="100%">
+          <ul width="100%" className="list-comments">
               <li>
                     {this.props.comments.map(item => (          
                       <Comment
@@ -36,6 +36,7 @@ class Comments extends React.Component {
                       item={item}
                       customerId = {this.props.customerId}
                       excecutorId = {this.props.excecutorId}
+                      task={this.props.myTask}
                       />
                     ))}
               </li>

@@ -3,8 +3,16 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators } from '../actions';
 import ChatRoomContainer from './ChatRoomContainer';
+import PropTypes from 'prop-types';
 
 class ChatRoom extends Component {
+    static propTypes = {
+        requestMessages: PropTypes.func,
+        requestChatRoomInfo: PropTypes.func,
+        chatRoomInfo: PropTypes.object,
+        messages: PropTypes.object
+    }
+
     constructor(props) {
         super(props);
         this.state = {

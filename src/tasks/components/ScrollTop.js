@@ -1,6 +1,11 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 class ScrollTop extends React.Component {
+    static propTypes = {
+        anchor: PropTypes.object.isRequired
+    }
+
     render() {
         return (
             <p className="scrolltop smooth">

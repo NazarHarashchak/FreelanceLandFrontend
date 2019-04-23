@@ -2,6 +2,8 @@ import { requests } from '../services/apiService';
 
 const requestSignIn = 'REQUEST_SIGN_IN';
 const receiveSignIn = 'RECEIVE_SIGN_IN';
+const requestNotifCount = 'REQUEST_NOTIFICATION_COUNT';
+const receiveNotifCount = 'RECEIVE_NOTIFICATION_COUNT';
 
 export const actionCreators = {
     requestLogin: (username, pass) => async (dispatch) => {
@@ -23,5 +25,21 @@ export const actionCreators = {
         }
         dispatch({ type: receiveSignIn, user });
         
+    },
+
+    requestNotificationsCount: (id) => async (dispatch) => {
+        dispatch({ type: requestNotifCount });
+
+        const url = '/notification/getCount';
+        const response = await requests.doPost(url,
+            JSON.stringify({
+                Id: id
+            }));
+
+        const count = await response;
+        if (count !== null) {
+            sessionStorage.setItem('count', count);
+        }
+        dispatch({ type: receiveNotifCount, count });
     }
 };

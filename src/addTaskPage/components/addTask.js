@@ -2,10 +2,22 @@ import React from "react";
 import {bindActionCreators}  from 'redux';
 import { connect } from 'react-redux';
 import {actionTaskPost} from '../action';
+import PropTypes from 'prop-types';
 
 import "./addTask.css";
 
 class addTaskPage extends React.Component {
+
+        
+    static propTypes = {
+        categories: PropTypes.arrayOf(
+            PropTypes.shape({
+                id:PropTypes.number.isRequired,
+                type:PropTypes.string.isRequired
+            }.isRequired)
+        ).isRequired
+    }
+
     constructor(props){
         super(props);
         this.state = {
@@ -93,8 +105,9 @@ class addTaskPage extends React.Component {
                         this.setState({descriptionError: my_error});
                         return(false);
                     }
+                    default: return false;
                 }
-             return false;
+
             }
     }
 
@@ -116,7 +129,7 @@ class addTaskPage extends React.Component {
                 this.state.deadlineContent, this.state.categoryContent).
                 then(() => { 
                     alert("Success");
-                    document.location = 'http://localhost:3000/tasks/';
+                    document.location = '/tasks/';
             });;
         }
         else{
@@ -169,7 +182,7 @@ class addTaskPage extends React.Component {
                             <label>Price: </label>
                         </div>
                         <div className="text-element">
-                            <input type="number" min="0" step="10" placeholder="Enter your price in $" 
+                            <input type="number" min="0" step="1" placeholder="Enter your price in $" 
                             id="price-text" name="price-text" onChange={this.onPriceChange} defaultValue='0'/>
                             <label id="price-error" className="Errors">{this.state.priceError}</label>
                         </div>
@@ -190,7 +203,8 @@ class addTaskPage extends React.Component {
                     <div id="error">
                     <label id="" className="Errors">{this.state.myError}</label>
                     </div>
-                    </form>
+
+</form>
                     </div>
                     <div id="some-space"></div>
                 </div>

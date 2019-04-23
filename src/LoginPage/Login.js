@@ -5,9 +5,15 @@ import { connect } from 'react-redux';
 import { actionCreators } from '../LoginPage/actions';
 import { Redirect } from 'react-router';
 import SweetAlert from 'sweetalert2-react';
+import PropTypes from 'prop-types';
 
 
 class LoginPage extends Component {
+    static propTypes = {
+        requestLogin: PropTypes.func.isRequired,
+        user: PropTypes.object.isRequired
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -102,6 +108,15 @@ class LoginPage extends Component {
                             localStorage.setItem('checked', true);
                         }
                     }
+                    this.props.requestNotificationsCount(sessionStorage.getItem('id'))
+                        .then(() => {
+                            console.log('Get count');
+                            if (this.props.user !== null) {
+                                if (this.props.user.access_token === sessionStorage.getItem("tokenKey")) {
+                                    (document.location.replace('main'));
+                                }
+                            }
+                        });
                 });
         }
     }
@@ -111,68 +126,53 @@ class LoginPage extends Component {
         if (this.state.swaper === true) {
             return <Redirect to='/registrationPage' />
         }
-        if (this.props.user !== null) {
-            if (this.props.user.access_token === sessionStorage.getItem("tokenKey")) {
-                const link = '/home/';
-                return (<Redirect to={link} />);
-            }
-        }
+        
 
-        if (!sessionStorage.getItem('tokenKey')) {
-            return (
-                <div className="signInForm">
+        return (
+            <div className="signInForm">
 
-                    <SweetAlert
-                        show={this.state.errorPop}
-                        title="Fail!"
-                        text="Username or password is incorrect!"
-                        confirmButtonColor='#075232'
-                        onConfirm={() => this.setState({ errorPop: false })}
-                    />
-                    <div className="signIn">
-                        <h1>Sign in to Freelance-land</h1>
-                        <label htmlFor="username">
-                            <b>Username</b>
-                        </label>
-                        {this.state.loginError ? (<div style={{ fontSize: 14, color: "red" }}>{this.state.loginError}</div>) : null}
-                        <input type="text" placeholder="Enter username" name="username"
-                            value={this.state.login || ''} onChange={this.loginChange} />
-                        <label htmlFor="password">
-                            <b>Password</b>
-                        </label>
-                        {this.state.passwordError ? (<div style={{ fontSize: 14, color: "red" }}>{this.state.passwordError}</div>) : null}
-                        <input type="password" placeholder="Enter password" name="password"
-                            value={this.state.password || ''} onChange={this.passwordChange} />
-                        <button type="submit" className="signin" onClick={this.authenticationSubmit}>
-                            SIGN IN
+                <SweetAlert
+                    show={this.state.errorPop}
+                    title="Fail!"
+                    text="Username or password is incorrect!"
+                    confirmButtonColor='#075232'
+                    onConfirm={() => this.setState({ errorPop: false })}
+                />
+                <div className="signIn">
+                    <h1>Sign in to Freelance-land</h1>
+                    <label htmlFor="username">
+                        <b>Username</b>
+                    </label>
+                    {this.state.loginError ? (<div style={{ fontSize: 14, color: "red" }}>{this.state.loginError}</div>) : null}
+                    <input type="text" placeholder="Enter username" name="username"
+                        value={this.state.login || ''} onChange={this.loginChange} />
+                    <label htmlFor="password">
+                        <b>Password</b>
+                    </label>
+                    {this.state.passwordError ? (<div style={{ fontSize: 14, color: "red" }}>{this.state.passwordError}</div>) : null}
+                    <input type="password" placeholder="Enter password" name="password"
+                        value={this.state.password || ''} onChange={this.passwordChange} />
+                    <button type="submit" className="signin" onClick={this.authenticationSubmit}>
+                        SIGN IN
                     </button>
-                        <input type="checkbox" name="remember" checked={Boolean(this.state.checkBox)} onChange={this.boxRememberMeChange} />
-                        <label htmlFor="remember">Remember me</label>
-                        <span className="password">
-                            <a className="forgotPass" href="/restorePass">
-                                Forgot your password?
+                    <input type="checkbox" name="remember" checked={Boolean(this.state.checkBox)} onChange={this.boxRememberMeChange} />
+                    <label htmlFor="remember">Remember me</label>
+                    <span className="password">
+                        <a className="forgotPass" href="/restorePass">
+                            Forgot your password?
                             </a>
-                        </span>
-                    </div>
-                    <div className="swaper">
-                        <h1>Hello, Friend!</h1>
-                        <h3 className="text-detais">Enter your personal details</h3>
-                        <h3 className="text-detais">and start journey with us</h3>
-                        <button type="submit" className="sign" onClick={this.swap}>
-                            SIGN UP
-                    </button>
-                    </div>
+                    </span>
                 </div>
-            );
-        }
-        else {
-            return (
-                <div className="signInForm">
-                    <h2>
-                        You already authenticated!
-                    </h2>
-                </div>);
-        }
+                <div className="swaper">
+                    <h1>Hello, Friend!</h1>
+                    <h3 className="text-detais">Enter your personal details</h3>
+                    <h3 className="text-detais">and start journey with us</h3>
+                    <button type="submit" className="sign" onClick={this.swap}>
+                        SIGN UP
+                    </button>
+                </div>
+            </div>
+        );
     }
 }
 

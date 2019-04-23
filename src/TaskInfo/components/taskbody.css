@@ -1,14 +1,20 @@
-.container-fluid{
-  position:relative;
+.container-fluid {
+    position: relative;
 }
+
 #task-title {
   font-size: 25px;
   height: 20px;
 }
+
 #push_block {
-  height: 20px;
+    height: 20px;
 }
 
+#customer-photo{
+  margin: 10%;
+  text-align: center;
+}
 #edit-button{
   float:right;
   position: relative;
@@ -19,13 +25,18 @@
   width: 30px;
   cursor: pointer;
 }
+#customer-name
+{
+  text-align: center;
+  margin-top: 9%;
+}
 #hr-tag {
-  margin: 30px -20px 20px;
-  border: 0;
-  border-top: 1px solid #c9c7c7;
+    margin: 30px -20px 20px;
+    border: 0;
+    border-top: 1px solid #c9c7c7;
 }
 
-  .my-task-description {
+.my-task-description {
     position: relative;
     top: 10px;
     padding: 20px;
@@ -34,16 +45,16 @@
     border-radius: 10px;
     background-color: #fbfbfc;
     text-align: center;
-  }
-  #task-desk {
+}
+
+#task-desk {
     position: relative;
     width: 70%;
     text-align: left;
     clear: both;
-  }
+}
 
-  #text-container {
-
+#text-container {
     vertical-align: middle;
   }
   #task-price {
@@ -54,27 +65,29 @@
     height: 30px;
     width: 50px;
     font-size: 18px;
-    vertical-align: middle; 
+    vertical-align: middle;
     text-align: center;
     box-sizing: border-box;
-  }
-  .right-row-panel{
+}
+
+.right-row-panel {
     position: relative;
     margin-left: 20px;
-  }
-  .user-panel{
+}
+
+.user-panel {
     border-width: 2px;
     border-style: outset;
     border-radius: 10px;
-    width:100%;
-    margin-top:20px;
-  }
+    width: 100%;
+    margin-top: 20px;
+}
 
-  .labelText {
+.labelText {
     text-align: center;
-  }
+}
 
-  .top-row {
+.top-row {
     border-width: 2px;
     border-style: outset;
     border-radius: 10px 10px 0px 0px;
@@ -87,8 +100,9 @@
     font-size: 20px;
     text-align: center;
     padding: 15px;
-  }
-  #bottom-row {
+}
+
+#bottom-row {
     height: 80px;
     vertical-align: middle;
   }
@@ -107,14 +121,16 @@
   img {
     border-radius: 10px 10px 10px 10px;
   }
+  .my-status-list{
+    width:100%;
+  }
   ul.my_list li{
     display: inline;
     position: relative;
     padding-top: 10px;
     padding-bottom:10px;
-    padding-left: 35px;
-    padding-right: 5px;
     margin-left: 8px; 
+    text-align: center;
     cursor: default;
   }
   ul.my_list li:first-child{
@@ -125,8 +141,8 @@
     position: absolute;
     left: 0px;
     top: -0px;
-    border: 20px solid transparent;	
-    border-left: 30px solid white;
+    border: 22px solid transparent;	
+    border-left: 28px solid white;
     z-index: 1;
   }
   #ready_for::before{
@@ -134,8 +150,8 @@
     position: absolute;
     left: 0px;
     top: -0px;
-    border: 20px solid transparent;	
-    border-left: 30px solid white;
+    border: 22px solid transparent;	
+    border-left: 28px solid white;
     z-index: 1;
   }
   #done::before{
@@ -143,8 +159,8 @@
     position: absolute;
     left: 0px;
     top: -0px;
-    border: 20px solid transparent;	
-    border-left: 30px solid white;
+    border: 22px solid transparent;	
+    border-left: 28px solid white;
     z-index: 1;
   }
   .first-status::after{
@@ -152,8 +168,8 @@
     position: absolute;
     right: -50px;
     top: -0px;
-    border: 20px solid transparent;	
-    border-left: 30px solid rgb(252, 171, 22);
+    border: 22px solid transparent;	
+    border-left: 28px solid rgb(252, 171, 22);
     z-index: 2;
   }
   .first-status{
@@ -165,8 +181,8 @@
     position: absolute;
     right: -50px;
     top: -0px;
-    border: 20px solid transparent;	
-    border-left: 30px solid rgb(7, 82, 50);
+    border: 22px solid transparent;	
+    border-left: 28px solid rgb(7, 82, 50);
     z-index: 2;
   }
   .second-status{
@@ -178,30 +194,26 @@
     position: absolute;
     right: -50px;
     top: -0px;
-    border: 20px solid transparent;	
-    border-left: 30px solid rgb(95, 95, 95);
+    border: 22px solid transparent;	
+    border-left: 28px solid rgb(95, 95, 95);
     z-index: 2;
   }
   .third-status{
     background-color: rgb(95, 95, 95);
     color:black;
   }
-  #user-photo{
-    padding: 10px;
-  }
-  #user-link{
-    margin-left: 20px;
-  }
+  
   #close-task-button{
     margin-top:10px;
     text-align: center;
-    padding-bottom:10px; 
-  }
-  #close{
+    padding-bottom: 10px;
+}
+
+#close {
     height: 50px;
-    width:200px;
+    width: 200px;
     border-radius: 5px 5px 5px 5px;
     border-style: none;
     color: white;
     background-color: rgb(7, 82, 50);
-  }
+}

@@ -77,3 +77,8 @@
     margin: 0 auto !important;
     max-width: 250px !important;
 }
+.ui.button
+{
+    line-height: 0em !important;
+    padding: 0 !important;
+}

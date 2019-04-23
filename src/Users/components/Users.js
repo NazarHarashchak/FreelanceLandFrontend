@@ -3,63 +3,51 @@ import UsersList from "./UsersList";
 import FilterComponent from './FilterComponent'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {requestUsersList} from '../action';
+import {requestUsersList,requestUserRoles} from '../action';
 import './stylles.css';
 import SeachBar from './SeachBar';
 import ScrollTop from '../../tasks/components/ScrollTop';
 import { Pagination } from 'react-bootstrap'; 
 import { push } from 'react-router-redux'; 
-import pages from './UsersList'
 
 
 
-console.log(pages)
 
 class Users extends Component {
 
     constructor(props){
         super(props);
-        this.current_page = this.props.page;
-  
+        this.currentPage = this.props.page;
+        
         this.changePage = this.changePage.bind(this);
       };
-  
-    componentWillMount() {
 
-
-        this.props.requestUsersList(this.props.page);
-    }
-    
-    componentWillReceiveProps(nextProps) {
-    }
-
-    
-    
+      componentDidMount(){
+        this.props.requestUsersList(this.props.page,this.props.searchText,this.props.roles);
+        this.props.requestUserRoles();
+        console.log(this.props.page)
+      } 
     render()
     {
-      
-  
-       const pages = 2
         return (
             <div className="container">
                
                 <div className="main-content container">
-                    <SeachBar/>
+                    <SeachBar page={1}/>
                     <div className="row">
                         <div
                             ref={(el) => { this.anchor = el; }}>
                         </div>
                         <div className="col-md-9" id="j-orders-search-list">
-                            <UsersList usersList={this.props.newusers} isLoading={this.props.isLoading}/>
+                            <UsersList usersList={this.props.newUsers} isLoading={this.props.isLoading}/>
                         </div>
                         <div className="col-md-3" >
-                        <FilterComponent/>
+                        <FilterComponent page={1} searchT={this.props.searchText} roles1={this.props.roles}/>
                         </div>
                         </div >
                     <Pagination className="users-pagination pull-center" 
         bsSize="medium" maxButtons={10} first last next prev boundaryLinks 
-        items={pages} activePage={this.current_page} onSelect={this.changePage} />
-                   
+        items={this.props.totalPages} activePage={this.props.currentPage} onSelect={this.changePage} />
                     </div>
                     <ScrollTop anchor={this.anchor}/>
             </div >
@@ -68,29 +56,31 @@ class Users extends Component {
     }
     
     changePage(page){
-        alert(page);
         this.props.push(page)
-        this.props.requestUsersList(page);
-        this.current_page =page;
+        this.props.requestUsersList(page,this.props.searchText,this.props.roles);
+        this.currentPage = page;
         
     }
 }
 
 function mapStateToProps (state ) {
     return({
-        state : state.usersReducers,
-      page: state.routing && state.routing.locationBeforeTransitions && state.routing.locationBeforeTransitions.query && state.routing.locationBeforeTransitions.query.page_no || 1,
-      current_page: state.page,
-      
-    });
+        page: (state.tasksReducers.routing && 
+        state.tasksReducers.routing.locationBeforeTransitions && 
+        state.tasksReducers.routing.locationBeforeTransitions.query && 
+        state.tasksReducers.routing.locationBeforeTransitions.query.page_no) || 1,
+        searchText: state.usersReducers.searchText,
+        roles: state.usersReducers.roles,
+        newUsers: state.usersReducers.newUsers,
+        totalPages: state.usersReducers.totalPages,
+        currentPage: state.usersReducers.currentPage
+        });
     
   }
   
-
-
 export default connect(
     mapStateToProps,
     
-    dispatch => bindActionCreators({requestUsersList: requestUsersList,push: push}, dispatch)
+    dispatch => bindActionCreators({requestUsersList: requestUsersList,requestUserRoles:requestUserRoles, push: push}, dispatch)
 
 )(Users);

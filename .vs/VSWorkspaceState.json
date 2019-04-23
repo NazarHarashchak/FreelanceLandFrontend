@@ -2,14 +2,7 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\addTaskPage\\components",
-    "\\src\\LoginPage",
-    "\\src\\mainPages\\components",
-    "\\src\\Messages\\components",
-    "\\src\\ProfilePage\\components",
-    "\\src\\TaskInfo\\components",
-    "\\src\\tasks\\components",
-    "\\src\\Users\\components"
+    "\\src\\LoginPage"
   ],
   "PreviewInSolutionExplorer": false
 }
