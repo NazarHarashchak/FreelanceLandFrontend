@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Item } from 'semantic-ui-react';
-import  logo from './MyPhoto.jpg';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators1 } from '../../ProfilePage/actions';
+import { Rating } from 'semantic-ui-react'
 
 class UserItem extends Component {
    
@@ -20,9 +20,15 @@ class UserItem extends Component {
                             </div>
 
                             <div className="media-body">
-                                <div className="media-heading">
-                                    {this.props.item.name}
-                                    {this.props.item.userRoleName}
+                                <div className="row media-heading">
+                                    <div className="col-md-2">
+                                        {this.props.item.name}
+                                    </div>
+                                
+                                    <div className="col-md-2">
+                                        <Rating maxRating={5} defaultRating={this.props.item.rating} icon='star' size='huge' disabled/>
+
+                                    </div>
                                 </div>
                                 <p className="info">
                                     {this.props.item.phone_Number}
@@ -31,12 +37,10 @@ class UserItem extends Component {
                                 <div className="description">
                                     {this.props.item.description}
                                 </div>
+                                
                             </div>
-
                         </ul>
-
                     </a>
-
                 </li>
 
             </div>

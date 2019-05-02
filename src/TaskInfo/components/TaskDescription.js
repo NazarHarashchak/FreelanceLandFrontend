@@ -3,22 +3,36 @@ import { Link } from 'react-router-dom';
 import Comments from './Comments';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { closeMyTask } from '../taskActions';
+import { closeMyTask, rateUser } from '../taskActions';
 import "./taskbody.css";
+import { Rating } from 'semantic-ui-react'
+import Modal from 'react-awesome-modal';
+import SweetAlert from 'sweetalert2-react';
 
 class TaskDescription extends React.Component {
   constructor(props){
     super(props);
+    this.state = {
+      visible : false,
+      rate:0,userNotRate: false}
 
     this.closeTask = this.closeTask.bind(this);
   }
 
   closeTask(){
+
+    console.log(this.state.rating)
+    if(this.state.rating===undefined){
+      this.closeModal();
+      this.setState({ userNotRate: true })
+    }
+    else{
     this.props.closeMyTask(this.props.myTask.id).then(() => { 
-      alert("Success");
-      document.location.reload();
+      this.props.rateUser(this.props.customerId,this.props.excecutorId,this.state.rating);
+      this.setState({ rate: true })
+      this.closeModal();
 });
-  }
+  }}
 
 GetStatusList(){
      switch(this.props.myTask.taskStatus){
@@ -96,9 +110,41 @@ GetStatusList(){
             );
      }
 }
+handleRate = (e, { rating, maxRating }) => this.setState({ rating, maxRating })
+openModal() {
+  this.setState({
+      visible : true
+  });
+}
+
+closeModal() {
+  this.setState({
+      visible : false
+  });
+}
+col(event){
+  console.log(event.target.defaultRating);
+}
+
   render() {
     return (
         <div>
+          <SweetAlert
+                        show={this.state.userNotRate}
+                        title="Rate freelancer"
+                        type = 'warning'
+                        confirmButtonColor='#075232'
+                        onConfirm={() =>( this.setState({ userNotRate: false }), this.openModal())}
+                    />
+          <section>
+                <Modal visible={this.state.visible} width="200" height="200" effect="fadeInUp" onClickAway={() => this.closeModal()}>
+                    <div>
+                      <h1>Rate freelancer</h1>
+                    <Rating id="rate" icon='star' size='massive' maxRating={5} onRate={this.handleRate} />
+                        <button id="rateButton"  readOnly={this.state.rea} onClick={this.closeTask}>Close/Rate</button>
+                    </div>
+                </Modal>
+            </section>
           <div><Link to="/tasks">Back to list</Link> </div>
            {this.GetStatusList()}
           <form className="my-task-description" title="Send a comment to start working"> 
@@ -135,7 +181,7 @@ GetStatusList(){
              { (sessionStorage.getItem("id") == this.props.customerId) 
                   && (this.props.myTask.taskStatus !== "Done") ? (
              <div id="close-task-button">
-                <input type="button" id="close" value="Close task" onClick={this.closeTask}/>
+                <input type="button" id="close" value="Close task" onClick={() => this.openModal()}/>
              </div>) : null
              }
             </div>
@@ -145,5 +191,5 @@ GetStatusList(){
 
 export default connect(
   state => state.taskProfilePage,
-  dispatch => bindActionCreators({closeMyTask:closeMyTask}, dispatch)
+  dispatch => bindActionCreators({closeMyTask:closeMyTask, rateUser:rateUser}, dispatch)
 )(TaskDescription);
