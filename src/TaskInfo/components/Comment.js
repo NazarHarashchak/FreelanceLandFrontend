@@ -77,8 +77,8 @@ class Comment extends React.Component {
                  </div>
                  
           </div>
-          {
-            (sessionStorage.getItem("id") == this.props.customerId) && (this.props.task.excecutorId === 0) 
+          { 
+            (sessionStorage.getItem("id") == this.props.customerId) && (this.props.task.excecutorId == 0) 
             && (sessionStorage.getItem("id") != this.props.item.userId) ? (
                     <div id="choose_excecutor">
                         <form>

@@ -15,7 +15,8 @@ class Tasks extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            id:"created?id="+ sessionStorage.getItem("id")+"&"
+            id:"created?id="+ sessionStorage.getItem("id")+"&",
+            firstStatus: ''
          }
 
         this.changePage = this.changePage.bind(this);
@@ -32,16 +33,8 @@ class Tasks extends Component {
     }
 
     onDragStart = (event, id, status) =>{
-        switch(status){
-            case 'To do':
-                break;
-            case 'In progress':
-                break;
-            case 'Ready for verification':
-                break;
-            case 'Done':
-                break;
-        }
+        this.setState({firstStatus: status});
+        console.log(status);
         event.dataTransfer.setData("text/plain", id);
     }
 
@@ -55,47 +48,61 @@ class Tasks extends Component {
                 <div
                     ref={(el) => { this.anchor = el; }}>
                 </div>
-                {this.props.tasksAreLoading===true ? <h3>Loading data...</h3> : <div className="my-block row">
+                {//this.props.tasksAreLoading===true ? <h3>Loading data...</h3> : 
+                    <div className="my-block row">
                         <div
                             ref={(el) => { this.anchor = el; }}>
                         </div>
                         <div className="Status col-md-3" id="To do" 
-                        onDrop={(e) => this.onDrop(e, "To do")}
-                        onDragOver = {(e) => this.onDragOver(e)}>
+                        onDrop={(this.state.firstStatus=='In progress')?(e) => this.onDrop(e, "To do"):null}
+                        onDragOver = {(this.state.firstStatus=='In progress')?(e) => this.onDragOver(e):null}>
                         <div className="status-type">To do</div>
                         {this.props.createdTasks.map(item =>
                             (item.taskStatus === "To do" ? 
-                            <div
+                            <div key={item.id}
                             draggable
-                           onDragStart = {(e) => this.onDragStart(e, item.id, item.taskStatus)}>
-                            <TaskItem item={item} className="draggable"/></div>
-                            :null))}
+                            onDragStart = {(e) => this.onDragStart(e, item.id, item.taskStatus)}>
+                            <TaskItem item={item}/></div>
+                            : null))}
                         </div>
 
-                        <div className="Status col-md-3" id="In-progress" >
+                        <div className="Status col-md-3" id="In-progress" 
+                            onDrop={(this.state.firstStatus=='Ready for verification')
+                                ? (e) => this.onDrop(e, "In progress"):null}
+                            onDragOver = {(this.state.firstStatus=='Ready for verification')
+                                ?(e) => this.onDragOver(e):null}
+                        >
                         <div className="status-type">In progress</div>
                         {this.props.createdTasks.map(item => (item.taskStatus === "In progress" ?
-                         <TaskItem item={item}/>:null))}
+                         <div key={item.id}
+                         draggable
+                         onDragStart = {(e) => this.onDragStart(e, item.id, item.taskStatus)}>
+                             <TaskItem item={item}/></div>:null))}
                         </div>
 
                         <div className="Status col-md-3" id="Ready-for"  
-                         onDrop={(e) => this.onDrop(e, "Ready for verification")}
-                        onDragOver = {(e) => this.onDragOver(e)}>
+                         onDrop={(this.state.firstStatus=='Done')?(e) => this.onDrop(e, "Ready for verification"):null}
+                         onDragOver = {(this.state.firstStatus=='Done')?(e) => this.onDragOver(e):null}>
                         <div className="status-type">Ready for verification</div>
                         {this.props.createdTasks.map(item => (item.taskStatus === "Ready for verification" ?
-                         <div
+                         <div key={item.id}
                          draggable
-                        onDragStart = {(e) => this.onDragStart(e, item.id)}><TaskItem item={item} className="draggable"/></div>
+                        onDragStart = {(e) => this.onDragStart(e, item.id, item.taskStatus)}>
+                        <TaskItem item={item} className="draggable"/></div>
                          :null))}
                         </div>
 
                         <div className="Status col-md-3" id="Done"  
-                            onDrop={(e) => this.onDrop(e, "Done")}
-                            onDragOver = {(e) => this.onDragOver(e)} >
+                            onDrop={((this.state.firstStatus=='Ready for verification') || 
+                            (this.state.firstStatus=='To do'))
+                             ? (e) => this.onDrop(e, "Done") : null}
+                            onDragOver = {(this.state.firstStatus=='Ready for verification')
+                            || 
+                            (this.state.firstStatus=='To do')?(e) => this.onDragOver(e):null} >
                         <div className="status-type">Done</div>
                         {this.props.createdTasks.map(item => 
                             (item.taskStatus === "Done" ? <div draggable
-                            onDragStart = {(e) => this.onDragStart(e, item.id)}>
+                            onDragStart = {(e) => this.onDragStart(e, item.id, item.taskStatus)}>
                             <TaskItem item={item}/></div>:null))}
                         </div>
                     </div >}
