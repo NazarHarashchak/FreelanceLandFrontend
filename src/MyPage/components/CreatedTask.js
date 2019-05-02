@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { requestTasksList,requestCategoriesList ,changeCurrentPage} from '../../tasks/actions';
-import TaskItemList from '../../tasks/components/TaskItemList';
+import {requestCreatedTasksListForUser ,requestCategoriesList ,
+        changeCurrentPage, DragAndDropTasksByCustomer} from '../../tasks/actions';
 import TaskItem from '../../DragAndDrop/task';
 import ScrollTop from '../../tasks/components/ScrollTop';
 import '../../tasks/styles.css';
 import { push } from 'react-router-redux';
+
+import './style.css';
 
 
 class Tasks extends Component {
@@ -18,27 +20,32 @@ class Tasks extends Component {
 
         this.changePage = this.changePage.bind(this);
     };
-    async componentDidMount() {
-        await this.props.requestCategoriesList();
-        this.props.requestTasksList(this.props.page, this.props.filter, this.props.search, this.state.id);
+    
+    componentWillMount(){
+        this.props.requestCreatedTasksListForUser();
     }
 
     onDrop = (event, cat) => {
         let id = event.dataTransfer.getData("text");
-        console.log("DROP" + cat + id);
-
-        let tasks = this.props.tasks.filter((task) => {if (task.id == id){task.taskStatus = cat}
-    
-        return task;});
+        
+        this.props.DragAndDropTasksByCustomer(id, sessionStorage.getItem("id"), cat);
     }
 
-    onDragStart = (event, id) =>{
-        console.log("Drag start" + id);
+    onDragStart = (event, id, status) =>{
+        switch(status){
+            case 'To do':
+                break;
+            case 'In progress':
+                break;
+            case 'Ready for verification':
+                break;
+            case 'Done':
+                break;
+        }
         event.dataTransfer.setData("text/plain", id);
     }
 
     onDragOver(event){
-        console.log("Drag over");
         event.preventDefault();
     }
 
@@ -48,44 +55,49 @@ class Tasks extends Component {
                 <div
                     ref={(el) => { this.anchor = el; }}>
                 </div>
-                {this.props.tasksAreLoading===true ? <h3>Loading data...</h3> : <div className="row">
+                {this.props.tasksAreLoading===true ? <h3>Loading data...</h3> : <div className="my-block row">
                         <div
                             ref={(el) => { this.anchor = el; }}>
                         </div>
-
-                        <div className="To do col-md-3" id="j-orders-search-list" 
+                        <div className="Status col-md-3" id="To do" 
+                        onDrop={(e) => this.onDrop(e, "To do")}
                         onDragOver = {(e) => this.onDragOver(e)}>
-                        <p>To do</p>
-                        {this.props.tasks.map(item =>
+                        <div className="status-type">To do</div>
+                        {this.props.createdTasks.map(item =>
                             (item.taskStatus === "To do" ? 
                             <div
                             draggable
-                           onDragStart = {(e) => this.onDragStart(e, item.id)}><TaskItem item={item} className="draggable"/></div>
+                           onDragStart = {(e) => this.onDragStart(e, item.id, item.taskStatus)}>
+                            <TaskItem item={item} className="draggable"/></div>
                             :null))}
                         </div>
 
-                        <div className="In-progress col-md-3">
-                        <p>In progress</p>
-                        {this.props.tasks.map(item => (item.taskStatus === "In progress" ?
+                        <div className="Status col-md-3" id="In-progress" >
+                        <div className="status-type">In progress</div>
+                        {this.props.createdTasks.map(item => (item.taskStatus === "In progress" ?
                          <TaskItem item={item}/>:null))}
                         </div>
 
-                        <div className="Ready-for-verification col-md-3">
-                        <p>Ready for verification</p>
-                        {this.props.tasks.map(item => (item.taskStatus === "Ready for verification" ?
+                        <div className="Status col-md-3" id="Ready-for"  
+                         onDrop={(e) => this.onDrop(e, "Ready for verification")}
+                        onDragOver = {(e) => this.onDragOver(e)}>
+                        <div className="status-type">Ready for verification</div>
+                        {this.props.createdTasks.map(item => (item.taskStatus === "Ready for verification" ?
                          <div
                          draggable
                         onDragStart = {(e) => this.onDragStart(e, item.id)}><TaskItem item={item} className="draggable"/></div>
                          :null))}
                         </div>
 
-                        <div className="Done col-md-3" 
+                        <div className="Status col-md-3" id="Done"  
                             onDrop={(e) => this.onDrop(e, "Done")}
                             onDragOver = {(e) => this.onDragOver(e)} >
-                        <p>Done</p>
-                        {this.props.tasks.map(item => (item.taskStatus === "Done" ? <TaskItem item={item}/>:null))}
+                        <div className="status-type">Done</div>
+                        {this.props.createdTasks.map(item => 
+                            (item.taskStatus === "Done" ? <div draggable
+                            onDragStart = {(e) => this.onDragStart(e, item.id)}>
+                            <TaskItem item={item}/></div>:null))}
                         </div>
-
                     </div >}
 
                 <ScrollTop anchor={this.anchor} />
@@ -102,9 +114,11 @@ export default connect(
     state => ({filter: state.tasksReducers.filter,
         search: state.tasksReducers.search,
         tasksAreLoading: state.tasksReducers.tasksAreLoading,
-        tasks: state.tasksReducers.tasks,
+        createdTasks: state.tasksReducers.createdTasks,
         totalPages: state.tasksReducers.totalPages,
         page: state.tasksReducers.curPage}),
-        dispatch => bindActionCreators({requestTasksList:requestTasksList    ,
-        requestCategoriesList:requestCategoriesList, push: push, changeCurrentPage:changeCurrentPage}, dispatch)
+
+        dispatch => bindActionCreators({  requestCreatedTasksListForUser:requestCreatedTasksListForUser,
+        requestCategoriesList:requestCategoriesList, push: push, changeCurrentPage:changeCurrentPage,
+        DragAndDropTasksByCustomer:DragAndDropTasksByCustomer}, dispatch)
 )(Tasks);

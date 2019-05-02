@@ -18,7 +18,8 @@ const receiveCreatedTasksListForUserType = 'RECEIVE-CREATED-TASKS-LIST-FOR-USER-
 export const requestTasksList = (pageNumber, filter, searchText, control) => async (dispatch) => {
     dispatch({ type: requestTasksListType });
 
-    let url = '/tasks/'+  control + 'page='+pageNumber+'&search='+searchText+'&priceFrom='+filter.priceFrom+'&priceTo='+filter.priceTo+'&';
+    let url = '/tasks/'+  control + 'page='+
+    pageNumber+'&search='+searchText+'&priceFrom='+filter.priceFrom+'&priceTo='+filter.priceTo+'&';
     
     filter.categories.filter(categ => categ.isChecked===true)
     .map(categ => {url+='categ='+categ.type+'&'});
@@ -54,8 +55,20 @@ export const requestCategoriesList = () => async (dispatch) =>{
 export const requestCreatedTasksListForUser = () => async (dispatch) => {
     dispatch({ type: requestCreatedTasksListForUserType });
 
-    const url=`/tasks/Created/`+sessionStorage.getItem('id');
+    const url=`/tasks/Created/` + sessionStorage.getItem('id');
     const tasks = await requests.doGet(url);
+    dispatch({ type: receiveCreatedTasksListForUserType, tasks});
+}
+
+export const DragAndDropTasksByCustomer = (my_taskId, my_customerId, secondStatus) => async (dispatch) => {
+    dispatch({ type: requestCreatedTasksListForUserType });
+
+    const url = '/api/tasks/DragAndDropCustomer';
+    const tasks = await requests.doPost(url,JSON.stringify({
+        taskId: my_taskId,
+        customerId: my_customerId,
+        finalStatus: secondStatus
+    }));
     dispatch({ type: receiveCreatedTasksListForUserType, tasks});
 }
 

@@ -73,9 +73,9 @@ export const   closeMyTask = (taskId) => async (dispatch) => {
         dispatch({ type: receiveTaskForecastsType, forecasts });
     }
 
-    export const finishTask = (taskId) => async (dispatch) => {
+    export const finishMyTask = (taskId) => async (dispatch) => {
         dispatch({type: requestTaskForecastsType });
-        const forecasts = await requests.doPost(`/api/taskinfo/closetask/` + taskId,JSON.stringify({
+        const forecasts = await requests.doPost(`/api/taskinfo/finishtask/` + taskId,JSON.stringify({
             id: taskId
     }));
 
