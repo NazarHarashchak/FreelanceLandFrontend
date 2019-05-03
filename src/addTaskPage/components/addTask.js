@@ -26,7 +26,7 @@ class addTaskPage extends React.Component {
             descriptionContent: '',
             descriptionError: '',
             priceContent: '0',
-            deadlineContent: this.defaultDate(),
+            priceError: '',
             categoryContent: '',
             myError: ''
         };
@@ -35,8 +35,6 @@ class addTaskPage extends React.Component {
         this.onDescriptionChange = this.onDescriptionChange.bind(this);
         this.validContent = this.validContent.bind(this);
         this.onPriceChange = this.onPriceChange.bind(this);
-        this.onDateChange = this.onDateChange.bind(this);
-        this.defaultDate = this.defaultDate.bind(this);
         this.addedValues = this.addedValues.bind(this);
         this.saveChanges = this.saveChanges.bind(this);
         this.onCategoryChange = this.onCategoryChange.bind(this);
@@ -71,23 +69,15 @@ class addTaskPage extends React.Component {
     onPriceChange(event){
         const value = event.target.value;
 
+        if (value < 0){
+            this.setState({priceError: "This value can not be negative"});
+            return;
+        }
+        else {
+            this.setState({priceError: ""});
+        }
+
         this.setState({priceContent: value});
-    }
-
-    onDateChange(event){
-        const value = event.target.value;
-        
-        this.setState({deadlineContent: value});
-    }
-
-    defaultDate(){
-        var mounth = new Date().getMonth() + 1;
-        var date = new Date().getDate();
-        const year = new Date().getFullYear();
-        if (date < 10) { date = '0' + date;}
-        if (mounth < 10) {mounth = '0' + mounth;}
-        const value = year + '-' + mounth + '-' + date;
-        return(value);
     }
 
     validContent(content, name){
@@ -105,6 +95,10 @@ class addTaskPage extends React.Component {
                         this.setState({descriptionError: my_error});
                         return(false);
                     }
+                    case 'price-content':{
+                        this.setState({priceError: "This value can not be negative"});
+                        return (false);
+                    }
                     default: return false;
                 }
 
@@ -113,7 +107,8 @@ class addTaskPage extends React.Component {
 
     addedValues(){
         if((this.validContent(this.state.titleContent, 'title-content'))
-            && (this.validContent(this.state.descriptionContent, 'description-content')))
+            && (this.validContent(this.state.descriptionContent, 'description-content'))
+            && (this.validContent(this.state.priceContent, 'price-content')))
         {
             return true;
         }
@@ -122,18 +117,16 @@ class addTaskPage extends React.Component {
     }
 
     saveChanges(event){
-        console.log(this.state.categoryContent);
         if (this.addedValues()){
             this.props.createNewTask(this.state.titleContent, this.state.descriptionContent, 
-                sessionStorage.getItem('id'), this.state.priceContent,
-                this.state.deadlineContent, this.state.categoryContent).
+                sessionStorage.getItem('id'), this.state.priceContent, this.state.categoryContent).
                 then(() => { 
                     alert("Success");
                     document.location = '/tasks/';
             });;
         }
         else{
-            this.setState({myError: "There are empty spaces"});
+            this.setState({myError: "There are empty or incorrect values"});
         }
         event.preventDefault();
     }
@@ -147,57 +140,49 @@ class addTaskPage extends React.Component {
                 <form name="my-add-task-form">       
                 <h1>Add a new task</h1>
                 <hr id="my-hr-tag"/>           
-                     <div id="title">
-                        <div className="label-element">
+                     <div id="title" className="row">
+                        <div className="label-element col-md-4">
                             <label>Title:</label>
                         </div>
-                        <div className="text-element">
+                        <div className="text-element col-md-8">
                         <input type="text" placeholder="Enter what to do" name="title-text" 
                                     onChange={this.onTitleChange}/>
                         <label id="title-error" className="Errors">{this.state.titleError}</label>
                         </div>
                     </div>
-                    <div id="description">
-                        <div className="label-element">
-                            <label>Description:</label>
+                    <div id="description" className="row">
+                        <div className="label-element col-md-4">
+                            Description:
                         </div>
-                        <div className="text-element" >
+                        <div className="text-element col-md-8" >
                             <textarea placeholder="Enter detail description of your task" 
                             id="add-task-description" name="description-text" onChange={this.onDescriptionChange}/>
                             <label id="description-error" className="Errors">{this.state.descriptionError}</label>
                         </div>
                     </div>
-                    <div id="category">
-                        <div className="label-element">
+                    <div id="category" className="row">
+                        <div className="label-element col-md-4">
                             <label>Category: </label>
                         </div>
-                        <div id="task-category">
+                        <div id="task-category" className="col-md-8">
                             <select id="my-task-category" name='category-content' onChange={this.onCategoryChange}>
                                 {this.props.categories.map((item) => <option value={item.type}>{item.type}</option>)}
                             </select>
                         </div>
                     </div>
-                    <div id="price">
-                        <div className="label-element">
+                    <div id="price" className="row">
+                        <div className="label-element col-md-4">
                             <label>Price: </label>
                         </div>
-                        <div className="text-element">
+                        <div className="text-element col-md-8">
                             <input type="number" min="0" step="1" placeholder="Enter your price in $" 
-                            id="price-text" name="price-text" onChange={this.onPriceChange} defaultValue='0'/>
+                            id="price-text" name="price-text"
+                             onChange={this.onPriceChange} defaultValue='0' required/>
+                             <span className="validation"></span>
                             <label id="price-error" className="Errors">{this.state.priceError}</label>
                         </div>
                     </div>
-                    <div id="deadline">
-                        <div className="label-element">
-                            <label>Deadline:</label>
-                        </div>
-                        <div className="text-element">
-                            <input type="date" name="deadline-text"
-                             id="add-date" min={this.defaultDate()} onChange={this.onDateChange} />
-                        <label id="deadline-error" className="Errors">{this.state.deadlineError}</label>
-                        </div>
-                    </div>
-                    <div id="save-button">
+                    <div id="save-button" className="row">
                         <input type="button" value="Save" id="save-new-task" onClick={this.saveChanges}/>
                     </div>
                     <div id="error">

@@ -20,7 +20,7 @@ class Comments extends React.Component {
    else { if (this.props.myTask.taskStatus === 'To do'){ return(
         <AddComment userId={myUserId} taskId={this.props.taskId} userphoto={this.props.myphoto}/>);}
       
-      else {return(<div id="comments-error">You cant send the comments becuse this task is already started</div>);}}
+      else {return(<div id="comments-error">You cant send the comments because this task is already started</div>);}}
   }
   render() {
     return (

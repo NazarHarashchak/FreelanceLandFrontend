@@ -1,5 +1,3 @@
-.add-task-body{
-}
 .add-task-description{
     position: relative;
     padding: 10px;
@@ -20,6 +18,7 @@
     width:15%;
     color:black;
     position: relative;
+    word-wrap: break-word;
     clear:both;
 }
 #my-hr-tag {

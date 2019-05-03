@@ -2,6 +2,7 @@ import React from "react";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {actionCommentsPostCreators} from "../taskActions"
+import  logo from '../../store/default-logo.jpg';
 
 import "./comments.css";
 
@@ -65,7 +66,11 @@ class AddComment extends React.Component {
             <div className="container" id="add-comment">
              <div className='row' >
                   <div className="col-md-1" >
+                  { (this.props.userphoto != "empty") ?
                   <img id="user-photo"  src={this.props.userphoto} alt="user photo" />
+                  :
+                  <img id="user-photo" src={logo} alt="User photo"></img>
+                  }
                   </div>
                   <div className="col-md-10">
                   <input  type="text" id="text-content" placeholder="write your comment to start working" 

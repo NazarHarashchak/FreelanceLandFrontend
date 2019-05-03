@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { addExcecutor } from '../taskActions';
 import { Icon } from 'semantic-ui-react';
 import SweetAlert from 'sweetalert2-react';
-import  logo from './123.jpeg';
+import  logo from '../../store/default-logo.jpg';
 import "./comments.css";
 
 class Comment extends React.Component {
@@ -77,8 +77,9 @@ class Comment extends React.Component {
                  </div>
                  
           </div>
-          {
-            (sessionStorage.getItem("id") == this.props.customerId) && (this.props.task.excecutorId === 0) ? (
+          { 
+            (sessionStorage.getItem("id") == this.props.customerId) && (this.props.task.excecutorId == 0) 
+            && (sessionStorage.getItem("id") != this.props.item.userId) ? (
                     <div id="choose_excecutor">
                         <form>
                           <input type="button" value="Choose" id="choose-button" title="Add an excecutor"

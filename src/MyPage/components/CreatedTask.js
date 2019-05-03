@@ -1,57 +1,119 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { requestTasksList,requestCategoriesList ,changeCurrentPage} from '../../tasks/actions';
-import TaskItemList from '../../tasks/components/TaskItemList';
-import SearchBar from '../../tasks/components/SearchBar';
+import {requestCreatedTasksListForUser ,requestCategoriesList ,
+        changeCurrentPage, DragAndDropTasksByCustomer} from '../../tasks/actions';
+import TaskItem from '../../DragAndDrop/task';
 import ScrollTop from '../../tasks/components/ScrollTop';
-import Filter from '../../tasks/components/Filter';
-import Pagination from './Pagination';
 import '../../tasks/styles.css';
 import { push } from 'react-router-redux';
+
+import './style.css';
 
 
 class Tasks extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            id:"created?id="+ sessionStorage.getItem("id")+"&" }
+            id:"created?id="+ sessionStorage.getItem("id")+"&",
+            firstStatus: '',
+            excecutor: 0
+         }
 
         this.changePage = this.changePage.bind(this);
     };
-    async componentDidMount() {
-        await this.props.requestCategoriesList();
-        this.props.requestTasksList(this.props.page, this.props.filter, this.props.search, this.state.id);
+    
+    componentWillMount(){
+        this.props.requestCreatedTasksListForUser();
+    }
+
+    onDrop = (event, cat) => {
+        let id = event.dataTransfer.getData("text");
+        
+        this.props.DragAndDropTasksByCustomer(id, sessionStorage.getItem("id"), cat);
+    }
+
+    onDragStart = (event, id, status, ex) =>{
+        this.setState({firstStatus: status, excecutor: ex});
+        console.log(this.state.firstStatus + 'excecutor' + this.state.excecutor);
+        event.dataTransfer.setData("text/plain", id);
+    }
+
+    onDragOver(event){
+        event.preventDefault();
     }
 
     render() {
         return (
-            <div className="container" id="tasks-container">
+            <div className="created-tasks container" id="tasks-container">
                 <div
                     ref={(el) => { this.anchor = el; }}>
                 </div>
-                <div className="main-content container">
-                    <SearchBar  control={this.state.id}/>
-                    <div className="row">
+                {//this.props.tasksAreLoading===true ? <h3>Loading data...</h3> : 
+                    <div className="my-block row">
                         <div
                             ref={(el) => { this.anchor = el; }}>
                         </div>
-                        <div className="col-md-9" id="j-orders-search-list">
-                            {this.props.tasksAreLoading===true ? <h3>Loading data...</h3> : <TaskItemList tasks={this.props.tasks} />}
-                            <Pagination className="users-pagination pull-center" 
-                            bsSize="medium" 
-                            maxButtons={10} 
-                            first last next prev boundaryLinks 
-                            items={this.props.totalPages} 
-                            activePage={this.props.page} 
-                            onSelect={this.changePage} />
+                        <div className="Status col-md-3" id="To do" 
+                        onDrop={(this.state.firstStatus=='In progress') ||
+                                ((this.state.firstStatus == 'Done')&&(this.state.excecutor === 0))
+                             ? (e) => this.onDrop(e, "To do"):null}
+                        onDragOver = {(this.state.firstStatus=='In progress')||
+                                ((this.state.firstStatus == 'Done')&&(this.state.excecutor === 0))
+                            ? (e) => this.onDragOver(e):null}>
+                        <div className="status-type">To do</div>
+                        {this.props.createdTasks.map(item =>
+                            (item.taskStatus === "To do" ? 
+                            <div key={item.id}
+                            draggable
+                            onDragStart = {(e) => this.onDragStart(e, item.id, item.taskStatus, item.excecutorId)}>
+                            <TaskItem item={item}/></div>
+                            : null))}
                         </div>
-                        <div className="col-md-3">
-                            <Filter control={this.state.id}/>
-                        </div>
-                    </div >
 
-                </div >
+                        <div className="Status col-md-3" id="In-progress" 
+                            onDrop={(this.state.firstStatus=='Ready for verification')
+                                ? (e) => this.onDrop(e, "In progress"):null}
+                            onDragOver = {(this.state.firstStatus=='Ready for verification')
+                                ?(e) => this.onDragOver(e):null}
+                        >
+                        <div className="status-type">In progress</div>
+                        {this.props.createdTasks.map(item => (item.taskStatus === "In progress" ?
+                         <div key={item.id}
+                         draggable
+                         onDragStart = {(e) => this.onDragStart(e, item.id, item.taskStatus, item.excecutorId)}>
+                             <TaskItem item={item}/></div>:null))}
+                        </div>
+
+                        <div className="Status col-md-3" id="Ready-for"  
+                         onDrop={(this.state.firstStatus=='Done')&&(this.state.excecutor != 0) ?
+                         (e) => this.onDrop(e, "Ready for verification"):null}
+                         onDragOver = {(this.state.firstStatus=='Done') &&(this.state.excecutor != 0) ?
+                         (e) => this.onDragOver(e):null}>
+                        <div className="status-type">Ready for verification</div>
+                        {this.props.createdTasks.map(item => (item.taskStatus === "Ready for verification" ?
+                         <div key={item.id}
+                         draggable
+                        onDragStart = {(e) => this.onDragStart(e, item.id, item.taskStatus, item.excecutorId)}>
+                        <TaskItem item={item} className="draggable"/></div>
+                         :null))}
+                        </div>
+
+                        <div className="Status col-md-3" id="Done"  
+                            onDrop={((this.state.firstStatus=='Ready for verification') || 
+                            (this.state.firstStatus=='To do'))
+                             ? (e) => this.onDrop(e, "Done") : null}
+                            onDragOver = {(this.state.firstStatus=='Ready for verification')
+                            || 
+                            (this.state.firstStatus=='To do')?(e) => this.onDragOver(e):null} >
+                        <div className="status-type">Done</div>
+                        {this.props.createdTasks.map(item => 
+                            (item.taskStatus === "Done" ? <div draggable
+                            onDragStart = {(e) => this.onDragStart(e, item.id, item.taskStatus, item.excecutorId)}>
+                            <TaskItem item={item}/></div>:null))}
+                        </div>
+                    </div >}
+
                 <ScrollTop anchor={this.anchor} />
             </div >
         );
@@ -66,9 +128,11 @@ export default connect(
     state => ({filter: state.tasksReducers.filter,
         search: state.tasksReducers.search,
         tasksAreLoading: state.tasksReducers.tasksAreLoading,
-        tasks: state.tasksReducers.tasks,
+        createdTasks: state.tasksReducers.createdTasks,
         totalPages: state.tasksReducers.totalPages,
         page: state.tasksReducers.curPage}),
-        dispatch => bindActionCreators({requestTasksList:requestTasksList    ,
-        requestCategoriesList:requestCategoriesList, push: push, changeCurrentPage:changeCurrentPage}, dispatch)
+
+        dispatch => bindActionCreators({  requestCreatedTasksListForUser:requestCreatedTasksListForUser,
+        requestCategoriesList:requestCategoriesList, push: push, changeCurrentPage:changeCurrentPage,
+        DragAndDropTasksByCustomer:DragAndDropTasksByCustomer}, dispatch)
 )(Tasks);

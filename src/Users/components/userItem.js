@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Item } from 'semantic-ui-react';
-import  logo from './MyPhoto.jpg';
+import  logo from '../../store/default-logo.jpg';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators1 } from '../../ProfilePage/actions';
@@ -16,8 +16,12 @@ class UserItem extends Component {
                     <a href={`/ProfilePage/${this.props.item.id}`}>
                         <ul className="l-item-features">
                             <div className="media-left">
+                            { (this.props.item.userPhoto != "empty") ?
                                 <img className="media-object" src={this.props.item.userPhoto}  alt='User photo'></img>
-                            </div>
+                               :
+                               <img className="media-object" src={logo} alt="User photo"></img>
+                            }
+                                </div>
 
                             <div className="media-body">
                                 <div className="media-heading">

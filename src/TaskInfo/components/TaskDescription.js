@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Comments from './Comments';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { closeMyTask } from '../taskActions';
+import { closeMyTask, finishMyTask } from '../taskActions';
 import "./taskbody.css";
 
 class TaskDescription extends React.Component {
@@ -11,6 +11,7 @@ class TaskDescription extends React.Component {
     super(props);
 
     this.closeTask = this.closeTask.bind(this);
+    this.finishTask = this.finishTask.bind(this);
   }
 
   closeTask(){
@@ -20,22 +21,28 @@ class TaskDescription extends React.Component {
 });
   }
 
+  finishTask(){
+    this.props.finishMyTask(this.props.myTask.id).then(() => { 
+      alert("Success");
+      document.location.reload();
+});
+  }
 GetStatusList(){
      switch(this.props.myTask.taskStatus){
         case "To do":
           return(
             <div id="status-panel">
                 <ul className="my_list">
-                  <li className="first-status">
+                  <li className="first-status col-md-2">
                     To do
                   </li>
-                  <li className="third-status" id="in_progress">
+                  <li className="third-status col-md-3" id="in_progress">
                     In progress
                   </li>
-              < li className="third-status" id="ready_for">
-                Ready for verification >
+              < li className="third-status col-md-4" id="ready_for">
+                Ready for verification 
               </li>
-                  <li className="third-status" id="done">
+                  <li className="third-status col-md-2" id="done">
                     Done
                   </li>
                 </ul>
@@ -44,16 +51,16 @@ GetStatusList(){
         case "In progress":
           return(<div id="status-panel">
           <ul className="my_list">
-            <li className="second-status">
-              To do >
+            <li className="second-status col-md-2">
+              To do 
             </li>
-            <li className="first-status" id="in_progress">
-              In progress >
+            <li className="first-status col-md-3" id="in_progress">
+              In progress 
             </li>
-              < li className="third-status" id="ready_for">
-                Ready for verification >
+              < li className="third-status col-md-4" id="ready_for">
+                Ready for verification 
               </li>
-            <li className="third-status" id="done">
+            <li className="third-status col-md-2" id="done">
               Done
             </li>
           </ul>
@@ -61,16 +68,16 @@ GetStatusList(){
         case "Done":
           return(<div id="status-panel">
           <ul className="my_list">
-            <li className="second-status">
-              To do >
+            <li className="second-status col-md-2">
+              To do 
             </li>
-            <li className="second-status" id="in_progress">
-              In progress >
+            <li className="second-status col-md-3" id="in_progress">
+              In progress 
             </li>
-              < li className="second-status" id="ready_for">
-                Ready for verification >
+              < li className="second-status col-md-4" id="ready_for">
+                Ready for verification 
               </li>
-            <li className="first-status" id="done">
+            <li className="first-status col-md-2" id="done">
               Done
             </li>
           </ul>
@@ -78,16 +85,16 @@ GetStatusList(){
         case "Ready for verification":
             return(<div id="status-panel">
             <ul className="my_list">
-              <li className="second-status">
-                To do >
+              <li className="second-status col-md-2">
+                To do 
               </li>
-              <li className="second-status" id="in_progress">
-                In progress >
+              <li className="second-status col-md-3" id="in_progress">
+                In progress 
               </li>
-              < li className="first-status" id="ready_for">
-                Ready for verification >
+              < li className="first-status col-md-4" id="ready_for">
+                Ready for verification 
               </li>
-              <li className="third-status" id="done">
+              <li className="third-status col-md-2" id="done">
                 Done
               </li>
             </ul>
@@ -98,9 +105,9 @@ GetStatusList(){
 }
   render() {
     return (
-        <div>
+        <div className="conteiner">
           <div><Link to="/tasks">Back to list</Link> </div>
-           {this.GetStatusList()}
+           <div className="my-status-list row">{this.GetStatusList()}</div><div className="row">
           <form className="my-task-description" title="Send a comment to start working"> 
           <div>
           <h1 id="task-title">
@@ -133,11 +140,19 @@ GetStatusList(){
              <div></div>
             }
              { (sessionStorage.getItem("id") == this.props.customerId) 
-                  && (this.props.myTask.taskStatus !== "Done") ? (
+                  && ((this.props.myTask.taskStatus !== "Done") 
+                  && (this.props.myTask.taskStatus !== "In progress")) ? (
              <div id="close-task-button">
                 <input type="button" id="close" value="Close task" onClick={this.closeTask}/>
              </div>) : null
              }
+             { (sessionStorage.getItem("id") == this.props.excecutorId) 
+                  && (this.props.myTask.taskStatus == "In progress")  ? (
+             <div id="close-task-button">
+                <input type="button" id="close" value="Finish task" onClick={this.finishTask}/>
+             </div>) : null
+             }
+             </div>
             </div>
     );
   }
@@ -145,5 +160,5 @@ GetStatusList(){
 
 export default connect(
   state => state.taskProfilePage,
-  dispatch => bindActionCreators({closeMyTask:closeMyTask}, dispatch)
+  dispatch => bindActionCreators({closeMyTask:closeMyTask, finishMyTask: finishMyTask}, dispatch)
 )(TaskDescription);
