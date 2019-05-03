@@ -31,7 +31,8 @@ a {
 
 footer {
     position: relative;
-    left: 0;
-    width: 100%;
+    width: 100%; 
+    margin-bottom: 0px;
+    
 }
 
