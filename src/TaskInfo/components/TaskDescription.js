@@ -19,7 +19,7 @@ class TaskDescription extends React.Component {
     this.closeTask = this.closeTask.bind(this);
     this.finishTask = this.finishTask.bind(this);
   }
-
+  
   closeTask(){
 
     console.log(this.state.rating)

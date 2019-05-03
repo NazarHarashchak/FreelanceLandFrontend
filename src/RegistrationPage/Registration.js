@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { actionCreators } from '../RegistrationPage/actions';
 import { Redirect } from 'react-router'
 import SweetAlert from 'sweetalert2-react';
+import './RegistrationController.css';
 
 const initialState = {
     email: '',
