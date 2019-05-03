@@ -52,16 +52,6 @@
     padding-left: 18px;
     padding-right: 5px;
 }
-#price-text:invalid+span:after{
-    content: '✖ Invalid value';
-  margin-top: 10px;
-  color: red;
-}
-#price-text:valid+span:after{
-    content: '✓ Correct value';
-  margin-top: 100px;
-  color: green;
-}
 #save-button{
     text-align: center;
     clear: both;

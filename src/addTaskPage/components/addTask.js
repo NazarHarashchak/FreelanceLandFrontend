@@ -117,7 +117,6 @@ class addTaskPage extends React.Component {
     }
 
     saveChanges(event){
-        console.log(this.state.deadlineContent);
         if (this.addedValues()){
             this.props.createNewTask(this.state.titleContent, this.state.descriptionContent, 
                 sessionStorage.getItem('id'), this.state.priceContent, this.state.categoryContent).
