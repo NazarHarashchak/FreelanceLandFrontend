@@ -128,14 +128,16 @@
   img {
     border-radius: 10px 10px 10px 10px;
   }
+  .my-status-list{
+    width:100%;
+  }
   ul.my_list li{
     display: inline;
     position: relative;
     padding-top: 10px;
     padding-bottom:10px;
-    padding-left: 35px;
-    padding-right: 5px;
     margin-left: 8px; 
+    text-align: center;
     cursor: default;
   }
   ul.my_list li:first-child{
@@ -146,8 +148,8 @@
     position: absolute;
     left: 0px;
     top: -0px;
-    border: 20px solid transparent;	
-    border-left: 30px solid white;
+    border: 22px solid transparent;	
+    border-left: 28px solid white;
     z-index: 1;
   }
   #ready_for::before{
@@ -155,8 +157,8 @@
     position: absolute;
     left: 0px;
     top: -0px;
-    border: 20px solid transparent;	
-    border-left: 30px solid white;
+    border: 22px solid transparent;	
+    border-left: 28px solid white;
     z-index: 1;
   }
   #done::before{
@@ -164,8 +166,8 @@
     position: absolute;
     left: 0px;
     top: -0px;
-    border: 20px solid transparent;	
-    border-left: 30px solid white;
+    border: 22px solid transparent;	
+    border-left: 28px solid white;
     z-index: 1;
   }
   .first-status::after{
@@ -173,8 +175,8 @@
     position: absolute;
     right: -50px;
     top: -0px;
-    border: 20px solid transparent;	
-    border-left: 30px solid rgb(252, 171, 22);
+    border: 22px solid transparent;	
+    border-left: 28px solid rgb(252, 171, 22);
     z-index: 2;
   }
   .first-status{
@@ -186,8 +188,8 @@
     position: absolute;
     right: -50px;
     top: -0px;
-    border: 20px solid transparent;	
-    border-left: 30px solid rgb(7, 82, 50);
+    border: 22px solid transparent;	
+    border-left: 28px solid rgb(7, 82, 50);
     z-index: 2;
   }
   .second-status{
@@ -199,8 +201,8 @@
     position: absolute;
     right: -50px;
     top: -0px;
-    border: 20px solid transparent;	
-    border-left: 30px solid rgb(95, 95, 95);
+    border: 22px solid transparent;	
+    border-left: 28px solid rgb(95, 95, 95);
     z-index: 2;
   }
   .third-status{

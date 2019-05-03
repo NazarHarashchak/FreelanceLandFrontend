@@ -12,8 +12,10 @@ const requestDeleteTask = 'REQUEST_DELETE_TASK';
 const receiveDeleteTask = 'RECEIVE_DELETE_TASK';
 const requestTasksListForUserType = 'REQUEST-TASKS-LIST-FOR-USER-TYPE';
 const receiveTasksListForUserType = 'RECEIVE-TASKS-LIST-FOR-USER-TYPE'
+const requestCreatedTasksListForUserType = 'REQUEST-CREATED-TASKS-LIST-FOR-USER-TYPE';
+const receiveCreatedTasksListForUserType = 'RECEIVE-CREATED-TASKS-LIST-FOR-USER-TYPE';
 
-const initialState = { tasks: [], curPage: 1, totalPages: 1, deleteTaskResponse: [], filteredTaskList: [], foundTasksList:[],filter: {categories:[], priceFrom:0, priceTo:0}, search:"", isLoading: true, tasksAreLoading: true, categsAreLoading: true, isCategOpened:false };
+const initialState = { tasks: [], createdTasks: [],  curPage: 1, totalPages: 1, deleteTaskResponse: [], filteredTaskList: [], foundTasksList:[],filter: {categories:[], priceFrom:0, priceTo:0}, search:"", isLoading: true, tasksAreLoading: true, categsAreLoading: true, isCategOpened:false };
 
 export const reducer = (state, action) => {
     state = state || initialState;
@@ -123,6 +125,20 @@ export const reducer = (state, action) => {
                 priceFrom: 0,
                 search: ""
             }
+        }
+
+        case requestCreatedTasksListForUserType:
+        return {
+            ...state,
+            
+            tasksAreLoading: true
+        }
+
+        case receiveCreatedTasksListForUserType:
+        return {
+            ...state,
+            createdTasks: action.tasks,
+            tasksAreLoading: false
         }
 
         default:
