@@ -9,7 +9,7 @@ const Footer = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-3 footer-text">
-                            <h3>Freelance Land</h3>
+                            <h4>Freelance Land</h4>
                         </div>
                         <div className="col-md-2 footer-text">
                             <h4>Service rules</h4>

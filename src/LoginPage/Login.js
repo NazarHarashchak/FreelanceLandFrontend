@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import './LoginControl.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators } from '../LoginPage/actions';
 import { Redirect } from 'react-router';
 import SweetAlert from 'sweetalert2-react';
 import PropTypes from 'prop-types';
-
+import './LoginControl.css';
 
 class LoginPage extends Component {
     static propTypes = {
