@@ -11,6 +11,7 @@ class editTask extends React.Component {
             titleContent: this.props.forecasts.title,
             descriptionContent: this.props.forecasts.description,
             priceContent: this.props.forecasts.price,
+            priceError: '',
             categoryContent: this.props.forecasts.taskCategory,
         };
         this.saveChanges = this.saveChanges.bind(this);
@@ -57,7 +58,12 @@ class editTask extends React.Component {
     onPriceChange(event){
         const value = event.target.value;
 
-        this.setState({priceContent: value});
+        if (value < 0){
+            this.setState({priceError: "This space can not be empty, the value will not be changed"});
+        }
+        else {
+            this.setState({priceError: "", priceContent: value});
+        }
     }
 
     saveChanges(){
@@ -73,7 +79,7 @@ class editTask extends React.Component {
                 this.state.priceContent,
                 this.state.categoryContent).then(() => { 
                 alert("Success");
-                document.location = 'http://localhost:3000/taskInf/' + this.props.match.params.id;
+                document.location = '/taskInf/' + this.props.match.params.id;
         });
     }
 
@@ -131,6 +137,7 @@ class editTask extends React.Component {
                             <input type="number" step="10" 
                             id="price-text" name="price-text" defaultValue={this.props.forecasts.price}
                             onChange={this.onPriceChange}/>
+                            <label id="price-error">{this.state.priceError}</label>
                         </div>
                     </div>
                     <div id="save-button">

@@ -47,7 +47,7 @@ class Gallery extends React.Component {
       const { galleryItems, responsive, currentIndex } = this.state
       return (
         <div>
-            <button onClick={() => this.slidePrev()}>Prev button</button>
+            <button onClick={() => this.slidePrev()}>Previous</button>
           <AliceCarousel
             dotsDisabled={true}
             buttonsDisabled={true}
@@ -57,7 +57,7 @@ class Gallery extends React.Component {
             onSlideChanged={this.onSlideChanged}
           />
           
-          <button onClick={() => this.slideNext()}>Next button</button>
+          <button onClick={() => this.slideNext()}>Next</button>
         </div>
       )
     }

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Comments from './Comments';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { closeMyTask } from '../taskActions';
+import { closeMyTask, finishMyTask } from '../taskActions';
 import "./taskbody.css";
 
 class TaskDescription extends React.Component {
@@ -160,5 +160,5 @@ GetStatusList(){
 
 export default connect(
   state => state.taskProfilePage,
-  dispatch => bindActionCreators({closeMyTask:closeMyTask}, dispatch)
+  dispatch => bindActionCreators({closeMyTask:closeMyTask, finishMyTask: finishMyTask}, dispatch)
 )(TaskDescription);

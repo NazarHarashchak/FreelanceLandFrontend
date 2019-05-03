@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { Link } from 'react-router-dom';
 import "./taskbody.css";
-import  logo from './123.jpeg';
+import  logo from '../../store/default-logo.jpg';
 
 class Card extends Component {
     constructor(props) {

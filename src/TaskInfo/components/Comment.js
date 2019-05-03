@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { addExcecutor } from '../taskActions';
 import { Icon } from 'semantic-ui-react';
 import SweetAlert from 'sweetalert2-react';
-import  logo from './123.jpeg';
+import  logo from '../../store/default-logo.jpg';
 import "./comments.css";
 
 class Comment extends React.Component {

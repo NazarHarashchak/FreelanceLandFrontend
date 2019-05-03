@@ -1,5 +1,3 @@
-.add-task-body{
-}
 .add-task-description{
     position: relative;
     padding: 10px;
@@ -20,6 +18,7 @@
     width:15%;
     color:black;
     position: relative;
+    word-wrap: break-word;
     clear:both;
 }
 #my-hr-tag {
@@ -52,6 +51,16 @@
     height: 50px;
     padding-left: 18px;
     padding-right: 5px;
+}
+#price-text:invalid+span:after{
+    content: '✖ Invalid value';
+  margin-top: 10px;
+  color: red;
+}
+#price-text:valid+span:after{
+    content: '✓ Correct value';
+  margin-top: 100px;
+  color: green;
 }
 #save-button{
     text-align: center;

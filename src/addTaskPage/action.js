@@ -7,7 +7,7 @@ const receiveCategoriesTask = 'RECEIVE_CATEGORIES_TASK';
 
 export const actionTaskPost = {
     createNewTask: (my_title, my_description, my_userId, my_price,
-                        my_deadline, my_category) => async (dispatch) => {
+         my_category) => async (dispatch) => {
         dispatch({ type: requestTask });
 
         const url = `/api/taskinfo/addnewtask`;
@@ -17,7 +17,6 @@ export const actionTaskPost = {
                 customerId: my_userId,
                 description: my_description,
                 price: my_price,
-                deadline: my_deadline,
                 taskCategory: my_category
         }));
 

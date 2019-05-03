@@ -14,8 +14,10 @@ const requestTasksListForUserType = 'REQUEST-TASKS-LIST-FOR-USER-TYPE';
 const receiveTasksListForUserType = 'RECEIVE-TASKS-LIST-FOR-USER-TYPE'
 const requestCreatedTasksListForUserType = 'REQUEST-CREATED-TASKS-LIST-FOR-USER-TYPE';
 const receiveCreatedTasksListForUserType = 'RECEIVE-CREATED-TASKS-LIST-FOR-USER-TYPE';
+const requestGetActiveTasks = 'REQUEST_GET_ACTIVE_TASKS';
+const receiveGetActiveTasks = 'RECEIVE_GET_ACTIVE_TASKS';
 
-const initialState = { tasks: [], createdTasks: [],  curPage: 1, totalPages: 1, deleteTaskResponse: [], filteredTaskList: [], foundTasksList:[],filter: {categories:[], priceFrom:0, priceTo:0}, search:"", isLoading: true, tasksAreLoading: true, categsAreLoading: true, isCategOpened:false };
+const initialState = { tasks: [], createdTasks: [], activeTasks: [], curPage: 1, totalPages: 1, deleteTaskResponse: [], filteredTaskList: [], foundTasksList: [], filter: { categories: [], priceFrom: 0, priceTo: 0 }, search: "", isLoading: true, tasksAreLoading: true, categsAreLoading: true, isCategOpened: false };
 
 export const reducer = (state, action) => {
     state = state || initialState;
@@ -27,31 +29,31 @@ export const reducer = (state, action) => {
             };
 
         case requestTasksListForUserType:
-            return{
+            return {
                 ...state,
                 isLoading: true
             };
-        
+
         case requestCategoriesListType:
-            return{
+            return {
                 ...state,
                 categsAreLoading: true
             };
-        
+
         case receiveCategoriesListType:
-            return{
+            return {
                 ...state,
                 filter: {
                     ...state.filter,
                     categories: createCategsList(action.categories),
-                    priceFrom:0,
-                    priceTo:0
+                    priceFrom: 0,
+                    priceTo: 0
                 },
                 search: ""
             };
 
         case receiveTasksListForUserType:
-            return{
+            return {
                 ...state,
                 tasks: action.tasks,
                 isLoading: false
@@ -87,7 +89,7 @@ export const reducer = (state, action) => {
         case searchTaskListType:
             return {
                 ...state,
-                search:action.search
+                search: action.search
             };
 
         case changeCurrentPageType:
@@ -106,40 +108,52 @@ export const reducer = (state, action) => {
             }
 
         case changePriceType:
-        return {
-            ...state,
-            filter: {
-                ...state.filter,
-                priceTo: action.payload.toValue,
-                priceFrom: action.payload.fromValue
+            return {
+                ...state,
+                filter: {
+                    ...state.filter,
+                    priceTo: action.payload.toValue,
+                    priceFrom: action.payload.fromValue
+                }
             }
-        }
-
-        case cleanFilterType:
-        return {
-            ...state,
-            filter: {
-                ...state.filter,
-                categories: cleanChecked(state.filter.categories),
-                priceTo: 0,
-                priceFrom: 0,
-                search: ""
+            case cleanFilterType:
+            return {
+                ...state,
+                filter: {
+                    ...state.filter,
+                    categories: cleanChecked(state.filter.categories),
+                    priceTo: 0,
+                    priceFrom: 0,
+                    search: ""
+                }
             }
-        }
 
         case requestCreatedTasksListForUserType:
-        return {
-            ...state,
-            
-            tasksAreLoading: true
-        }
+            return {
+                ...state,
+
+                tasksAreLoading: true
+            }
 
         case receiveCreatedTasksListForUserType:
-        return {
-            ...state,
-            createdTasks: action.tasks,
-            tasksAreLoading: false
-        }
+            return {
+                ...state,
+                createdTasks: action.tasks,
+                tasksAreLoading: false
+            }
+
+        case requestGetActiveTasks:
+            return {
+                ...state,
+                tasksAreLoading: true
+            }
+
+        case receiveGetActiveTasks:
+            return {
+                ...state,
+                activeTasks: action.tasks,
+                tasksAreLoading: false
+            }
 
         default:
             return state;
@@ -150,24 +164,24 @@ export const reducer = (state, action) => {
 function cleanChecked(categs) {
     const newList = categs.map(item => {
         return {
-          ...item,
-          isChecked: false
+            ...item,
+            isChecked: false
         };
-      });
+    });
     return newList;
 }
 
 function createCategsList(categories) {
-    const categsList = categories.map(categ => {return {type:categ.type, isChecked:false}});
+    const categsList = categories.map(categ => { return { type: categ.type, isChecked: false } });
     return categsList;
 }
 
 
-function switchCheckedStatus(categs,name) {
+function switchCheckedStatus(categs, name) {
     const newList = categs.map(item =>
-        (item.type === name)?
-         {...item, isChecked: !item.isChecked}
-        : item
+        (item.type === name) ?
+            { ...item, isChecked: !item.isChecked }
+            : item
     )
     return newList;
 }
