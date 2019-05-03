@@ -41,6 +41,13 @@ class TaskDescription extends React.Component {
       document.location.reload();
 });
   }
+
+  finishTask(){
+    this.props.finishMyTask(this.props.myTask.id).then(() => { 
+      alert("Success");
+      document.location.reload();
+});
+  }
 GetStatusList(){
      switch(this.props.myTask.taskStatus){
         case "To do":
@@ -189,13 +196,13 @@ col(event){
                   && ((this.props.myTask.taskStatus !== "Done") 
                   && (this.props.myTask.taskStatus !== "In progress")) ? (
              <div id="close-task-button">
-                <input type="button" id="close" value="Close task" onClick={() => this.openModal()}/>
+                <input type="button" id="close" value="Finish task" onClick={this.finipop0shTask}/>
              </div>) : null
              }
              { (sessionStorage.getItem("id") == this.props.excecutorId) 
                   && (this.props.myTask.taskStatus == "In progress")  ? (
              <div id="close-task-button">
-                <input type="button" id="close" value="Finish task" onClick={this.finipop0shTask}/>
+                <input type="button" id="close" value="Finish task" onClick={this.finishTask}/>
              </div>) : null
              }
              </div>

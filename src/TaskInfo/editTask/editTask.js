@@ -11,6 +11,7 @@ class editTask extends React.Component {
             titleContent: this.props.forecasts.title,
             descriptionContent: this.props.forecasts.description,
             priceContent: this.props.forecasts.price,
+            priceError: '',
             categoryContent: this.props.forecasts.taskCategory,
         };
         this.saveChanges = this.saveChanges.bind(this);
@@ -57,24 +58,24 @@ class editTask extends React.Component {
     onPriceChange(event){
         const value = event.target.value;
 
-        this.setState({priceContent: value});
+        if (value < 0){
+            this.setState({priceError: "This space can not be empty and negative, the value will not be changed"});
+        }
+        else {
+            this.setState({priceError: "", priceContent: value});
+        }
     }
 
     saveChanges(){
-        console.log(this.props.match.params.id, 
-            this.state.titleContent,
-            this.state.descriptionContent,
-            this.state.priceContent,
-            this.state.categoryContent);
-
+        if (this.state.priceError == ""){
             this.props.editMyTask(this.props.match.params.id, 
                 this.state.titleContent,
                 this.state.descriptionContent,
                 this.state.priceContent,
                 this.state.categoryContent).then(() => { 
                 alert("Success");
-                document.location = 'http://localhost:3000/taskInf/' + this.props.match.params.id;
-        });
+                document.location = '/taskInf/' + this.props.match.params.id;
+        });}
     }
 
     render(){
@@ -128,9 +129,11 @@ class editTask extends React.Component {
                             <label>Price: </label>
                         </div>
                         <div className="text-element">
-                            <input type="number" step="10" 
+                            <input type="number" step="10" min="0"
                             id="price-text" name="price-text" defaultValue={this.props.forecasts.price}
-                            onChange={this.onPriceChange}/>
+                            onChange={this.onPriceChange}
+                            required/>
+                            <label id="price-error">{this.state.priceError}</label>
                         </div>
                     </div>
                     <div id="save-button">
