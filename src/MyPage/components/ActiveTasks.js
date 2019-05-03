@@ -9,7 +9,7 @@ import Filter from '../../tasks/components/Filter';
 import Pagination from './Pagination';
 import '../../tasks/styles.css';
 import { push } from 'react-router-redux';
-
+import { Loader } from 'semantic-ui-react';
 
 
 class Tasks extends Component {
@@ -37,7 +37,7 @@ class Tasks extends Component {
                             ref={(el) => { this.anchor = el; }}>
                         </div>
                         <div className="col-md-9" id="j-orders-search-list">
-                            {this.props.tasksAreLoading===true ? <h3>Loading data...</h3> : <TaskItemList tasks={this.props.tasks} />}
+                            {this.props.tasksAreLoading===true ? <Loader active size='large'/> : <TaskItemList tasks={this.props.tasks} />}
                             <Pagination className="users-pagination pull-center" 
                             bsSize="medium" 
                             maxButtons={10} 

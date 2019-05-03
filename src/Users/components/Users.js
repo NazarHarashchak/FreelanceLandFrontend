@@ -9,8 +9,7 @@ import SeachBar from './SeachBar';
 import ScrollTop from '../../tasks/components/ScrollTop';
 import { Pagination } from 'react-bootstrap'; 
 import { push } from 'react-router-redux'; 
-
-
+import { Loader } from 'semantic-ui-react';
 
 
 class Users extends Component {
@@ -39,10 +38,10 @@ class Users extends Component {
                             ref={(el) => { this.anchor = el; }}>
                         </div>
                         <div className="col-md-9" id="j-orders-search-list">
-                            <UsersList usersList={this.props.newUsers} isLoading={this.props.isLoading}/>
+                            {this.props.isLoading===true ? <Loader active size='large'/> : <UsersList usersList={this.props.newUsers} isLoading={this.props.isLoading}/>}
                         </div>
                         <div className="col-md-3" >
-                        <FilterComponent page={1} searchT={this.props.searchText} roles1={this.props.roles}/>
+                            {this.props.isLoading===true ? <Loader active size='large'/> : <FilterComponent page={1} searchT={this.props.searchText} roles1={this.props.roles}/>}
                         </div>
                         </div >
                     <Pagination className="users-pagination pull-center" 
@@ -73,7 +72,8 @@ function mapStateToProps (state ) {
         roles: state.usersReducers.roles,
         newUsers: state.usersReducers.newUsers,
         totalPages: state.usersReducers.totalPages,
-        currentPage: state.usersReducers.currentPage
+        currentPage: state.usersReducers.currentPage,
+        isLoading:state.usersReducers.isLoading
         });
     
   }
