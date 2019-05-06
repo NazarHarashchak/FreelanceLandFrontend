@@ -101,7 +101,6 @@ class addTaskPage extends React.Component {
                     }
                     default: return false;
                 }
-
             }
     }
 
