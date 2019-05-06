@@ -54,10 +54,20 @@ class NavMenu extends Component {
                 .configureLogging(signalR.LogLevel.Information)
                 .build();
 
-            hubConnection.on('sendMessage', function (id, notification) {
+            hubConnection.on('sendMessage', function (id) {
                 if (id === Number(sessionStorage.getItem('id'))) {
                     sessionStorage.count = Number(sessionStorage.count) + 1;
                     this.setState({ count: Number(sessionStorage.count) });
+                }
+            }.bind(this));
+
+            hubConnection.on('chatNotification', function (userId, message) {
+                if (window.location.href.indexOf("ChatRoom") < 0) {
+                    if (userId === Number(sessionStorage.getItem('id'))) {
+                        sessionStorage.count = Number(sessionStorage.count) + 1;
+                        this.setState({ count: Number(sessionStorage.count) });
+                        hubConnection.invoke("AddNotification", userId, message);
+                    }
                 }
             }.bind(this));
 
@@ -131,7 +141,7 @@ class NavMenu extends Component {
                                                     :
                                                     (<div className="notifications">
                                                         {(Number(this.state.count) > 0) ?
-                                                            (<button className="ui green basic button" onClick={this.hideNotifications}>
+                                                            (<button className="ui green button" onClick={this.hideNotifications}>
                                                             Hide all
                                                         </button>) : null}
                                                         <hr />
