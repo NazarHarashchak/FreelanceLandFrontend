@@ -8,6 +8,7 @@ import ScrollTop from './ScrollTop';
 import Filter from './Filter';
 import PropTypes from 'prop-types';
 import { Pagination } from 'react-bootstrap';
+import { Loader } from 'semantic-ui-react';
 import '../styles.css';
 import { push } from 'react-router-redux';
 
@@ -69,7 +70,7 @@ class Tasks extends Component {
                             ref={(el) => { this.anchor = el; }}>
                         </div>
                         <div className="col-md-9" id="j-orders-search-list">
-                            {this.props.tasksAreLoading===true ? <h3>Loading data...</h3> : <TaskItemList tasks={this.props.tasks} />}
+                            {this.props.tasksAreLoading===true ? <Loader active size='large'/> : <TaskItemList tasks={this.props.tasks} />}
                             <Pagination className="users-pagination pull-center" 
                             bsSize="medium" 
                             maxButtons={10} 

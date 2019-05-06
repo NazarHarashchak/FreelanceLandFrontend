@@ -9,6 +9,7 @@ import '../../tasks/styles.css';
 import { push } from 'react-router-redux';
 
 import './style.css';
+import { colors } from 'react-native-elements';
 
 
 class Tasks extends Component {
@@ -17,7 +18,10 @@ class Tasks extends Component {
         this.state = {
             id:"created?id="+ sessionStorage.getItem("id")+"&",
             firstStatus: '',
-            excecutor: 0
+            excecutor: 0,
+            defaultStyle: {color: "white"},
+            redstyle: {color: "red"},
+            greenstyle: {color: "green"}
          }
 
         this.changePage = this.changePage.bind(this);
@@ -34,6 +38,21 @@ class Tasks extends Component {
     }
 
     onDragStart = (event, id, status, ex) =>{
+        switch(status){
+            case 'To do':
+                document.getElementById('In-progress').style = this.state.redstyle;
+                document.getElementById('Ready-for').style = this.state.redstyle;
+                document.getElementById('Done').style = this.state.greenstyle;
+                console.log(this.state.redstyle);
+                break;
+            case 'In progress':
+                break;
+            case 'Ready for verification':
+                break;
+            case 'Done':
+                break;
+        }
+
         this.setState({firstStatus: status, excecutor: ex});
         console.log(this.state.firstStatus + 'excecutor' + this.state.excecutor);
         event.dataTransfer.setData("text/plain", id);
@@ -54,7 +73,7 @@ class Tasks extends Component {
                         <div
                             ref={(el) => { this.anchor = el; }}>
                         </div>
-                        <div className="Status col-md-3" id="To do" 
+                        <div className="Status col-md-3" id="To do"
                         onDrop={(this.state.firstStatus=='In progress') ||
                                 ((this.state.firstStatus == 'Done')&&(this.state.excecutor === 0))
                              ? (e) => this.onDrop(e, "To do"):null}

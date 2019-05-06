@@ -16,8 +16,11 @@ const requestCreatedTasksListForUserType = 'REQUEST-CREATED-TASKS-LIST-FOR-USER-
 const receiveCreatedTasksListForUserType = 'RECEIVE-CREATED-TASKS-LIST-FOR-USER-TYPE';
 const requestGetActiveTasks = 'REQUEST_GET_ACTIVE_TASKS';
 const receiveGetActiveTasks = 'RECEIVE_GET_ACTIVE_TASKS';
+const receiveTopActiveUserTask = 'RECEIVE_TOP_ACTIVE_USER_TASK';
+const receiveTopHistoryUserTask = 'RECEIVE_TOP_HISTORY_USER_TASK';
 
-const initialState = { tasks: [], createdTasks: [], activeTasks: [], curPage: 1, totalPages: 1, deleteTaskResponse: [], filteredTaskList: [], foundTasksList: [], filter: { categories: [], priceFrom: 0, priceTo: 0 }, search: "", isLoading: true, tasksAreLoading: true, categsAreLoading: true, isCategOpened: false };
+
+const initialState = { tasks: [], createdTasks: [], activeTasks: [], doneTask:[], curPage: 1, totalPages: 1, deleteTaskResponse: [], filteredTaskList: [], foundTasksList: [], filter: { categories: [], priceFrom: 0, priceTo: 0 }, search: "", isLoading: true, tasksAreLoading: true, categsAreLoading: true, isCategOpened: false };
 
 export const reducer = (state, action) => {
     state = state || initialState;
@@ -72,7 +75,16 @@ export const reducer = (state, action) => {
                 ...state,
                 isLoading: true
             };
-
+        case receiveTopActiveUserTask:
+            return{
+                ...state,
+                activeTasks:action.tasks
+            }
+        case receiveTopHistoryUserTask:
+        return{
+            ...state,
+            doneTask:action.tasks
+        }
         case receiveDeleteTask:
             return {
                 ...state,
@@ -154,6 +166,20 @@ export const reducer = (state, action) => {
                 activeTasks: action.tasks,
                 tasksAreLoading: false
             }
+
+        case requestCreatedTasksListForUserType:
+        return {
+            ...state,
+            
+            tasksAreLoading: true
+        }
+
+        case receiveCreatedTasksListForUserType:
+        return {
+            ...state,
+            createdTasks: action.tasks,
+            tasksAreLoading: false
+        }
 
         default:
             return state;

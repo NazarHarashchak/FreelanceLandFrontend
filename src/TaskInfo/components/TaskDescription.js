@@ -3,19 +3,40 @@ import { Link } from 'react-router-dom';
 import Comments from './Comments';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { closeMyTask, finishMyTask } from '../taskActions';
+import { closeMyTask,finishMyTask, rateUser } from '../taskActions';
 import "./taskbody.css";
+import { Rating } from 'semantic-ui-react'
+import Modal from 'react-awesome-modal';
+import SweetAlert from 'sweetalert2-react';
 
 class TaskDescription extends React.Component {
   constructor(props){
     super(props);
+    this.state = {
+      visible : false,
+      rate:0,userNotRate: false}
 
     this.closeTask = this.closeTask.bind(this);
     this.finishTask = this.finishTask.bind(this);
   }
-
+  
   closeTask(){
+
+    console.log(this.state.rating)
+    if(this.state.rating===undefined){
+      this.closeModal();
+      this.setState({ userNotRate: true })
+    }
+    else{
     this.props.closeMyTask(this.props.myTask.id).then(() => { 
+      this.props.rateUser(this.props.customerId,this.props.excecutorId,this.state.rating);
+      this.setState({ rate: true })
+      this.closeModal();
+});
+  }}
+
+  finishTask(){
+    this.props.finishMyTask(this.props.myTask.id).then(() => { 
       alert("Success");
       document.location.reload();
 });
@@ -32,80 +53,112 @@ GetStatusList(){
         case "To do":
           return(
             <div id="status-panel">
-                <ul className="my_list">
-                  <li className="first-status col-md-2">
+                <div className="my_list">
+                  <div className="first-status col-md-2">
                     To do
-                  </li>
-                  <li className="third-status col-md-3" id="in_progress">
+                  </div>
+                  <div className="third-status col-md-3" id="in_progress">
                     In progress
-                  </li>
-              < li className="third-status col-md-4" id="ready_for">
+                  </div>
+              < div className="third-status col-md-4" id="ready_for">
                 Ready for verification 
-              </li>
-                  <li className="third-status col-md-2" id="done">
+              </div>
+                  <div className="third-status col-md-2" id="done">
                     Done
-                  </li>
-                </ul>
+                  </div>
+                </div>
             </div>
           );
         case "In progress":
           return(<div id="status-panel">
-          <ul className="my_list">
-            <li className="second-status col-md-2">
+          <div className="my_list">
+            <div className="second-status col-md-2">
               To do 
-            </li>
-            <li className="first-status col-md-3" id="in_progress">
+            </div>
+            <div className="first-status col-md-3" id="in_progress">
               In progress 
-            </li>
-              < li className="third-status col-md-4" id="ready_for">
+            </div>
+              < div className="third-status col-md-4" id="ready_for">
                 Ready for verification 
-              </li>
-            <li className="third-status col-md-2" id="done">
+              </div>
+            <div className="third-status col-md-2" id="done">
               Done
-            </li>
-          </ul>
+            </div>
+          </div>
       </div>);
         case "Done":
           return(<div id="status-panel">
-          <ul className="my_list">
-            <li className="second-status col-md-2">
+          <div className="my_list">
+            <div className="second-status col-md-2">
               To do 
-            </li>
-            <li className="second-status col-md-3" id="in_progress">
+            </div>
+            <div className="second-status col-md-3" id="in_progress">
               In progress 
-            </li>
-              < li className="second-status col-md-4" id="ready_for">
+            </div>
+              < div className="second-status col-md-4" id="ready_for">
                 Ready for verification 
-              </li>
-            <li className="first-status col-md-2" id="done">
+              </div>
+            <div className="first-status col-md-2" id="done">
               Done
-            </li>
-          </ul>
+            </div>
+          </div>
       </div>);
         case "Ready for verification":
             return(<div id="status-panel">
-            <ul className="my_list">
-              <li className="second-status col-md-2">
+            <div className="my_list">
+              <div className="second-status col-md-2">
                 To do 
-              </li>
-              <li className="second-status col-md-3" id="in_progress">
+              </div>
+              <div className="second-status col-md-3" id="in_progress">
                 In progress 
-              </li>
-              < li className="first-status col-md-4" id="ready_for">
+              </div>
+              < div className="first-status col-md-4" id="ready_for">
                 Ready for verification 
-              </li>
-              <li className="third-status col-md-2" id="done">
+              </div>
+              <div className="third-status col-md-2" id="done">
                 Done
-              </li>
-            </ul>
+              </div>
+            </div>
         </div>
 
             );
      }
 }
+handleRate = (e, { rating, maxRating }) => this.setState({ rating, maxRating })
+openModal() {
+  this.setState({
+      visible : true
+  });
+}
+
+closeModal() {
+  this.setState({
+      visible : false
+  });
+}
+col(event){
+  console.log(event.target.defaultRating);
+}
+
   render() {
     return (
-        <div className="conteiner">
+        <div>
+          <SweetAlert
+                        show={this.state.userNotRate}
+                        title="Rate freelancer"
+                        type = 'warning'
+                        confirmButtonColor='#075232'
+                        onConfirm={() =>( this.setState({ userNotRate: false }), this.openModal())}
+                    />
+          <section>
+                <Modal visible={this.state.visible} width="200" height="200" effect="fadeInUp" onClickAway={() => this.closeModal()}>
+                    <div>
+                      <h1>Rate freelancer</h1>
+                    <Rating id="rate" icon='star' size='massive' maxRating={5} onRate={this.handleRate} />
+                        <button id="rateButton"  readOnly={this.state.rea} onClick={this.closeTask}>Close/Rate</button>
+                    </div>
+                </Modal>
+            </section>
           <div><Link to="/tasks">Back to list</Link> </div>
            <div className="my-status-list row">{this.GetStatusList()}</div><div className="row">
           <form className="my-task-description" title="Send a comment to start working"> 
@@ -143,7 +196,7 @@ GetStatusList(){
                   && ((this.props.myTask.taskStatus !== "Done") 
                   && (this.props.myTask.taskStatus !== "In progress")) ? (
              <div id="close-task-button">
-                <input type="button" id="close" value="Close task" onClick={this.closeTask}/>
+                <input type="button" id="close" value="Finish task" onClick={this.finipop0shTask}/>
              </div>) : null
              }
              { (sessionStorage.getItem("id") == this.props.excecutorId) 
@@ -160,5 +213,5 @@ GetStatusList(){
 
 export default connect(
   state => state.taskProfilePage,
-  dispatch => bindActionCreators({closeMyTask:closeMyTask, finishMyTask: finishMyTask}, dispatch)
+  dispatch => bindActionCreators({closeMyTask:closeMyTask, rateUser:rateUser, finishMyTask:finishMyTask}, dispatch)
 )(TaskDescription);
