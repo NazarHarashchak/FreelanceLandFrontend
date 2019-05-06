@@ -141,7 +141,7 @@ class NavMenu extends Component {
                                                     :
                                                     (<div className="notifications">
                                                         {(Number(this.state.count) > 0) ?
-                                                            (<button className="ui green basic button" onClick={this.hideNotifications}>
+                                                            (<button className="ui green button" onClick={this.hideNotifications}>
                                                             Hide all
                                                         </button>) : null}
                                                         <hr />
