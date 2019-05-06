@@ -61,9 +61,7 @@ class ChatRoomContainer extends Component {
                                                         }
                                             }}/>
               ]});
-          }.bind(this));
-         hubConnection.on('Notify', function (message) {
-          });
+            }.bind(this));
 
          var roomId = this.props.roomId;
          let to = "";
