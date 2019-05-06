@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './ProfilePage.css';
-import ActiveTasks from './ActiveTasks';
+import ProfilePageActiveTasks from './ActiveTasks';
 import History from './History';
 import PersonalInfo from './PersonalInfo';
 import { Grid} from 'semantic-ui-react'
@@ -94,16 +94,13 @@ class ProfileComponent extends Component {
           </Grid.Column>
         </Grid.Row>
   
-        <Grid.Row>
-          <Grid.Column>
-            <ActiveTasks/>
-          </Grid.Column>
+        <Grid.Row >
+            <ProfilePageActiveTasks id={this.props.match.params.id}/>
         </Grid.Row>
       
-        <Grid.Row>
-          <Grid.Column>
-            <History/>
-          </Grid.Column>
+        <Grid.Row >
+          
+            <History id={this.props.match.params.id}/>
         </Grid.Row>
       </Grid>
     );
