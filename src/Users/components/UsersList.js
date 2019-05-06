@@ -8,7 +8,7 @@ class UsersList extends React.Component {
 
   render() {      
     return (
-        <div className="list">
+        <div className="list container-fluid">
             {this.props.usersList.map((item,index) => {   
                 return(
                   <UserItem

@@ -45,7 +45,12 @@ p {
 label {
     font-weight: normal;
 }
+.rating-color
+{
+    color: blue !important;
+    text-emphasis-color: blue;
 
+}
 
 .container {
     margin-right: auto;

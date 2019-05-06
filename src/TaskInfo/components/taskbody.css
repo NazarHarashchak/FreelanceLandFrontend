@@ -10,6 +10,13 @@
 #push_block {
     height: 20px;
 }
+#rateButton{
+ width: 80%;
+ margin: 10%;
+}
+#rate{
+  margin: 0 20% 0 20%;
+}
 
 #customer-photo{
   margin: 10%;

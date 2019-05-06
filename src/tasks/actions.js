@@ -16,6 +16,8 @@ const requestCreatedTasksListForUserType = 'REQUEST-CREATED-TASKS-LIST-FOR-USER-
 const receiveCreatedTasksListForUserType = 'RECEIVE-CREATED-TASKS-LIST-FOR-USER-TYPE';
 const requestGetActiveTasks = 'REQUEST_GET_ACTIVE_TASKS';
 const receiveGetActiveTasks = 'RECEIVE_GET_ACTIVE_TASKS';
+const receiveTopActiveUserTask = 'RECEIVE_TOP_ACTIVE_USER_TASK';
+const receiveTopHistoryUserTask = 'RECEIVE_TOP_HISTORY_USER_TASK';
 
 export const requestTasksList = (pageNumber, filter, searchText, control) => async (dispatch) => {
     dispatch({ type: requestTasksListType });
@@ -62,6 +64,27 @@ export const requestCreatedTasksListForUser = () => async (dispatch) => {
     dispatch({ type: receiveCreatedTasksListForUserType, tasks});
 }
 
+export const requestTopActiveTaskForUser=(id)=> async(dispatch)=>{
+
+    dispatch({ type: requestTasksListType });
+
+    let url = '/tasks/topActive/'+id; 
+    
+    const tasks = await requests.doGet(url);
+    dispatch({ type: receiveTopActiveUserTask, tasks });
+
+}
+
+export const requestTopHistoryTaskForUser=(id)=> async(dispatch)=>{
+
+    dispatch({ type: requestTasksListType });
+
+    let url = '/tasks/topHistory/'+id; 
+    
+    const tasks = await requests.doGet(url);
+    dispatch({ type: receiveTopHistoryUserTask, tasks });
+
+}
 export const DragAndDropTasksByCustomer = (my_taskId, my_customerId, secondStatus) => async (dispatch) => {
     dispatch({ type: requestCreatedTasksListForUserType });
 

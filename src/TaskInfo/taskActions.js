@@ -22,6 +22,7 @@ export const  requestTaskForecasts = (myId) => async (dispatch) => {
         dispatch({ type: receiveTaskForecastsType, forecasts });
     }
 
+
 export const getTaskInformation = {
         editMyTask: (task_id, my_title, my_description, my_price, my_category) => 
         async (dispatch) => {
@@ -64,14 +65,27 @@ export const getTaskInformation = {
         }
 }
 
-export const   closeMyTask = (taskId) => async (dispatch) => {
-        dispatch({type: requestTaskForecastsType });
-        const forecasts = await requests.doPost(`/api/taskinfo/closetask/` + taskId,JSON.stringify({
-            id: taskId
-    }));
 
-        dispatch({ type: receiveTaskForecastsType, forecasts });
-    }
+export const   closeMyTask = (taskId) => async (dispatch) => {
+    dispatch({type: requestTaskForecastsType });
+    const forecasts = await requests.doPost(`/api/taskinfo/closetask/` + taskId,JSON.stringify({
+        id: taskId
+}));
+
+    dispatch({ type: receiveTaskForecastsType, forecasts });
+}
+
+export const   rateUser = ( customer, executor,mark) => async (dispatch) => {
+    dispatch({type: requestTaskForecastsType });
+
+    const forecasts = await requests.doPost(`/api/taskinfo/RateUser/`,JSON.stringify({
+        UserId:executor,
+        RateByUser:customer,
+        Mark:mark,
+        UserStatusId:1
+}));
+    dispatch({ type: receiveTaskForecastsType, forecasts });
+}
 
 export const finishMyTask = (taskId) => async (dispatch) => {
         dispatch({type: requestTaskForecastsType });
@@ -100,6 +114,7 @@ export const actionCommentsCreators = {
         dispatch({ type: receiveImage, ImgData });
     }
 }
+
 
 export const actionCommentsPostCreators = {
     sendComment: (my_content, my_userId, my_taskId) => async (dispatch) => {
@@ -144,4 +159,6 @@ export const addExcecutor = {
         const deleteCommentResponse = await response;
         dispatch({ type: receiveDeleteComment, deleteCommentResponse });
     }
+
+
 }
