@@ -15,6 +15,7 @@ div.validateUser {
 }
 
 div.signIn {
+    margin-bottom: 170px;
     margin: 0 auto;
     padding: 8% 1% 0 1%;
     float: left;
@@ -23,7 +24,7 @@ div.signIn {
 }
 
 .createAccount {
-    
+    margin-bottom: 170px;
     padding: 0% 1% 0 1%;
     float: left;
     color: rgb(6, 107, 63);
@@ -35,7 +36,8 @@ div.swaper {
     float: left;
     color: white;
     background: linear-gradient(45deg, rgb(197, 232, 206), rgb(7, 82, 50));
-    width: 35%
+    width: 35%;
+    margin-bottom: 170px;
 }
 
 .text-detais
@@ -91,4 +93,10 @@ a.forgotPass {
 
 h1, h2, h3, p {
     text-align: center;
+}
+@media (max-width: 360px){
+    .createAccount{
+        display: none;
+    }
+    
 }

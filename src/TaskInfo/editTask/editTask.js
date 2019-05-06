@@ -59,7 +59,7 @@ class editTask extends React.Component {
         const value = event.target.value;
 
         if (value < 0){
-            this.setState({priceError: "This space can not be empty, the value will not be changed"});
+            this.setState({priceError: "This space can not be empty and negative, the value will not be changed"});
         }
         else {
             this.setState({priceError: "", priceContent: value});
@@ -67,12 +67,7 @@ class editTask extends React.Component {
     }
 
     saveChanges(){
-        console.log(this.props.match.params.id, 
-            this.state.titleContent,
-            this.state.descriptionContent,
-            this.state.priceContent,
-            this.state.categoryContent);
-
+        if (this.state.priceError == ""){
             this.props.editMyTask(this.props.match.params.id, 
                 this.state.titleContent,
                 this.state.descriptionContent,
@@ -80,7 +75,7 @@ class editTask extends React.Component {
                 this.state.categoryContent).then(() => { 
                 alert("Success");
                 document.location = '/taskInf/' + this.props.match.params.id;
-        });
+        });}
     }
 
     render(){
@@ -134,9 +129,10 @@ class editTask extends React.Component {
                             <label>Price: </label>
                         </div>
                         <div className="text-element">
-                            <input type="number" step="10" 
+                            <input type="number" step="10" min="0"
                             id="price-text" name="price-text" defaultValue={this.props.forecasts.price}
-                            onChange={this.onPriceChange}/>
+                            onChange={this.onPriceChange}
+                            required/>
                             <label id="price-error">{this.state.priceError}</label>
                         </div>
                     </div>

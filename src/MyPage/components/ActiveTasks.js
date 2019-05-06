@@ -71,7 +71,7 @@ class Tasks extends Component {
                         <div className="Status col-md-6" id="Ready"
                             onDrop={(e) => this.onDrop(e, "Ready for verification")}
                             onDragOver={(e) => this.onDragOver(e)}>
-                            <div className="status-type">Ready for verification</div>
+                            <div className="status-type" id="my-ready-status">Ready for verification</div>
                             {this.props.activeTasks.map(item => (item.taskStatus === "Ready for verification" ?
                                 <div key={item.id}
                                     draggable
