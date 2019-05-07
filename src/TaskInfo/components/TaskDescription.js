@@ -32,6 +32,7 @@ class TaskDescription extends React.Component {
       this.props.rateUser(this.props.customerId,this.props.excecutorId,this.state.rating);
       this.setState({ rate: true })
       this.closeModal();
+      document.location.reload();
 });
   }}
 
@@ -202,7 +203,7 @@ col(event){
              { (sessionStorage.getItem("id") == this.props.excecutorId) 
                   && (this.props.myTask.taskStatus == "In progress")  ? (
              <div id="close-task-button">
-                <input type="button" id="close" value="Finish task" onClick={this.finishTask}/>
+                <input type="button" id="close" value="Finish task" onClick={this.closeTask}/>
              </div>) : null
              }
              </div>
