@@ -18,6 +18,7 @@ const requestGetActiveTasks = 'REQUEST_GET_ACTIVE_TASKS';
 const receiveGetActiveTasks = 'RECEIVE_GET_ACTIVE_TASKS';
 const receiveTopActiveUserTask = 'RECEIVE_TOP_ACTIVE_USER_TASK';
 const receiveTopHistoryUserTask = 'RECEIVE_TOP_HISTORY_USER_TASK';
+const receiveTaskForecastsType = 'RECEIVE_WEATHER_FORECASTS';
 
 export const requestTasksList = (pageNumber, filter, searchText, control) => async (dispatch) => {
     dispatch({ type: requestTasksListType });
@@ -84,6 +85,17 @@ export const requestTopHistoryTaskForUser=(id)=> async(dispatch)=>{
     const tasks = await requests.doGet(url);
     dispatch({ type: receiveTopHistoryUserTask, tasks });
 
+}
+export const   rateUser = ( customer, executor,mark) => async (dispatch) => {
+    dispatch({type: requestTasksListType });
+
+    const forecasts = await requests.doPost(`/api/taskinfo/RateUser/`,JSON.stringify({
+        UserId:executor,
+        RateByUser:customer,
+        Mark:mark,
+        UserStatusId:1
+}));
+    dispatch({ type: receiveTaskForecastsType, forecasts });
 }
 export const DragAndDropTasksByCustomer = (my_taskId, my_customerId, secondStatus) => async (dispatch) => {
     dispatch({ type: requestCreatedTasksListForUserType });

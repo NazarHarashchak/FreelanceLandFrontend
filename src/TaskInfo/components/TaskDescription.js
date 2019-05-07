@@ -54,72 +54,72 @@ GetStatusList(){
         case "To do":
           return(
             <div id="status-panel">
-                <ul className="my_list">
-                  <li className="first-status col-md-2">
+                <div className="my_list">
+                  <div className="first-status col-md-2">
                     To do
-                  </li>
-                  <li className="third-status col-md-3" id="in_progress">
+                  </div>
+                  <div className="third-status col-md-3" id="in_progress">
                     In progress
-                  </li>
-              < li className="third-status col-md-4" id="ready_for">
+                  </div>
+              < div className="third-status col-md-4" id="ready_for">
                 Ready for verification 
-              </li>
-                  <li className="third-status col-md-2" id="done">
+              </div>
+                  <div className="third-status col-md-2" id="done">
                     Done
-                  </li>
-                </ul>
+                  </div>
+                </div>
             </div>
           );
         case "In progress":
           return(<div id="status-panel">
-          <ul className="my_list">
-            <li className="second-status col-md-2">
+          <div className="my_list">
+            <div className="second-status col-md-2">
               To do 
-            </li>
-            <li className="first-status col-md-3" id="in_progress">
+            </div>
+            <div className="first-status col-md-3" id="in_progress">
               In progress 
-            </li>
-              < li className="third-status col-md-4" id="ready_for">
+            </div>
+              < div className="third-status col-md-4" id="ready_for">
                 Ready for verification 
-              </li>
-            <li className="third-status col-md-2" id="done">
+              </div>
+            <div className="third-status col-md-2" id="done">
               Done
-            </li>
-          </ul>
+            </div>
+          </div>
       </div>);
         case "Done":
           return(<div id="status-panel">
-          <ul className="my_list">
-            <li className="second-status col-md-2">
+          <div className="my_list">
+            <div className="second-status col-md-2">
               To do 
-            </li>
-            <li className="second-status col-md-3" id="in_progress">
+            </div>
+            <div className="second-status col-md-3" id="in_progress">
               In progress 
-            </li>
-              < li className="second-status col-md-4" id="ready_for">
+            </div>
+              < div className="second-status col-md-4" id="ready_for">
                 Ready for verification 
-              </li>
-            <li className="first-status col-md-2" id="done">
+              </div>
+            <div className="first-status col-md-2" id="done">
               Done
-            </li>
-          </ul>
+            </div>
+          </div>
       </div>);
         case "Ready for verification":
             return(<div id="status-panel">
-            <ul className="my_list">
-              <li className="second-status col-md-2">
+            <div className="my_list">
+              <div className="second-status col-md-2">
                 To do 
-              </li>
-              <li className="second-status col-md-3" id="in_progress">
+              </div>
+              <div className="second-status col-md-3" id="in_progress">
                 In progress 
-              </li>
-              < li className="first-status col-md-4" id="ready_for">
+              </div>
+              < div className="first-status col-md-4" id="ready_for">
                 Ready for verification 
-              </li>
-              <li className="third-status col-md-2" id="done">
+              </div>
+              <div className="third-status col-md-2" id="done">
                 Done
-              </li>
-            </ul>
+              </div>
+            </div>
         </div>
 
             );
@@ -197,13 +197,13 @@ col(event){
                   && ((this.props.myTask.taskStatus !== "Done") 
                   && (this.props.myTask.taskStatus !== "In progress")) ? (
              <div id="close-task-button">
-                <input type="button" id="close" value="Finish task" onClick={this.finipop0shTask}/>
+                <input type="button" id="close" value="close task" onClick={this.closeTask}/>
              </div>) : null
              }
              { (sessionStorage.getItem("id") == this.props.excecutorId) 
                   && (this.props.myTask.taskStatus == "In progress")  ? (
              <div id="close-task-button">
-                <input type="button" id="close" value="Finish task" onClick={this.closeTask}/>
+                <input type="button" id="close" value="Finish task" onClick={this.finishTask}/>
              </div>) : null
              }
              </div>

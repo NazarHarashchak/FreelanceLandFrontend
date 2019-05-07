@@ -16,19 +16,20 @@
     color: rgb(7, 82, 50);
     text-align: center;
 }
-#my-ready-status{
-    height: 400px;
-    border-right-width: 1px; 
-    border-right-style: solid;
-    border-right-color: black;
-}
+
 .Status{
     border-left-width: 1px;
     border-left-style: solid;
     border-left-color: black;
-    height: 400px;
+    height: -webkit-fill-available;
 }
 #Done{
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-right-color: black;
+}
+
+#Ready {
     border-right-width: 1px;
     border-right-style: solid;
     border-right-color: black;

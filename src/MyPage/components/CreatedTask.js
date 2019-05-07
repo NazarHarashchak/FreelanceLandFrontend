@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {requestCreatedTasksListForUser ,requestCategoriesList ,
-        changeCurrentPage, DragAndDropTasksByCustomer} from '../../tasks/actions';
+        changeCurrentPage, DragAndDropTasksByCustomer,rateUser} from '../../tasks/actions';
+
 import TaskItem from '../../DragAndDrop/task';
 import ScrollTop from '../../tasks/components/ScrollTop';
 import '../../tasks/styles.css';
 import { push } from 'react-router-redux';
+
+import { Rating } from 'semantic-ui-react'
+import Modal from 'react-awesome-modal';
+import SweetAlert from 'sweetalert2-react';
 
 import './style.css';
 
@@ -17,7 +22,11 @@ class Tasks extends Component {
         this.state = {
             id:"created?id="+ sessionStorage.getItem("id")+"&",
             firstStatus: '',
-            excecutor: 0
+            excecutor: 0,
+            defaultStyle: {color: "white"},
+            redstyle: {color: "red"},
+            greenstyle: {color: "green"},
+            rate:0,userNotRate: false
          }
 
         this.changePage = this.changePage.bind(this);
@@ -29,11 +38,37 @@ class Tasks extends Component {
 
     onDrop = (event, cat) => {
         let id = event.dataTransfer.getData("text");
+
+        if ((this.state.firstStatus == "Ready for verivication") && (cat == "Done")){
+            if(this.props.rating===undefined){
+                this.setState({ userNotRate: true })
+              }
+              else{
+                this.props.rateUser(sessionStorage.getItem("id"),this.state.excecutor,this.props.rating);
+                this.setState({ rate: true })
+                this.closeModal();}
+
+        }
         
         this.props.DragAndDropTasksByCustomer(id, sessionStorage.getItem("id"), cat);
     }
 
     onDragStart = (event, id, status, ex) =>{
+        switch(status){
+            case 'To do':
+                document.getElementById('In-progress').style = this.state.redstyle;
+                document.getElementById('Ready-for').style = this.state.redstyle;
+                document.getElementById('Done').style = this.state.greenstyle;
+                console.log(this.state.redstyle);
+                break;
+            case 'In progress':
+                break;
+            case 'Ready for verification':
+                break;
+            case 'Done':
+                break;
+        }
+
         this.setState({firstStatus: status, excecutor: ex});
         console.log(this.state.firstStatus + 'excecutor' + this.state.excecutor);
         event.dataTransfer.setData("text/plain", id);
@@ -43,9 +78,30 @@ class Tasks extends Component {
         event.preventDefault();
     }
 
+    openModal() {
+        this.setState({
+            visible : true
+        });
+      }
     render() {
         return (
             <div className="created-tasks container" id="tasks-container">
+                <SweetAlert
+                        show={this.state.userNotRate}
+                        title="Rate freelancer"
+                        type = 'warning'
+                        confirmButtonColor='#075232'
+                        onConfirm={() =>( this.setState({ userNotRate: false }), this.openModal())}
+                    />
+          <section>
+                <Modal visible={this.state.visible} width="200" height="200" effect="fadeInUp" onClickAway={() => this.closeModal()}>
+                    <div>
+                      <h1>Rate freelancer</h1>
+                    <Rating id="rate" icon='star' size='massive' maxRating={5} onRate={this.handleRate} />
+                        <button id="rateButton"  readOnly={this.state.rea} onClick={this.closeTask}>Close/Rate</button>
+                    </div>
+                </Modal>
+            </section>
                 <div
                     ref={(el) => { this.anchor = el; }}>
                 </div>
@@ -54,7 +110,7 @@ class Tasks extends Component {
                         <div
                             ref={(el) => { this.anchor = el; }}>
                         </div>
-                        <div className="Status col-md-3" id="To do" 
+                        <div className="Status col-md-3" id="To do"
                         onDrop={(this.state.firstStatus=='In progress') ||
                                 ((this.state.firstStatus == 'Done')&&(this.state.excecutor === 0))
                              ? (e) => this.onDrop(e, "To do"):null}
@@ -130,9 +186,13 @@ export default connect(
         tasksAreLoading: state.tasksReducers.tasksAreLoading,
         createdTasks: state.tasksReducers.createdTasks,
         totalPages: state.tasksReducers.totalPages,
-        page: state.tasksReducers.curPage}),
+        page: state.tasksReducers.curPage,
+        rating: state.tasksReducers.rating,
+        userNotRate:state.tasksReducers.userNotRate
+
+        }),
 
         dispatch => bindActionCreators({  requestCreatedTasksListForUser:requestCreatedTasksListForUser,
         requestCategoriesList:requestCategoriesList, push: push, changeCurrentPage:changeCurrentPage,
-        DragAndDropTasksByCustomer:DragAndDropTasksByCustomer}, dispatch)
+        DragAndDropTasksByCustomer:DragAndDropTasksByCustomer,rateUser:rateUser}, dispatch)
 )(Tasks);
